@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UtilisateurDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurDetailsRepository::class)]
 class UtilisateurDetails
@@ -13,19 +14,23 @@ class UtilisateurDetails
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 150, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 10, nullable: true, unique: true)]
     private ?string $tel = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(min: 2, max: 255)]
     private ?string $adresse = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
@@ -34,6 +39,11 @@ class UtilisateurDetails
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
