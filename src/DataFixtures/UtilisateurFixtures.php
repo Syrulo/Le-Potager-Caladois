@@ -9,7 +9,7 @@ use Faker\Factory;
 use Faker\Generator;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AppFixtures extends Fixture
+class UtilisateurFixtures extends Fixture
 {
 
     /**
@@ -33,8 +33,10 @@ class AppFixtures extends Fixture
                             ->setPlainPassword('password');
 
                 $manager->persist($utilisateur);
+                $this->addReference('utilisateur'.$i, $utilisateur);
             }
             
             $manager->flush();
+            
         }
     }   

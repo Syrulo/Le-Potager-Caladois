@@ -23,6 +23,7 @@ class UtilisateurDetails
     private ?string $nom = null;
 
     #[ORM\Column(length: 10, nullable: true, unique: true)]
+    #[Assert\Length(min: 10, max: 10)]
     private ?string $tel = null;
 
     #[ORM\Column(length: 255, nullable: true)]
