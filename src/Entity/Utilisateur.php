@@ -37,7 +37,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?string $password;
+    private ?string $password = "password";
 
     #[ORM\Column]
     private ?bool $is_active = null;
