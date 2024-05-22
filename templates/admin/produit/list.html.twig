@@ -1,0 +1,38 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+        Liste des produits
+        {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+    <div class="card w-50 mx-auto p-3">
+        <h1 class="text-center">Liste des produits</h1>
+            <table class="table table-striped">
+                    <thead>
+                            <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Actions</th>
+                            </tr>
+                    </thead>
+        {% for produit in produits %}
+        <tr>
+                <th scope="row">{{ produit.id }}</th>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.prix }}</td>
+                
+                <td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="imgFruit"></td>
+                <td>
+                        <a href="{{ path('app_admin.produit.edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+                        <form action="{{ url('app_admin.produit.delete', { id: produit.id }) }}" method="post">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                </td>
+        </tr>        
+        {% endfor %}
+{% endblock %}

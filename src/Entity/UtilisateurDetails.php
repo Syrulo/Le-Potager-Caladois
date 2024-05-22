@@ -134,4 +134,9 @@ class UtilisateurDetails
 
         return $this;
     }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
 }

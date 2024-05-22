@@ -3,11 +3,4 @@
 {% block title %}Bienvenue sur la page d'accueil du Potager Caladois{% endblock %}
 
 {% block body %}
-
-{% if is_granted('ROLE_USER') %}
-<p>Mon contenu privé...</p>
-{% else %}>
-<p>C'est NON</p>
-{% endif %}
-
 {% endblock %}

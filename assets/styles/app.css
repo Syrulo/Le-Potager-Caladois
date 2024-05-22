@@ -9,3 +9,13 @@ body {
 .navbarsup {
     background-color: #E3EBD0;
 }
+
+.imgFruit {
+    height: 100px;
+    width: 100px;
+}
+
+.vich-image img {
+    height: 100px;
+    width: 100px;
+}

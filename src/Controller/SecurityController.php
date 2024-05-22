@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateur;
+use App\Entity\UtilisateurDetails;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +52,7 @@ class SecurityController extends AbstractController
     {
 
         $utilisateur = new Utilisateur();
+        $utilisateurDetails = new UtilisateurDetails();
         $form = $this->createForm(InscriptionType::class, $utilisateur);
 
         $form->handleRequest($request);
@@ -65,12 +67,18 @@ class SecurityController extends AbstractController
 
             $manager->persist($utilisateur);
             $manager->flush();
+            $lastId = $utilisateur->getId();
+            $utilisateurDetails->setUtilisateurId($utilisateur);
+            $manager->persist($utilisateurDetails);
+            $manager->flush();
+
+
 
             return $this->redirectToRoute('app_security.login');
         }    
         
         return $this->render('pages/security/inscription.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form
         ]);
     }
 }
