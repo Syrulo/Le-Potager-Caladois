@@ -6,7 +6,24 @@
 {% endblock %}
 
 {% block body %}
-    {% for categorie in categories %}
-        <a href="{{ path('app_categorie.details', {'id': categorie.id}) }}">{{ categorie.nom }}</a>
-    {% endfor %}
-{% endblock %}
+	<div class="container mt-4">
+		<h1>Catégories</h1>
+		<table class="table table-hover">
+			<tbody>
+				<div class="d-flex justify-content-around">
+					{% for categorie in categories %}
+						<div class="card w-25 d-flex">
+							<img src="http://localhost:8000/images/categories/{{ categorie.imageName }}" class="card-img-top" alt=".{{ categorie.nom}}">
+							<div class="card-body">
+								<h5 class="card-title">{{ categorie.nom}}</h5>
+								<a href="{{ path('app_categorie.details', {'id': categorie.id}) }}" class="btn btn-primary">
+									Voir la catégorie "
+									{{ categorie.nom}}
+									"</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</tbody>
+		</div>
+	{% endblock %}

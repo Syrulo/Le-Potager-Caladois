@@ -25,3 +25,9 @@ body {
     flex-direction: row;
     justify-content: end;
 }
+
+.logo {
+    height: 80px;
+    width: 180px;
+}
+
