@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/categorie')]
+#[Route('/admin')]
 class AdminCategorieController extends AbstractController
 {
     #[Route('/categorie/create', name: 'app_admin.categorie.create', methods: ['GET', 'POST'])]

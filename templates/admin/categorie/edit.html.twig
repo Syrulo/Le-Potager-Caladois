@@ -1,13 +1,18 @@
-<!DOCTYPE html>
+{% extends './layout/base.html.twig' %}
 
-<title>Edit Categorie</title>
+{% block title %}
+	Modification d'une catégorie |
+	{{ parent() }}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Categorie</h1>
-
-    {{ include('admin_categorie/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_admin_categorie_index') }}">back to list</a>
-
-    {{ include('admin_categorie/_delete_form.html.twig') }}
+	<div class="container-fluid mt-4">
+		<div class="card w-50 mx-auto p-3">
+			<h1 class="text-center">Modification d'une catégorie</h1>
+			{{ form_start(form) }}
+			{{ form_row(form.nom) }}
+			{{ form_row(form.imageFile, { 'attr': { 'style': 'height: 100px, width: 100px' } }) }}
+			{{ form_end(form) }}
+		</div>
+	</div>
 {% endblock %}

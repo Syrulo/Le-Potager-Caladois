@@ -1,0 +1,19 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+	Liste des catégories
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid mt-4">
+		<div class="card w-50 mx-auto p-3">
+			<h1 class="text-center">{{ categorie.nom }}</h1>
+			{% for produit in produits %}
+				{{ produit.nom }}
+			{% endfor %}
+			<table class="table table-striped">
+				<tbody>
+				</tbody>
+		</table>
+	{% endblock %}

@@ -19,3 +19,9 @@ body {
     height: 100px;
     width: 100px;
 }
+
+.nav-search {
+    display:flex;
+    flex-direction: row;
+    justify-content: end;
+}

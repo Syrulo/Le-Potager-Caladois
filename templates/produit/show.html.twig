@@ -1,0 +1,17 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+	{{ produit.nom }}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid mt-4">
+		<div class="card w-50 mx-auto p-3">
+			<h1 class="text-center">{{ produit.nom }}</h1>
+            <td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="imgFruit"></td>
+			<table class="table table-striped">
+				<tbody>
+				</tbody>
+		</table>
+	{% endblock %}

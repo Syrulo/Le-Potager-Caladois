@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/produit')]
+#[Route('/admin')]
 class AdminProduitController extends AbstractController
 {
     #[Route('/produit/create', name: 'app_admin.produit.create', methods: ['GET', 'POST'])]
@@ -21,8 +21,8 @@ class AdminProduitController extends AbstractController
 
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $manager->persist($produit);
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été crée');
@@ -41,6 +41,7 @@ class AdminProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $produit->setUpdatedAt(new \DateTime());
             $manager->persist($produit);
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été modifié');

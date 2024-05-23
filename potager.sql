@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 17 mai 2024 à 07:17
+-- Généré le : jeu. 23 mai 2024 à 15:56
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,22 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `doctrine_migration_versions`
+-- Structure de la table `categorie`
 --
 
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `categorie` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `image_name` varchar(255) NOT NULL,
+  `image_size` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `doctrine_migration_versions`
+-- Déchargement des données de la table `categorie`
 --
 
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20240515142452', '2024-05-15 16:25:01', 119),
-('DoctrineMigrations\\Version20240515145713', '2024-05-15 16:57:22', 51);
+INSERT INTO `categorie` (`id`, `nom`, `created_at`, `updated_at`, `image_name`, `image_size`) VALUES
+(1, 'Légumes', '2024-05-22 12:11:17', '2024-05-23 10:32:00', 'legumes-664eff006dd28887830887.jpg', 241116);
 
 -- --------------------------------------------------------
 
@@ -56,6 +58,34 @@ CREATE TABLE `messenger_messages` (
   `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produit`
+--
+
+CREATE TABLE `produit` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `prix` int(11) NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime DEFAULT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `image_size` int(11) NOT NULL,
+  `slug` varchar(50) NOT NULL,
+  `categorie_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`id`, `nom`, `prix`, `created_at`, `updated_at`, `image_name`, `image_size`, `slug`, `categorie_id`) VALUES
+(2, 'Tomate', 3, '2024-05-22 13:59:39', '2024-05-22 13:59:39', 'tomate-664dde2bc9093448189635.png', 1129717, '', NULL),
+(4, 'Poireau', 2, '2024-05-23 12:16:16', '2024-05-23 12:16:16', 'poireau-664f1770d581c531816881.jpg', 57972, 'Poireau', NULL),
+(8, 'totogggr', 12, '2024-05-23 14:50:06', '2024-05-23 14:50:07', 'fruit-de-la-passion-664f3b7f060c7020236177.png', 530394, 'totogggr', 1),
+(9, 'Banane', 3, '2024-05-23 15:02:06', '2024-05-23 15:04:23', 'tomate-664f3e4f0f675987677269.png', 1129717, 'Banane', 1);
 
 -- --------------------------------------------------------
 
@@ -78,16 +108,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `email`, `roles`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
-(53, 'genevieve09@boulanger.fr', '[\"ROLE_USER\"]', '$2y$13$GdR1lfRbbsAedDtdUimiyeVTqs7AkVjPHBhLFHXU5VNQ7kbzZz8h2', 1, '2024-05-15 19:25:21', NULL),
-(54, 'guyot.guy@sfr.fr', '[\"ROLE_USER\"]', '$2y$13$uht0N0DaklmVc7g47hi4w.YIOxHSAldbOqSwhHhri1IHHdL7fGP1m', 1, '2024-05-15 19:25:21', NULL),
-(55, 'ebigot@laposte.net', '[\"ROLE_USER\"]', '$2y$13$1Tpp3mTsccaPYcoYQ6rBkuknB4qzUv.9fPI2JafngnxC2AsycWFw6', 1, '2024-05-15 19:25:22', NULL),
-(56, 'tlabbe@riou.org', '[\"ROLE_USER\"]', '$2y$13$uCNal8O6gQZ4Pth67dme8u2ElLHa9AvYO5w5ZlOYcmYIGvllAMYxG', 1, '2024-05-15 19:25:22', NULL),
-(57, 'benoit.boucher@orange.fr', '[\"ROLE_USER\"]', '$2y$13$RjW5z8hHEwFjspJ9TbLQUO66JZ782UWYy3mDZCd7TDvCF9tvoKuq2', 1, '2024-05-15 19:25:22', NULL),
-(58, 'ischmitt@coulon.com', '[\"ROLE_USER\"]', '$2y$13$Ju8LR9t662KzdeFcZHqbTuZsgMO4X8fopiD0JcPVdjQb8K669Tkcy', 1, '2024-05-15 19:25:23', NULL),
-(59, 'lcosta@jacques.com', '[\"ROLE_USER\"]', '$2y$13$HPeWl8GFjur2RhK1fRkKOeWUFt93o5RhB7fHtWX3YDMg0lA93e0vO', 1, '2024-05-15 19:25:23', NULL),
-(60, 'diane56@tele2.fr', '[\"ROLE_USER\"]', '$2y$13$i85WfVuXBw7qCTTlBCuxA.LuwyfsiFKz.JCZNpKaqDelu4GBYwhjy', 1, '2024-05-15 19:25:23', NULL),
-(61, 'blanc.margaret@regnier.fr', '[\"ROLE_USER\"]', '$2y$13$LlHPc5ci9fpyCUaCHq9wuuXy2Xmc7jdzD3DWCZDjvQIyZ09joPmHW', 1, '2024-05-15 19:25:24', NULL),
-(62, 'celine.martineau@gros.com', '[\"ROLE_USER\"]', '$2y$13$U0d9KqGeou3nQbJflhEpGuPJkvmBJPNmcb/vpRD/hnqsPF41Ie.f2', 1, '2024-05-15 19:25:24', NULL);
+(1, 'admin@admin.admin', '[\"ROLE_USER\", \"ROLE_ADMIN\"]', '$2y$13$JiVzh6Pv5q62Y1oR49DDoOm7Ro/cO60ou02JprDPXKUx2g2wDFR46', 1, '2024-05-22 11:52:07', NULL),
+(2, 'ju@ju.ju', '[\"ROLE_USER\"]', '$2y$13$KxrSRNxkXBDviNv6hk7OzurSvuOpQ7f0IQNf80CdKI5B4jUH0XZMe', 1, '2024-05-23 12:19:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -107,14 +129,22 @@ CREATE TABLE `utilisateur_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Déchargement des données de la table `utilisateur_details`
+--
+
+INSERT INTO `utilisateur_details` (`id`, `utilisateur_id`, `prenom`, `nom`, `tel`, `adresse`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, NULL, NULL, NULL, '2024-05-22 11:52:07', NULL),
+(2, 2, NULL, NULL, NULL, NULL, '2024-05-23 12:19:33', NULL);
+
+--
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `doctrine_migration_versions`
+-- Index pour la table `categorie`
 --
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `messenger_messages`
@@ -124,6 +154,13 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
   ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_29A5EC27BCF5E72D` (`categorie_id`);
 
 --
 -- Index pour la table `utilisateur`
@@ -145,26 +182,44 @@ ALTER TABLE `utilisateur_details`
 --
 
 --
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT pour la table `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur_details`
 --
 ALTER TABLE `utilisateur_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD CONSTRAINT `FK_29A5EC27BCF5E72D` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `utilisateur_details`
