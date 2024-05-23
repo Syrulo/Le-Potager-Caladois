@@ -1,7 +1,7 @@
 {% extends './layout/base.html.twig' %}
 
 {% block title %}
-	Liste des catégories
+	{{ categorie.nom }}
 	{{ parent() }}
 {% endblock %}
 
@@ -10,7 +10,7 @@
 		<div class="card w-50 mx-auto p-3">
 			<h1 class="text-center">{{ categorie.nom }}</h1>
 			{% for produit in produits %}
-				{{ produit.nom }}
+				<a href="{{ path('app_produit', {'slug': produit.slug}) }}">{{ produit.nom }}</a>
 			{% endfor %}
 			<table class="table table-striped">
 				<tbody>

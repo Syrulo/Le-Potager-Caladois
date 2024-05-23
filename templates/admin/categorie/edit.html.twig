@@ -9,10 +9,6 @@
 	<div class="container-fluid mt-4">
 		<div class="card w-50 mx-auto p-3">
 			<h1 class="text-center">Modification d'une catégorie</h1>
-			{{ form_start(form) }}
-			{{ form_row(form.nom) }}
-			{{ form_row(form.imageFile, { 'attr': { 'style': 'height: 100px, width: 100px' } }) }}
-			{{ form_end(form) }}
-		</div>
+			{{ form(form) }}
 	</div>
 {% endblock %}

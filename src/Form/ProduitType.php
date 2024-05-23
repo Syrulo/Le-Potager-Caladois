@@ -38,10 +38,8 @@ class ProduitType extends AbstractType
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
             ])
-            ->add('Modifier', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-primary mt-4'
-                ]
+            ->add('Enregistrer', SubmitType::class,[
+                
             ]);
     }
 

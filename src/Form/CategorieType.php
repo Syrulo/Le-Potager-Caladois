@@ -16,7 +16,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'Nom du produit',
+                'label' => 'Nom de la catégorie',
                 'required' => true
             ])
             ->add('imageFile', VichImageType::class, [
@@ -26,11 +26,7 @@ class CategorieType extends AbstractType
                 'asset_helper' => true,
                 'label' => 'Image'               
             ])
-            ->add('Modifier', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-primary mt-4'
-                ]
-            ]);   
+            ->add('Enregistrer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
