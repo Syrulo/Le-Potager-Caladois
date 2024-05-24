@@ -53,10 +53,19 @@ class AdminProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/produit', name: 'app_admin.produit', methods: ['GET'])]
-    public function listProduit(ProduitRepository $repoProduit): Response
+    #[Route('/produit', name: 'app_admin.produit', methods: ['GET', 'POST'])]
+    public function listProduit(ProduitRepository $repoProduit, Request $request): Response
     {
+        $keyword = $request->get('search');
         $produits = $repoProduit->findAll();
+        if($keyword){
+            $searchType = $request->get('search_type');
+            $produits = $repoProduit->search($keyword, $searchType);
+            if($produits == null){
+                $this->addFlash('error', 'Aucun produit correspondant');
+                return $this->redirectToRoute('app_admin.produit');
+            }
+        }
         return $this->render('admin/produit/list.html.twig', [
             'produits' => $produits,
         ]);

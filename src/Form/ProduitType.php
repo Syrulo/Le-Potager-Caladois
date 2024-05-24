@@ -4,10 +4,12 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Entity\Producteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -23,8 +25,9 @@ class ProduitType extends AbstractType
                 'label' => 'Nom du produit',
                 'required' => true
             ])
-            ->add('prix', NumberType::class, [
+            ->add('prix', MoneyType::class, [
                 'label' => 'Prix du produit',
+                'divisor' => 100,
                 'required' => true
             ])
             ->add('imageFile', VichImageType::class, [
@@ -37,6 +40,11 @@ class ProduitType extends AbstractType
             ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
+            ])
+            ->add('producteur', EntityType::class, [
+                'class' => Producteur::class,
+                'label' => 'Producteur',
+                'choice_label' => 'nom',
             ])
             ->add('Enregistrer', SubmitType::class,[
                 

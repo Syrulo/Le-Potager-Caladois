@@ -40,6 +40,8 @@ class Produit
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(length: 50)]
     private ?string $slug = null;
@@ -48,8 +50,9 @@ class Produit
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?Categorie $categorie = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Producteur $producteur = null;
 
 
     public function __construct()
@@ -75,9 +78,9 @@ class Produit
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?float
     {
-        return $this->prix;
+        return $this->prix/100;
     }
 
     public function setPrix(int $prix): static
@@ -133,6 +136,18 @@ class Produit
         return $this;
     }
 
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -167,14 +182,14 @@ class Produit
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getProducteur(): ?Producteur
     {
-        return $this->updatedAt;
+        return $this->producteur;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    public function setProducteur(?Producteur $producteur): static
     {
-        $this->updatedAt = $updatedAt;
+        $this->producteur = $producteur;
 
         return $this;
     }

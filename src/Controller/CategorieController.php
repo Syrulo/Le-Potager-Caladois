@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categorie/{id}', name: 'app_categorie.details', methods: ['GET'])]
+    #[Route('/categorie/{slug}', name: 'app_categorie.details', methods: ['GET'])]
     public function detailsCategorie(Categorie $categorie, ProduitRepository $repoProduit): Response
     {
         $produits = $repoProduit->findByCategorie($categorie->getId());

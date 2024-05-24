@@ -17,12 +17,38 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Notre Histoire</a>
       </li>
-    </ul>
-  </div>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_producteur') }}">Producteurs</a>
+      </li>
       <li class="nav-search">
-        <form class="form ">
-          <input class="form " type="search" placeholder="Search" aria-label="Search">
+        <form class="form" action="{{ path('app_admin.produit') }}">
+          <select name="search_type" class="form-select" aria-label="Default select example">
+            <option value='produit'>Produits</option>
+            <option value="producteur">Producteurs</option>
+          </select>
+          <input class="form" type="search" placeholder="Search" aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </li>
+    </ul>
+  </div>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mon compte
+          </a>
+          <ul class="dropdown-menu">
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a class="dropdown-item" href="{{ path('app_admin') }}">AdminDashBoard</a></li>
+            {% endif %}
+            {% if not app.user %}
+            <li><a class="dropdown-item" href="{{ path('app_security.login') }}">Connexion</a></li>
+            {% endif %}
+            
+            {% if app.user %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_security.logout') }}">Deconnexion</a></li>
+            {% endif %}
+          </ul>
+        </li>
+
 </nav>

@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateurDetailsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use App\Repository\UtilisateurDetailsRepository;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurDetailsRepository::class)]
+#[HasLifecycleCallbacks]
 class UtilisateurDetails
 {
     #[ORM\Id]
@@ -30,12 +36,23 @@ class UtilisateurDetails
     #[Assert\Length(min: 2, max: 255)]
     private ?string $adresse = null;
 
+    #[ORM\Column(length: 80, nullable: true)]
+    #[Assert\Length(min: 2, max: 80)]
+    private ?string $ville = null;
+
+    #[ORM\Column(length: 5, nullable: true)]
+    #[Assert\Length(min: 5, max: 5)]
+    private ?int $code_postal = null;
+
     #[ORM\Column]
     #[Assert\NotNull()]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,7 +60,8 @@ class UtilisateurDetails
 
     public function __construct()
     {
-        $this->created_at = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -99,28 +117,74 @@ class UtilisateurDetails
         return $this;
     }
 
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): static
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(int $code_postal): static
+    {
+        $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug($slug);
+        unset($slugger);
+        return $this;
+    }
+
+    #[PrePersist]
+    #[PreUpdate]
+    public function setSlugValue(): void
+    {
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug($this->nom);
+        unset($slugger);
     }
 
     public function getUtilisateurId(): ?Utilisateur

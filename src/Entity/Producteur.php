@@ -2,39 +2,50 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\CategorieRepository;
-use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Repository\ProducteurRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: CategorieRepository::class)]
-#[Vich\Uploadable]
+#[ORM\Entity(repositoryClass: ProducteurRepository::class)]
 #[HasLifecycleCallbacks]
-class Categorie
+class Producteur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 180)]
+    #[Assert\Length(min: 2, max: 180)]
     private ?string $nom = null;
 
-    #[Vich\UploadableField(mapping: 'categories_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    private ?File $imageFile = null;
+    #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email()]
+    #[Assert\Length(min: 2, max: 180)]
+    private ?string $email;
+
+    #[ORM\Column(length: 10, unique: true)]
+    #[Assert\Length(min: 10, max: 10)]
+    private ?string $tel = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $imageName = null;
+    #[Assert\Length(min: 2, max: 255)]
+    private ?string $adresse = null;
 
-    #[ORM\Column]
-    private ?int $imageSize = null;
+    #[ORM\Column(length: 80)]
+    #[Assert\Length(min: 2, max: 80)]
+    private ?string $ville = null;
+
+    #[ORM\Column(length: 5)]
+    #[Assert\Length(min: 5, max: 5)]
+    private ?int $code_postal = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -48,7 +59,7 @@ class Categorie
     /**
      * @var Collection<int, Produit>
      */
-    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
+    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'producteur')]
     private Collection $produits;
 
     public function __construct()
@@ -75,38 +86,64 @@ class Categorie
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null): void
+    public function getEmail(): ?string
     {
-        $this->imageFile = $imageFile;
-
-        if (null !== $imageFile) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+        return $this->email;
     }
 
-    public function getImageFile(): ?File
+    public function setEmail(string $email): static
     {
-        return $this->imageFile;
+        $this->email = $email;
+
+        return $this;
     }
 
-    public function setImageName(?string $imageName): void
+    public function getAdresse(): ?string
     {
-        $this->imageName = $imageName;
+        return $this->adresse;
     }
 
-    public function getImageName(): ?string
+    public function setAdresse(string $adresse): static
     {
-        return $this->imageName;
+        $this->adresse = $adresse;
+
+        return $this;
     }
 
-    public function setImageSize(?int $imageSize): void
+    public function getVille(): ?string
     {
-        $this->imageSize = $imageSize;
+        return $this->ville;
     }
 
-    public function getImageSize(): ?int
+    public function setVille(string $ville): static
     {
-        return $this->imageSize;
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(int $code_postal): static
+    {
+        $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): static
+    {
+        $this->tel = $tel;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -114,7 +151,7 @@ class Categorie
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -155,11 +192,6 @@ class Categorie
         unset($slugger);
     }
 
-    public function __toString(): string
-    {
-        return $this->nom;
-    }
-
     /**
      * @return Collection<int, Produit>
      */
@@ -172,7 +204,7 @@ class Categorie
     {
         if (!$this->produits->contains($produit)) {
             $this->produits->add($produit);
-            $produit->setCategorie($this);
+            $produit->setProducteur($this);
         }
 
         return $this;
@@ -182,8 +214,8 @@ class Categorie
     {
         if ($this->produits->removeElement($produit)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getCategorie() === $this) {
-                $produit->setCategorie(null);
+            if ($produit->getProducteur() === $this) {
+                $produit->setProducteur(null);
             }
         }
 

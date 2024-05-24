@@ -1,9 +1,20 @@
+:root {
+    --body-background:#E3EBD0;
+    --nav-bg: #FBFBF1;
+}
+
 body {
-    background-color: #E3EBD0;
+    background-color: var(--body-background);
 }
 
 .navbar {
-    background-color: #FBFBF1;
+    background-color: var(--nav-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3%;
+    height: 100px;
+    width: 100vw;
 }
 
 .navbarsup {
@@ -22,8 +33,7 @@ body {
 
 .nav-search {
     display:flex;
-    flex-direction: row;
-    justify-content: end;
+    margin-left: 200px;
 }
 
 .logo {

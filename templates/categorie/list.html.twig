@@ -16,7 +16,7 @@
 							<img src="http://localhost:8000/images/categories/{{ categorie.imageName }}" class="card-img-top" alt=".{{ categorie.nom}}">
 							<div class="card-body">
 								<h5 class="card-title">{{ categorie.nom}}</h5>
-								<a href="{{ path('app_categorie.details', {'id': categorie.id}) }}" class="btn btn-primary">
+								<a href="{{ path('app_categorie.details', {'slug': categorie.slug}) }}" class="btn btn-primary">
 									Voir la catégorie "
 									{{ categorie.nom}}
 									"</a>

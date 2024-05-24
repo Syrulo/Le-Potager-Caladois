@@ -1,0 +1,25 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+	{{ producteur.nom }}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid mt-4">
+		<div class="card w-50 mx-auto p-3">
+			<h1 class="text-center">{{ producteur.nom }}</h1>
+			<p class="text-center">{{ producteur.email }}</p>
+			<p class="text-center">{{ producteur.tel }}</p>
+			<p class="text-center">{{ producteur.adresse }}</p>
+			<p class="text-center">{{ producteur.ville }}</p>
+			<p class="text-center">{{ producteur.codePostal }}</p>		
+			{% for produit in produits %}
+				<a href="{{ path('app_produit', {'slug': produit.slug}) }}">{{ produit.nom }}</a>
+				<img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="">
+			{% endfor %}
+			<table class="table table-striped">
+				<tbody>
+				</tbody>
+		</table>
+	{% endblock %}

@@ -2,45 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Utilisateur;
-use App\Entity\UtilisateurDetails;
-use Doctrine\Inflector\Rules\Pattern;
-use Faker\Core\Number;
+use App\Entity\Producteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UtilisateurType extends AbstractType
+class ProducteurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50',
-                ],
-                'label' => 'Prénom',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'constraints' => [ 
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 50])
-                ],
-            ])
             ->add('nom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
-                    'maxlenght' => '50',
+                    'maxlenght' => '180',
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
@@ -48,8 +30,24 @@ class UtilisateurType extends AbstractType
                 ],
                 'constraints' => [ 
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 50])
+                    new Assert\Length(['min' => 2, 'max' => 180])
                 ],
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => '2',
+                    'maxlength' => '180',
+                ],
+                'label' => 'Adresse email',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Email(),
+                    new Assert\Length(['min' => 2, 'max' => 180]),
+                ]
             ])
             ->add('tel', TelType::class, [
                 'attr' => [
@@ -62,6 +60,7 @@ class UtilisateurType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
+                
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Length(['min' => 10, 'max' => 10]),
@@ -113,17 +112,15 @@ class UtilisateurType extends AbstractType
                     new Assert\Length(['min' => 5, 'max' => 5]),
                 ],
             ])
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-primary mt-4'
-                ]
+            ->add('Enregistrer', SubmitType::class,[
+                
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => UtilisateurDetails::class,
+            'data_class' => Producteur::class,
         ]);
     }
 }

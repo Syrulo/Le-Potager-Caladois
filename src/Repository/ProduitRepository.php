@@ -16,19 +16,35 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
-//    /**
-//     * @return Produit[] Returns an array of Produit objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
+    /**
+    * @return Produit[] Returns an array of Produit objects
+    */
+    public function search($keyword, $searchType): array
+    {
+        //Selon la variableSearchType venant du formulaire, on fait une requête différente
+        if($searchType == "produit"){
+            $query = $this->createQueryBuilder('produit')
+                ->andWhere('produit.nom LIKE :keyword')
+                ->setParameter('keyword', "%" . $keyword . "%")
+                ->orderBy('produit.id', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+        if($searchType == "producteur"){
+            $query = $this->createQueryBuilder('produit')
+                ->join('produit.producteur', 'producteur')
+                ->orWhere('producteur.nom LIKE :keyword')
+                ->setParameter('keyword', "%" . $keyword . "%")
+                ->orderBy('produit.id', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+
+        return $query;
+    }
 //    }
 
 //    public function findOneBySomeField($value): ?Produit

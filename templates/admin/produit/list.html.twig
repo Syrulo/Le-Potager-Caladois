@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body %}
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-success" role="alert">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<div class="container-fluid mt-4">
 		<div class="card w-50 mx-auto p-3">
 			<h1 class="text-center">Liste des produits</h1>
@@ -14,7 +19,9 @@
 					<tr>
 						<th scope="col">id</th>
 						<th scope="col">Nom</th>
-						<th scope="col">Prix</th>
+						<th scope="col">Catégorie</th>
+						<th scope="col">Prix</th>						
+						<th scope="col">Producteur</th>
 						<th scope="col">Image</th>
 						<th scope="col">Created At</th>
 						<th scope="col">Updated At</th>
@@ -26,7 +33,9 @@
 						<tr>
 							<th scope="row">{{ produit.id }}</th>
 							<td>{{ produit.nom }}</td>
-							<td>{{ produit.prix }}</td>
+							<td>{{ produit.categorie.nom }}</td>
+							<td>{{ produit.prix}} € /kg</td>
+							<td>{{ produit.producteur.nom }}</td>
 							<td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="imgFruit"></td>
 							<td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
