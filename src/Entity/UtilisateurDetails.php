@@ -4,15 +4,10 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\PreUpdate;
-use Doctrine\ORM\Mapping\PrePersist;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use App\Repository\UtilisateurDetailsRepository;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurDetailsRepository::class)]
-#[HasLifecycleCallbacks]
 class UtilisateurDetails
 {
     #[ORM\Id]
@@ -50,9 +45,6 @@ class UtilisateurDetails
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -163,28 +155,6 @@ class UtilisateurDetails
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): static
-    {
-        $slugger = new AsciiSlugger();
-        $this->slug = $slugger->slug($slug);
-        unset($slugger);
-        return $this;
-    }
-
-    #[PrePersist]
-    #[PreUpdate]
-    public function setSlugValue(): void
-    {
-        $slugger = new AsciiSlugger();
-        $this->slug = $slugger->slug($this->nom);
-        unset($slugger);
     }
 
     public function getUtilisateurId(): ?Utilisateur
