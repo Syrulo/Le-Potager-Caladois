@@ -11,10 +11,9 @@
 			{{ message }}
 		</div>
 	{% endfor %}
-	<div class="container-fluid mt-4">
-		<div class="card w-50 mx-auto p-3">
+		<div class="card w-75 mx-auto p-5 mt-5">
 			<h1 class="text-center">Liste des produits</h1>
-			<table class="table table-striped">
+			<table class="table table-striped align-middle">
 				<thead>
 					<tr>
 						<th scope="col">id</th>
@@ -36,18 +35,20 @@
 							<td>{{ produit.categorie.nom }}</td>
 							<td>{{ produit.prix}} € /kg</td>
 							<td>{{ produit.producteur.nom }}</td>
-							<td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="imgFruit"></td>
+							<td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="image"></td>
 							<td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>
-								<a href="{{ path('app_admin.produit.edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+								<a href="{{ path('app_admin.produit.edit', {'id': produit.id}) }}" class="btn btn-primary col-12">Modifier</a>
 								<form action="{{ url('app_admin.produit.delete', { id: produit.id }) }}" method="post">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
-									<button type="submit" class="btn btn-danger">Supprimer</button>
+									<button type="submit" class="btn btn-danger col-12">Supprimer</button>
 								</form>
 							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
+			<a href="{{ path('app_admin') }}" class="text-center"><button type="submit" class="btn btn-color">Retour au panneau d'administration</button><a>
+		</div>
 		{% endblock %}

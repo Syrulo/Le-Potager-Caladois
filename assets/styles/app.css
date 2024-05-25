@@ -21,9 +21,28 @@ body {
     background-color: #E3EBD0;
 }
 
-.imgFruit {
-    height: 100px;
-    width: 100px;
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-striped {
+    --bs-table-bg: var(--body-background);
+}
+.table-striped {
+    --bs-table-striped-bg: var(--nav-bg);
+}
+
+.card {
+    background-color: var(--nav-bg);
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+.image {
+    width: 50%;
 }
 
 .vich-image img {
@@ -33,11 +52,21 @@ body {
 
 .nav-search {
     display:flex;
-    margin-left: 200px;
+    margin-left: 10%;
 }
 
 .logo {
-    height: 80px;
-    width: 180px;
+    width: 50%;
+}
+
+.btn-color {
+    color: #fff;
+    background-color: #7DC2A5;
+    border-color: #9FCDA8; /*set the color you want here*/
+}
+.btn-color:hover, .btn-color:focus, .btn-color:active, .btn-color.active, .open>.dropdown-toggle.btn-color {
+    color: #fff;
+    border-color: #7DC2A5;
+    background-color: #9FCDA8;; /*set the color you want here*/
 }
 
