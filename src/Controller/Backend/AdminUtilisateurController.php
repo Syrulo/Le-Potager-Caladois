@@ -49,4 +49,15 @@ class AdminUtilisateurController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/{id}', name: 'app_admin_utilisateur_delete', methods: ['POST'])]
+    public function deleteUtilisateur(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $utilisateur->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($utilisateur);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_admin.utilisateur', [], Response::HTTP_SEE_OTHER);
+    }
 }

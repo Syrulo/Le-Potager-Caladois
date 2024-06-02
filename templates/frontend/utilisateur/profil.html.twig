@@ -7,7 +7,7 @@
 
 {% block body %}
 	<div class="container mt-5 p-5">
-		<div class="card w-75 mx-auto p-3 mt-5">
+		<div class="card w-75 mx-auto p-3 mt-5 wrapper">
 			<h1 class="text-center">Profil de {{ utilisateur.utilisateurDetails.prenom }} {{ utilisateur.utilisateurDetails.nom }}</h1>
             <table class="table table-striped align-middle">
                 <thead>
@@ -19,6 +19,7 @@
                         <th scope="col">Adresse</th>
                         <th scope="col">Ville</th>
                         <th scope="col">Code postal</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,12 +31,14 @@
                         <td>{{ utilisateur.utilisateurDetails.adresse }}</td>
                         <td>{{ utilisateur.utilisateurDetails.ville }}</td>
                         <td>{{ utilisateur.utilisateurDetails.codePostal }}</td>
+                        <td>
+                        <div class="d-flex justify-content-around">
+                            <a href="{{ path('profil.edit', {'id': utilisateur.id}) }}" class="btn btn-primary"><i class="bi bi-pencil-square color-light"></i></a>
+                        </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center">
-            <a href="{{ path('profil.edit', {'id': utilisateur.id}) }}" class="btn btn-primary">Modifier</a>
-            </div>
         </div>
     </div>
 {% endblock %}

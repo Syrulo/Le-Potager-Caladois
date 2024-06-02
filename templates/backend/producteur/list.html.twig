@@ -36,11 +36,10 @@
 							<td>{{ producteur.createdAt ? producteur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ producteur.updatedAt ? producteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>
-								<a href="{{ path('app_admin.producteur.edit', {'id': producteur.id}) }}" class="btn btn-primary col-12">Modifier</a>
-								<form action="{{ url('app_admin.producteur.delete', { id: producteur.id }) }}" method="post">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ producteur.id) }}">
-									<button type="submit" class="btn btn-danger col-12">Supprimer</button>
-								</form>
+							<div class="d-flex justify-content-around">	
+								<a href="{{ path('app_admin.producteur.edit', {'id': producteur.id}) }}" class="btn btn-primary"><i class="bi bi-pencil-square color-light"></i></a>
+								{{ include('backend/producteur/_delete_form.html.twig') }}
+							</div>	
 							</td>
 						</tr>
 					{% endfor %}

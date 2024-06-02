@@ -28,11 +28,10 @@
 							<td>{{ categorie.createdAt ? categorie.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ categorie.updatedAt ? categorie.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>
-								<a href="{{ path('app_admin.categorie.edit', {'id': categorie.id}) }}" class="btn btn-primary col-12">Modifier</a>
-								<form action="{{ url('app_admin.categorie.delete', { id: categorie.id }) }}" method="post">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
-									<button type="submit" class="btn btn-danger col-12">Supprimer</button>
-								</form>
+							<div class="d-flex justify-content-around">	
+								<a href="{{ path('app_admin.categorie.edit', {'id': categorie.id}) }}" class="btn btn-primary"><i class="bi bi-pencil-square color-light"></i></a>
+								{{ include('backend/categorie/_delete_form.html.twig') }}
+							</div>
 							</td>
 					</tr>
 				{% endfor %}

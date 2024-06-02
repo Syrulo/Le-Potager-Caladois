@@ -38,11 +38,10 @@
                             <td>{{ utilisateur.utilisateurDetails.createdAt ? utilisateur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>{{ utilisateur.utilisateurDetails.updatedAt ? utilisateur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>
-								<a href="{{ path('app_admin_utilisateur.edit', {'id': utilisateur.id}) }}" class="btn btn-primary col-12">Modifier</a>
-								{# <form action="{{ url('app_admin.utilisateur.delete', { id: utilisateur.id }) }}" method="post">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.id) }}">
-									<button type="submit" class="btn btn-danger col-12">Supprimer</button>
-								</form> #}
+							<div class="d-flex justify-content-around">		
+								<a href="{{ path('app_admin_utilisateur.edit', {'id': utilisateur.id}) }}" class="btn btn-primary"><i class="bi bi-pencil-square color-light"></i></a>
+								{{ include('backend/utilisateur/_delete_form.html.twig') }}
+							</div>
 							</td>
 					</tr>
 				{% endfor %}
