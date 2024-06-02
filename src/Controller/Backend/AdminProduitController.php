@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Backend;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
@@ -29,7 +29,7 @@ class AdminProduitController extends AbstractController
             return $this->redirectToRoute('app_admin.produit');
         }
 
-        return $this->render('admin/produit/create.html.twig', [
+        return $this->render('backend/produit/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -48,7 +48,7 @@ class AdminProduitController extends AbstractController
             return $this->redirectToRoute('app_admin.produit');
         }
 
-        return $this->render('admin/produit/edit.html.twig', [
+        return $this->render('backend/produit/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -66,7 +66,7 @@ class AdminProduitController extends AbstractController
                 return $this->redirectToRoute('app_admin.produit');
             }
         }
-        return $this->render('admin/produit/list.html.twig', [
+        return $this->render('backend/produit/list.html.twig', [
             'produits' => $produits,
         ]);
     }

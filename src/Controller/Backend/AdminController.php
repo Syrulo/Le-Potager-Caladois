@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Backend;
 
-use App\Entity\Produit;
-use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +20,7 @@ class AdminController extends AbstractController
         // Récupérer tous les produits
         $produits = $repoProduit->findAll();
 
-        return $this->render('admin/adminDashboard.html.twig', [
+        return $this->render('backend/adminDashboard.html.twig', [
             'produits' => $produits,
             'categories' => $categories,
         ]);

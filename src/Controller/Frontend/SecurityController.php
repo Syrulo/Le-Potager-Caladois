@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Entity\Utilisateur;
 use App\Entity\UtilisateurDetails;
@@ -26,7 +26,7 @@ class SecurityController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home_page');
         }
-        return $this->render('pages/security/login.html.twig', [
+        return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
@@ -72,7 +72,7 @@ class SecurityController extends AbstractController
             $manager->persist($utilisateur);
             $manager->flush();
             $lastId = $utilisateur->getId();
-            $utilisateurDetails->setUtilisateurId($utilisateur);
+            $utilisateurDetails->setUtilisateur($utilisateur);
             $manager->persist($utilisateurDetails);
             $manager->flush();
 
@@ -81,7 +81,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_security.login');
         }    
         
-        return $this->render('pages/security/inscription.html.twig', [
+        return $this->render('security/inscription.html.twig', [
             'form' => $form
         ]);
     }

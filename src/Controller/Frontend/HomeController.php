@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +11,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(): Response
     {
-        return $this->render('pages/home_page/home.html.twig', [
+        return $this->render('frontend/home_page/home.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Backend;
 
 use App\Entity\Producteur;
 use App\Form\ProducteurType;
@@ -29,7 +29,7 @@ class AdminProducteurController extends AbstractController
             return $this->redirectToRoute('app_admin.producteur');
         }
 
-        return $this->render('admin/producteur/create.html.twig', [
+        return $this->render('backend/producteur/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -47,7 +47,7 @@ class AdminProducteurController extends AbstractController
             return $this->redirectToRoute('app_admin.producteur');
         }
 
-        return $this->render('admin/producteur/edit.html.twig', [
+        return $this->render('backend/producteur/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -56,7 +56,7 @@ class AdminProducteurController extends AbstractController
     public function listProducteur(ProducteurRepository $repoProducteur): Response
     {
         $producteurs = $repoProducteur->findAll();
-        return $this->render('admin/producteur/list.html.twig', [
+        return $this->render('backend/producteur/list.html.twig', [
             'producteurs' => $producteurs
         ]);
     }

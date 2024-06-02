@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Backend;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
@@ -29,7 +29,7 @@ class AdminCategorieController extends AbstractController
             return $this->redirectToRoute('app_admin.categorie');
         }
 
-        return $this->render('admin/categorie/create.html.twig', [
+        return $this->render('backend/categorie/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -47,7 +47,7 @@ class AdminCategorieController extends AbstractController
             return $this->redirectToRoute('app_admin.categorie');
         }
 
-        return $this->render('admin/categorie/edit.html.twig', [
+        return $this->render('backend/categorie/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -56,7 +56,7 @@ class AdminCategorieController extends AbstractController
     public function listCategorie(CategorieRepository $repoCategorie): Response
     {
         $categories = $repoCategorie->findAll();
-        return $this->render('admin/categorie/list.html.twig', [
+        return $this->render('backend/categorie/list.html.twig', [
             'categories' => $categories
         ]);
     }

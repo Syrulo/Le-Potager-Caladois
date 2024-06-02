@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Entity\Producteur;
 use App\Repository\ProduitRepository;
@@ -15,7 +15,7 @@ class ProducteurController extends AbstractController
     public function detailsProducteur(Producteur $producteur, ProduitRepository $repoProduit): Response
     {
         $produits = $repoProduit->findByProducteur($producteur->getId());
-        return $this->render('producteur/detailsProducteur.html.twig', [
+        return $this->render('frontend/producteur/detailsProducteur.html.twig', [
             'producteur' => $producteur,
             'produits' => $produits
         ]);
@@ -25,7 +25,7 @@ class ProducteurController extends AbstractController
     public function listProducteur(ProducteurRepository $repoProducteur): Response
     {
         $producteurs = $repoProducteur->findAll();
-        return $this->render('producteur/list.html.twig', [
+        return $this->render('frontend/producteur/list.html.twig', [
             'producteurs' => $producteurs
         ]);
     }

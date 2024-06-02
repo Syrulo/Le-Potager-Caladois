@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
@@ -15,7 +15,7 @@ class CategorieController extends AbstractController
     public function detailsCategorie(Categorie $categorie, ProduitRepository $repoProduit): Response
     {
         $produits = $repoProduit->findByCategorie($categorie->getId());
-        return $this->render('categorie/detailsCategorie.html.twig', [
+        return $this->render('frontend/categorie/detailsCategorie.html.twig', [
             'categorie' => $categorie,
             'produits' => $produits
         ]);
@@ -25,7 +25,7 @@ class CategorieController extends AbstractController
     public function listCategorie(CategorieRepository $repoCategorie): Response
     {
         $categories = $repoCategorie->findAll();
-        return $this->render('categorie/list.html.twig', [
+        return $this->render('frontend/categorie/list.html.twig', [
             'categories' => $categories
         ]);
     }
