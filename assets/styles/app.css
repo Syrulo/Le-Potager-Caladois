@@ -9,16 +9,13 @@ body {
 
 .navbar {
     background-color: var(--nav-bg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 3%;
     height: 100px;
     width: 100vw;
 }
 
-.navbarsup {
-    background-color: #E3EBD0;
+.btn-wrap-text {
+    white-space: normal;
 }
 
 .table {
@@ -50,11 +47,6 @@ body {
     width: 100px;
 }
 
-.nav-search {
-    display:flex;
-    margin-left: 10%;
-}
-
 .logo {
     width: 50%;
 }
@@ -69,4 +61,3 @@ body {
     border-color: #7DC2A5;
     background-color: #9FCDA8;; /*set the color you want here*/
 }
-

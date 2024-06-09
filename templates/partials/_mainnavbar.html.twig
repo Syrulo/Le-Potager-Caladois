@@ -1,39 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="{{ path('app_home_page') }}" aria-label="Le Potager Caladois">
-  <img class="logo" src="{{ asset('/images/Logo.jpg') }}" alt="Le Potager Caladois">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto mt-2 align-items-center">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ path('app_categorie') }}"><button type="submit" class="btn btn-color">Catégories</button></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><button type="submit" class="btn btn-color">Où nous trouver</button></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><button type="submit" class="btn btn-color">Notre Histoire</button></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ path('app_producteur') }}"><button type="submit" class="btn btn-color">Producteurs</button></a>
-      </li>
-    </ul>
-      <li class="nav-search">
-        <form class="form" action="{{ path('app_admin.produit') }}">
-          <select name="search_type" class="form-select" aria-label="Default select example">
-            <option value='produit'>Produits</option>
-            <option value="producteur">Producteurs</option>
-          </select>
-          <input class="form" type="search" placeholder="Search" aria-label="Search" name="search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('app_home_page') }}" aria-label="Le Potager Caladois">
+      <img class="logo" src="{{ asset('/images/Logo.jpg') }}" alt="Le Potager Caladois" style="max-width: 100%; height: auto; object-fit: contain;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-start flex-grow-1 pe-3 flex-wrap">
+        <li class="nav-item mt-1">
+          <a class="nav-link active" href="{{ path('app_categorie') }}">Catégories</a>
+        </li>
+        <li class="nav-item mt-1">
+          <a class="nav-link" href="#">Où nous trouver</a>
+        </li>
+        <li class="nav-item mt-1">
+          <a class="nav-link" href="#">Notre Histoire</a>
+        </li>
+        <li class="nav-item mt-1">
+          <a class="nav-link" href="{{ path('app_producteur') }}">Producteurs</a>
+        </li>
+        <li class="nav-item ms-2">
+        <form class="d-flex mt-2" role="search" action="{{ path('app_admin.produit') }}">
+        <select name="search_type" class="form-select" aria-label="Default select example">
+          <option value='produit'>Produits</option>
+          <option value="producteur">Producteurs</option>
+        </select>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-      </li>
-  </div>
-        <ul class="nav-item dropdown">
+        </li>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('app_categorie') }}">Catégories</a></li>
+            <li><a class="dropdown-item" href="#">Où nous trouver</a></li>
+            <li><a class="dropdown-item" href="#">Notre Histoire</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_producteur') }}">Producteurs</a></li>
+          </ul>
+          </li>
+        </ul>
+          <ul class="nav-item dropdown mt-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mon Compte
+          <i class="bi bi-person-circle d-inline d-lg-none"></i>
+          Mon Compte
           </a>
           <ul class="dropdown-menu">
             {% if is_granted('ROLE_ADMIN') %}
@@ -51,5 +65,9 @@
             <li><a class="dropdown-item" href="{{ path('app_security.logout') }}">Deconnexion</a></li>
             {% endif %}
           </ul>
-        </ul>         
+        </ul>  
+      </div>
+    </div>
+  </div>
 </nav>
+
