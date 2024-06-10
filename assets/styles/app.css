@@ -18,10 +18,12 @@ body {
     white-space: normal;
 }
 
-.table {
+/* .table {
     table-layout: fixed;
     width: 100%;
-}
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+} */
 
 .table-striped {
     --bs-table-bg: var(--body-background);
