@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Utilisateur;
+use App\Form\UtilisateurDetailsType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -27,22 +30,22 @@ class AdminUtilisateurType extends AbstractType
 
             if ($utilisateur == $this->security->getUser()) {
                 $form->add('utilisateurDetails', UtilisateurDetailsType::class);
-                }   
+                }
 
-    if ($this->security->isGranted('ROLE_ADMIN')) {
+    if ($this->security->isGranted('ROLE_ADMIN') || $this->security->isGranted('ROLE_SUPER_ADMIN')) {
         $form->add('roles', ChoiceType::class, [
             'choices' => [
-                'Utilisateur' => 'ROLE_USER',
                 'Administrateur' => 'ROLE_ADMIN',
+                'Utilisateur' => 'ROLE_USER'
                 ],
                 'label' => 'Rôles:',
-                'required' => false,
-                'multiple' => true,
-                'expanded' => true,
+                'required' => true,
+                'mapped' => false,
+                'expanded' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn'
                 ]                
             ]);
         }

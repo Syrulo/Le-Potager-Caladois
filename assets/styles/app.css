@@ -7,6 +7,10 @@ body {
     background-color: var(--body-background);
 }
 
+.logo {
+    width: 50%;
+}
+
 .navbar {
     background-color: var(--nav-bg);
     padding: 3%;
@@ -18,12 +22,10 @@ body {
     white-space: normal;
 }
 
-/* .table {
+.table {
     table-layout: fixed;
     width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-} */
+}
 
 .table-striped {
     --bs-table-bg: var(--body-background);
@@ -32,9 +34,22 @@ body {
     --bs-table-striped-bg: var(--nav-bg);
 }
 
+.thead {
+    background-color: darkblue;
+}
+
 .card {
     background-color: var(--nav-bg);
 }
+
+.card-footer {
+    background-color: var(--nav-bg);
+}
+
+.card-header {
+    background-color: var(--body-background)
+}
+
 
 .card-img-top {
     width: 100%;
@@ -49,10 +64,6 @@ body {
     width: 100px;
 }
 
-.logo {
-    width: 50%;
-}
-
 .btn-color {
     color: #fff;
     background-color: #7DC2A5;
@@ -62,4 +73,19 @@ body {
     color: #fff;
     border-color: #7DC2A5;
     background-color: #9FCDA8;; /*set the color you want here*/
+}
+
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.custom-input {
+    background-color: white;
+    color: black;
+}
+
+.icon-large {
+    font-size: 1.5em;
 }

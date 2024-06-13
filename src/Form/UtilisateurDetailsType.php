@@ -18,100 +18,74 @@ class UtilisateurDetailsType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
+                'label' => 'Prénom',
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '50',
                 ],
-                'label' => 'Prénom',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [ 
                     new Assert\NotBlank(),
                     new Assert\Length(['min' => 2, 'max' => 50])
-                ],
+                ]
             ])
             ->add('nom', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '50',
                 ],
-                'label' => 'Nom',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [ 
                     new Assert\NotBlank(),
                     new Assert\Length(['min' => 2, 'max' => 50])
-                ],
+                ]
             ])
             ->add('tel', TelType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '10',
-                    'maxlenght' => '10',
-                    'pattern' => '[0][0-9]{9}',
-                ],
                 'label' => 'Téléphone',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 10, 'max' => 10]),
-                ],
+                    new Assert\Regex([
+                        'pattern' => '/^0[0-9]{9}$/',
+                        'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
+                ])
+                ]
             ])
             ->add('adresse', TextType::class, [
+                'label' => 'Adresse',
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '255',
                 ],
-                'label' => 'Adresse',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [ 
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 255])                
-                ],
+                    new Assert\NotBlank()            
+                ]
             ])
             ->add('ville', TextType::class, [
+                'label' => 'Ville',
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '80',
                 ],
-                'label' => 'Ville',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [ 
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 80])                
-                ],
+                    new Assert\NotBlank()          
+                ]
             ])
             ->add('code_postal', NumberType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '5',
-                    'maxlenght' => '5',
-                    'pattern' => '[0-9]{5}',
-                ],
                 'label' => 'Code Postal',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 5, 'max' => 5]),
-                ],
+                    new Assert\Regex([
+                        'pattern' => '/^[0-9]{5}$/',
+                        'message' => 'Le code postal doit contenir 5 chiffres.',
+                ])
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-color mt-4'
                 ]
             ]);
     }

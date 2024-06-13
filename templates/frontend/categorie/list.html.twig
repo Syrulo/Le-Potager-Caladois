@@ -6,8 +6,24 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-5">
-		<h1 class="text-center">Catégories</h1>
+	<section class="content-header">
+		<div class="container mt-3 p-5">
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="text-left">
+					<h1>Liste des catégories</h1>
+				</div>
+				<div class="me-5">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
+						</li>
+						<li class="breadcrumb-item active">Liste des catégories</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="container">
 		<table class="table table-hover ">
 			<tbody>
 				<div class="d-flex justify-content-around mt-5">

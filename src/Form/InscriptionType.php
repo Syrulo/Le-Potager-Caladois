@@ -18,14 +18,11 @@ class InscriptionType extends AbstractType
     {
         $builder
         ->add('email', EmailType::class, [
+            'label' => 'Adresse email',
             'attr' => [
                 'class' => 'form-control',
                 'minlength' => '2',
                 'maxlength' => '180',
-            ],
-            'label' => 'Adresse email',
-            'label_attr' => [
-                'class' => 'form-label mt-4'
             ],
             'constraints' => [
                 new Assert\NotBlank(),
@@ -35,25 +32,14 @@ class InscriptionType extends AbstractType
         ])
         ->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
-            'first_options' => [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-            ],
-            'second_options' => [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => 'Confirmation du mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-            ],
-            'invalid_message' => 'Les mots de passe ne correspondent pas',
+            'invalid_message' => 'Les mots de passe ne correspondent pas.',
+            'options' => ['attr' => ['class' => 'password-field']],
+            'required' => true,
+            'first_options'  => ['label' => 'Mot de passe'],
+            'second_options' => ['label' => 'Confirmez le mot de passe'],
+            'constraints' => [
+                new Assert\NotBlank()
+            ]
         ])
         ->add('submit', SubmitType::class, [
             'attr' => [

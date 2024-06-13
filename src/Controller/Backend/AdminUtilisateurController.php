@@ -31,10 +31,18 @@ class AdminUtilisateurController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $role = $form->get('roles')->getData();
+
             // Vérifie si l'utilisateur actuellement connecté est le même que l'utilisateur que nous essayons de modifier
-            if ($security->getUser() === $utilisateur) {
-                // Si c'est le cas, nous ignorons le changement de rôle
-                $form->remove('roles');
+            if ($security->getUser() !== $utilisateur || $role !== 'ROLE_ADMIN' || in_array('ROLE_SUPER_ADMIN', $security->getUser()->getRoles())) {
+                if ($role === 'ROLE_ADMIN') {
+                    $utilisateur->setRoles(array_unique(array_merge($utilisateur->getRoles(), ['ROLE_ADMIN'])));
+                } else {
+                    $roles = $utilisateur->getRoles();
+                    $roles = array_diff($roles, ['ROLE_ADMIN']);
+                    $roles = array_values($roles); // Réindexez le tableau
+                    $utilisateur->setRoles($roles);
+                }
             }
 
             $entityManager->persist($utilisateur);

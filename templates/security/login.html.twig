@@ -1,47 +1,73 @@
 {% extends './layout/base.html.twig' %}
 
-{% block title %}Le Potager Caladois - Connexion{% endblock %}
+{% block title %}Le Potager Caladois - Connexion
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-    <div class="card w-75 mx-auto p-3 mt-5 wrapper">
-        <h1 class="mt4">Formulaire de connexion</h1>
+	<section class="content-header">
+		<div class="container mt-3 p-5">
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="text-left">
+					<h1>Page de connexion</h1>
+				</div>
+				<div class="me-5">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
+						</li>
+						<li class="breadcrumb-item active">Connexion</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="card w-50 mx-auto p-3 mt-5">
+			<div class="card-header">
+				<h3 class="card-title">Formulaire de connexion</h3>
+			</div>
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
 
-        {% for message in app.flashes('success') %}
-        <div class="alert alert-success mt-4">
-            {{ message }}
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-danger mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+			{% if error %}
+				<div class="alert alert-danger mt-4">
+					{{ error.messageKey|trans(error.messageData, 'security') }}
+				</div>
+			{% endif %}
+
+			<form action="{{ path('app_security.login') }}" method="post">
+                <div class="card-body">
+					<div class="form-group">
+						<label for="username" class="form-label mt-4">Adresse email</label>
+						<input type="email" class="form-control custom-input" id="username" name="_username" placeholder="Adresse email" value="{{ last_username }}">
+					</div>
+					<div class="form-group">
+						<label for="password" class="form-label mt-4">Mot de passe</label>
+						<input type="password" class="form-control custom-input" id="password" name="_password" placeholder="Mot de passe">
+					</div>
+						<!-- /.card-body -->
+					<div class="card-footer text-center">
+						<button type="submit" class="btn btn-color">Se connecter</button>
+			        </div>
+				</div>
+            </form>
+		</div>
+        <div class="text-center">
+        <p>Vous n'avez pas de compte ?
+			<a href="{{ path('app_security.inscription') }}">Cliquez ici</a>
+		</p>
         </div>
-        {% endfor %}
-
-        {% for message in app.flashes('error') %}
-        <div class="alert alert-danger mt-4">
-            {{ message }}
-        </div>
-        {% endfor %}
-
-        {% if error %}
-            <div class="alert alert-danger mt-4">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
-            </div>
-        {% endif %}
-
-        <form action="{{ path('app_security.login') }}" method="post">
-            <div>
-                <label for="username" class="form-label mt-4">Adresse email</label>
-                <input type="email" class="form-control" id="username" name="_username" placeholder="exemple@symrecipe.com" value="{{ last_username }}">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div>
-                <label for="password" class="form-label mt-4">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="_password" placeholder="********">
-            </div>
-            <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">
-                Se connecter
-            </button>
-            </div>
-        </form>
-        <p>Vous n'avez pas de compte ? <a href="{{ path('app_security.inscription') }}">Cliquez ici</a></p>
-    </div>
-    </div>
+	</div>
+</div>
+<!-- /.card --></div></div></section>
 {% endblock %}
+
