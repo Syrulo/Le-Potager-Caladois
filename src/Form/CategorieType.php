@@ -25,8 +25,7 @@ class CategorieType extends AbstractType
                 'image_uri' => true,
                 'asset_helper' => true,
                 'label' => 'Image'               
-            ])
-            ->add('Enregistrer', SubmitType::class);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

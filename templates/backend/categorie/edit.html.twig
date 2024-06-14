@@ -23,9 +23,22 @@
 			</div>
 		</div>
 	</section>
-	<div class="container-fluid mt-4">
-		<div class="card w-50 mx-auto p-3">
-			<h1 class="text-center">Modification d'une catégorie</h1>
-			{{ form(form) }}
-	</div>
+	<section class="content">
+			<div class="card w-50 mx-auto p-3 mt-3">
+				<div class="card-header">
+					<h3 class="card-title">Modification d'une catégorie</h3>
+				</div>
+				{{ form_start(form) }}
+				<div class="card-body">
+				{{ form_widget(form) }}
+				</div>
+					<div class="card-footer text-center">
+						<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
+					</div>
+			{{ form_end(form, {render_rest: false}) }}
+				</form>
+			</div>
+		<!-- /.card -->
+			</div>
+</section>
 {% endblock %}

@@ -89,3 +89,20 @@ body {
 .icon-large {
     font-size: 1.5em;
 }
+
+.input-group-text .fas {
+    width: 1em;
+    text-align: center;
+}
+
+@media (min-width: 992px){
+    
+    .w-lg-75-custom {
+        width: 100% !important;
+    }
+
+    .w-lg-50-custom {
+        width: 75% !important;
+    }
+
+}

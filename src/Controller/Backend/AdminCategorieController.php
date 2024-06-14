@@ -43,12 +43,15 @@ class AdminCategorieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($categorie);
             $manager->flush();
+            
             $this->addFlash('success', 'La catégorie a bien été modifiée');
-            return $this->redirectToRoute('app_admin.categorie');
+
+            return $this->redirectToRoute('app_admin.categorie', ['id' => $categorie->getId()]);
         }
 
         return $this->render('backend/categorie/edit.html.twig', [
             'form' => $form->createView(),
+            'categorie' => $categorie,
         ]);
     }
 
