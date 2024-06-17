@@ -79,7 +79,7 @@ class UtilisateurDetailsType extends AbstractType
                     new Assert\NotBlank(),
                     new Assert\Regex([
                         'pattern' => '/^[0-9]{5}$/',
-                        'message' => 'Le code postal doit contenir 5 chiffres.',
+                        'message' => 'Le code postal doit contenir excatement 5 chiffres.',
                 ])
                 ]
             ])

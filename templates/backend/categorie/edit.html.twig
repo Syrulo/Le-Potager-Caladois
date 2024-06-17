@@ -24,21 +24,27 @@
 		</div>
 	</section>
 	<section class="content">
-			<div class="card w-50 mx-auto p-3 mt-3">
-				<div class="card-header">
-					<h3 class="card-title">Modification d'une catégorie</h3>
-				</div>
+		<div class="card w-50 mx-auto p-3 mt-3">
+			<div class="card-header">
+				<h3 class="card-title">Modification d'une catégorie</h3>
+			</div>
+			<div class="card-body">
 				{{ form_start(form) }}
-				<div class="card-body">
-				{{ form_widget(form) }}
+				{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.nom) }}
+				{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 				</div>
-					<div class="card-footer text-center">
-						<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
-					</div>
+				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.imageFile) }}
+				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<div class="card-footer text-center">
+				<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
+			</div>
+			{{ form_row(form._token) }}
 			{{ form_end(form, {render_rest: false}) }}
-				</form>
-			</div>
-		<!-- /.card -->
-			</div>
-</section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

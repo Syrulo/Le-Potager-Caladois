@@ -9,10 +9,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProduitType extends AbstractType
 {
@@ -28,13 +29,16 @@ class ProduitType extends AbstractType
                 'divisor' => 100,
                 'required' => true
             ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description du produit',
+                'required' => true
+            ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Image'
-                
+                'label' => 'Image'               
             ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
@@ -43,9 +47,6 @@ class ProduitType extends AbstractType
                 'class' => Producteur::class,
                 'label' => 'Producteur',
                 'choice_label' => 'nom',
-            ])
-            ->add('Enregistrer', SubmitType::class,[
-                
             ]);
     }
 

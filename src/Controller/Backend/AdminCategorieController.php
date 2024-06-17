@@ -30,7 +30,7 @@ class AdminCategorieController extends AbstractController
         }
 
         return $this->render('backend/categorie/create.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -50,7 +50,7 @@ class AdminCategorieController extends AbstractController
         }
 
         return $this->render('backend/categorie/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'categorie' => $categorie,
         ]);
     }
@@ -64,7 +64,7 @@ class AdminCategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/delete/{id}', name: 'app_admin.categorie.delete', methods: ['GET', 'POST'])]
+    #[Route('/categorie/{id}', name: 'app_admin.categorie.delete', methods: ['GET', 'POST'])]
     public function deleteCategorie(Categorie $categorie, Request $request, EntityManagerInterface $manager): response
     {
         if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->get('_token'))) {
@@ -73,11 +73,7 @@ class AdminCategorieController extends AbstractController
             
             $this->addFlash('success', 'La catégorie a bien été supprimée');
         
-        return $this->redirectToRoute('app_admin');
-        }
-
-        $this->addFlash('error', 'La catégorie n\'est pas valide');
-
         return $this->redirectToRoute('app_admin.categorie');
+        }
     }
 }

@@ -10,7 +10,7 @@
 		<div class="container mt-3 p-5">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="text-left">
-					<h1>Modifier mon utilisateur</h1>
+					<h1>Modifier l'utilisateur</h1>
 				</div>
 				<div class="me-5">
 					<ol class="breadcrumb">
@@ -23,101 +23,102 @@
 			</div>
 		</div>
 	</section>
-		<section class="content">
-			<div class="card w-75 mx-auto p-3 mt-5">
-				<div class="card-header">
-        			<h3 class="card-title">Formulaire de modification des informations de l'utilisateur</h3>
-				</div>
-				<!-- /.card-header -->
-				<!-- form start -->
-				<form method="post">
-				<div class="card-body">
-					{% if form.utilisateurDetails.prenom is defined and form.utilisateurDetails.nom is defined %}
-						{{ form_label(form.utilisateurDetails.prenom) }}
-						<div class="input-group mb-3">
-						{{ form_widget(form.utilisateurDetails.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-user icon-large"></span>
-								</span>
-							</div>
+	<section class="content">
+		<div class="container-fluid">
+		<div class="card w-50 w-lg-50-custom1 mx-auto p-3 mt-5">
+			<div class="card-header">
+				<h3 class="card-title">Formulaire de modification des informations de l'utilisateur</h3>
+			</div>
+			<div class="card-body">
+				{{ form_start(form) }}
+				{% if form.utilisateurDetails.prenom is defined and form.utilisateurDetails.nom is defined %}
+					{{ form_label(form.utilisateurDetails.prenom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+					{{ form_errors(form.utilisateurDetails.prenom) }}
+					{{ form_widget(form.utilisateurDetails.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-user icon-large"></span>
+							</span>
 						</div>
-						{{ form_label(form.utilisateurDetails.nom) }}
-						<div class="input-group mb-3">
-						{{ form_widget(form.utilisateurDetails.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-user icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.utilisateurDetails.tel is defined %}
-						{{ form_label(form.utilisateurDetails.tel)}}
-						<div class="input-group mb-3">
-						{{ form_widget(form.utilisateurDetails.tel, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-phone icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.utilisateurDetails.adresse is defined %}
-						{{ form_label(form.utilisateurDetails.adresse)}}
-						<div class="input-group mb-3">
-						{{ form_widget(form.utilisateurDetails.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-home icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.utilisateurDetails.ville is defined %}
-							{{ form_label(form.utilisateurDetails.ville)}}
-							<div class="input-group mb-3">
-							{{ form_widget(form.utilisateurDetails.ville, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-city icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.utilisateurDetails.code_postal is defined %}
-						{{ form_label(form.utilisateurDetails.code_postal)}}
-						<div class="input-group mb-3">
-						{{ form_widget(form.utilisateurDetails.code_postal, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-map-marker-alt"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.roles is defined %}
-						{{ form_label(form.roles) }}
-						{{ form_widget(form.roles, {'attr': {'class': 'custom-select'}}) }}
-					{% endif %}
-				</div>
-				<!-- /.card-body -->
-
-					<div class="card-footer text-center">
-						<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
 					</div>
+					{{ form_label(form.utilisateurDetails.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+					{{ form_errors(form.utilisateurDetails.nom) }}
+					{{ form_widget(form.utilisateurDetails.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-user icon-large"></span>
+							</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if form.utilisateurDetails.tel is defined %}
+					{{ form_label(form.utilisateurDetails.tel, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+					{{ form_errors(form.utilisateurDetails.tel) }}
+					{{ form_widget(form.utilisateurDetails.tel, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-phone icon-large"></span>
+							</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if form.utilisateurDetails.adresse is defined %}
+					{{ form_label(form.utilisateurDetails.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+					{{ form_errors(form.utilisateurDetails.adresse) }}
+					{{ form_widget(form.utilisateurDetails.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-home icon-large"></span>
+							</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if form.utilisateurDetails.ville is defined %}
+						{{ form_label(form.utilisateurDetails.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+						{{ form_errors(form.utilisateurDetails.ville) }}
+						{{ form_widget(form.utilisateurDetails.ville, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-city icon-large"></span>
+							</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if form.utilisateurDetails.code_postal is defined %}
+					{{ form_label(form.utilisateurDetails.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+					{{ form_errors(form.utilisateurDetails.code_postal) }}
+					{{ form_widget(form.utilisateurDetails.code_postal, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-map-marker-alt"></span>
+							</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if form.roles is defined %}
+					{{ form_label(form.roles, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_widget(form.roles, {'attr': {'class': 'custom-select'}}) }}
+				{% endif %}
+			</div>
+
+			<div class="card-footer text-center">
+				<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
+			</div>
 			{{ form_row(form._token) }}
 			{{ form_end(form, {render_rest: false}) }}
-				</form>
 			</div>
-		<!-- /.card -->
-	</div>
-</div>
-</section>
+		</div>
+	</section>
 {% endblock %}
 

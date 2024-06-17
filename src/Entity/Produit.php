@@ -11,6 +11,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[Vich\Uploadable]
@@ -23,10 +24,17 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $prix = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'produits_image', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
@@ -53,7 +61,6 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Producteur $producteur = null;
-
 
     public function __construct()
     {
@@ -86,6 +93,18 @@ class Produit
     public function setPrix(int $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -193,4 +212,5 @@ class Produit
 
         return $this;
     }
+
 }

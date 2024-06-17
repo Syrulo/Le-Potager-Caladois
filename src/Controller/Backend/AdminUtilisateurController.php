@@ -64,8 +64,10 @@ class AdminUtilisateurController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $utilisateur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($utilisateur);
             $entityManager->flush();
-        }
+
+        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
 
         return $this->redirectToRoute('app_admin.utilisateur', [], Response::HTTP_SEE_OTHER);
+        }
     }
 }

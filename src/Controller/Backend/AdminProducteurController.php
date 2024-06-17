@@ -25,12 +25,14 @@ class AdminProducteurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($producteur);
             $manager->flush();
+
             $this->addFlash('success', 'Le producteur a bien été ajouté');
+
             return $this->redirectToRoute('app_admin.producteur');
         }
 
         return $this->render('backend/producteur/create.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -43,12 +45,14 @@ class AdminProducteurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($producteur);
             $manager->flush();
+
             $this->addFlash('success', 'Le producteur a bien été modifié');
+            
             return $this->redirectToRoute('app_admin.producteur');
         }
 
         return $this->render('backend/producteur/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -61,7 +65,7 @@ class AdminProducteurController extends AbstractController
         ]);
     }
 
-    #[Route('/producteur/delete/{id}', name: 'app_admin.producteur.delete', methods: ['GET', 'POST'])]
+    #[Route('/producteur/{id}', name: 'app_admin.producteur.delete', methods: ['GET', 'POST'])]
     public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): response
     {
         if ($this->isCsrfTokenValid('delete' . $producteur->getId(), $request->get('_token'))) {
@@ -72,9 +76,5 @@ class AdminProducteurController extends AbstractController
         
         return $this->redirectToRoute('app_admin.producteur');
         }
-
-        $this->addFlash('error', 'Le producteur n\'est pas valide');
-
-        return $this->redirectToRoute('app_admin.producteur');
     }
 }

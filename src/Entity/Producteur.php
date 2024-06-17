@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\ProducteurRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping\PrePersist;
@@ -14,6 +15,8 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProducteurRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: 'email', message: 'Il existe déjà un compte avec cet email.')]
 #[HasLifecycleCallbacks]
 class Producteur
 {
@@ -32,7 +35,6 @@ class Producteur
     private ?string $email;
 
     #[ORM\Column(length: 10, unique: true)]
-    #[Assert\Length(min: 10, max: 10)]
     private ?string $tel = null;
 
     #[ORM\Column(length: 255)]
@@ -44,7 +46,6 @@ class Producteur
     private ?string $ville = null;
 
     #[ORM\Column(length: 5)]
-    #[Assert\Length(min: 5, max: 5)]
     private ?int $code_postal = null;
 
     #[ORM\Column]

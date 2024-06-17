@@ -23,9 +23,51 @@
 			</div>
 		</div>
 	</section>
-	<div class="container-fluid mt-4">
-		<div class="card w-50 mx-auto p-3">
-			{{ form(form) }}
+	<section class="content">
+		<div class="container-fluid">
+			<div class="card w-50 mx-auto p-3 mt-3">
+				<div class="card-header">
+					<h3 class="card-title">Ajouter un produit</h3>
+				</div>
+			<div class="card-body">
+				{{ form_start(form) }}
+				{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.nom) }}
+				{{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+				</div>
+				{{ form_label(form.prix, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.prix) }}
+				{{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
+				</div>
+				{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.description) }}
+				{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+				</div>
+				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.imageFile) }}
+				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				{{ form_label(form.categorie, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.categorie) }}
+				{{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				{{ form_label(form.producteur, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.producteur) }}
+				{{ form_widget(form.producteur, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+
+			<div class="card-footer text-center">
+				<button type="submit" class="btn btn-color">Ajouter</button>
+			</div>
+			{{ form_row(form._token) }}
+			{{ form_end(form, {render_rest: false}) }}
 		</div>
-	</div>
+	</section>
 {% endblock %}

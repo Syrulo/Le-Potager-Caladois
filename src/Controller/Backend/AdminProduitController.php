@@ -30,7 +30,7 @@ class AdminProduitController extends AbstractController
         }
 
         return $this->render('backend/produit/create.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -49,7 +49,7 @@ class AdminProduitController extends AbstractController
         }
 
         return $this->render('backend/produit/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -80,11 +80,7 @@ class AdminProduitController extends AbstractController
             
             $this->addFlash('success', 'Le produit a bien été supprimé');
         
-        return $this->redirectToRoute('app_admin');
-        }
-
-        $this->addFlash('error', 'Le produit n\'est pas valide');
-
         return $this->redirectToRoute('app_admin.produit');
+        }
     }
 }

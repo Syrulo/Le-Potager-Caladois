@@ -4,15 +4,16 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Doctrine\ORM\Mapping\PrePersist;
-use Doctrine\ORM\Mapping\PreUpdate;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[Vich\Uploadable]
@@ -25,9 +26,12 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 50)]
     private ?string $nom = null;
 
     #[Vich\UploadableField(mapping: 'categories_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Assert\NotBlank]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]
