@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240617074522 extends AbstractMigration
+final class Version20240622144349 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,17 +21,11 @@ final class Version20240617074522 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE produit ADD description LONGTEXT NOT NULL');
-        $this->addSql('ALTER TABLE utilisateur DROP FOREIGN KEY FK_1D1C63B389A2C534');
-        $this->addSql('DROP INDEX UNIQ_1D1C63B389A2C534 ON utilisateur');
-        $this->addSql('ALTER TABLE utilisateur DROP utilisateur_details_id');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE produit DROP description');
-        $this->addSql('ALTER TABLE utilisateur ADD utilisateur_details_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE utilisateur ADD CONSTRAINT FK_1D1C63B389A2C534 FOREIGN KEY (utilisateur_details_id) REFERENCES utilisateur_details (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_1D1C63B389A2C534 ON utilisateur (utilisateur_details_id)');
     }
 }
