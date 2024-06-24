@@ -7,12 +7,12 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container mt-3 p-5">
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="text-left">
-					<h1>Producteur</h1>
+		<div class="container">
+			<div class="row">
+				<div class="text-center">
+					<h1 class="filtitre">Producteur</h1>
 				</div>
-				<div class="me-5">
+				<div class="breadcrumb justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_producteur') }}">Retour à la liste des producteurs</a>
@@ -24,19 +24,17 @@
 		</div>
 	</section>
 	<div class="container-fluid mt-4">
-		<div class="card w-50 mx-auto p-3">
+		<div class="card w-75 w-lg-50-custom1 mx-auto p-3 mt-5 wrapper text-center">
 			<h1 class="text-center">{{ producteur.nom }}</h1>
-			<p class="text-center">{{ producteur.email }}</p>
-			<p class="text-center">{{ producteur.tel }}</p>
-			<p class="text-center">{{ producteur.adresse }}</p>
-			<p class="text-center">{{ producteur.ville }}</p>
-			<p class="text-center">{{ producteur.codePostal }}</p>		
-			{% for produit in produits %}
+			<div class="mb-2"><strong>Email:</strong>  {{ producteur.email }}</div>
+			<div class="mb-2"><strong>Téléphone:</strong>{{ producteur.tel }}</div>
+			<div class="mb-2"><strong>Adresse:</strong>{{ producteur.adresse }}</div>
+			<div class="mb-2"><strong>Ville:</strong>{{ producteur.ville }}</div>
+			<div class="mb-2"><strong>Code Postal:</strong>{{ producteur.codePostal }}</div>	
+			{# {% for produit in produits %}
 				<a href="{{ path('app_produit', {'slug': produit.slug}) }}">{{ produit.nom }}</a>
 				<img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="">
-			{% endfor %}
-			<table class="table table-striped">
-				<tbody>
-				</tbody>
-		</table>
+			{% endfor %} #}
+		</div>
+	</div>
 	{% endblock %}

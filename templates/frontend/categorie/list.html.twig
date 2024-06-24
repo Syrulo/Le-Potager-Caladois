@@ -7,12 +7,12 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container mt-3 p-5">
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="text-left">
-					<h1>Liste des catégories</h1>
+		<div class="container">
+			<div class="row">
+				<div class="text-center">
+					<h1 class="filtitre">Liste des catégories</h1>
 				</div>
-				<div class="me-5">
+				<div class="breadcrumb justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
@@ -24,20 +24,20 @@
 		</div>
 	</section>
 	<div class="container">
-		<table class="table table-hover ">
-			<tbody>
-				<div class="d-flex justify-content-around mt-5">
-					{% for categorie in categories %}
-						<div class="card w-25 d-flex mt-3 p-2">
-							<img src="http://localhost:8000/images/categories/{{ categorie.imageName }}" class="card-img-top" alt=".{{ categorie.nom}}">
-							<div class="card-body text-center">
-								<h5 class="card-title text-center">{{ categorie.nom}}</h5>
-								<a href="{{ path('app_categorie.details', {'slug': categorie.slug}) }}" class="btn btn-primary">
-									Voir la catégorie "{{ categorie.nom}}"</a>
-							</div>
+		<div class="row">
+			{% for categorie in categories %}
+				<div class="col-12 col-md-4 col-sm-6 mb-4">
+					<div class="card d-flex p-2 mx-auto wrapper">
+						<img src="http://localhost:8000/images/categories/{{ categorie.imageName }}" class="card-img-top" alt=".{{ categorie.nom}}">
+						<div class="card-body text-center">
+							<h5 class="card-title text-center">{{ categorie.nom}}</h5>
+							<a href="{{ path('app_categorie.details', {'slug': categorie.slug}) }}" class="btn btn-primary btn-block btn-sm m-1">
+								Voir la catégorie "{{ categorie.nom}}"
+							</a>
 						</div>
-					{% endfor %}
+					</div>
 				</div>
-			</tbody>
+			{% endfor %}
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
