@@ -91,6 +91,11 @@
 						</span>
 					</div>
 				</div>
+				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.imageFile) }}
+				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+				</div>
 			</div>
 
 			<div class="card-footer text-center">

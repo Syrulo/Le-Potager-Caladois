@@ -25,12 +25,13 @@
 	</section>
 	<div class="container-fluid mt-4">
 		<div class="card w-75 w-lg-50-custom1 mx-auto p-3 mt-5 wrapper text-center">
-			<h1 class="text-center">{{ producteur.nom }}</h1>
+			<h1 class="text-center mb-5">{{ producteur.nom }}</h1>
+			<div class="mb-2"><img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="image"></div>	
 			<div class="mb-2"><strong>Email:</strong>  {{ producteur.email }}</div>
 			<div class="mb-2"><strong>Téléphone:</strong>{{ producteur.tel }}</div>
 			<div class="mb-2"><strong>Adresse:</strong>{{ producteur.adresse }}</div>
 			<div class="mb-2"><strong>Ville:</strong>{{ producteur.ville }}</div>
-			<div class="mb-2"><strong>Code Postal:</strong>{{ producteur.codePostal }}</div>	
+			<div class="mb-2"><strong>Code Postal:</strong>{{ producteur.codePostal }}</div>
 			{# {% for produit in produits %}
 				<a href="{{ path('app_produit', {'slug': produit.slug}) }}">{{ produit.nom }}</a>
 				<img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="">

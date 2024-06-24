@@ -41,6 +41,7 @@
 						<th scope="col" class="d-none d-lg-table-cell">Adresse</th>
 						<th scope="col" class="d-none d-lg-table-cell">Ville</th>
 						<th scope="col" class="d-none d-lg-table-cell">Code postal</th>
+						<th scope="col" class="d-none d-lg-table-cell">Image</th>
 						<th scope="col" class="d-none d-lg-table-cell">Created At</th>
 						<th scope="col" class="d-none d-lg-table-cell">Updated At</th>
 						<th scope="col" class="d-none d-lg-table-cell">Actions</th>
@@ -56,6 +57,7 @@
 							<td class="d-none d-lg-table-cell text-center">{{ producteur.adresse }}</td>
 							<td class="d-none d-lg-table-cell text-center">{{ producteur.ville }}</td>
 							<td class="d-none d-lg-table-cell text-center">{{ producteur.codePostal }}</td>
+							<td class="d-none d-lg-table-cell text-center"><img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="image"></td>
 							<td class="d-none d-lg-table-cell text-center">{{ producteur.createdAt ? producteur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td class="d-none d-lg-table-cell text-center">{{ producteur.updatedAt ? producteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td class="d-table-cell d-lg-none d-flex flex-column">
@@ -80,6 +82,9 @@
 								<div class="mb-2">
 									<strong>Code Postal:</strong>
 									{{ producteur.codePostal }}</div>
+								<div class="mb-2">
+									<strong>Image:</strong>
+									<img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="image"></div>
 								<div class="mb-2">
 									<strong>Créé le:</strong>
 									{{ producteur.createdAt ? producteur.createdAt|date('Y-m-d H:i:s') : '' }}</div>

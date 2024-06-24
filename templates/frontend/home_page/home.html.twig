@@ -18,4 +18,20 @@
 			</div>
 		</div>
 	</section>
+	<div class="container p-5">
+	<img class="logo mb-5" src="{{ asset('/images/categories.png	') }}" alt="Catégories" style="max-height: 80px; width: auto;">
+			<div class="d-flex flex-column flex-lg-row justify-content-around">
+			<div class="mb-3 mb-lg-0">
+			<a href="{{ path('app_admin.categorie') }}"><button type="submit" class="btn btn-color w-100">Gérer les catégories</button><a>
+			</div>
+			<div class="mb-3 mb-lg-0">
+			<a href="{{ path('app_admin.producteur') }}"><button type="submit" class="btn btn-color w-100">Gérer les producteurs</button><a>
+			</div>
+			<div class="mb-3 mb-lg-0">
+			<a href="{{ path('app_admin.produit') }}"><button type="submit" class="btn btn-color w-100">Gérer les produits</button><a>
+			</div>
+			<div class="mb-3 mb-lg-0">
+			<a href="{{ path('app_admin.utilisateur') }}"><button type="submit" class="btn btn-color w-100">Gérer les utilisateurs</button><a>
+			</div>	
+	</div>
 {% endblock %}

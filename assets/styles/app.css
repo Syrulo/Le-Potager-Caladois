@@ -131,13 +131,17 @@ body {
 
     .w-lg-50-custom1 {
         width: 50% !important;
-    } 
+    }
+
+    .w-lg-25-custom1 {
+        width: 25% !important;
+    }
 
 }
 
 @media (min-width: 572px) and (max-width: 991px) {
     .w-lg-75-custom, .w-lg-50-custom, .w-lg-50-custom1 {
-      font-size: 30px; /* Augmenter la taille de la police pour les petits écrans */
+      font-size: 16px; /* Augmenter la taille de la police pour les petits écrans */
     }
 
     .nav-item .nav-link {

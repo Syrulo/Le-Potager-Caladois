@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Producteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -20,15 +21,7 @@ class ProducteurType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'label' => 'Nom',
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '180',
-                ],
-                'constraints' => [ 
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 180])
-                ]
+                'required' => true
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
@@ -84,6 +77,13 @@ class ProducteurType extends AbstractType
                         'message' => 'Le code postal doit contenir exactement 5 chiffres.',
                 ])
                 ]
+            ])          
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'download_uri' => false,
+                'image_uri' => true,
+                'asset_helper' => true,
+                'label' => 'Image'               
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

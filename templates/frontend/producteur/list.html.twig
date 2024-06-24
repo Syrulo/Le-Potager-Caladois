@@ -28,15 +28,15 @@
 			{% for producteur in producteurs %}
 				<div class="col-12 col-md-4 col-sm-6 mb-4">
 					<div class="card d-flex p-2 mx-auto wrapper">
-							<div class="card-body text-center">
-								<h5 class="card-title text-center">{{ producteur.nom}}</h5>
-								<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color btn-block btn-sm m-1">
-									Voir le producteur "{{ producteur.nom}}"
-								</a>
-							</div>
+						<div class="card-body text-center">
+							<h5 class="card-title text-center">{{ producteur.nom}}</h5>
+							<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color btn-block btn-sm m-1">
+								Voir le producteur "{{ producteur.nom}}"
+							</a>
 						</div>
-					{% endfor %}
+					</div>
 				</div>
-			</div>
+			{% endfor %}
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
