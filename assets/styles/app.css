@@ -60,6 +60,78 @@ body {
     width: 100%;
 }
 
+.carousel-caption {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    top: auto;
+    color: black;
+    background-color: #7dc2a5a9;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.carousel-item img {
+    object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible, peut être changé en 'contain' pour s'assurer que toute l'image est visible */
+}
+
+.container-image {
+    width: 100%; /* Prend toute la largeur du conteneur parent */
+    height: auto; /* Hauteur fixe pour toutes les images */
+}
+
+.text-on-image {
+    position: relative; /* Le conteneur de l'image devient un conteneur de positionnement */
+}
+
+.text-on-image img{
+    width: 100%; /* Pour que l'image couvre la largeur du conteneur */
+    height: auto; /* Ajuste la hauteur automatiquement pour conserver les proportions */
+    object-fit: contain; /* Réduit la taille de l'image pour s'adapter au conteneur sans la rogner */
+}
+
+.text-on-image p, .text-on-image .voir-categorie {
+    position: absolute; /* Positionne le texte absolument par rapport à son parent .text-on-image */
+    bottom: 0; /* Positionne le texte en bas de l'image */
+    left: 0; /* texte à gauche */
+    color: black; /* Couleur du texte */
+    padding: 10px; /* Espacement autour du texte */
+}
+
+.voir-categorie {
+    top: 0; /* Pour positionner "Voir la catégorie" en haut */
+}
+
+.card-img-top1 {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de la carte */
+    height: auto; /* Maintient les proportions de l'image */
+    display: block; /* Permet d'utiliser margin: auto pour centrer */
+    margin: auto; /* Centre l'image horizontalement */
+}
+
+.card-custom {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body-custom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-bottom {
+    margin-top: auto;
+}
+
+.card-img-custom {
+    width: 100%; /* Assure que l'image est pleine largeur */
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* Garde les proportions, coupe l'excédent */
+}
+
 .image {
     width: 50%;
 }
@@ -115,6 +187,15 @@ body {
 }
 
 .centrer-unique-producteur .col-12.col-md-4.col-sm-6.mb-4 {
+    flex: 0 0 auto; /* Empêche le redimensionnement */
+    max-width: none; /* Annule la largeur maximale par défaut */
+}
+
+.centrer-unique-produits .row{
+    justify-content: center;
+}
+
+.centrer-unique-produits .col-12.col-md-4.col-sm-6.mb-4 {
     flex: 0 0 auto; /* Empêche le redimensionnement */
     max-width: none; /* Annule la largeur maximale par défaut */
 }
@@ -199,6 +280,12 @@ body {
         max-height: 100%;
         width: auto;
     }
+
+    .carousel-caption {
+        width: 50%; /* Augmente la largeur pour les petits écrans */
+        font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
+    }
+
 }
 
 @media (min-width: 360px) and (max-width: 571px) {
@@ -269,5 +356,10 @@ body {
     .card-img-top {
         max-height: 100%;
         width: auto;
+    }
+
+    .carousel-caption {
+        width: 89%; /* Augmente la largeur pour les petits écrans */
+        font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
     }
 }  

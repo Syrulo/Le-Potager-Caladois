@@ -23,15 +23,16 @@
 			</div>
 		</div>
 	</section>
-	<div class="container {{ producteurs|length == 1 ? 'centrer-unique-producteur' : '' }}">
+	<div class="container p-5 {{ producteurs|length <= 3 ? 'centrer-unique-producteur' : '' }}">
 		<div class="row">
 			{% for producteur in producteurs %}
-				<div class="col-12 col-md-4 col-sm-6 mb-4">
-					<div class="card d-flex p-2 mx-auto wrapper">
-						<div class="card-body text-center">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 align-items-stretch">
+					<div class="card d-flex flex-column h-100 mx-auto card-custom">
+						<img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" class="card-img-top p-3 card-img-custom" alt="{{ producteur.nom }}" class="imgFruit">
+						<div class="card-body text-center card-body-custom">
 							<h5 class="card-title text-center">{{ producteur.nom}}</h5>
-							<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color btn-block btn-sm m-1">
-								Voir le producteur "{{ producteur.nom}}"
+							<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn-bottom">
+								<button type="submit" class="btn btn-color">Détails</button>
 							</a>
 						</div>
 					</div>

@@ -29,4 +29,46 @@ class CategorieController extends AbstractController
             'categories' => $categories
         ]);
     }
+
+    #[Route('/categories/legumes', name: 'app_categorie_legumes', methods: ['GET'])]
+    public function listeLegumes(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
+    {
+        $categorieLegumes = $repoCategorie->findOneBy(['slug' => 'Légumes']); // Assurez-vous que le slug est correct
+
+        // Utiliser l'ID de la catégorie des légumes pour trouver les produits associés
+        $produits = $repoProduit->findByCategorie($categorieLegumes->getId());
+
+        return $this->render('frontend/categorie/legumes.html.twig', [
+            'categorie' => $categorieLegumes,
+            'produits' => $produits
+        ]);
+    }
+
+    #[Route('/categories/fruits', name: 'app_categorie_fruits', methods: ['GET'])]
+    public function listeFruits(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
+    {
+        $categorieFruits = $repoCategorie->findOneBy(['slug' => 'Fruits']); // Assurez-vous que le slug est correct
+
+        // Utiliser l'ID de la catégorie des fruits pour trouver les produits associés
+        $produits = $repoProduit->findByCategorie($categorieFruits->getId());
+
+        return $this->render('frontend/categorie/fruits.html.twig', [
+            'categorie' => $categorieFruits,
+            'produits' => $produits
+        ]);
+    }
+
+    #[Route('/categories/boissons', name: 'app_categorie_boissons', methods: ['GET'])]
+    public function listeBoissons(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
+    {
+        $categorieBoissons = $repoCategorie->findOneBy(['slug' => 'Boissons']); // Assurez-vous que le slug est correct
+
+        // Utiliser l'ID de la catégorie des boissons pour trouver les produits associés
+        $produits = $repoProduit->findByCategorie($categorieBoissons->getId());
+
+        return $this->render('frontend/categorie/boissons.html.twig', [
+            'categorie' => $categorieBoissons,
+            'produits' => $produits
+        ]);
+    }
 }
