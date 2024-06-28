@@ -37,6 +37,10 @@ class Producteur
     #[Assert\Length(min: 2, max: 180)]
     private ?string $email;
 
+    #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    private ?string $description = null;
+
     #[ORM\Column(length: 10, unique: true)]
     private ?string $tel = null;
 
@@ -107,6 +111,18 @@ class Producteur
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

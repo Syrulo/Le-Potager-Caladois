@@ -23,19 +23,23 @@
 			</div>
 		</div>
 	</section>
-	<div class="container-fluid mt-4">
-		<div class="card w-75 w-lg-50-custom1 mx-auto p-3 mt-5 wrapper text-center">
-			<h1 class="text-center mb-5">{{ producteur.nom }}</h1>
-			<div class="mb-2"><img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="image"></div>	
-			<div class="mb-2"><strong>Email:</strong>  {{ producteur.email }}</div>
-			<div class="mb-2"><strong>Téléphone:</strong>{{ producteur.tel }}</div>
-			<div class="mb-2"><strong>Adresse:</strong>{{ producteur.adresse }}</div>
-			<div class="mb-2"><strong>Ville:</strong>{{ producteur.ville }}</div>
-			<div class="mb-2"><strong>Code Postal:</strong>{{ producteur.codePostal }}</div>
-			{# {% for produit in produits %}
-				<a href="{{ path('app_produit', {'slug': produit.slug}) }}">{{ produit.nom }}</a>
-				<img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="">
-			{% endfor %} #}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card col-lg-8 col-md-10 col-sm-10 p-4 mt-5">
+            <div class="row">			
+				<div class="col-md-6">
+					<img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="img-fluid produit-image-detail">
+				</div>	
+				<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
+					<h2 class="mb-2">{{ producteur.nom }}</h2>
+					<div class="mb-2"><strong>Email: </strong>{{ producteur.email }}</div>
+					<div class="mb-2"><strong>Téléphone: </strong>{{ producteur.tel }}</div>
+					<div class="mb-2"><strong>Adresse: </strong>{{ producteur.adresse }}</div>
+					<div class="mb-2"><strong>Ville: </strong>{{ producteur.ville }}</div>
+					<div class="mb-2"><strong>Code Postal: </strong>{{ producteur.codePostal }}</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	{% endblock %}
+</div>
+{% endblock %}

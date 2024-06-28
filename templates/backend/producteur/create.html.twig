@@ -51,6 +51,11 @@
 						</span>
 					</div>
 				</div>
+				{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+				<div class="input-group mb-3">
+				{{ form_errors(form.description) }}
+				{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+				</div>
 				{{ form_label(form.tel, null, {'label_attr': {'class': 'single-line-label'}}) }}
 				<div class="input-group mb-3">
 					{{ form_errors(form.tel) }}
@@ -90,11 +95,11 @@
 							<span class="fas fa-map-marker-alt icon-large"></span>
 						</span>
 					</div>
+				</div>
 				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
 				<div class="input-group mb-3">
-				{{ form_errors(form.imageFile) }}
-				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
-				</div>
+					{{ form_errors(form.imageFile) }}
+					{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
 				</div>
 			</div>
 

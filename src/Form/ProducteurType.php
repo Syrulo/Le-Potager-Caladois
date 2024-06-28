@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProducteurType extends AbstractType
 {
@@ -35,6 +36,10 @@ class ProducteurType extends AbstractType
                     new Assert\Email(),
                     new Assert\Length(['min' => 2, 'max' => 180]),
                 ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description du produit',
+                'required' => true
             ])
             ->add('tel', TelType::class, [
                 'label' => 'Téléphone',
@@ -83,7 +88,7 @@ class ProducteurType extends AbstractType
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Image'               
+                'label' => 'Image'                 
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

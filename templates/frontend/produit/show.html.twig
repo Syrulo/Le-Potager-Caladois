@@ -23,12 +23,22 @@
 			</div>
 		</div>
 	</section>
-	<div class="container-fluid mt-4">
-		<div class="card w-50 mx-auto p-3">
-			<h1 class="text-center">{{ produit.nom }}</h1>
-            <td><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="imgFruit"></td>
-			<table class="table table-striped">
-				<tbody>
-				</tbody>
-		</table>
-	{% endblock %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card col-lg-8 col-md-10 col-sm-10 p-4 mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="img-fluid produit-image-detail">
+                </div>
+                <div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
+                    <h2 class="mb-2">{{ produit.nom }}</h2>
+                    <p class="produit-prix mb-2">{{ produit.prix }}€ /kg</p>
+                    <p class="produit-description">{{ produit.description }}</p>
+					<p class="produit-producteur mb-2">Origine : {{ produit.producteur.nom }}</p>
+					<div class="mt-lg-5"><a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}" class="btn btn-color produit-commande">Commander</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
