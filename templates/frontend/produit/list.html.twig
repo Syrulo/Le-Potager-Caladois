@@ -1,0 +1,52 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container">
+			<div class="row">
+				<div class="text-center">
+					<h1 class="filtitre">Résultat des recherches</h1>
+				</div>
+				<div class="breadcrumb justify-content-center">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
+						</li>
+						<li class="breadcrumb-item active">Résultat</li>
+					</ol>
+				</div>
+			</div>
+            {% for message in app.flashes('error') %}
+				<div class="alert alert-warning">
+					{{ message }}
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+<div class="container p-5 mb-5">
+    <div class="row justify-content-center">
+        {% for produit in produits %}
+			<div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-4 listcard">
+				<div class="card d-flex flex-column h-100 mx-auto w-100">
+                    <a href="{{ path('app_produit', {'slug': produit.slug}) }}">
+                        <img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="card-img-top p-3 card-img-custom">
+                    </a>
+                    <div class="card-body text-center">
+						<h5 class="card-title text-center">
+                        <a href="{{ path('app_produit', {'slug': produit.slug}) }}">
+                        {{ produit.nom}}</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <p>Aucun produit trouvé.</p>
+                <p>Veuillez effectuer une nouvelle recherche</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

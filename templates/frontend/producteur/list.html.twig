@@ -23,22 +23,22 @@
 			</div>
 		</div>
 	</section>
-	<div class="container">
-    <div class="row justify-content-center">
-		{% for producteur in producteurs %}
-        <div class="card col-lg-8 col-md-10 col-sm-8 p-4 mt-5">
-            <div class="row">
-                <div class="col-md-6">
-					<img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="img-fluid produit-image">
-                </div>
-                <div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start">
-					<h3>{{ producteur.nom }}</h3>
-					<p class="producteur-description">{{ producteur.description }}</p>
-					<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color w-50 align-self-center">Détails</a>
-                </div>
-            </div>
-        </div>
-		{% endfor %}
-    </div>
-</div>
+	<div class="container p-5 mb-5">
+		<div class="row justify-content-center">
+			{% for producteur in producteurs %}
+			<div class="card col-lg-8 col-md-10 col-sm-8 p-4 mt-5">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="img-fluid produit-image">
+					</div>
+					<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start">
+						<h3>{{ producteur.nom }}</h3>
+						<p class="producteur-description">{{ producteur.description }}</p>
+						<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color w-50 align-self-center">Détails</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

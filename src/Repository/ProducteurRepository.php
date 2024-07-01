@@ -16,28 +16,20 @@ class ProducteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Producteur::class);
     }
 
-    //    /**
-    //     * @return Producteur[] Returns an array of Producteur objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Producteur
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    //     /**
+    // * @return Producteur[] Retourne un tableau de producteurs
+    // */
+    // public function search($keyword, $searchType): array
+    // {
+    //         if($searchType == "producteur"){
+    //             $query = $this->createQueryBuilder('producteur')
+    //                 ->andWhere('producteur.nom LIKE :keyword')
+    //                 ->setParameter('keyword', "%" . $keyword . "%")
+    //                 ->orderBy('producteur.id', 'ASC')
+    //                 ->getQuery()
+    //                 ->getResult()
+    //             ;
+    //         }
+    //         return $query;
+    // }
 }

@@ -31,16 +31,16 @@ class ProduitRepository extends ServiceEntityRepository
                 ->getResult()
             ;
         }
-        if($searchType == "producteur"){
-            $query = $this->createQueryBuilder('produit')
-                ->join('produit.producteur', 'producteur')
-                ->orWhere('producteur.nom LIKE :keyword')
-                ->setParameter('keyword', "%" . $keyword . "%")
-                ->orderBy('produit.id', 'ASC')
-                ->getQuery()
-                ->getResult()
-            ;
-        }
+        // if($searchType == "producteur"){
+        //     $query = $this->createQueryBuilder('produit')
+        //         ->join('produit.producteur', 'producteur')
+        //         ->orWhere('producteur.nom LIKE :keyword')
+        //         ->setParameter('keyword', "%" . $keyword . "%")
+        //         ->orderBy('produit.id', 'ASC')
+        //         ->getQuery()
+        //         ->getResult()
+        //     ;
+        // }
 
 
         return $query;

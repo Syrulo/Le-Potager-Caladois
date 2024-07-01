@@ -2,6 +2,9 @@
     --body-background:#E3EBD0;
     --nav-bg: #FBFBF1;
 }
+html {
+    height: 100%;
+}
 
 body {
     background-color: var(--body-background);
@@ -12,6 +15,11 @@ body {
     background-color: var(--nav-bg);
     min-height: 100px;
     width: 100vw;
+}
+
+footer {
+    width: 100%;
+    background-color: var(--nav-bg);
 }
 
 .logo {

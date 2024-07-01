@@ -3,9 +3,6 @@
     <a class="navbar-brand" href="{{ path('app_home_page') }}" aria-label="Le Potager Caladois">
       <img class="logo" src="{{ asset('/images/Logo.jpg') }}" alt="Le Potager Caladois" style="max-height: 80px; width: auto;">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
@@ -29,14 +26,13 @@
         <li class="nav-item mt-1">
           <a class="nav-link" href="#">Notre Histoire</a>
         </li>
-        <li class="nav-item ms-2 search">
+        <li class="nav-item search d-lg-none">
         <form class="d-flex mt-2" role="search" action="{{ path('app_admin.produit') }}">
-        <select name="search_type" class="form-select" aria-label="Default select example">
-          <option value='produit'>Produits</option>
-          <option value="producteur">Producteurs</option>
-        </select>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="input-group mb-3">
+        <input type="hidden" name="search_type" value="produit">
+        <input type="text" class="form-control" placeholder="Recherchez un produit" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+        </div>
         </form>
         </li>
           <ul class="dropdown-menu">
@@ -46,9 +42,8 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ path('app_producteur') }}">Producteurs</a></li>
           </ul>
-          </li>
         </ul>
-          <ul class="nav-item dropdown mt-3">
+        <ul class="nav-item dropdown mt-3 me-5 d-lg-none">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-person-circle d-inline d-lg-none"></i>
           Mon Compte
@@ -70,6 +65,42 @@
             {% endif %}
           </ul>
         </ul>  
+      </div>
+    </div>
+        <li class="nav-item search mt-3 d-none d-lg-block">
+        <form class="d-flex mt-2" role="search" action="{{ path('app_produit_list') }}">
+        <div class="input-group mb-3">
+          <input type="hidden" name="search_type" value="produit">
+        <input type="text" id="search-field" class="form-control" placeholder="Recherchez un produit" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+        </form>
+        </li>
+        <ul class="nav-item dropdown mt-3 me-5 d-none d-lg-block">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle d-inline d-lg-none"></i>
+          Mon Compte
+          </a>
+          <ul class="dropdown-menu">
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a class="dropdown-item" href="{{ path('app_admin') }}">AdminDashBoard</a></li>
+            <li><hr class="dropdown-divider"></li>
+            {% endif %}
+            {% if app.user %}
+            <li><a class="dropdown-item" href="{{ path('profil') }}">Mon profil</a></li>
+            {% endif %}
+            {% if not app.user %}
+            <li><a class="dropdown-item" href="{{ path('app_security.login') }}">Connexion</a></li>
+            {% endif %}
+            {% if app.user %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_security.logout') }}">Deconnexion</a></li>
+            {% endif %}
+          </ul>
+        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
       </div>
     </div>
   </div>
