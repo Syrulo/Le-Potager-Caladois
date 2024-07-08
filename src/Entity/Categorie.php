@@ -31,7 +31,6 @@ class Categorie
     private ?string $nom = null;
 
     #[Vich\UploadableField(mapping: 'categories_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Assert\NotBlank]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]

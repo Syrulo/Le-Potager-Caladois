@@ -5,29 +5,28 @@
 {% endblock %}
 
 {% block body %}
-<section class="content-header">
-	<div class="container mt-3 p-5">
-		<div class="d-flex justify-content-between align-items-center">
-			<div class="text-left">
+	<section class="content-header">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
 				<h1>Formulaire d'inscription</h1>
-			</div>
-			<div class="me-5">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
-					</li>
-					<li class="breadcrumb-item active">Inscription</li>
-				</ol>
+				<div class="d-flex justify-content-center">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
+						</li>
+						<li class="breadcrumb-item active">Inscription</li>
+					</ol>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<section class="content">
-	<div class="container-fluid">
-		<div class="card w-75 mx-auto p-3">
-			<div class="card-header">
-				<h3 class="mt4">Formulaire d'inscription</h3>
-			</div>
+	</section>
+	
+	<section class="content">
+		<div class="container-fluid p-5 mb-5">
+			<div class="card col-lg-6 col-md-10 col-12 mx-auto p-3">
+				<div class="card-header">
+					<h3 class="mt4 text-center">Formulaire d'inscription</h3>
+				</div>
 			<div class="card-body">
 				{{ form_start(form) }}
 				<span class="text-danger">{{ form_errors(form.email) }}</span>
@@ -66,19 +65,18 @@
 				</div>
 			</div>
 
-			<div class="card-footer text-center">
-				<button type="submit" class="btn btn-secondary">{{ button_label|default('S\'inscrire') }}</button>
+				<div class="card-footer text-center">
+					<button type="submit" class="btn btn-secondary">{{ button_label|default('S\'inscrire') }}</button>
+				</div>
+				{{ form_row(form._token) }}
+				{{ form_end(form, {render_rest: false}) }}</form>
 			</div>
-					</div>
-			{{ form_row(form._token) }}
-			{{ form_end(form, {render_rest: false}) }}</form>
-		</div>
 
-		<div class="text-center">
-			<p>Vous avez déjà un compte ?
-				<a href="{{ path('app_security.login') }}">Cliquez ici</a>
-			</p>
+			<div class="text-center mt-4 mb-5">
+				<p>Vous avez déjà un compte ?
+					<a href="{{ path('app_security.login') }}">Cliquez ici</a>
+				</p>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 {% endblock %}

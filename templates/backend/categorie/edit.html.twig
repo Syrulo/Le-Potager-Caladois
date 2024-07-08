@@ -7,12 +7,10 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container">
-			<div class="row">
-				<div class="text-center">
-					<h1 class="filtitre">Modifier une catégorie</h1>
-				</div>
-				<div class="breadcrumb justify-content-center">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+				<h1>Modifier une catégorie</h1>
+				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_admin.categorie') }}">Liste des catégories</a>
@@ -23,29 +21,32 @@
 			</div>
 		</div>
 	</section>
-	<div class="container p-5 mb-5">
-		<div class="card w-50 mx-auto p-3 mt-3">
-			<div class="card-header">
-				<h3 class="card-title">Modification d'une catégorie</h3>
-			</div>
-			<div class="card-body">
-				{{ form_start(form) }}
-				{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.nom) }}
-				{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+	
+	<section class="content">
+		<div class="container p-5 mb-5">
+			<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3 mt-1">
+				<div class="card-header">
+					<h3 class="card-title text-center">Modification d'une catégorie</h3>
 				</div>
-				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.imageFile) }}
-				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+				<div class="card-body">
+					{{ form_start(form) }}
+					{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.nom) }}
+						{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.imageFile) }}
+						{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+					</div>
 				</div>
+				<div class="card-footer text-center">
+					<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
+				</div>
+				{{ form_row(form._token) }}
+				{{ form_end(form, {render_rest: false}) }}
 			</div>
-			<div class="card-footer text-center">
-				<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
-			</div>
-			{{ form_row(form._token) }}
-			{{ form_end(form, {render_rest: false}) }}
 		</div>
-	</div>
+	</section>
 {% endblock %}

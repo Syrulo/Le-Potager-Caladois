@@ -30,44 +30,20 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/categories/legumes', name: 'app_categorie_legumes', methods: ['GET'])]
-    public function listeLegumes(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
+    #[Route('/categories/{slug}', name: 'app_categorie', methods: ['GET'])]
+    public function listeCategorie(string $slug, ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
     {
-        $categorieLegumes = $repoCategorie->findOneBy(['slug' => 'Légumes']); // Assurez-vous que le slug est correct
+        $categorie = $repoCategorie->findOneBy(['slug' => $slug]); // Utiliser le slug pour trouver la catégorie
 
-        // Utiliser l'ID de la catégorie des légumes pour trouver les produits associés
-        $produits = $repoProduit->findByCategorie($categorieLegumes->getId());
+        if (!$categorie) {
+            throw $this->createNotFoundException('La catégorie demandée n\'existe pas.');
+        }
 
-        return $this->render('frontend/categorie/legumes.html.twig', [
-            'categorie' => $categorieLegumes,
-            'produits' => $produits
-        ]);
-    }
+        // Utiliser l'ID de la catégorie pour trouver les produits associés
+        $produits = $repoProduit->findByCategorie($categorie->getId());
 
-    #[Route('/categories/fruits', name: 'app_categorie_fruits', methods: ['GET'])]
-    public function listeFruits(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
-    {
-        $categorieFruits = $repoCategorie->findOneBy(['slug' => 'Fruits']); // Assurez-vous que le slug est correct
-
-        // Utiliser l'ID de la catégorie des fruits pour trouver les produits associés
-        $produits = $repoProduit->findByCategorie($categorieFruits->getId());
-
-        return $this->render('frontend/categorie/fruits.html.twig', [
-            'categorie' => $categorieFruits,
-            'produits' => $produits
-        ]);
-    }
-
-    #[Route('/categories/boissons', name: 'app_categorie_boissons', methods: ['GET'])]
-    public function listeBoissons(ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
-    {
-        $categorieBoissons = $repoCategorie->findOneBy(['slug' => 'Boissons']); // Assurez-vous que le slug est correct
-
-        // Utiliser l'ID de la catégorie des boissons pour trouver les produits associés
-        $produits = $repoProduit->findByCategorie($categorieBoissons->getId());
-
-        return $this->render('frontend/categorie/boissons.html.twig', [
-            'categorie' => $categorieBoissons,
+        return $this->render('frontend/categorie/show.html.twig', [
+            'categorie' => $categorie,
             'produits' => $produits
         ]);
     }

@@ -5,12 +5,10 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container mt-3 p-5">
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="text-left">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
 					<h1>Page de connexion</h1>
-				</div>
-				<div class="me-5">
+				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>
@@ -22,10 +20,10 @@
 		</div>
 	</section>
 	<section class="content">
-		<div class="container-fluid">
-			<div class="card w-50 mx-auto p-3 mt-5">
+		<div class="container-fluid mb-5 p-5">
+			<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3 mt-1">
 				<div class="card-header">
-					<h3 class="card-title">Formulaire de connexion</h3>
+					<h3 class="card-title text-center">Formulaire de connexion</h3>
 				</div>
 				{% for message in app.flashes('success') %}
 					<div class="alert alert-success mt-4">
@@ -57,14 +55,14 @@
 						</div>
 
 						<div class="card-footer text-center">
-							<button type="submit" class="btn btn-color">Se connecter</button>
+							<button type="submit" class="btn btn-color mt-4">Se connecter</button>
 						</div>
 						
 					</div>
 				</form>
 			</div>
 
-			<div class="text-center">
+			<div class="text-center mt-3 mb-5">
                 <p>Vous n'avez pas de compte ?
 					<a href="{{ path('app_security.inscription') }}">Cliquez ici</a>
 				</p>

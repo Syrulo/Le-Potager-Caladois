@@ -12,13 +12,13 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3 flex-wrap">
         <li class="nav-item mt-1">
-          <a class="nav-link active" href="{{ path('app_categorie_legumes', {'slug': 'Légumes'}) }}">Légumes</a>
+          <a class="nav-link active" href="{{ path('app_categorie', {'slug': 'legumes'}) }}">Légumes</a>
         </li>
         <li class="nav-item mt-1">
-          <a class="nav-link active" href="{{ path('app_categorie_fruits', {'slug': 'Fruits'}) }}">Fruits</a>
+          <a class="nav-link active" href="{{ path('app_categorie', {'slug': 'fruits'}) }}">Fruits</a>
         </li>
         <li class="nav-item mt-1">
-          <a class="nav-link active" href="{{ path('app_categorie_boissons', {'slug': 'Boissons'}) }}">Boissons</a>
+          <a class="nav-link active" href="{{ path('app_categorie', {'slug': 'boissons'}) }}">Boissons</a>
         </li>
         <li class="nav-item mt-1">
           <a class="nav-link" href="{{ path('app_producteur') }}">Producteurs</a>
@@ -27,7 +27,7 @@
           <a class="nav-link" href="#">Notre Histoire</a>
         </li>
         <li class="nav-item search d-lg-none">
-        <form class="d-flex mt-2" role="search" action="{{ path('app_admin.produit') }}">
+        <form class="d-flex mt-2" role="search" action="{{ path('app_produit_list') }}">
         <div class="input-group mb-3">
         <input type="hidden" name="search_type" value="produit">
         <input type="text" class="form-control" placeholder="Recherchez un produit" aria-label="Search" name="search">
@@ -36,8 +36,9 @@
         </form>
         </li>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ path('app_categorie') }}">Catégories</a></li>
-            <li><a class="dropdown-item" href="#">Où nous trouver</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'legumes'}) }}">Légumes</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'fruits'}) }}">Fruits</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'boissons'}) }}">Boissons</a></li>
             <li><a class="dropdown-item" href="#">Notre Histoire</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ path('app_producteur') }}">Producteurs</a></li>
@@ -70,8 +71,8 @@
         <li class="nav-item search mt-3 d-none d-lg-block">
         <form class="d-flex mt-2" role="search" action="{{ path('app_produit_list') }}">
         <div class="input-group mb-3">
-          <input type="hidden" name="search_type" value="produit">
-        <input type="text" id="search-field" class="form-control" placeholder="Recherchez un produit" aria-label="Search" name="search">
+        <input type="hidden" name="search_type" value="produit">
+        <input type="text" class="form-control" placeholder="Recherchez un produit" aria-label="Search" name="search">
         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
         </div>
         </form>

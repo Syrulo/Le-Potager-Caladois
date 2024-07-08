@@ -234,6 +234,10 @@ footer {
     width: 300px;
 }
 
+.description-courte, .voir-plus {
+    display: none;
+}
+
 /* Responsive design */
 
 @media (min-width: 992px){
@@ -257,7 +261,6 @@ footer {
 }
 
 @media (min-width: 992px) and (max-width: 1600px) {
-
 
 }
 
@@ -329,6 +332,13 @@ footer {
 
     .card-body {
         flex-direction: column;
+    }
+
+    .description-courte, .voir-plus {
+        display: block;
+    }
+    .description-complete {
+        display: none;
     }
 
 }
@@ -412,4 +422,10 @@ footer {
         flex-direction: column;
     }
 
+    .description-courte, .voir-plus {
+        display: block;
+    }
+    .description-complete {
+        display: none;
+    }
 }

@@ -51,37 +51,19 @@
 
 <div class="container p-5 mb-5">
 	<img class="logo mb-5" src="{{ asset('/images/categories.png') }}" alt="Catégories" style="max-height: 80px; width: auto;">
-		<div class="row">
-			<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
-				<a href="{{ path('app_categorie_legumes', {'slug': 'Légumes'}) }}">
-					<div class="container-image background-image d-flex align-items-center justify-content-center">
-						<div class="text-on-image text-center">
-							<img src=" {{ asset('/images/categories/légumes.webp') }}" alt="Légumes">
-							<strong><p class="voir-categorie">Légumes</p></strong>
-						</div>
-					</div>
-				</a>
-			</div>
-			<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
-				<a href="{{ path('app_categorie_fruits', {'slug': 'Fruits'}) }}">
-					<div class="container-image background-image d-flex align-items-center justify-content-center">
-						<div class="text-on-image text-center">
-                        <img src=" {{ asset('/images/categories/fruits.jpg') }}" alt="Fruits">
-                        <strong><p class="voir-categorie">Fruits</p></strong>
-						</div>
-					</div>
-				</a>
-			</div>
-			<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
-				<a href="{{ path('app_categorie_boissons', {'slug': 'Boissons'}) }}">
-					<div class="container-image background-image d-flex align-items-center justify-content-center">
-						<div class="text-on-image text-center">
-                        <img src=" {{ asset('/images/categories/Boissons.webp') }}" alt="Boissons">
-                        <strong><p class="voir-categorie">Boissons</p></strong>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
+	<div class="row justify-content-center">
+		{% for categorie in categories %}
+					<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
+						<a href="{{ path('app_categorie', {'slug': categorie.slug}) }}">
+							<div class="container-image background-image d-flex align-items-center justify-content-center">
+								<div class="text-on-image text-center">
+									<img src=" {{ asset('/images/categories/' ~ categorie.imageName) }}" alt="Légumes">
+									<strong><p class="voir-categorie">{{ categorie.nom }}</p></strong>
+								</div>
+							</div>
+						</a>
+					</div>						
+		{% endfor %}
 	</div>
+</div>
 {% endblock %}

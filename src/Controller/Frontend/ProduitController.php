@@ -24,8 +24,8 @@ class ProduitController extends AbstractController
     #[Route('/list', name: 'app_produit_list', methods: ['GET'])]
     public function list(ProduitRepository $repoProduit, Request $request): Response
     {
-            // Initialisation de la variable $produits
-            $produits = [];
+        // Initialisation de la variable $produits
+        $produits = [];
 
         $keyword = $request->get('search');
         if ($keyword !== null && $keyword !== '') {

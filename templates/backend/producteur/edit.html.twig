@@ -7,12 +7,10 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container">
-			<div class="row">
-				<div class="text-center">
-					<h1 class="filtitre">Modifier un producteur</h1>
-				</div>
-				<div class="breadcrumb justify-content-center">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+					<h1>Modifier un producteur</h1>
+				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_admin.producteur') }}">Liste des producteurs</a>
@@ -23,84 +21,85 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="content">
 		<div class="container-fluid p-5 mb-5">
-		<div class="card col-lg-6 col-md-10 col-sm-10 p-4 mt-5 mx-auto">
-			<div class="card-header">
-				<h3 class="card-title">Modifier un producteur</h3>
-			</div>
-			<div class="card-body">
-				{{ form_start(form) }}
-				{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.nom) }}
-					{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-user icon-large"></span>
-						</span>
+			<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3">
+				<div class="card-header">
+					<h3 class="card-title">Modifier un producteur</h3>
+				</div>
+				<div class="card-body">
+					{{ form_start(form) }}
+					{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.nom) }}
+						{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-user icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.email, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.email) }}
-					{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-envelope icon-large"></span>
-						</span>
+					{{ form_label(form.email, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.email) }}
+						{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-envelope icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.description) }}
-				{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
-				</div>
-				{{ form_label(form.tel, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.tel) }}
-					{{ form_widget(form.tel, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-phone icon-large"></span>
-						</span>
+					{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.description) }}
+						{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
 					</div>
-				</div>
-				{{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.adresse) }}
-					{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-home icon-large"></span>
-						</span>
+					{{ form_label(form.tel, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.tel) }}
+						{{ form_widget(form.tel, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-phone icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.ville) }}
-					{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-city icon-large"></span>
-						</span>
+					{{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.adresse) }}
+						{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-home icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.code_postal) }}
-					{{ form_widget(form.code_postal, {'attr': {'class': 'form-control'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-map-marker-alt icon-large"></span>
-						</span>
+					{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.ville) }}
+						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-city icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.imageFile) }}
-				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
-				</div>
+					{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.code_postal) }}
+						{{ form_widget(form.code_postal, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-map-marker-alt icon-large"></span>
+							</span>
+						</div>
+					</div>
+					{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.imageFile) }}
+						{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+					</div>
 				</div>
 				<div class="card-footer text-center">
 					<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
@@ -108,7 +107,6 @@
 			</div>
 			{{ form_row(form._token) }}
 			{{ form_end(form, {render_rest: false}) }}
-			</div>
 		</div>
-	</section>
+	</div></section>
 {% endblock %}

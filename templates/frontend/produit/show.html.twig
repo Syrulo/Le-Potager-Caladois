@@ -7,15 +7,13 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container">
-			<div class="row">
-				<div class="text-center">
-					<h1 class="filtitre">Produit</h1>
-				</div>
-				<div class="breadcrumb justify-content-center">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+					<h1>Produit</h1>
+				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="{{ path('app_categorie_fruits') }}">Retour à la liste des fruits</a>
+							<a href="{{ path('app_categorie', {'slug': produit.categorie.slug}) }}">Retour à la liste des {{ produit.categorie.nom }}</a>
 						</li>
 						<li class="breadcrumb-item active">produit</li>
 					</ol>
@@ -23,22 +21,56 @@
 			</div>
 		</div>
 	</section>
-<div class="container p-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="card col-lg-8 col-md-10 col-sm-10 p-4 mt-5">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="img-fluid produit-image-detail">
-                </div>
-                <div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
-                    <h2 class="mb-2">{{ produit.nom }}</h2>
-                    <p class="produit-prix mb-2">{{ produit.prix }}€ /kg</p>
-                    <p class="produit-description">{{ produit.description }}</p>
-					<p class="produit-producteur mb-2">Origine : {{ produit.producteur.nom }}</p>
-					<div class="mt-lg-5"><a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}" class="btn btn-color produit-commande">Commander</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+	<section class="content">
+		<div class="container p-5 mb-5">
+			<div class="row justify-content-center">
+				<div class="card col-lg-8 col-md-10 col-12 p-4 mt-2">
+					<div class="row">
+						<div class="col-md-6 mt-2">
+							<img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="img-fluid produit-image-detail">
+						</div>
+						<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
+							<h2 class="mb-2 mt-2">{{ produit.nom }}</h2>
+							<p class="produit-prix mb-2">{{ produit.prix }}€ /kg</p>
+							<div class="produit-description">
+								<p id="descriptionCourte" class="description-courte">
+									{{ produit.description|length > 150 ? produit.description|slice(0, 150) ~ '...' : produit.description }}
+								</p>
+								<p id="descriptionComplete" class="description-complete">
+									{{ produit.description }}
+								</p>
+								{% if produit.description|length > 150 %}
+									<a href="#" id="voirPlus" onclick="toggleDescription(); return false;" class="voir-plus">Voir plus</a>
+								{% endif %}
+							</div>
+							<p class="produit-producteur mb-2">Origine :
+								{{ produit.producteur.nom }}</p>
+							<div class="mt-lg-5">
+								<a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}" class="btn btn-color produit-commande">Commander</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+	function toggleDescription() {
+		var courte = document.getElementById('descriptionCourte');
+		var complete = document.getElementById('descriptionComplete');
+		var lien = document.getElementById('voirPlus');
+
+		if (courte.style.display === 'none') {
+			courte.style.display = 'block';
+			complete.style.display = 'none';
+			lien.innerHTML = 'Voir plus';
+		} else {
+			courte.style.display = 'none';
+			complete.style.display = 'block';
+			lien.innerHTML = 'Voir moins';
+		}
+	}
+	</script>
 {% endblock %}

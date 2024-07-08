@@ -7,11 +7,9 @@
 
 {% block body %}
 	<section class="content-header">
-		<div class="container">
-			<div class="row">
-				<div class="text-center">
-					<h1 class="filtitre">Panneau d'administration</h1>
-				</div>
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+					<h1>Panneau d'administration</h1>
 				<div class="breadcrumb justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -23,22 +21,32 @@
 			</div>
 		</div>
 	</section>
-<div class="container p-5 mb-5">
-	<div class="card w-75 mx-auto p-3">
-                <div class="d-flex flex-column flex-lg-row justify-content-around">
-                <div class="mb-3 mb-lg-0">
-                <a href="{{ path('app_admin.categorie') }}"><button type="submit" class="btn btn-color w-100">Gérer les catégories</button><a>
-                </div>
-                <div class="mb-3 mb-lg-0">
-                <a href="{{ path('app_admin.producteur') }}"><button type="submit" class="btn btn-color w-100">Gérer les producteurs</button><a>
-                </div>
-                <div class="mb-3 mb-lg-0">
-                <a href="{{ path('app_admin.produit') }}"><button type="submit" class="btn btn-color w-100">Gérer les produits</button><a>
-                </div>
-                <div class="mb-3 mb-lg-0">
-                <a href="{{ path('app_admin.utilisateur') }}"><button type="submit" class="btn btn-color w-100">Gérer les utilisateurs</button><a>
-                </div>
-                </div>
-        </div>
-</div>
+	<section class="content">
+		<div class="container p-5 mb-5">
+			<div class="card col-lg-6 col-md-10 col-12 mx-auto p-3 mb-2">
+				<div class="d-flex flex-column justify-content-around">
+					<div class="mb-4">
+						<a href="{{ path('app_admin.categorie') }}">
+							<button type="submit" class="btn btn-color w-100">Gérer les catégories</button>
+						</a>
+					</div>
+					<div class="mb-4">
+						<a href="{{ path('app_admin.producteur') }}">
+							<button type="submit" class="btn btn-color w-100">Gérer les producteurs</button>
+						</a>
+					</div>
+					<div class="mb-4">
+						<a href="{{ path('app_admin.produit') }}">
+							<button type="submit" class="btn btn-color w-100">Gérer les produits</button>
+						</a>
+					</div>
+					<div class="mb-4">
+						<a href="{{ path('app_admin.utilisateur') }}">
+							<button type="submit" class="btn btn-color w-100">Gérer les utilisateurs</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
