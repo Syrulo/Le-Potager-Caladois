@@ -40,7 +40,7 @@
 										{{ producteur.description }}
 									</p>
 									{% if producteur.description|length > 150 %}
-										<a href="#" id="voirPlus" onclick="toggleDescription(); return false;" class="voir-plus">Voir plus</a>
+										<a href="#" id="voirPlus" onclick="toggleDescription(this); return false;" class="voir-plus">Voir plus</a>
 									{% endif %}
 								</div>
 								<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color w-50 align-self-center">Détails</a>
@@ -53,21 +53,25 @@
 	</section>
 
 	<script>
-		function toggleDescription() {
-	var courte = document.getElementById('descriptionCourte');
-	var complete = document.getElementById('descriptionComplete');
-	var lien = document.getElementById('voirPlus');
-
-	if (courte.style.display === 'none') {
-	courte.style.display = 'block';
-	complete.style.display = 'none';
-	lien.innerHTML = 'Voir plus';
-	} else {
-	courte.style.display = 'none';
-	complete.style.display = 'block';
-	lien.innerHTML = 'Voir moins';
-	}
-	}
+		function toggleDescription(element) {
+			// Trouve le parent commun le plus proche, dans ce cas, la div 'producteur-description'
+			var container = element.closest('.producteur-description');
+			
+			// Utilise querySelector au lieu de getElementById pour trouver les éléments dans ce conteneur spécifique
+			var courte = container.querySelector('.description-courte');
+			var complete = container.querySelector('.description-complete');
+			
+			// Bascule la visibilité des descriptions courte et complète
+			if (courte.style.display === 'none') {
+				courte.style.display = 'block';
+				complete.style.display = 'none';
+				element.innerHTML = 'Voir plus';
+			} else {
+				courte.style.display = 'none';
+				complete.style.display = 'block';
+				element.innerHTML = 'Voir moins';
+			}
+		}
 	</script>
 
 {% endblock %}

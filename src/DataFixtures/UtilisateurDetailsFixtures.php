@@ -9,7 +9,6 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
 use Faker\Generator;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UtilisateurDetailsFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -29,7 +28,7 @@ class UtilisateurDetailsFixtures extends Fixture implements DependentFixtureInte
             // Créer 10 Utilisateur
             for ($i = 0; $i < 10; $i++) { 
                 $utilisateur = new UtilisateurDetails();
-                $utilisateur->setUtilisateurId($this->getReference('utilisateur'.$i));
+                $utilisateur->setUtilisateur($this->getReference('utilisateur'.$i));
                 $utilisateur->setPrenom($this->faker->firstName())
                             ->setNom($this->faker->lastName())
                             ->setTel($this->faker->phoneNumber())
