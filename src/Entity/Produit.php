@@ -30,7 +30,7 @@ class Produit
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?int $prix = null;
+    private ?float $prix = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
@@ -87,10 +87,10 @@ class Produit
 
     public function getPrix(): ?float
     {
-        return $this->prix/100;
+        return $this->prix;
     }
 
-    public function setPrix(int $prix): static
+    public function setPrix(float $prix): static
     {
         $this->prix = $prix;
 
