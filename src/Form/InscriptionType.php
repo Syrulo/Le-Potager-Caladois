@@ -40,12 +40,12 @@ class InscriptionType extends AbstractType
             'constraints' => [
                 new Assert\NotBlank()
             ]
-        ])
-        ->add('submit', SubmitType::class, [
-            'attr' => [
-                'class' => 'btn btn-primary mt-4'
-            ]
-        ]);
+            ]);
+        // ->add('submit', SubmitType::class, [
+        //     'attr' => [
+        //         'class' => 'btn btn-primary mt-4'
+        //     ]
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

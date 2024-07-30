@@ -37,6 +37,7 @@
 							<th scope="col" style="width: 6%" class="d-none d-lg-table-cell">id</th>
 							<th scope="col" class="d-none d-lg-table-cell">Nom</th>
 							<th scope="col" class="d-none d-lg-table-cell">Email</th>
+							<th scope="col" class="d-none d-lg-table-cell">Rôles</th>
 							<th scope="col" class="d-none d-lg-table-cell">Numéro de téléphone</th>
 							<th scope="col" class="d-none d-lg-table-cell">Adresse</th>
 							<th scope="col" class="d-none d-lg-table-cell">Ville</th>
@@ -53,6 +54,7 @@
 								<th scope="row" class="d-none d-lg-table-cell text-center">{{ producteur.id }}</th>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.email }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ producteur.utilisateur.roles|join(', ') }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.tel }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.adresse }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.ville }}</td>
@@ -70,6 +72,9 @@
 									<div class="mb-2">
 										<strong>Email:</strong>
 										{{ producteur.email }}</div>
+									<div class="mb-2">
+										<strong>Rôles:</strong>
+										{{ producteur.utilisateur.roles|join(', ') }}</div>
 									<div class="mb-2">
 										<strong>Téléphone:</strong>
 										{{ producteur.tel }}</div>
@@ -95,7 +100,7 @@
 										<a href="{{ path('app_admin.producteur.edit', {'id': producteur.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
-										{{ include('backend/producteur/_delete_form.html.twig') }}
+										{# {{ include('backend/producteur/_delete_form.html.twig') }} #}
 									</div>
 								</td>
 								<td class="d-none d-lg-table-cell">

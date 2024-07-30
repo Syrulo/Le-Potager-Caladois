@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ProducteurRepository::class)]
-// #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: 'email', message: 'Il existe déjà un compte avec cet email.')]
 #[Vich\Uploadable]
 #[HasLifecycleCallbacks]
@@ -28,7 +27,7 @@ class Producteur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, nullable: true)]
     #[Assert\Length(min: 2, max: 180)]
     private ?string $nom = null;
 
@@ -37,22 +36,22 @@ class Producteur
     #[Assert\Length(min: 2, max: 180)]
     private ?string $email;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank]
     private ?string $description = null;
 
-    #[ORM\Column(length: 10, unique: true)]
+    #[ORM\Column(length: 10, nullable: true, unique: true)]
     private ?string $tel = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(min: 2, max: 255)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 80, nullable: true)]
     #[Assert\Length(min: 2, max: 80)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 5, nullable: true)]
     private ?int $code_postal = null;
 
     #[Vich\UploadableField(mapping: 'producteurs_image', fileNameProperty: 'imageName', size: 'imageSize')]
@@ -78,6 +77,10 @@ class Producteur
      */
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'producteur')]
     private Collection $produits;
+
+    #[ORM\OneToOne(inversedBy: 'producteur', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $utilisateur = null;
 
     public function __construct()
     {
@@ -284,4 +287,16 @@ class Producteur
 
         return $this;
     }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(Utilisateur $utilisateur): static
+    {
+        $this->utilisateur = $utilisateur;
+        return $this;
+    }
+    
 }

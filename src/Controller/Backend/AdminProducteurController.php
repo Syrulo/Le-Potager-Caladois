@@ -3,7 +3,9 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Producteur;
+use App\Entity\Utilisateur;
 use App\Form\ProducteurType;
+use App\Form\InscriptionProducteurType;
 use App\Repository\ProducteurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +20,23 @@ class AdminProducteurController extends AbstractController
     public function createProducteur(Request $request, EntityManagerInterface $manager): Response
     {
         $producteur = new Producteur();
+        $utilisateur = new Utilisateur();
 
-        $form = $this->createForm(ProducteurType::class, $producteur);
+        $form = $this->createForm(InscriptionProducteurType::class, [
+            'utilisateur' => $utilisateur,
+            'producteur' => $producteur
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $utilisateur = $data['utilisateur'];
+            $producteur = $data['producteur'];
+
+            $utilisateur->setRoles(['ROLE_PRODUCTEUR']);
+            $utilisateur->setProducteur($producteur);
+            $manager->persist($utilisateur);
             $manager->persist($producteur);
             $manager->flush();
 
@@ -66,15 +80,24 @@ class AdminProducteurController extends AbstractController
     }
 
     #[Route('/producteur/{id}', name: 'app_admin.producteur.delete', methods: ['GET', 'POST'])]
-    public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): response
+    public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $producteur->getId(), $request->get('_token'))) {
+            // Supprimer les produits associés
+            foreach ($producteur->getProduits() as $produit) {
+                $manager->remove($produit);
+            }
+    
+            // Supprimer le producteur
             $manager->remove($producteur);
             $manager->flush();
+    
+            $this->addFlash('success', 'Le producteur et ses produits ont bien été supprimés de la liste');
             
-            $this->addFlash('success', 'Le producteur a bien été supprimé de la liste');
-        
-        return $this->redirectToRoute('app_admin.producteur');
+            return $this->redirectToRoute('app_admin.producteur');
         }
+    
+        return $this->redirectToRoute('app_admin.producteur');
     }
+
 }

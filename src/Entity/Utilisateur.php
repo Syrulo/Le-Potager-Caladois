@@ -43,7 +43,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = "password";
 
     #[ORM\Column]
-    private ?bool $is_active = null;
+    private ?bool $is_active = false;
 
     #[ORM\Column]
     #[Assert\NotNull()]
@@ -55,6 +55,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(targetEntity: "App\Entity\UtilisateurDetails", mappedBy: "utilisateur", cascade: ["persist", "remove"])]
     private $utilisateurDetails;
+
+    #[ORM\OneToOne(mappedBy: 'utilisateur', cascade: ['persist', 'remove'])]
+    private ?Producteur $producteur = null;
 
     public function __construct()
     {
@@ -203,6 +206,29 @@ public function getUtilisateurDetailsPrenom(): ?string
 {
     return $this->utilisateurDetails ? $this->utilisateurDetails->getPrenom() : null;
 }
+
+
+
+public function getProducteur(): ?Producteur
+    {
+        return $this->producteur;
+    }
+
+    public function setProducteur(Producteur $producteur): static
+    {
+        // Vérifier si le producteur existe déjà pour cet utilisateur
+        if ($this->producteur !== null && $this->producteur !== $producteur) {
+            throw new \Exception('Duplicate entry for producteur');
+        }
+    
+        // set the owning side of the relation if necessary
+        if ($producteur->getUtilisateur() !== $this) {
+            $producteur->setUtilisateur($this);
+        }
+    
+        $this->producteur = $producteur;
+        return $this;
+    }
 
     /**
      * @see UserInterface

@@ -20,7 +20,7 @@ class AdminUtilisateurController extends AbstractController
     public function listUtilisateur(UtilisateurRepository $repoUtilisateur): Response
     {
         return $this->render('backend/utilisateur/list.html.twig', [
-            'utilisateurs' => $repoUtilisateur->findAll(),
+            'utilisateurs' => $repoUtilisateur->findAllExceptProducteurs(),
         ]);
     }
 
@@ -37,9 +37,11 @@ class AdminUtilisateurController extends AbstractController
             if ($security->getUser() !== $utilisateur || $role !== 'ROLE_ADMIN' || in_array('ROLE_SUPER_ADMIN', $security->getUser()->getRoles())) {
                 if ($role === 'ROLE_ADMIN') {
                     $utilisateur->setRoles(array_unique(array_merge($utilisateur->getRoles(), ['ROLE_ADMIN'])));
+                } elseif ($role === 'ROLE_PRODUCTEUR') {
+                    $utilisateur->setRoles(array_unique(array_merge($utilisateur->getRoles(), ['ROLE_PRODUCTEUR'])));
                 } else {
                     $roles = $utilisateur->getRoles();
-                    $roles = array_diff($roles, ['ROLE_ADMIN']);
+                    $roles = array_diff($roles, ['ROLE_ADMIN', 'ROLE_PRODUCTEUR']);
                     $roles = array_values($roles); // Réindexez le tableau
                     $utilisateur->setRoles($roles);
                 }

@@ -33,6 +33,16 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->getEntityManager()->flush();
     }
 
+
+    public function findAllExceptProducteurs()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('NOT u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_PRODUCTEUR%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects
 //     */
