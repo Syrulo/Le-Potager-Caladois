@@ -13,8 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProducteurType extends AbstractType
@@ -27,7 +25,7 @@ class ProducteurType extends AbstractType
                 'required' => true
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
+                'label' => 'Adresse email de contact',
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
@@ -90,7 +88,17 @@ class ProducteurType extends AbstractType
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Image'                 
+                'label' => 'Image',
+                'constraints' => [
+                    new Assert\File([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
+                    ]),
+                ],                  
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

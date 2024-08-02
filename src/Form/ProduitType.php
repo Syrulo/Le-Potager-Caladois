@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Producteur;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -37,7 +38,17 @@ class ProduitType extends AbstractType
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Image'               
+                'label' => 'Image',
+                'constraints' => [
+                    new Assert\File([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
+                    ]),
+                ],                
             ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,

@@ -33,12 +33,19 @@
 				{% for produit in produits %}
 					<div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-4 listcard">
 						<div class="card d-flex flex-column h-100 mx-auto w-100">
-							<img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="card-img-top p-3 card-img-custom">
+							<a href="{{ path('app_produit', {'slug': produit.slug}) }}"><img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="card-img-top p-3 card-img-custom"></a>
 							<div class="card-body text-center">
 								<h5 class="card-title text-center">
-									<a href="{{ path('app_produit', {'slug': produit.slug}) }}">
-										{{ produit.nom}}</h5>
+								<a class="text-decoration-none" href="{{ path('app_produit', {'slug': produit.slug}) }}">
+									{{ produit.nom}}</h5>
 								</a>
+								<div class="card-text text-center mb-3">
+									<div>{{ produit.prix}}
+										€ /kg</div>
+									<a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}">
+										<div>{{ produit.producteur.nom }}</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

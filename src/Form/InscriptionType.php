@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -18,7 +17,7 @@ class InscriptionType extends AbstractType
     {
         $builder
         ->add('email', EmailType::class, [
-            'label' => 'Adresse email',
+            'label' => 'Identifiant',
             'attr' => [
                 'class' => 'form-control',
                 'minlength' => '2',
@@ -40,12 +39,7 @@ class InscriptionType extends AbstractType
             'constraints' => [
                 new Assert\NotBlank()
             ]
-            ]);
-        // ->add('submit', SubmitType::class, [
-        //     'attr' => [
-        //         'class' => 'btn btn-primary mt-4'
-        //     ]
-        // ]);
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
