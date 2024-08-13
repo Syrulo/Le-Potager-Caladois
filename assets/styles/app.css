@@ -9,6 +9,7 @@ html { /* Taille de la page */
 body { 
     background-color: var(--body-background); /* Couleur de fond de la page */
     font-size: 16px; /* Taille de la police */
+    font-family: 'Roboto', sans-serif; /* Police de la page */
 }
 
 .navbar {
