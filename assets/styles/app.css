@@ -2,14 +2,19 @@
     --body-background:#E3EBD0; /* Couleurs de fond de site */ 
     --nav-bg: #FBFBF1;  /* Couleur de fond du nav */
 }
-html { /* Taille de la page */
+html, body { /* Taille de la page */
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body { 
     background-color: var(--body-background); /* Couleur de fond de la page */
     font-size: 16px; /* Taille de la police */
     font-family: 'Roboto', sans-serif; /* Police de la page */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .navbar {
@@ -21,6 +26,10 @@ body {
 footer {
     width: 100%; /* Largeur du footer */
     background-color: var(--nav-bg); /* Couleur de fond du footer */
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    margin-top: auto;
 }
 
 .logo {
@@ -119,7 +128,7 @@ footer {
 }
 
 .card-img-custom {
-    width: 100%; /* Largeur de l'image dans la carte */
+    max-width: 100%; /* Largeur de l'image dans la carte */
     height: 200px; /* Hauteur de l'image dans la carte */
     object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible */
 }

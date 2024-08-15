@@ -7,7 +7,6 @@ use App\Entity\Categorie;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -36,23 +35,6 @@ class AddProductType extends AbstractType
                     'maxMessage' => 'La description ne peut pas dépasser {{ limit }} caractères.',
                 ]),
             ],
-        ])
-        ->add('imageFile', VichImageType::class, [
-            'required' => false,
-            'download_uri' => false,
-            'image_uri' => true,
-            'asset_helper' => true,
-            'label' => 'Image',
-            'constraints' => [
-                new Assert\File([
-                    'mimeTypes' => [
-                        'image/jpeg',
-                        'image/png',
-                        'image/webp',
-                    ],
-                    'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
-                ]),
-            ],               
         ])
         ->add('categorie', EntityType::class, [
             'class' => Categorie::class,

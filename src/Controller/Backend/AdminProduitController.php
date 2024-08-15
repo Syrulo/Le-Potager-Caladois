@@ -14,8 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin')]
 class AdminProduitController extends AbstractController
 {
+    /**
+     * Crée un nouveau produit.
+     *
+     * @Route("/produit/create", name="app_admin.produit.create", methods={"GET", "POST"})
+     *
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités.
+     *
+     * @return Response La réponse HTTP.
+     */
     #[Route('/produit/create', name: 'app_admin.produit.create', methods: ['GET', 'POST'])]
-    public function createProduit(Request $request, EntityManagerInterface $manager): response
+    public function createProduit(Request $request, EntityManagerInterface $manager): Response
     {
         $produit = new Produit();
 
@@ -34,8 +44,19 @@ class AdminProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Édite un produit existant.
+     *
+     * @Route("/produit/edit/{id}", name="app_admin.produit.edit", methods={"GET", "POST"})
+     *
+     * @param Produit $produit L'entité produit à éditer.
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités.
+     *
+     * @return Response La réponse HTTP.
+     */
     #[Route('/produit/edit/{id}', name: 'app_admin.produit.edit', methods: ['GET', 'POST'])]
-    public function editProduit(Produit $produit, Request $request, EntityManagerInterface $manager): response
+    public function editProduit(Produit $produit, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -53,6 +74,15 @@ class AdminProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche la liste des produits.
+     *
+     * @Route("/produit", name="app_admin.produit", methods={"GET", "POST"})
+     *
+     * @param ProduitRepository $repoProduit Le dépôt des produits.
+     *
+     * @return Response La réponse HTTP.
+     */
     #[Route('/produit', name: 'app_admin.produit', methods: ['GET', 'POST'])]
     public function listProduit(ProduitRepository $repoProduit): Response
     {
@@ -62,8 +92,19 @@ class AdminProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime un produit.
+     *
+     * @Route("/produit/delete/{id}", name="app_admin.produit.delete", methods={"GET", "POST"})
+     *
+     * @param Produit $produit L'entité produit à supprimer.
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités.
+     *
+     * @return Response La réponse HTTP.
+     */
     #[Route('/produit/delete/{id}', name: 'app_admin.produit.delete', methods: ['GET', 'POST'])]
-    public function deleteProduit(Produit $produit, Request $request, EntityManagerInterface $manager): response
+    public function deleteProduit(Produit $produit, Request $request, EntityManagerInterface $manager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->get('_token'))) {
             $manager->remove($produit);

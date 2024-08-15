@@ -66,7 +66,7 @@ class AddProducteurController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Le produit a bien été ajouté');
-            return $this->redirectToRoute('app_home_page');
+            return $this->redirectToRoute('app_producteur.produit');
         }
 
         return $this->render('backend/addproducteur/addProducteurProduct.html.twig', [
@@ -77,6 +77,18 @@ class AddProducteurController extends AbstractController
     #[Route('/producteur/produit/edit/{id}', name: 'app_producteur.produit.edit', methods: ['GET', 'POST'])]
     public function editProduit(Produit $produit, Request $request, EntityManagerInterface $manager): response
     {
+        $user = $this->security->getUser();
+
+        if (!$user instanceof Utilisateur || !$user->getProducteur()) {
+            throw new \LogicException('L\'utilisateur connecté n\'est pas un producteur.');
+        }
+    
+        $producteur = $user->getProducteur();
+    
+        if ($produit->getProducteur() !== $producteur) {
+            throw new \LogicException('Vous ne pouvez modifier que vos propres produits.');
+        }
+
         $form = $this->createForm(AddProductType::class, $produit);
         $form->handleRequest($request);
 
@@ -96,6 +108,18 @@ class AddProducteurController extends AbstractController
     #[Route('/producteur/produit/delete/{id}', name: 'app_producteur.produit.delete', methods: ['GET', 'POST'])]
     public function deleteProduit(Produit $produit, Request $request, EntityManagerInterface $manager): response
     {
+        $user = $this->security->getUser();
+
+        if (!$user instanceof Utilisateur || !$user->getProducteur()) {
+            throw new \LogicException('L\'utilisateur connecté n\'est pas un producteur.');
+        }
+    
+        $producteur = $user->getProducteur();
+    
+        if ($produit->getProducteur() !== $producteur) {
+            throw new \LogicException('Vous ne pouvez supprimer que vos propres produits.');
+        }
+
         if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->get('_token'))) {
             $manager->remove($produit);
             $manager->flush();
