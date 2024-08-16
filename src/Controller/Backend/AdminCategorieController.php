@@ -56,11 +56,17 @@ class AdminCategorieController extends AbstractController
     }
 
     #[Route('/categorie', name: 'app_admin.categorie', methods: ['GET'])]
-    public function listCategorie(CategorieRepository $repoCategorie): Response
+    public function list(Request $request, CategorieRepository $categorieRepository): Response
     {
-        $categories = $repoCategorie->findAll();
+        $sort = $request->query->get('sort', 'nom');
+        $direction = $request->query->get('direction', 'asc');
+    
+        $categories = $categorieRepository->findBy([], [$sort => $direction]);
+    
         return $this->render('backend/categorie/list.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'sort' => $sort,
+            'direction' => $direction,
         ]);
     }
 

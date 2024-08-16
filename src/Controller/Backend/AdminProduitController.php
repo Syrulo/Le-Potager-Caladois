@@ -84,11 +84,17 @@ class AdminProduitController extends AbstractController
      * @return Response La réponse HTTP.
      */
     #[Route('/produit', name: 'app_admin.produit', methods: ['GET', 'POST'])]
-    public function listProduit(ProduitRepository $repoProduit): Response
+    public function list(Request $request, ProduitRepository $produitRepository): Response
     {
-        $produits = $repoProduit->findAll();
+        $sort = $request->query->get('sort', 'nom');
+        $direction = $request->query->get('direction', 'asc');
+    
+        $produits = $produitRepository->findBy([], [$sort => $direction]);
+    
         return $this->render('backend/produit/list.html.twig', [
             'produits' => $produits,
+            'sort' => $sort,
+            'direction' => $direction,
         ]);
     }
 

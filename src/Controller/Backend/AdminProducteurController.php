@@ -71,11 +71,19 @@ class AdminProducteurController extends AbstractController
     }
 
     #[Route('/producteur', name: 'app_admin.producteur', methods: ['GET'])]
-    public function listProducteur(ProducteurRepository $repoProducteur): Response
+    public function listProducteur(ProducteurRepository $repoProducteur, Request $request): Response
     {
-        $producteurs = $repoProducteur->findAll();
+        // Récupérer les paramètres de tri depuis la requête
+        $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
+        $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
+    
+        // Récupérer les producteurs triés depuis le repository
+        $producteurs = $repoProducteur->findBy([], [$sort => $direction]);
+    
         return $this->render('backend/producteur/list.html.twig', [
-            'producteurs' => $producteurs
+            'producteurs' => $producteurs,
+            'sort' => $sort,
+            'direction' => $direction,
         ]);
     }
 

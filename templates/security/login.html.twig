@@ -47,13 +47,16 @@
 					<div class="card-body">
 						<div class="form-group">
 							<label for="username" class="form-label mt-4">Adresse email</label>
-							<input type="email" class="form-control custom-input" id="username" name="_username" placeholder="Adresse email" value="{{ last_username }}">
+							<input type="email" class="form-control custom-input" id="username" name="_username" placeholder="Adresse email" value="{{ last_username }}" required>
 						</div>
 						<div class="form-group">
 							<label for="password" class="form-label mt-4">Mot de passe</label>
-							<input type="password" class="form-control custom-input" id="password" name="_password" placeholder="Mot de passe">
+							<input type="password" class="form-control custom-input" id="password" name="_password" placeholder="Mot de passe" required>
 						</div>
-
+						<div class="form-group form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                            <label class="form-check-label" for="showPassword">Afficher le mot de passe</label>
+                        </div>
 						<div class="card-footer text-center">
 							<button type="submit" class="btn btn-color mt-4">Se connecter</button>
 						</div>
@@ -69,5 +72,16 @@
 			</div>
 		</div>
 	</section>
+
+	<script>
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+	</script>
 {% endblock %}
 

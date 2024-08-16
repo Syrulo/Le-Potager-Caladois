@@ -32,7 +32,6 @@
 				<table class="table table-striped table-bordered align-middle">
 					<thead>
 						<tr class="text-center">
-							<th scope="col" style="width: 6%" class="d-none d-lg-table-cell">id</th>
 							<th scope="col" class="d-none d-lg-table-cell">Nom</th>
 							<th scope="col" class="d-none d-lg-table-cell">Catégorie</th>
 							<th scope="col" class="d-none d-lg-table-cell">Prix</th>
@@ -46,7 +45,6 @@
 					<tbody>
 						{% for produit in produits %}
 							<tr>
-								<th scope="row" class="d-none d-lg-table-cell text-center">{{ produit.id }}</th>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.categorie.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.prix}}
@@ -56,9 +54,6 @@
 								<td class="d-none d-lg-table-cell text-center">{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">
-									<div class="mb-2">
-										<strong>Id:</strong>
-										{{ produit.id }}</div>
 									<div class="mb-2">
 										<strong>Nom:</strong>
 										{{ produit.nom }}</div>

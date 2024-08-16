@@ -43,11 +43,21 @@
                     <div class="input-group mb-3">
                         {{ form_errors(form.utilisateur.plainPassword.first) }}
                         {{ form_widget(form.utilisateur.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <span class="fas fa-lock icon-large"></span>
+                            </span>
+                        </div>
                     </div>
                     {{ form_label(form.utilisateur.plainPassword.second, null, {'label_attr': {'class': 'single-line-label'}}) }}
                     <div class="input-group mb-3">
                         {{ form_errors(form.utilisateur.plainPassword.second) }}
                         {{ form_widget(form.utilisateur.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirmez le mot de passe'}}) }}
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <span class="fas fa-lock icon-large"></span>
+                            </span>
+                        </div>
                     </div>
                     
                     {# Champs du formulaire producteur #}
