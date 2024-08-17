@@ -48,7 +48,13 @@
 								<td class="d-none d-lg-table-cell text-center">{{ produit.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.categorie.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.prix}}
-									€ /kg</td>
+									€ /
+								{% if produit.categorie.nom == 'Boissons' %}
+									litre TTC
+								{% else %}
+									kg TTC
+								{% endif %}
+								</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.producteur.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center"><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="image"></td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>

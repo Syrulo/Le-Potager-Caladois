@@ -32,8 +32,14 @@
 							<div class="card-body text-center">
 								<h5 class="card-title text-center">{{ produit.nom}}</h5>
 								<div class="card-text text-center mb-3">
-									<div>{{ produit.prix}}
-										€ /kg</div>
+									<div>
+									{{ produit.prix}} € /
+									{% if produit.categorie.nom == 'Boissons' %}
+                                        litre TTC
+                                    {% else %}
+                                        kg TTC
+                                    {% endif %}
+									</div>
 									<a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}">
 										<div>{{ produit.producteur.nom }}</div>
 									</a>
