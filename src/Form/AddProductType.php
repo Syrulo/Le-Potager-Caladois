@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
+/**
+ * Formulaire pour ajouter un produit.
+ */
 class AddProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -41,6 +44,11 @@ class AddProductType extends AbstractType
         ]);
     }
 
+    /**
+     * Configure les options du formulaire.
+     *
+     * @param OptionsResolver $resolver Le résolveur d'options.
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

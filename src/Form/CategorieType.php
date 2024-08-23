@@ -38,6 +38,11 @@ class CategorieType extends AbstractType
             ]);
     }
 
+    /**
+     * Configure les options du formulaire.
+     *
+     * @param OptionsResolver $resolver Le résolveur d'options.
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

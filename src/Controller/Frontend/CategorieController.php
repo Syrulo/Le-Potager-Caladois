@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Contrôleur pour la gestion des catégories dans le frontend.
+ */
 class CategorieController extends AbstractController
 {
     // #[Route('/categorie/{slug}', name: 'app_categorie.details', methods: ['GET'])]
@@ -30,6 +33,14 @@ class CategorieController extends AbstractController
     //     ]);
     // }
 
+    /**
+     * Affiche les produits d'une catégorie spécifique.
+     *
+     * @param string $slug Le slug de la catégorie.
+     * @param ProduitRepository $repoProduit Le repository pour accéder aux données des produits.
+     * @param CategorieRepository $repoCategorie Le repository pour accéder aux données des catégories.
+     * @return Response Une réponse HTTP qui rend le template frontend/categorie/show.html.twig avec la catégorie et ses produits.
+     */
     #[Route('/categories/{slug}', name: 'app_categorie', methods: ['GET'])]
     public function listeCategorie(string $slug, ProduitRepository $repoProduit, CategorieRepository $repoCategorie): Response
     {

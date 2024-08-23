@@ -12,10 +12,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Contrôleur pour la gestion des utilisateurs dans l'administration.
+ */
 #[Route('/admin/utilisateur')]
 class AdminUtilisateurController extends AbstractController
 {
-
+    /**
+     * Affiche une liste d'utilisateurs, à l'exception des producteurs.
+     *
+     * @param UtilisateurRepository $repoUtilisateur Le repository pour accéder aux données des utilisateurs.
+     * @return Response Une réponse HTTP qui rend le template backend/utilisateur/list.html.twig avec les utilisateurs.
+     */
     #[Route('/', name: 'app_admin.utilisateur', methods: ['GET'])]
     public function listUtilisateur(UtilisateurRepository $repoUtilisateur): Response
     {
@@ -24,6 +32,16 @@ class AdminUtilisateurController extends AbstractController
         ]);
     }
 
+    /**
+     * Édite un utilisateur existant.
+     *
+     * @param Utilisateur $utilisateur L'entité utilisateur à éditer.
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $entityManager Le gestionnaire d'entités.
+     * @param Security $security Le service de sécurité pour vérifier les rôles et l'utilisateur connecté.
+     *
+     * @return Response La réponse HTTP.
+     */
     #[Route('/edition/{id}', name: 'app_admin_utilisateur.edit', methods: ['GET', 'POST'])]
     public function edit(Utilisateur $utilisateur, Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
@@ -60,6 +78,14 @@ class AdminUtilisateurController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime un utilisateur spécifique.
+     *
+     * @param Request $request La requête HTTP.
+     * @param Utilisateur $utilisateur L'entité utilisateur à supprimer.
+     * @param EntityManagerInterface $entityManager Le gestionnaire d'entités.
+     * @return Response Une réponse HTTP qui redirige vers la liste des utilisateurs après suppression.
+     */
     #[Route('/{id}', name: 'app_admin_utilisateur_delete', methods: ['POST'])]
     public function deleteUtilisateur(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
     {

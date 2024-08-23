@@ -14,6 +14,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin')]
 class AdminCategorieController extends AbstractController
 {
+    /**
+     * Crée une nouvelle catégorie.
+     * 
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
+     * @return Response La réponse HTTP avec la vue du formulaire de création de catégorie.
+     */
     #[Route('/categorie/create', name: 'app_admin.categorie.create', methods: ['GET', 'POST'])]
     public function createCategorie(Request $request, EntityManagerInterface $manager): Response
     {
@@ -34,6 +41,14 @@ class AdminCategorieController extends AbstractController
         ]);
     }
 
+    /**
+     * Édite une catégorie existante.
+     * 
+     * @param Categorie $categorie L'entité catégorie à éditer.
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
+     * @return Response La réponse HTTP avec la vue du formulaire d'édition de catégorie.
+     */
     #[Route('/categorie/edit/{id}', name: 'app_admin.categorie.edit', methods: ['GET', 'POST'])]
     public function editCategorie( Categorie $categorie, Request $request, EntityManagerInterface $manager): Response
     {
@@ -55,6 +70,13 @@ class AdminCategorieController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche une liste de catégories.
+     * 
+     * @param Request $request L'objet de requête HTTP.
+     * @param CategorieRepository $categorieRepository Le repository pour accéder aux données des catégories.
+     * @return Response Une réponse HTTP qui rend le template backend/categorie/list.html.twig avec les catégories triées.
+     */
     #[Route('/categorie', name: 'app_admin.categorie', methods: ['GET'])]
     public function list(Request $request, CategorieRepository $categorieRepository): Response
     {
@@ -70,6 +92,14 @@ class AdminCategorieController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime une catégorie spécifique.
+     *
+     * @param Categorie $categorie L'entité catégorie à supprimer.
+     * @param Request $request L'objet de requête HTTP.
+     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui redirige vers la liste des catégories après suppression.
+     */
     #[Route('/categorie/{id}', name: 'app_admin.categorie.delete', methods: ['GET', 'POST'])]
     public function deleteCategorie(Categorie $categorie, Request $request, EntityManagerInterface $manager): response
     {

@@ -59,22 +59,43 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'utilisateur', cascade: ['persist', 'remove'])]
     private ?Producteur $producteur = null;
 
+    /**
+     * Constructeur de la classe Utilisateur.
+     *
+     * Initialise les propriétés created_at et updatedAt.
+     */
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updatedAt = new \DateTime('now');
     }
 
+    /**
+     * Retourne l'identifiant de l'utilisateur.
+     *
+     * @return int|null L'identifiant de l'utilisateur ou null si non défini.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Retourne l'email de l'utilisateur.
+     *
+     * @return string|null L'email de l'utilisateur ou null si non défini.
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Définit l'email de l'utilisateur.
+     *
+     * @param string $email L'email de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -83,9 +104,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
+     * Un identifiant visuel qui représente cet utilisateur.
      *
      * @see UserInterface
+     * @return string L'identifiant de l'utilisateur.
      */
     public function getUserIdentifier(): string
     {
@@ -93,8 +115,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Retourne les rôles de l'utilisateur.
+     *
      * @see UserInterface
-     * @return list<string>
+     * @return list<string> La liste des rôles de l'utilisateur.
      */
     public function getRoles(): array
     {
@@ -105,7 +129,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param list<string> $roles
+     * Définit les rôles de l'utilisateur.
+     *
+     * @param list<string> $roles La liste des rôles de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
      */
     public function setRoles(array $roles): static
     {
@@ -114,19 +141,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-        /**
-     * Get the value of plainPassword
-     */ 
+    /**
+     * Retourne la valeur de plainPassword.
+     *
+     * @return string|null Le mot de passe en clair de l'utilisateur ou null si non défini.
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
     /**
-     * Set the value of plainPassword
+     * Définit la valeur de plainPassword.
      *
-     * @return  self
-     */ 
+     * @param string $plainPassword Le mot de passe en clair de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
@@ -135,13 +165,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Retourne le mot de passe de l'utilisateur.
+     *
      * @see PasswordAuthenticatedUserInterface
+     * @return string Le mot de passe de l'utilisateur.
      */
     public function getPassword(): string
     {
         return $this->password;
     }
 
+    /**
+     * Définit le mot de passe de l'utilisateur.
+     *
+     * @param string $password Le mot de passe de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -149,11 +188,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Retourne si l'utilisateur est actif.
+     *
+     * @return bool|null True si l'utilisateur est actif, sinon false.
+     */
     public function isActive(): ?bool
     {
         return $this->is_active;
     }
 
+    /**
+     * Définit si l'utilisateur est actif.
+     *
+     * @param bool $is_active True si l'utilisateur est actif, sinon false.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setActive(bool $is_active): static
     {
         $this->is_active = $is_active;
@@ -161,11 +211,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Retourne la date de création de l'utilisateur.
+     *
+     * @return \DateTimeImmutable|null La date de création de l'utilisateur ou null si non défini.
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
     }
 
+    /**
+     * Définit la date de création de l'utilisateur.
+     *
+     * @param \DateTimeImmutable $created_at La date de création de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
@@ -173,11 +234,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Retourne la date de mise à jour de l'utilisateur.
+     *
+     * @return \DateTimeInterface|null La date de mise à jour de l'utilisateur ou null si non défini.
+     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
+    /**
+     * Définit la date de mise à jour de l'utilisateur.
+     *
+     * @param \DateTimeInterface|null $updatedAt La date de mise à jour de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
@@ -185,58 +257,85 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Retourne les détails de l'utilisateur.
+     *
+     * @return UtilisateurDetails|null Les détails de l'utilisateur ou null si non défini.
+     */
     public function getUtilisateurDetails(): ?UtilisateurDetails
-{
-    return $this->utilisateurDetails;
-}
-
-public function setUtilisateurDetails(UtilisateurDetails $utilisateurDetails): self
-{
-    $this->utilisateurDetails = $utilisateurDetails;
-
-    // set the owning side of the relation if necessary
-    if ($utilisateurDetails->getUtilisateur() !== $this) {
-        $utilisateurDetails->setUtilisateur($this);
+    {
+        return $this->utilisateurDetails;
     }
 
+    /**
+     * Définit les détails de l'utilisateur.
+     *
+     * @param UtilisateurDetails $utilisateurDetails Les détails de l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     */
+    public function setUtilisateurDetails(UtilisateurDetails $utilisateurDetails): self
+    {
+    $this->utilisateurDetails = $utilisateurDetails;
+
+    // Définir le côté propriétaire de la relation si nécessaire
+    if ($utilisateurDetails->getUtilisateur() !== $this) {
+        $utilisateurDetails->setUtilisateur($this);
+        }
+
     return $this;
-}
+    }
 
-public function getUtilisateurDetailsPrenom(): ?string
-{
-    return $this->utilisateurDetails ? $this->utilisateurDetails->getPrenom() : null;
-}
+    /**
+     * Retourne le prénom des détails de l'utilisateur.
+     *
+     * @return string|null Le prénom des détails de l'utilisateur ou null si non défini.
+     */
+    public function getUtilisateurDetailsPrenom(): ?string
+    {
+        return $this->utilisateurDetails ? $this->utilisateurDetails->getPrenom() : null;
+    }
 
-
-
-public function getProducteur(): ?Producteur
+    /**
+     * Retourne le producteur associé à l'utilisateur.
+     *
+     * @return Producteur|null Le producteur associé à l'utilisateur ou null si non défini.
+     */
+    public function getProducteur(): ?Producteur
     {
         return $this->producteur;
     }
 
+    /**
+     * Définit le producteur associé à l'utilisateur.
+     *
+     * @param Producteur $producteur Le producteur à associer à l'utilisateur.
+     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     * @throws \Exception Si un producteur existe déjà pour cet utilisateur.
+     */    
     public function setProducteur(Producteur $producteur): static
     {
         // Vérifier si le producteur existe déjà pour cet utilisateur
         if ($this->producteur !== null && $this->producteur !== $producteur) {
             throw new \Exception('Duplicate entry for producteur');
         }
-    
-        // set the owning side of the relation if necessary
+        
+        // Définir le côté propriétaire de la relation si nécessaire
         if ($producteur->getUtilisateur() !== $this) {
             $producteur->setUtilisateur($this);
         }
-    
+        
         $this->producteur = $producteur;
         return $this;
     }
 
     /**
+     * Efface les informations d'identification sensibles de l'utilisateur.
+     *
      * @see UserInterface
      */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
+        // Si vous stockez des données temporaires et sensibles sur l'utilisateur, effacez-les ici
         // $this->plainPassword = null;
     }
-
 }

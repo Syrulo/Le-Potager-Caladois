@@ -11,13 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Contrôleur pour la gestion des produits dans l'administration.
+ */
 #[Route('/admin')]
 class AdminProduitController extends AbstractController
 {
     /**
      * Crée un nouveau produit.
-     *
-     * @Route("/produit/create", name="app_admin.produit.create", methods={"GET", "POST"})
      *
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités.
@@ -47,8 +48,6 @@ class AdminProduitController extends AbstractController
     /**
      * Édite un produit existant.
      *
-     * @Route("/produit/edit/{id}", name="app_admin.produit.edit", methods={"GET", "POST"})
-     *
      * @param Produit $produit L'entité produit à éditer.
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités.
@@ -77,8 +76,6 @@ class AdminProduitController extends AbstractController
     /**
      * Affiche la liste des produits.
      *
-     * @Route("/produit", name="app_admin.produit", methods={"GET", "POST"})
-     *
      * @param ProduitRepository $repoProduit Le dépôt des produits.
      *
      * @return Response La réponse HTTP.
@@ -100,8 +97,6 @@ class AdminProduitController extends AbstractController
 
     /**
      * Supprime un produit.
-     *
-     * @Route("/produit/delete/{id}", name="app_admin.produit.delete", methods={"GET", "POST"})
      *
      * @param Produit $produit L'entité produit à supprimer.
      * @param Request $request La requête HTTP.

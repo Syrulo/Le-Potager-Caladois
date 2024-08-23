@@ -62,22 +62,43 @@ class Produit
     #[ORM\JoinColumn(nullable: true)]
     private ?Producteur $producteur = null;
 
+    /**
+     * Constructeur de la classe Produit.
+     *
+     * Initialise les propriétés createdAt et updatedAt.
+     */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTime('now');
     }
 
+    /**
+     * Retourne l'identifiant du produit.
+     *
+     * @return int|null L'identifiant du produit ou null si non défini.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Retourne le nom du produit.
+     *
+     * @return string|null Le nom du produit ou null si non défini.
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+     * Définit le nom du produit.
+     *
+     * @param string $nom Le nom du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
@@ -85,11 +106,22 @@ class Produit
         return $this;
     }
 
+    /**
+     * Retourne le prix du produit.
+     *
+     * @return float|null Le prix du produit ou null si non défini.
+     */
     public function getPrix(): ?float
     {
         return $this->prix;
     }
 
+    /**
+     * Définit le prix du produit.
+     *
+     * @param float $prix Le prix du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
@@ -97,11 +129,22 @@ class Produit
         return $this;
     }
 
+    /**
+     * Retourne la description du produit.
+     *
+     * @return string|null La description du produit ou null si non défini.
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Définit la description du produit.
+     *
+     * @param string $description La description du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setDescription(string $description): static
     {
         $this->description = $description;
@@ -109,6 +152,11 @@ class Produit
         return $this;
     }
 
+    /**
+     * Définit le fichier image du produit.
+     *
+     * @param File|null $imageFile Le fichier image du produit.
+     */
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -118,36 +166,72 @@ class Produit
         }
     }
 
+    /**
+     * Retourne le fichier image du produit.
+     *
+     * @return File|null Le fichier image du produit ou null si non défini.
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
+    /**
+     * Définit le nom de l'image du produit.
+     *
+     * @param string|null $imageName Le nom de l'image du produit.
+     */
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
     }
 
+    /**
+     * Retourne le nom de l'image du produit.
+     *
+     * @return string|null Le nom de l'image du produit ou null si non défini.
+     */
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
+    /**
+     * Définit la taille de l'image du produit.
+     *
+     * @param int|null $imageSize La taille de l'image du produit.
+     */
     public function setImageSize(?int $imageSize): void
     {
         $this->imageSize = $imageSize;
     }
 
+    /**
+     * Retourne la taille de l'image du produit.
+     *
+     * @return int|null La taille de l'image du produit ou null si non défini.
+     */
     public function getImageSize(): ?int
     {
         return $this->imageSize;
     }
 
+    /**
+     * Retourne la date de création du produit.
+     *
+     * @return \DateTimeImmutable|null La date de création du produit ou null si non défini.
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Définit la date de création du produit.
+     *
+     * @param \DateTimeImmutable $createdAt La date de création du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -155,11 +239,22 @@ class Produit
         return $this;
     }
 
+    /**
+     * Retourne la date de mise à jour du produit.
+     *
+     * @return \DateTimeInterface|null La date de mise à jour du produit ou null si non défini.
+     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
+    /**
+     * Définit la date de mise à jour du produit.
+     *
+     * @param \DateTimeInterface|null $updatedAt La date de mise à jour du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
@@ -167,11 +262,22 @@ class Produit
         return $this;
     }
 
+    /**
+     * Retourne le slug du produit.
+     *
+     * @return string|null Le slug du produit ou null si non défini.
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * Définit le slug du produit.
+     *
+     * @param string $slug Le slug du produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setSlug(string $slug): static
     {
         $slugger = new AsciiSlugger();
@@ -180,6 +286,9 @@ class Produit
         return $this;
     }
 
+    /**
+     * Définit automatiquement la valeur du slug avant la persistance ou la mise à jour.
+     */
     #[PrePersist]
     #[PreUpdate]
     public function setSlugValue(): void
@@ -189,11 +298,22 @@ class Produit
         unset($slugger);
     }
 
+    /**
+     * Retourne la catégorie associée au produit.
+     *
+     * @return Categorie|null La catégorie associée au produit ou null si non défini.
+     */
     public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
+    /**
+     * Définit la catégorie associée au produit.
+     *
+     * @param Categorie|null $categorie La catégorie à associer au produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
@@ -201,11 +321,22 @@ class Produit
         return $this;
     }
 
+    /**
+     * Retourne le producteur associé au produit.
+     *
+     * @return Producteur|null Le producteur associé au produit ou null si non défini.
+     */
     public function getProducteur(): ?Producteur
     {
         return $this->producteur;
     }
 
+    /**
+     * Définit le producteur associé au produit.
+     *
+     * @param Producteur|null $producteur Le producteur à associer au produit.
+     * @return static L'instance du produit pour permettre le chaînage.
+     */
     public function setProducteur(?Producteur $producteur): static
     {
         $this->producteur = $producteur;

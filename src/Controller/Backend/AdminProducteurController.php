@@ -13,9 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Contrôleur pour la gestion des producteurs dans l'administration.
+ */
 #[Route('/admin')]
 class AdminProducteurController extends AbstractController
 {
+    /**
+     * Crée un nouveau producteur.
+     *
+     * @param Request $request L'objet de requête HTTP.
+     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui rend le formulaire de création de producteur ou redirige après la création.
+     */
     #[Route('/producteur/create', name: 'app_admin.producteur.create', methods: ['GET', 'POST'])]
     public function createProducteur(Request $request, EntityManagerInterface $manager): Response
     {
@@ -50,6 +60,14 @@ class AdminProducteurController extends AbstractController
         ]);
     }
 
+    /**
+    * Édite un producteur existant.
+    *
+    * @param Producteur $producteur L'entité producteur à éditer.
+    * @param Request $request L'objet de requête HTTP.
+    * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+    * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
+    */
     #[Route('/producteur/edit/{id}', name: 'app_admin.producteur.edit', methods: ['GET', 'POST'])]
     public function editProducteur( Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
     {
@@ -70,6 +88,13 @@ class AdminProducteurController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche une liste de producteurs.
+     *
+     * @param ProducteurRepository $repoProducteur Le repository pour accéder aux données des producteurs.
+     * @param Request $request L'objet de requête HTTP.
+     * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
+     */
     #[Route('/producteur', name: 'app_admin.producteur', methods: ['GET'])]
     public function listProducteur(ProducteurRepository $repoProducteur, Request $request): Response
     {
@@ -87,6 +112,14 @@ class AdminProducteurController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime un producteur spécifique ainsi que ses produits associés.
+     *
+     * @param Producteur $producteur L'entité producteur à supprimer.
+     * @param Request $request L'objet de requête HTTP.
+     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui redirige vers la liste des producteurs après suppression.
+     */
     #[Route('/producteur/{id}', name: 'app_admin.producteur.delete', methods: ['GET', 'POST'])]
     public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
     {

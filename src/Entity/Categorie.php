@@ -54,6 +54,11 @@ class Categorie
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
     private Collection $produits;
 
+    /**
+     * Constructeur de la classe Categorie.
+     *
+     * Initialise les propriétés createdAt, updatedAt et produits.
+     */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -61,16 +66,32 @@ class Categorie
         $this->produits = new ArrayCollection();
     }
 
+    /**
+     * Retourne l'identifiant de la catégorie.
+     *
+     * @return int|null L'identifiant de la catégorie ou null si non défini.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Retourne le nom de la catégorie.
+     *
+     * @return string|null Le nom de la catégorie ou null si non défini.
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+     * Définit le nom de la catégorie.
+     *
+     * @param string $nom Le nom de la catégorie.
+     * @return static L'instance de la catégorie pour permettre le chaînage.
+     */
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
@@ -78,6 +99,11 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Définit le fichier image de la catégorie.
+     *
+     * @param File|null $imageFile Le fichier image de la catégorie.
+     */
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -87,36 +113,72 @@ class Categorie
         }
     }
 
+    /**
+     * Retourne le fichier image de la catégorie.
+     *
+     * @return File|null Le fichier image de la catégorie ou null si non défini.
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
+    /**
+     * Définit le nom de l'image de la catégorie.
+     *
+     * @param string|null $imageName Le nom de l'image de la catégorie.
+     */
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
     }
 
+    /**
+     * Retourne le nom de l'image de la catégorie.
+     *
+     * @return string|null Le nom de l'image de la catégorie ou null si non défini.
+     */
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
+    /**
+     * Définit la taille de l'image de la catégorie.
+     *
+     * @param int|null $imageSize La taille de l'image de la catégorie.
+     */
     public function setImageSize(?int $imageSize): void
     {
         $this->imageSize = $imageSize;
     }
 
+    /**
+     * Retourne la taille de l'image de la catégorie.
+     *
+     * @return int|null La taille de l'image de la catégorie ou null si non défini.
+     */
     public function getImageSize(): ?int
     {
         return $this->imageSize;
     }
 
+    /**
+     * Retourne la date de création de la catégorie.
+     *
+     * @return \DateTimeImmutable|null La date de création de la catégorie ou null si non défini.
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Définit la date de création de la catégorie.
+     *
+     * @param \DateTimeImmutable $createdAt La date de création de la catégorie.
+     * @return static L'instance de la catégorie pour permettre le chaînage.
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -124,11 +186,22 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Retourne la date de mise à jour de la catégorie.
+     *
+     * @return \DateTimeInterface|null La date de mise à jour de la catégorie ou null si non défini.
+     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
+    /**
+     * Définit la date de mise à jour de la catégorie.
+     *
+     * @param \DateTimeInterface|null $updatedAt La date de mise à jour de la catégorie.
+     * @return self L'instance de la catégorie pour permettre le chaînage.
+     */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -136,11 +209,22 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Retourne le slug de la catégorie.
+     *
+     * @return string|null Le slug de la catégorie ou null si non défini.
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * Définit le slug de la catégorie.
+     *
+     * @param string $slug Le slug de la catégorie.
+     * @return static L'instance de la catégorie pour permettre le chaînage.
+     */
     public function setSlug(string $slug): static
     {
         $slugger = new AsciiSlugger();
@@ -149,6 +233,9 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Définit automatiquement la valeur du slug avant la persistance ou la mise à jour.
+     */
     #[PrePersist]
     #[PreUpdate]
     public function setSlugValue(): void
@@ -158,19 +245,32 @@ class Categorie
         unset($slugger);
     }
 
+    /**
+     * Retourne le nom de la catégorie sous forme de chaîne de caractères.
+     *
+     * @return string Le nom de la catégorie.
+     */
     public function __toString(): string
     {
         return $this->nom;
     }
 
     /**
-     * @return Collection<int, Produit>
+     * Retourne une collection de produits associés à la catégorie.
+     *
+     * @return Collection<int, Produit> La collection de produits associés à la catégorie.
      */
     public function getProduits(): Collection
     {
         return $this->produits;
     }
 
+    /**
+     * Ajoute un produit à la collection de produits associés à la catégorie.
+     *
+     * @param Produit $produit Le produit à ajouter.
+     * @return static L'instance de la catégorie pour permettre le chaînage.
+     */
     public function addProduit(Produit $produit): static
     {
         if (!$this->produits->contains($produit)) {
@@ -181,6 +281,12 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Supprime un produit de la collection de produits associés à la catégorie.
+     *
+     * @param Produit $produit Le produit à supprimer.
+     * @return static L'instance de la catégorie pour permettre le chaînage.
+     */
     public function removeProduit(Produit $produit): static
     {
         if ($this->produits->removeElement($produit)) {

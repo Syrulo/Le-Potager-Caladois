@@ -12,13 +12,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Contrôleur pour la gestion de la sécurité (connexion, déconnexion, inscription).
+ */
 class SecurityController extends AbstractController
 {
     /**
-     * This controller allow us to login
+     * Gère la connexion des utilisateurs.
      *
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
+     * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir le dernier nom d'utilisateur et les erreurs.
+     * @return Response Une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'utilisateur est déjà connecté.
      */
     #[Route('/connexion', name: 'app_security.login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -34,22 +37,22 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * This controller allow us to logout
+     * Gère la déconnexion des utilisateurs.
      *
-     * @return void
+     * Cette méthode peut être vide - elle sera interceptée par le pare-feu de déconnexion de Symfony.
      */
     #[Route('/deconnexion', 'app_security.logout')]
     public function logout()
     {
-        // controller can be blank: it will never be called!
+        
     }
 
     /**
-     * This controller allows us to register
+     * Gère l'inscription des nouveaux utilisateurs.
      *
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $manager Le gestionnaire d'entités pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui rend le template d'inscription ou redirige après l'inscription.
      */
     #[Route('/inscription', 'app_security.inscription', methods: ['GET', 'POST'])]
     public function inscription(Request $request, EntityManagerInterface $manager) : Response

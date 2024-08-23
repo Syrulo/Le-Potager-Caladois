@@ -10,6 +10,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
 use Faker\Generator;
 
+/**
+ * Classe de fixtures pour charger des données de test pour les détails des utilisateurs.
+ */
 class UtilisateurDetailsFixtures extends Fixture implements DependentFixtureInterface
 {
 
@@ -18,11 +21,19 @@ class UtilisateurDetailsFixtures extends Fixture implements DependentFixtureInte
      */
     private Generator $faker;
 
+    /**
+     * Constructeur pour initialiser le générateur Faker.
+     */
     public function __construct()
     {
         $this->faker = Factory::create('fr_FR');
     }
     
+    /**
+     * Charge les données de test pour les détails des utilisateurs.
+     *
+     * @param ObjectManager $manager Le gestionnaire d'entités pour persister les données.
+     */
     public function load(ObjectManager $manager): void
     {
             // Créer 10 Utilisateur
@@ -40,7 +51,13 @@ class UtilisateurDetailsFixtures extends Fixture implements DependentFixtureInte
             $manager->flush();
 
         }
-        public function getDependencies(): array {
+        /**
+         * Retourne les dépendances de cette fixture.
+         *
+         * @return array Un tableau de classes de fixtures dont cette fixture dépend.
+         */
+        public function getDependencies(): array
+        {
             return [
                 UtilisateurFixtures::class
             ];
