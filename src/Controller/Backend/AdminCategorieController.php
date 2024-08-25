@@ -32,7 +32,7 @@ class AdminCategorieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($categorie);
             $manager->flush();
-            $this->addFlash('success', 'La catégorie a bien été crée');
+            $this->addFlash('success', 'La catégorie a bien été créée');
             return $this->redirectToRoute('app_admin.categorie');
         }
 

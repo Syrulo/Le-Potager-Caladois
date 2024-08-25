@@ -314,6 +314,13 @@ footer {
         width: 100%; /* Largeur du logo dans la barre de navigation */
     }
     
+    .bienvenue {
+        display: flex; /* Permet de faire descendre le texte en bas de la carte */
+        align-items: center; /* Centrer les éléments de la liste verticalement */
+        justify-content: center; /* Ajout pour centrer la liste horizontalement */
+        text-align: center;
+    }
+
     .breadcrumb {
         text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
     }

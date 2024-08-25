@@ -1,7 +1,7 @@
 {% extends './layout/base.html.twig' %}
 
 {% block title %}
-        Gestion des produits
+		Gestion de vos produits
         {{ parent() }}
 {% endblock %}
 
@@ -9,8 +9,9 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Gestion des produits</h1>
-				<div class="breadcrumb justify-content-center">
+					<h1 class="bienvenue">Bienvenue "{{ producteur.nom }}"</h1>
+					<h2>gestion de vos produits</h2>
+				<div class="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_home_page') }}">Retour à l'accueil</a>

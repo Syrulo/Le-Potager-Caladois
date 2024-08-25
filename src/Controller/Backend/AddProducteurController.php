@@ -59,6 +59,7 @@ class AddProducteurController extends AbstractController
 
         return $this->render('backend/addproducteur/dashboard.html.twig', [
             'produits' => $produits,
+            'producteur' => $producteur
         ]);
     }
 
