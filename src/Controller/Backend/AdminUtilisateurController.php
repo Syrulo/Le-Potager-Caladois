@@ -49,15 +49,18 @@ class AdminUtilisateurController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupère les rôles de l'utilisateur
             $role = $form->get('roles')->getData();
 
             // Vérifie si l'utilisateur actuellement connecté est le même que l'utilisateur que nous essayons de modifier
             if ($security->getUser() !== $utilisateur || $role !== 'ROLE_ADMIN' || in_array('ROLE_SUPER_ADMIN', $security->getUser()->getRoles())) {
+                // Ajoute le role à l'utilisateur connecté, fusionne et supprime les doublons
                 if ($role === 'ROLE_ADMIN') {
                     $utilisateur->setRoles(array_unique(array_merge($utilisateur->getRoles(), ['ROLE_ADMIN'])));
                 } elseif ($role === 'ROLE_PRODUCTEUR') {
                     $utilisateur->setRoles(array_unique(array_merge($utilisateur->getRoles(), ['ROLE_PRODUCTEUR'])));
                 } else {
+                    // Supprime le role ROLE_ADMIN et ROLE_PRODUCTEUR
                     $roles = $utilisateur->getRoles();
                     $roles = array_diff($roles, ['ROLE_ADMIN', 'ROLE_PRODUCTEUR']);
                     $roles = array_values($roles); // Réindexez le tableau

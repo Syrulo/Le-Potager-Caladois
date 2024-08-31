@@ -33,7 +33,6 @@ class SecurityController extends AbstractController
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
-        return $this->redirectToRoute('app_home_page');
     }
 
     /**
@@ -74,6 +73,7 @@ class SecurityController extends AbstractController
 
             $manager->persist($utilisateur);
             $manager->flush();
+             // Récupération de l'identifiant de l'utilisateur
             $lastId = $utilisateur->getId();
             $utilisateurDetails->setUtilisateur($utilisateur);
             $manager->persist($utilisateurDetails);

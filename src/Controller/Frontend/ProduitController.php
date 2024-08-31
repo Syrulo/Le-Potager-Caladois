@@ -45,6 +45,7 @@ class ProduitController extends AbstractController
         $keyword = $request->get('search');
         if ($keyword !== null && $keyword !== '') {
             $searchType = $request->get('search_type');
+            // en fonction de la variable SearchType venant du formulaire, on fait une requête spécifique
             $produits = $repoProduit->search($keyword, $searchType);
             if (empty($produits)) {
                 $this->addFlash('error', 'Aucun produit correspondant');

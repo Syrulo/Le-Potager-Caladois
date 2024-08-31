@@ -21,7 +21,6 @@ class ProduitRepository extends ServiceEntityRepository
     */
     public function search($keyword, $searchType): array
     {
-        //Selon la variableSearchType venant du formulaire, on fait une requête différente
         if($searchType == "produit"){
             $query = $this->createQueryBuilder('produit')
                 ->andWhere('produit.nom LIKE :keyword')
