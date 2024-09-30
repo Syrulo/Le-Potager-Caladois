@@ -58,12 +58,13 @@ class UtilisateurListener
         }
 
         $utilisateur->setPassword(
+            // Le mot de passe est haché avec le service de hachage
             $this->hasher->hashPassword(
                 $utilisateur,
                 $utilisateur->getPlainPassword()
             )
         );
-
+        // Ne pas garder le mot de passe en clair
         $utilisateur->setPlainPassword(null);
     }
 }
