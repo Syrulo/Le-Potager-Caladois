@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProducerRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Producer
 {
     #[ORM\Id]
@@ -34,6 +35,9 @@ class Producer
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'procuders')]
+    private ?Visitor $visitor = null;
 
     public function getId(): ?int
     {
@@ -93,9 +97,10 @@ class Producer
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -105,9 +110,10 @@ class Producer
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime('now');
 
         return $this;
     }
@@ -120,6 +126,18 @@ class Producer
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getVisitor(): ?Visitor
+    {
+        return $this->visitor;
+    }
+
+    public function setVisitor(?Visitor $visitor): static
+    {
+        $this->visitor = $visitor;
 
         return $this;
     }

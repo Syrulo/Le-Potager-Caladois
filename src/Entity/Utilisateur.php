@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-#[ORM\EntityListeners(['App\EntityListener\UtilisateurListener'])]
+// #[ORM\EntityListeners(['App\EntityListener\UtilisateurListener'])]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: 'email', message: 'Veuillez choisir une autre adresse email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface

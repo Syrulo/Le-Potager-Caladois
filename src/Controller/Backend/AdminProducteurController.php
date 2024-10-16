@@ -6,7 +6,9 @@ use App\Entity\Producteur;
 use App\Entity\Utilisateur;
 use App\Form\ProducteurType;
 use App\Form\InscriptionProducteurType;
+use App\Repository\ProducerRepository;
 use App\Repository\ProducteurRepository;
+use App\Repository\VisitorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +70,7 @@ class AdminProducteurController extends AbstractController
     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
     * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
     */
-    #[Route('/producteur/edit/{id}', name: 'app_admin.producteur.edit', methods: ['GET', 'POST'])]
+    #[Route('/producteur/edit/{id}', name: 'app_admin.producer.edit', methods: ['GET', 'POST'])]
     public function editProducteur( Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ProducteurType::class, $producteur);
@@ -95,18 +97,18 @@ class AdminProducteurController extends AbstractController
      * @param Request $request L'objet de requête HTTP.
      * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
      */
-    #[Route('/producteur', name: 'app_admin.producteur', methods: ['GET'])]
-    public function listProducteur(ProducteurRepository $repoProducteur, Request $request): Response
+    #[Route('/producer', name: 'app_admin.producer', methods: ['GET'])]
+    public function listProducteur(VisitorRepository $visitorRepository, Request $request): Response
     {
         // Récupérer les paramètres de tri depuis la requête
         $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
         $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
     
         // Récupérer les producteurs triés depuis le repository
-        $producteurs = $repoProducteur->findBy([], [$sort => $direction]);
+        $visitors = $visitorRepository->findBy([], [$sort => $direction]);
     
-        return $this->render('backend/producteur/list.html.twig', [
-            'producteurs' => $producteurs,
+        return $this->render('adminProducer.html.twig', [
+            'visitors' => $visitors,
             'sort' => $sort,
             'direction' => $direction,
         ]);
@@ -120,7 +122,7 @@ class AdminProducteurController extends AbstractController
      * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
      * @return Response Une réponse HTTP qui redirige vers la liste des producteurs après suppression.
      */
-    #[Route('/producteur/{id}', name: 'app_admin.producteur.delete', methods: ['GET', 'POST'])]
+    #[Route('/producer/{id}', name: 'app_admin.producer.delete', methods: ['GET', 'POST'])]
     public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $producteur->getId(), $request->get('_token'))) {

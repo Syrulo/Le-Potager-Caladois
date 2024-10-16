@@ -8,9 +8,11 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -19,6 +21,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[DiscriminatorColumn(name: 'discr', type: 'string')]
 #[DiscriminatorMap(['visitor' => Visitor::class])]
 #[UniqueEntity(fields: 'email', message: 'Veuillez choisir une autre adresse email')]
+#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -63,6 +66,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    
 
     /**
      * A visual identifier that represents this user.
