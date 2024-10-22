@@ -91,7 +91,7 @@
 							<tr>
 								<th scope="row" class="d-none d-lg-table-cell text-center">{{ categorie.id }}</th>
 								<td class="d-none d-lg-table-cell text-center">{{ categorie.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="http://127.0.0.1:8000/images/categories/{{ categorie.imageName }}" alt="{{ categorie.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/categories/' ~ categorie.imageName) }}" alt="{{ categorie.nom }}" class="image"></td>
 								<td class="d-none d-lg-table-cell text-center">{{ categorie.createdAt ? categorie.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ categorie.updatedAt ? categorie.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-lg-none d-flex flex-column">

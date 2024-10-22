@@ -135,7 +135,7 @@
                                 {% endif %}
 								</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.producteur.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="http://127.0.0.1:8000/images/produits/{{ produit.imageName }}" alt="{{ produit.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="image"></td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">

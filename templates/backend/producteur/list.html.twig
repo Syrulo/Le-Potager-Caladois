@@ -158,7 +158,7 @@
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.adresse }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.ville }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.codePostal }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="http://127.0.0.1:8000/images/producteurs/{{ producteur.imageName }}" alt="{{ producteur.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producteur.imageName) }}" alt="{{ producteur.nom }}" class="image"></td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.createdAt ? producteur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producteur.updatedAt ? producteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">
