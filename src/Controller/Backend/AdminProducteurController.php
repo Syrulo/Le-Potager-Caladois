@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Producer;
 use App\Entity\Producteur;
 use App\Entity\Utilisateur;
 use App\Form\ProducteurType;
@@ -28,7 +29,7 @@ class AdminProducteurController extends AbstractController
      * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
      * @return Response Une réponse HTTP qui rend le formulaire de création de producteur ou redirige après la création.
      */
-    #[Route('/producteur/create', name: 'app_admin.producteur.create', methods: ['GET', 'POST'])]
+    #[Route('/producteur/create', name: 'app_admin.producer.create', methods: ['GET', 'POST'])]
     public function createProducteur(Request $request, EntityManagerInterface $manager): Response
     {
         $producteur = new Producteur();
@@ -71,13 +72,13 @@ class AdminProducteurController extends AbstractController
     * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
     */
     #[Route('/producteur/edit/{id}', name: 'app_admin.producer.edit', methods: ['GET', 'POST'])]
-    public function editProducteur( Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
+    public function editProducteur(Producer $producer, Request $request, EntityManagerInterface $manager): Response
     {
-        $form = $this->createForm(ProducteurType::class, $producteur);
+        $form = $this->createForm(ProducteurType::class, $producer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($producteur);
+            $manager->persist($producer);
             $manager->flush();
 
             $this->addFlash('success', 'Le producteur a bien été modifié');
@@ -98,17 +99,17 @@ class AdminProducteurController extends AbstractController
      * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
      */
     #[Route('/producer', name: 'app_admin.producer', methods: ['GET'])]
-    public function listProducteur(VisitorRepository $visitorRepository, Request $request): Response
+    public function listProducteur(ProducerRepository $producerRepository, Request $request): Response
     {
         // Récupérer les paramètres de tri depuis la requête
         $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
         $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
     
         // Récupérer les producteurs triés depuis le repository
-        $visitors = $visitorRepository->findBy([], [$sort => $direction]);
+        $producers = $producerRepository->findBy([], [$sort => $direction]);
     
         return $this->render('adminProducer.html.twig', [
-            'visitors' => $visitors,
+            'producers' => $producers,
             'sort' => $sort,
             'direction' => $direction,
         ]);

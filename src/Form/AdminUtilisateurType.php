@@ -17,8 +17,7 @@ class AdminUtilisateurType extends AbstractType
 {
     public function __construct(
         private Security $security
-    ){
-    }
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -28,27 +27,27 @@ class AdminUtilisateurType extends AbstractType
 
             if ($utilisateur == $this->security->getUser()) {
                 $form->add('utilisateurDetails', UtilisateurDetailsType::class);
-                }
+            }
 
-    if ($this->security->isGranted('ROLE_ADMIN') || $this->security->isGranted('ROLE_SUPER_ADMIN')) {
-        $form->add('roles', ChoiceType::class, [
-            'choices' => [
-                'Administrateur' => 'ROLE_ADMIN',
-                'Utilisateur' => 'ROLE_USER'
-                ],
-                'label' => 'Rôles:',
-                'required' => true,
-                'mapped' => false,
-                'expanded' => false,
-            ])
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn'
-                ]                
-            ]);
-        }
-    });
-}
+            if ($this->security->isGranted('ROLE_ADMIN') || $this->security->isGranted('ROLE_SUPER_ADMIN')) {
+                $form->add('roles', ChoiceType::class, [
+                    'choices' => [
+                        'Administrateur' => 'ROLE_ADMIN',
+                        'Utilisateur' => 'ROLE_USER'
+                    ],
+                    'label' => 'Rôles:',
+                    'required' => true,
+                    'mapped' => false,
+                    'expanded' => false,
+                ])
+                    ->add('submit', SubmitType::class, [
+                        'attr' => [
+                            'class' => 'btn'
+                        ]
+                    ]);
+            }
+        });
+    }
     /**
      * Configure les options du formulaire.
      *

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontend;
 
+use App\Form\AdminEditType;
 use App\Form\AdminUtilisateurType;
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,7 +41,7 @@ class UtilisateurController extends AbstractController
         $user = $this->security->getUser();
 
         return $this->render('frontend/utilisateur/profil.html.twig', [
-            'utilisateur' => $user,
+            'visitor' => $user,
         ]);
     }
 
@@ -57,7 +58,7 @@ class UtilisateurController extends AbstractController
 
         $user = $this->security->getUser();
 
-        $form = $this->createForm(AdminUtilisateurType::class, $user);
+        $form = $this->createForm(AdminEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +69,6 @@ class UtilisateurController extends AbstractController
         }
 
         return $this->render('frontend/utilisateur/edit.html.twig', [
-            'utilisateur' => $user,
             'form' => $form,
             'title_heading' => 'Editez votre profil'
         ]);

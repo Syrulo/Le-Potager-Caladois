@@ -16,6 +16,14 @@ class VisitorRepository extends ServiceEntityRepository
         parent::__construct($registry, Visitor::class);
     }
 
+    public function findAllExceptProducer()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('NOT u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_PRODUCER%')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Visitor[] Returns an array of Visitor objects
     //     */

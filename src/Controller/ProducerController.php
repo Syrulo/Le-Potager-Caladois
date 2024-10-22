@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Producer;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProducerController extends AbstractController
 {
@@ -23,5 +24,12 @@ class ProducerController extends AbstractController
             'producer' => $producer,
             'visitor' => $this->getUser(),
         ]);
+    }
+    #[Route('/producer/validate/{id}', name: 'app_validate_producer')]
+    public function validate(Producer $producer, EntityManagerInterface $em): Response
+    {
+        $producer->setStatus("confirmed");
+        $em->flush();
+        return $this->redirectToRoute('app_admin.producer');
     }
 }

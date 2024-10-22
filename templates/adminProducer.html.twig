@@ -1,7 +1,7 @@
 {% extends './layout/base.html.twig' %}
 
 {% block title %}
-	Liste des visitors
+	Liste des producteurs
 	{{ parent() }}
 {% endblock %}
 
@@ -9,13 +9,13 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Liste des visitors</h1>
+					<h1>Liste des producteurs</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="{{ path('app_admin') }}">Panneau d'administration</a>
 						</li>
-						<li class="breadcrumb-item active">Liste des visitors</li>
+						<li class="breadcrumb-item active">Liste des producteurs</li>
 					</ol>
 				</div>
 			</div>
@@ -47,9 +47,9 @@
                                 </a>
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.producer', { sort: 'firstname', direction: sort == 'firstname' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Prénom
-                                    {% if sort == 'firstname' %}
+                                <a href="{{ path('app_admin.producer', { sort: 'brandName', direction: sort == 'brandName' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                    Nom commercial
+                                    {% if sort == 'brandName' %}
                                         {% if direction == 'asc' %}
                                             &#9650;
                                         {% else %}
@@ -59,21 +59,21 @@
                                 </a>
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.producer', { sort: 'lastname', direction: sort == 'lastname' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Nom
-                                    {% if sort == 'lastname' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.producer', { sort: 'email', direction: sort == 'email' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                <a href="{{ path('app_admin.producer', { sort: 'contactEmail', direction: sort == 'contactEmail' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                     Email
-                                    {% if sort == 'email' %}
+                                    {% if sort == 'contactEmail' %}
+                                        {% if direction == 'asc' %}
+                                            &#9650;
+                                        {% else %}
+                                            &#9660;
+                                        {% endif %}
+                                    {% endif %}
+                                </a>
+                            </th>
+                            <th scope="col" class="d-none d-lg-table-cell">
+                                <a href="{{ path('app_admin.producer', { sort: 'phone', direction: sort == 'phone' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                    Téléphone
+                                    {% if sort == 'phone' %}
                                         {% if direction == 'asc' %}
                                             &#9650;
                                         {% else %}
@@ -84,9 +84,9 @@
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">Statut</th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.producer', { sort: 'tel', direction: sort == 'tel' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Numéro de téléphone
-                                    {% if sort == 'tel' %}
+                                <a href="{{ path('app_admin.producer', { sort: 'description', direction: sort == 'description' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                    Description
+                                    {% if sort == 'description' %}
                                         {% if direction == 'asc' %}
                                             &#9650;
                                         {% else %}
@@ -160,14 +160,14 @@
                         </tr>
                     </thead>
                     <tbody>
-						{% for visitor in visitors %}
+						{% for producer in producers %}
 							<tr>
-								<th scope="row" class="d-none d-lg-table-cell text-center">{{ visitor.id }}</th>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.firstname }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.lastname }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.email }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.status }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td>
+								<th scope="row" class="d-none d-lg-table-cell text-center">{{ producer.id }}</th>
+								<td class="d-none d-lg-table-cell text-center">{{ producer.brandName }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ producer.phone }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ producer.status }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ producer.description }}</td>
 								{# <td class="d-none d-lg-table-cell text-center">{{ visitor.adresse }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.ville }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.codePostal }}</td>
@@ -177,19 +177,25 @@
 								<td class="d-table-cell d-lg-none d-flex flex-column">
 									<div class="mb-2">
 										<strong>Id:</strong>
-										{{ visitor.id }}</div>
+										{{ producer.id }}</div>
 									<div class="mb-2">
 										<strong>Nom:</strong>
-										{{ visitor.firstname }}</div>
+										{{ producer.brandName }}</div>
 									<div class="mb-2">
 										<strong>Email:</strong>
-										{{ visitor.email }}</div>
-									<div class="mb-2">
+										{{ producer.contactEmail }}</div>
+									{# <div class="mb-2">
 										<strong>Rôles:</strong>
-										{{ visitor.roles|join(', ') }}</div>
+										{{ producer.roles|join(', ') }}</div> #}
 									<div class="mb-2">
 										<strong>Téléphone:</strong>
-										{{ visitor.phone }}</div>
+										{{ producer.phone }}</div>
+									<div class="mb-2">
+										<strong>Statut:</strong>
+										{{ producer.status }}</div>
+									<div class="mb-2">
+										<strong>Description:</strong>
+										{{ producer.description }}</div>
 									{# <div class="mb-2">
 										<strong>Adresse:</strong>
 										{{ visitor.adresse }}</div>
@@ -209,7 +215,7 @@
 										<strong>Mis à jour le:</strong>
 										{{ visitor.updatedAt ? visitor.updatedAt|date('Y-m-d H:i:s') : '' }}</div> #}
 									<div class="d-flex justify-content-around mb-2">
-										<a href="{{ path('app_admin.producer.edit', {'id': visitor.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin.producer.edit', {'id': producer.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{# {{ include('backend/visitor/_delete_form.html.twig') }} #}
@@ -217,10 +223,10 @@
 								</td>
 								<td class="d-none d-lg-table-cell">
 									<div class="d-flex justify-content-between">
-										<a href="{{ path('app_visitor', {'id': visitor.id}) }}" class="btn btn-success">
+										<a href="{{ path('app_validate_producer', {'id': producer.id}) }}" class="btn btn-success">
 											<i class="bi bi-check-square"></i>
 										</a>
-										<a href="{{ path('app_admin.producer.edit', {'id': visitor.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin.producer.edit', {'id': producer.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/producteur/_delete_form.html.twig') }}
@@ -231,8 +237,8 @@
 					</tbody>
 				</table>
 				<div class="text-center">
-					<a href="{{ path('app_admin.producteur.create') }}">
-						<button type="submit" class="btn btn-color">Ajouter un visitor</button>
+					<a href="{{ path('app_admin.producer.create') }}">
+						<button type="submit" class="btn btn-color">Ajouter un producteur</button>
 						<a></div>
 					</div>
 				</div>

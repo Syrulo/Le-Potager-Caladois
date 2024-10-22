@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Visitor;
+use App\Entity\Producer;
 use App\Form\NewProducerType;
+use App\Repository\VisitorRepository;
+use App\Repository\ProducerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,15 +36,9 @@ class VisitorController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         return $this->render('visitor/new.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    #[Route('/visitor/validate/{id}', name: 'app_visitor')]
-    public function validate(Visitor $visitor, EntityManagerInterface $em): Response
-    {
-        $visitor->setStatus("validated");
-        $em->flush();
-        return $this->redirectToRoute('app_admin.producer');
-    }
+    
 }

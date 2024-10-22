@@ -2,14 +2,13 @@
 
 namespace App\Controller\Frontend;
 
-use App\Entity\Utilisateur;
-use App\Entity\UtilisateurDetails;
+use App\Entity\Visitor;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -18,10 +17,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * Gère la connexion des utilisateurs.
+     * Gère la connexion des visitors.
      *
-     * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir le dernier nom d'utilisateur et les erreurs.
-     * @return Response Une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'utilisateur est déjà connecté.
+     * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir le dernier nom d'visitor et les erreurs.
+     * @return Response Une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'visitor est déjà connecté.
      */
     #[Route('/connexion', name: 'app_security.login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -36,7 +35,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * Gère la déconnexion des utilisateurs.
+     * Gère la déconnexion des visitors.
      *
      * Cette méthode peut être vide - elle sera interceptée par le pare-feu de déconnexion de Symfony.
      */
@@ -47,7 +46,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * Gère l'inscription des nouveaux utilisateurs.
+     * Gère l'inscription des nouveaux visitors.
      *
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour gérer les opérations de base de données.
@@ -57,29 +56,17 @@ class SecurityController extends AbstractController
     public function inscription(Request $request, EntityManagerInterface $manager) : Response
     {
 
-        $utilisateur = new Utilisateur();
-        $utilisateurDetails = new UtilisateurDetails();
-        $form = $this->createForm(InscriptionType::class, $utilisateur);
+        $visitor = new Visitor();
+        $form = $this->createForm(InscriptionType::class, $visitor);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $utilisateur = $form->getData();            
-            $utilisateur->setActive(true);
-            $utilisateur->setRoles(['ROLE_USER']);
+            $manager->persist($visitor);
+            $manager->flush();
             $this->addFlash(
                 'success',
                 'Votre compte a bien été crée.'
             );
-
-            $manager->persist($utilisateur);
-            $manager->flush();
-             // Récupération de l'identifiant de l'utilisateur
-            $lastId = $utilisateur->getId();
-            $utilisateurDetails->setUtilisateur($utilisateur);
-            $manager->persist($utilisateurDetails);
-            $manager->flush();
-
-
 
             return $this->redirectToRoute('app_security.login');
         }    
