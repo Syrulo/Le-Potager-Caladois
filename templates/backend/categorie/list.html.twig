@@ -35,7 +35,7 @@
 					<thead>
 						<tr class="text-center">
 							<th scope="col" style="width: 6%" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.categorie', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                <a href="{{ path('app_admin_category', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
 									Id
                                     {% if sort == 'id' %}
                                         {% if direction == 'asc' %}
@@ -47,7 +47,7 @@
                                 </a>
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.categorie', { sort: 'nom', direction: sort == 'nom' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                <a href="{{ path('app_admin_category', { sort: 'nom', direction: sort == 'nom' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                     Nom
                                     {% if sort == 'nom' %}
                                         {% if direction == 'asc' %}
@@ -60,7 +60,7 @@
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">Image</th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.categorie', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                <a href="{{ path('app_admin_category', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                     Créé le
                                     {% if sort == 'createdAt' %}
                                         {% if direction == 'asc' %}
@@ -72,7 +72,7 @@
                                 </a>
                             </th>
                             <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin.categorie', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                                <a href="{{ path('app_admin_category', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                     Mis à jour le
                                     {% if sort == 'updatedAt' %}
                                         {% if direction == 'asc' %}
@@ -87,36 +87,36 @@
                         </tr>
                     </thead>
                     <tbody>
-						{% for categorie in categories %}
+						{% for category in categories %}
 							<tr>
-								<th scope="row" class="d-none d-lg-table-cell text-center">{{ categorie.id }}</th>
-								<td class="d-none d-lg-table-cell text-center">{{ categorie.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/categories/' ~ categorie.imageName) }}" alt="{{ categorie.nom }}" class="image"></td>
-								<td class="d-none d-lg-table-cell text-center">{{ categorie.createdAt ? categorie.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ categorie.updatedAt ? categorie.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+								<th scope="row" class="d-none d-lg-table-cell text-center">{{ category.id }}</th>
+								<td class="d-none d-lg-table-cell text-center">{{ category.nom }}</td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/categories/' ~ category.imageName) }}" alt="{{ category.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center">{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-lg-none d-flex flex-column">
 									<div class="mb-2">
 										<strong>Id:</strong>
-										{{ categorie.id }}
+										{{ category.id }}
 									</div>
 									<div class="mb-2">
 										<strong>Nom:</strong>
-										{{ categorie.nom }}
+										{{ category.nom }}
 									</div>
 									<div class="mb-2">
 										<strong>Image:</strong>
-										<img src="{{ asset('images/categories/' ~ categorie.imageName) }}" alt="{{ categorie.nom }}" class="image">
+										<img src="{{ asset('images/categories/' ~ category.imageName) }}" alt="{{ category.nom }}" class="image">
 									</div>
 									<div class="mb-2">
 										<strong>Créé le:</strong>
-										{{ categorie.createdAt ? categorie.createdAt|date('Y-m-d H:i:s') : '' }}
+										{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}
 									</div>
 									<div class="mb-2">
 										<strong>Mis à jour le:</strong>
-										{{ categorie.updatedAt ? categorie.updatedAt|date('Y-m-d H:i:s') : '' }}
+										{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}
 									</div>
 									<div class="d-flex justify-content-around mb-2">
-										<a href="{{ path('app_admin.categorie.edit', {'id': categorie.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/categorie/_delete_form.html.twig') }}
@@ -124,7 +124,7 @@
 								</td>
 								<td class="d-none d-lg-table-cell">
 									<div class="d-flex justify-content-around">
-										<a href="{{ path('app_admin.categorie.edit', {'id': categorie.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/categorie/_delete_form.html.twig') }}
@@ -135,7 +135,7 @@
 					</tbody>
 				</table>
 				<div class="text-center">
-					<a href="{{ path('app_admin.categorie.create') }}">
+					<a href="{{ path('app_admin_category_create') }}">
 						<button type="submit" class="btn btn-color">Ajouter une catégorie</button>
 						<a></div>
 					</div>

@@ -25,11 +25,11 @@ class Visitor extends User
      * @var Collection<int, Producer>
      */
     #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'visitor')]
-    private Collection $procuders;
+    private Collection $producers;
 
     public function __construct()
     {
-        $this->procuders = new ArrayCollection();
+        $this->producers = new ArrayCollection();
     }
 
     public function getFirstname(): ?string
@@ -71,27 +71,27 @@ class Visitor extends User
     /**
      * @return Collection<int, Producer>
      */
-    public function getProcuders(): Collection
+    public function getProducers(): Collection
     {
-        return $this->procuders;
+        return $this->producers;
     }
 
-    public function addProcuder(Producer $procuder): static
+    public function addProducer(Producer $producer): static
     {
-        if (!$this->procuders->contains($procuder)) {
-            $this->procuders->add($procuder);
-            $procuder->setVisitor($this);
+        if (!$this->producers->contains($producer)) {
+            $this->producers->add($producer);
+            $producer->setVisitor($this);
         }
 
         return $this;
     }
 
-    public function removeProcuder(Producer $procuder): static
+    public function removeProducer(Producer $producer): static
     {
-        if ($this->procuders->removeElement($procuder)) {
+        if ($this->producers->removeElement($producer)) {
             // set the owning side to null (unless already changed)
-            if ($procuder->getVisitor() === $this) {
-                $procuder->setVisitor(null);
+            if ($producer->getVisitor() === $this) {
+                $producer->setVisitor(null);
             }
         }
 

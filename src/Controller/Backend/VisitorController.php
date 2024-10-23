@@ -83,12 +83,12 @@ class VisitorController extends AbstractController
         ]);
     }
 
-    #[Route('/visitor/validate/{id}', name: 'app_validate_visitor')]
+    #[Route('/validate/{id}', name: 'app_validate_visitor')]
     public function validateVisitor(Visitor $visitor, EntityManagerInterface $em): Response
     {
         $visitor->setStatus("confirmed");
         $em->flush();
-        return $this->redirectToRoute('app_visitor_list');
+        return $this->redirectToRoute('app_admin.visitor');
     }
 
     /**

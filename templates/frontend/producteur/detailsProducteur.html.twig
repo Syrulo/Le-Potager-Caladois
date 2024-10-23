@@ -1,7 +1,7 @@
 {% extends './layout/base.html.twig' %}
 
 {% block title %}
-	{{ producteur.nom }}
+	{{ producer.brandName }}
 	{{ parent() }}
 {% endblock %}
 
@@ -13,7 +13,7 @@
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="{{ path('app_producteur') }}">Retour à la liste des producteurs</a>
+							<a href="{{ path('app_producer') }}">Retour à la liste des producteurs</a>
 						</li>
 						<li class="breadcrumb-item active">Producteur</li>
 					</ol>
@@ -28,15 +28,15 @@
 				<div class="card col-lg-8 col-md-10 col-sm-10 p-4">
 					<div class="row">			
 						<div class="col-md-6">
-							<img src="{{ asset('images/producteurs/' ~ producteur.imageName) }}" alt="{{ producteur.nom }}" class="img-fluid produit-image-detail">
+							<img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="img-fluid produit-image-detail">
 						</div>	
 						<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
-							<h2 class="mb-2">{{ producteur.nom }}</h2>
-							<div class="mb-2"><strong>Email: </strong>{{ producteur.email }}</div>
-							<div class="mb-2"><strong>Téléphone: </strong>{{ producteur.tel }}</div>
-							<div class="mb-2"><strong>Adresse: </strong>{{ producteur.adresse }}</div>
-							<div class="mb-2"><strong>Ville: </strong>{{ producteur.ville }}</div>
-							<div class="mb-2"><strong>Code Postal: </strong>{{ producteur.codePostal }}</div>
+							<h2 class="mb-2">{{ producer.brandName }}</h2>
+							<div class="mb-2"><strong>Email: </strong>{{ producer.contactEmail }}</div>
+							<div class="mb-2"><strong>Téléphone: </strong>{{ producer.phone }}</div>
+							{# <div class="mb-2"><strong>Adresse: </strong>{{ producer.adresse }}</div>
+							<div class="mb-2"><strong>Ville: </strong>{{ producer.ville }}</div>
+							<div class="mb-2"><strong>Code Postal: </strong>{{ producer.codePostal }}</div> #}
 						</div>
 					</div>
 				</div>
@@ -59,46 +59,46 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for produit in produits %}
+						{% for product in products %}
 							<tr>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.categorie.nom }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.nom }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.category.nom }}</td>
 								<td class="d-none d-lg-table-cell text-center">
-								{{ produit.prix}}
-								{% if produit.categorie.nom == 'Boissons' %}
+								{{ product.prix}}
+								{% if product.category.nom == 'Boissons' %}
                                     €/L TTC
                                 {% else %}
                                     €/kg TTC
                                 {% endif %}
 								</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.producteur.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.producer.brandName }}</td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image"></td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">
 									<div class="mb-2">
 										<strong>Nom:</strong>
-										{{ produit.nom }}</div>
+										{{ product.nom }}</div>
 									<div class="mb-2">
 										<strong>Catégorie:</strong>
-										{{ produit.categorie.nom }}</div>
+										{{ product.category.nom }}</div>
 									<div class="mb-2">
 										<strong>Prix:</strong>
-										{{ produit.prix }}
+										{{ product.prix }}
 										€ /kg</div>
 									<div class="mb-2">
 										<strong>Producteur:</strong>
-										{{ produit.producteur.nom }}</div>
+										{{ product.producer.brandName }}</div>
 									<div class="mb-2">
 										<strong>Image:</strong>
-										<img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="image"></div>
+										<img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image"></div>
 									<div class="d-flex mb-2 justify-content-center">
-										<a href="{{ path('app_produit', {'slug': produit.slug}) }}" class="btn-bottom">
+										<a href="{{ path('app_product_details', {'slug': product.slug}) }}" class="btn-bottom">
 											<button type="submit" class="btn btn-color">Détails</button>
 										</a>
 									</div>
 								</td>
 								<td class="d-none d-lg-table-cell">
 									<div class="d-flex justify-content-center">
-										<a href="{{ path('app_produit', {'slug': produit.slug}) }}" class="btn-bottom">
+										<a href="{{ path('app_product_details', {'slug': product.slug}) }}" class="btn-bottom">
 											<button type="submit" class="btn btn-color">Détails</button>
 										</a>
 									</div>

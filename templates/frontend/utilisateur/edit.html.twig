@@ -32,7 +32,7 @@
 						{{ form_label(form.firstname, null, {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.firstname) }}
-							{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prélastname'}}) }}
+							{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
 							<div class="input-group-append">
 								<span class="input-group-text">
 									<span class="fas fa-user icon-large"></span>
@@ -42,7 +42,7 @@
 						{{ form_label(form.lastname, null, {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.lastname) }}
-							{{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'lastname'}}) }}
+							{{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
 							<div class="input-group-append">
 								<span class="input-group-text">
 									<span class="fas fa-user icon-large"></span>
@@ -52,6 +52,7 @@
 					{% endif %}
 					{{ form_label(form.email) }}
 					<div class="input-group mb-3">
+						{{ form_errors(form.email) }}
 						{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
 						<div class="input-group-append">
 							<span class="input-group-text">

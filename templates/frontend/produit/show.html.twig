@@ -1,7 +1,7 @@
 {% extends './layout/base.html.twig' %}
 
 {% block title %}
-	{{ produit.nom }}
+	{{ product.nom }}
 	{{ parent() }}
 {% endblock %}
 
@@ -13,7 +13,7 @@
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="{{ path('app_categorie', {'slug': produit.categorie.slug}) }}">Retour à la liste des {{ produit.categorie.nom }}</a>
+							<a href="{{ path('app_categorie', {'slug': product.category.slug}) }}">Retour à la liste des {{ product.category.nom }}</a>
 						</li>
 						<li class="breadcrumb-item active">produit</li>
 					</ol>
@@ -28,26 +28,26 @@
 				<div class="card col-lg-8 col-md-10 col-12 p-4 mt-2">
 					<div class="row">
 						<div class="col-md-6 mt-2">
-							<img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="img-fluid produit-image-detail">
+							<img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="img-fluid produit-image-detail">
 						</div>
 						<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start align-self-center">
-							<h2 class="mb-2 mt-2">{{ produit.nom }}</h2>
-							<p class="produit-prix mb-2">{{ produit.prix }}€ /kg</p>
+							<h2 class="mb-2 mt-2">{{ product.nom }}</h2>
+							<p class="produit-prix mb-2">{{ product.prix }}€ /kg</p>
 							<div class="produit-description">
 								<p id="descriptionCourte" class="description-courte">
-									{{ produit.description|length > 150 ? produit.description|slice(0, 150) ~ '...' : produit.description }}
+									{{ product.description|length > 150 ? product.description|slice(0, 150) ~ '...' : product.description }}
 								</p>
 								<p id="descriptionComplete" class="description-complete">
-									{{ produit.description }}
+									{{ product.description }}
 								</p>
-								{% if produit.description|length > 150 %}
+								{% if product.description|length > 150 %}
 									<a href="#" id="voirPlus" onclick="toggleDescription(); return false;" class="voir-plus">Voir plus</a>
 								{% endif %}
 							</div>
 							<p class="produit-producteur mb-2">Origine :
-								{{ produit.producteur.nom }}</p>
+								{{ product.producer.brandName }}</p>
 							<div class="mt-lg-5">
-								<a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}" class="btn btn-color produit-commande">Commander</a>
+								<a href="{{ path('app_producer.details', {'slug': product.producer.slug}) }}" class="btn btn-color produit-commande">Commander</a>
 							</div>							
 						</div>
 					</div>

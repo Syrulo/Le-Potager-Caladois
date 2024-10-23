@@ -24,20 +24,20 @@ class VisitorRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    //    /**
-    //     * @return Visitor[] Returns an array of Visitor objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('v.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * @return Visitor[] Returns an array of Visitor objects
+     */
+    public function findByIdWithProducers($id): array
+    {
+        return $this->createQueryBuilder('v')
+            ->addSelect('p')
+            ->leftJoin('v.producers', 'p')
+            ->andWhere('v.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Visitor
     //    {

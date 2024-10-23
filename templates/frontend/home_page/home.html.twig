@@ -53,13 +53,13 @@ Bienvenue sur la page d'accueil du Potager Caladois
 <div class="container p-5 mb-5">
 	<img class="logo mb-5" src="{{ asset('/images/categories.png') }}" alt="Catégories" style="max-height: 80px; width: auto;">
 	<div class="row justify-content-center">
-		{% for categorie in categories %}
+		{% for category in categorys %}
 					<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
-						<a href="{{ path('app_categorie', {'slug': categorie.slug}) }}">
+						<a href="{{ path('app_categorie', {'slug': category.slug}) }}">
 							<div class="container-image background-image d-flex align-items-center justify-content-center">
 								<div class="text-on-image text-center">
-									<img src=" {{ asset('/images/categories/' ~ categorie.imageName) }}" alt="Légumes">
-									<strong><p class="voir-categorie">{{ categorie.nom }}</p></strong>
+									<img src=" {{ asset('/images/categories/' ~ category.imageName) }}" alt="Légumes">
+									<strong><p class="voir-categorie">{{ category.nom }}</p></strong>
 								</div>
 							</div>
 						</a>

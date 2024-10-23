@@ -33,7 +33,7 @@
 					<thead>
 						<tr class="text-center">
 							<th scope="col" style="width: 6%" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
 								Id
                                 {% if sort == 'id' %}
                                     {% if direction == 'asc' %}
@@ -45,7 +45,7 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'nom', direction: sort == 'nom' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'nom', direction: sort == 'nom' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Nom
                                 {% if sort == 'nom' %}
                                     {% if direction == 'asc' %}
@@ -57,7 +57,7 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'categorie', direction: sort == 'categorie' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'categorie', direction: sort == 'categorie' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Catégorie
                                 {% if sort == 'categorie' %}
                                     {% if direction == 'asc' %}
@@ -69,7 +69,7 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'prix', direction: sort == 'prix' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'prix', direction: sort == 'prix' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Prix
                                 {% if sort == 'prix' %}
                                     {% if direction == 'asc' %}
@@ -81,7 +81,7 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'producteur', direction: sort == 'producteur' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'producteur', direction: sort == 'producteur' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Producteur
                                 {% if sort == 'producteur' %}
                                     {% if direction == 'asc' %}
@@ -94,7 +94,7 @@
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">Image</th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Créé le
                                 {% if sort == 'createdAt' %}
                                     {% if direction == 'asc' %}
@@ -106,7 +106,7 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin.produit', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Mis à jour le
                                 {% if sort == 'updatedAt' %}
                                     {% if direction == 'asc' %}
@@ -121,38 +121,38 @@
                     </tr>
                 </thead>
                 <tbody>
-						{% for produit in produits %}
+						{% for product in products %}
 							<tr>
-								<th scope="row" class="d-none d-lg-table-cell text-center">{{ produit.id }}</th>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.categorie.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.prix}}
+								<th scope="row" class="d-none d-lg-table-cell text-center">{{ product.id }}</th>
+								<td class="d-none d-lg-table-cell text-center">{{ product.nom }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.category.nom }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.prix}}
 									€ /
-								{% if produit.categorie.nom == 'Boissons' %}
+								{% if product.category.nom == 'Boissons' %}
                                     litre TTC
                                 {% else %}
                                     kg TTC
                                 {% endif %}
 								</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.producteur.nom }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="image"></td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.producer.brandName }}</td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image"></td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+								<td class="d-none d-lg-table-cell text-center">{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">
 									<div class="mb-2">
 										<strong>Id:</strong>
-										{{ produit.id }}</div>
+										{{ product.id }}</div>
 									<div class="mb-2">
 										<strong>Nom:</strong>
-										{{ produit.nom }}</div>
+										{{ product.nom }}</div>
 									<div class="mb-2">
 										<strong>Catégorie:</strong>
-										{{ produit.categorie.nom }}</div>
+										{{ product.category.nom }}</div>
 									<div class="mb-2">
 										<strong>Prix:</strong>
-										{{ produit.prix }}
+										{{ product.prix }}
 											€ /
-										{% if produit.categorie.nom == 'Boissons' %}
+										{% if product.category.nom == 'Boissons' %}
                                             litre TTC
                                         {% else %}
                                             kg TTC
@@ -160,18 +160,18 @@
 										</div>
 									<div class="mb-2">
 										<strong>Producteur:</strong>
-										{{ produit.producteur.nom }}</div>
+										{{ product.producer.brandName }}</div>
 									<div class="mb-2">
 										<strong>Image:</strong>
-										<img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="image"></div>
+										<img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image"></div>
 									<div class="mb-2">
 										<strong>Créé le:</strong>
-										{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+										{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</div>
 									<div class="mb-2">
 										<strong>Mis à jour le:</strong>
-										{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
+										{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
 									<div class="d-flex justify-content-around mb-2">
-										<a href="{{ path('app_admin.produit.edit', {'id': produit.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/produit/_delete_form.html.twig') }}
@@ -179,7 +179,7 @@
 								</td>
 								<td class="d-none d-lg-table-cell">
 									<div class="d-flex justify-content-around">
-										<a href="{{ path('app_admin.produit.edit', {'id': produit.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/produit/_delete_form.html.twig') }}
@@ -190,7 +190,7 @@
 					</tbody>
 				</table>
 				<div class="text-center">
-					<a href="{{ path('app_admin.produit.create') }}" class="text-center">
+					<a href="{{ path('app_admin_product_create') }}" class="text-center">
 						<button type="submit" class="btn btn-color">Ajouter un produit</button>
 					<a>
 				</div>

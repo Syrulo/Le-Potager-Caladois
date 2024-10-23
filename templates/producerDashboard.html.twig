@@ -35,7 +35,7 @@
 			</div>
 		{% endif %}
 	</div>
-	{% if visitor.status == 'validated' %}
+	{% if visitor.status == 'confirmed' and visitor.producers|length == 0 %}
 		<section class="content">
 			<div class="container-fluid p-5 mb-5">
 				<div class="card col-lg-6 col-md-10 col-12 mx-auto p-3">
@@ -45,7 +45,7 @@
 					<div class="card-body">
 						{{ form_start(form) }}
 						<span class="text-danger">{{ form_errors(form.contactEmail) }}</span>
-						{{ form_label(form.brandName, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						{{ form_label(form.brandName, 'Nom commercial', {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.brandName) }}
 							{{ form_widget(form.brandName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
@@ -74,7 +74,7 @@
 								</span>
 							</div>
 						</div>
-						{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						{{ form_label(form.description, 'Description', {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.description) }}
 							{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
@@ -96,7 +96,7 @@
 			</div>
 		</section>
 	{% endif %}
-	{% if visitor.status == 'confirmed' %}
+	{% if visitor.producers|length > 0  %}
 	YOUPIIIIIIIIII
 	{% endif %}
 	

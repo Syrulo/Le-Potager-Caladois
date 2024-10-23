@@ -12,16 +12,16 @@
 			<div class="offcanvas-body">
 				<ul class="navbar-nav justify-content-start flex-grow-1 pe-3 flex-wrap">
 					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_categorie', {'slug': 'legumes'}) }}">Légumes</a>
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'legumes'}) }}">Légumes</a>
 					</li>
 					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_categorie', {'slug': 'fruits'}) }}">Fruits</a>
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'fruits'}) }}">Fruits</a>
 					</li>
 					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_categorie', {'slug': 'boissons'}) }}">Boissons</a>
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'boissons'}) }}">Boissons</a>
 					</li>
 					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_producteur') }}">Producteurs</a>
+						<a class="nav-link active" href="{{ path('app_producer') }}">Producteurs</a>
 					</li>
 					{% if not is_granted('ROLE_PRODUCER') %}
 					<li class="nav-item mt-1">
@@ -44,20 +44,20 @@
 					</li>
 					<ul class="dropdown-menu">
 						<li>
-							<a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'legumes'}) }}">Légumes</a>
+							<a class="dropdown-item" href="{{ path('app_category_list', {'slug': 'legumes'}) }}">Légumes</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'fruits'}) }}">Fruits</a>
+							<a class="dropdown-item" href="{{ path('app_category_list', {'slug': 'fruits'}) }}">Fruits</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{{ path('app_categorie', {'slug': 'boissons'}) }}">Boissons</a>
+							<a class="dropdown-item" href="{{ path('app_category_list', {'slug': 'boissons'}) }}">Boissons</a>
 						</li>
 						<li>
 							<a class="dropdown-item" href="#">Notre Histoire</a>
 						</li>
 						<li><hr class="dropdown-divider"></li>
 						<li>
-							<a class="dropdown-item" href="{{ path('app_producteur') }}">Producteurs</a>
+							<a class="dropdown-item" href="{{ path('app_producer') }}">Producteurs</a>
 						</li>
 					</ul>
 				</ul>

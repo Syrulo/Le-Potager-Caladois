@@ -24,26 +24,26 @@
 	<section class="content">
 		<div class="container p-5 mb-5">
 			<div class="row justify-content-center">
-				{% for producteur in producteurs %}
+				{% for producer in producers %}
 					<div class="card col-lg-8 col-md-10 col-sm-8 p-4 mt-3">
 						<div class="row">
 							<div class="col-md-6">
-								<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}"><img src="{{ asset('images/producteurs/' ~ producteur.imageName) }}" alt="{{ producteur.nom }}" class="img-fluid produit-image"></a>
+								<a href="{{ path('app_producteur.details', {'slug': producer.slug}) }}"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="img-fluid produit-image"></a>
 							</div>
 							<div class="col-md-6 mt-sm-3 mt-md-0 text-center text-md-start">
-								<h3>{{ producteur.nom }}</h3>
+								<h3>{{ producer.brandName }}</h3>
 								<div class="producteur-description">
 									<p id="descriptionCourte" class="description-courte">
-										{{ producteur.description|length > 150 ? producteur.description|slice(0, 150) ~ '...' : producteur.description }}
+										{{ producer.description|length > 150 ? producer.description|slice(0, 150) ~ '...' : producer.description }}
 									</p>
 									<p id="descriptionComplete" class="description-complete">
-										{{ producteur.description }}
+										{{ producer.description }}
 									</p>
-									{% if producteur.description|length > 150 %}
+									{% if producer.description|length > 150 %}
 										<a href="#" id="voirPlus" onclick="toggleDescription(this); return false;" class="voir-plus">Voir plus</a>
 									{% endif %}
 								</div>
-								<a href="{{ path('app_producteur.details', {'slug': producteur.slug}) }}" class="btn btn-color w-50 align-self-center">Détails</a>
+								<a href="{{ path('app_producer.details', {'slug': producer.slug}) }}" class="btn btn-color w-50 align-self-center">Détails</a>
 							</div>
 						</div>
 					</div>
