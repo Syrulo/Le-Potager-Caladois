@@ -24,13 +24,13 @@
 						<a class="nav-link active" href="{{ path('app_producer') }}">Producteurs</a>
 					</li>
 					{% if not is_granted('ROLE_PRODUCER') %}
-					<li class="nav-item mt-1">
-						<div class="menu-separator">
-							<a class="nav-link active" href="{{ path('app_visitor_new') }}">Je suis un producteur</a>
-						</div>
-					</li>
+						<li class="nav-item mt-1">
+							<div class="menu-separator">
+								<a class="nav-link active" href="{{ path('app_visitor_new') }}">Je suis un producteur</a>
+							</div>
+						</li>
 					{% endif %}
-					
+
 					<li class="nav-item search d-lg-none">
 						<form class="d-flex mt-2" role="search" action="{{ path('app_product_list') }}">
 							<div class="input-group mb-3">
@@ -149,4 +149,5 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 	</div>
-</div></div></nav>
+</nav>
+
