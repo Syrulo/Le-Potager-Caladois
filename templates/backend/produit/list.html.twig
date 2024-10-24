@@ -57,9 +57,9 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin_product', { sort: 'categorie', direction: sort == 'categorie' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'category', direction: sort == 'category' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Catégorie
-                                {% if sort == 'categorie' %}
+                                {% if sort == 'category' %}
                                     {% if direction == 'asc' %}
                                         &#9650;
                                     {% else %}
@@ -81,9 +81,9 @@
                             </a>
                         </th>
                         <th scope="col" class="d-none d-lg-table-cell">
-                            <a href="{{ path('app_admin_product', { sort: 'producteur', direction: sort == 'producteur' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+                            <a href="{{ path('app_admin_product', { sort: 'producer', direction: sort == 'producer' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
                                 Producteur
-                                {% if sort == 'producteur' %}
+                                {% if sort == 'producer' %}
                                     {% if direction == 'asc' %}
                                         &#9650;
                                     {% else %}
@@ -163,7 +163,10 @@
 										{{ product.producer.brandName }}</div>
 									<div class="mb-2">
 										<strong>Image:</strong>
-										<img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image"></div>
+										<div class="d-flex justify-content-center">
+										<img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="image">
+										</div>
+									</div>
 									<div class="mb-2">
 										<strong>Créé le:</strong>
 										{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</div>
