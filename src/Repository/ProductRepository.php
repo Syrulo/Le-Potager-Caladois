@@ -19,31 +19,56 @@ class ProductRepository extends ServiceEntityRepository
     /**
     * @return Product[] Returns an array of Product objects
     */
+    // public function search($keyword, $searchType): array
+    // {
+    //     if($searchType == "product"){
+    //         $query = $this->createQueryBuilder('product')
+    //             ->andWhere('product.nom LIKE :keyword')
+    //             ->setParameter('keyword', "%" . $keyword . "%")
+    //             ->orderBy('product.id', 'ASC')
+    //             ->getQuery()
+    //             ->getResult();
+    //     }
+    //     if($searchType == "producer"){
+    //         $query = $this->createQueryBuilder('product')
+    //             ->join('product.producer', 'producer')
+    //             ->orWhere('produceur.nom LIKE :keyword')
+    //             ->setParameter('keyword', "%" . $keyword . "%")
+    //             ->orderBy('product.id', 'ASC')
+    //             ->getQuery()
+    //             ->getResult();
+    //     }
+
+
+    //     return $query;
+    // }
     public function search($keyword, $searchType): array
-    {
-        if($searchType == "product"){
-            $query = $this->createQueryBuilder('product')
-                ->andWhere('product.nom LIKE :keyword')
-                ->setParameter('keyword', "%" . $keyword . "%")
-                ->orderBy('product.id', 'ASC')
-                ->getQuery()
-                ->getResult()
-            ;
-        }
-        // if($searchType == "producteur"){
-        //     $query = $this->createQueryBuilder('product')
-        //         ->join('product.producteur', 'producteur')
-        //         ->orWhere('producteur.nom LIKE :keyword')
-        //         ->setParameter('keyword', "%" . $keyword . "%")
-        //         ->orderBy('product.id', 'ASC')
-        //         ->getQuery()
-        //         ->getResult()
-        //     ;
-        // }
+{
+    $query = null;
 
-
-        return $query;
+    if ($searchType == "produit") {
+        $query = $this->createQueryBuilder('produit')
+            ->andWhere('produit.nom LIKE :keyword')
+            ->setParameter('keyword', "%" . $keyword . "%")
+            ->orderBy('produit.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    // } elseif ($searchType == "producteur") {
+    //     $query = $this->createQueryBuilder('producteur')
+    //         ->join('produit.producteur', 'producteur')
+    //         ->orWhere('producteur.nom LIKE :keyword')
+    //         ->setParameter('keyword', "%" . $keyword . "%")
+    //         ->orderBy('producteur.id', 'ASC')
+    //         ->getQuery()
+    //         ->getResult();
     }
+    if ($query === null) {
+        // Si aucun résultat n'est trouvé, retourner un tableau vide
+        return [];
+    }
+
+    return $query;
+}
 //    }
 
 //    public function findOneBySomeField($value): ?Product

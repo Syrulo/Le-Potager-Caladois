@@ -40,6 +40,50 @@ class ProductController extends AbstractController
         ]);
     }
 
+        /**
+     * Affiche les détails d'un produit spécifique.
+     *
+     * @param Product $product L'entité produit dont les détails doivent être affichés.
+     * @return Response Une réponse HTTP qui rend le template frontend/produit/show.html.twig avec les détails du produit.
+     */
+    #[Route('/details/{slug}', name: 'app_product_details')]
+    public function show(Product $product): Response
+    {
+        return $this->render('frontend/produit/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
+
+        /**
+     * Affiche une liste de produits en fonction des critères de recherche.
+     *
+     * @param ProductRepository $productRepository Le repository pour accéder aux données des produits.
+     * @param Request $request La requête HTTP.
+     * @return Response Une réponse HTTP qui rend le template frontend/produit/list.html.twig avec les produits trouvés ou un message d'erreur.
+     */
+    #[Route('/list', name: 'app_product_list', methods: ['GET'])]
+    public function search(ProductRepository $productRepository, Request $request): Response
+    {
+        // Initialisation de la variable $products
+        $products = [];
+
+        $keyword = $request->get('search');
+        if ($keyword !== null && $keyword !== '') {
+            $searchType = $request->get('search_type');
+            // en fonction de la variable SearchType venant du formulaire, on fait une requête spécifique
+            $products = $productRepository->search($keyword, $searchType);
+            if (empty($products)) {
+                $this->addFlash('error', 'Aucun produit correspondant');
+                return $this->redirectToRoute('app_product_list');
+            }
+        } else {
+            $this->addFlash('error', 'Veuillez fournir un critère de recherche.');
+        }
+        return $this->render('frontend/produit/list.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
     /**
      * Affiche la liste des produits.
      *
@@ -115,20 +159,6 @@ class ProductController extends AbstractController
 
         return $this->render('backend/produit/edit.html.twig', [
             'form' => $form,
-        ]);
-    }
-
-    /**
-     * Affiche les détails d'un produit spécifique.
-     *
-     * @param Product $product L'entité produit dont les détails doivent être affichés.
-     * @return Response Une réponse HTTP qui rend le template frontend/produit/show.html.twig avec les détails du produit.
-     */
-    #[Route('/details/{slug}', name: 'app_product_details')]
-    public function show(Product $product): Response
-    {
-        return $this->render('frontend/produit/show.html.twig', [
-            'product' => $product,
         ]);
     }
 

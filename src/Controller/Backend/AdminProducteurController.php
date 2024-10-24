@@ -63,57 +63,57 @@ class AdminProducteurController extends AbstractController
         ]);
     }
 
-    /**
-    * Édite un producteur existant.
-    *
-    * @param Producteur $producteur L'entité producteur à éditer.
-    * @param Request $request L'objet de requête HTTP.
-    * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
-    * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
-    */
-    #[Route('/producteur/edit/{id}', name: 'app_admin.producer.edit', methods: ['GET', 'POST'])]
-    public function editProducteur(Producer $producer, Request $request, EntityManagerInterface $manager): Response
-    {
-        $form = $this->createForm(ProducteurType::class, $producer);
-        $form->handleRequest($request);
+    // /**
+    // * Édite un producteur existant.
+    // *
+    // * @param Producteur $producteur L'entité producteur à éditer.
+    // * @param Request $request L'objet de requête HTTP.
+    // * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+    // * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
+    // */
+    // #[Route('/producteur/edit/{id}', name: 'app_admin.producer.edit', methods: ['GET', 'POST'])]
+    // public function editProducteur(Producer $producer, Request $request, EntityManagerInterface $manager): Response
+    // {
+    //     $form = $this->createForm(ProducteurType::class, $producer);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($producer);
-            $manager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $manager->persist($producer);
+    //         $manager->flush();
 
-            $this->addFlash('success', 'Le producteur a bien été modifié');
+    //         $this->addFlash('success', 'Le producteur a bien été modifié');
             
-            return $this->redirectToRoute('app_admin.producteur');
-        }
+    //         return $this->redirectToRoute('app_admin.producteur');
+    //     }
 
-        return $this->render('backend/producteur/edit.html.twig', [
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('backend/producteur/edit.html.twig', [
+    //         'form' => $form,
+    //     ]);
+    // }
 
-    /**
-     * Affiche une liste de producteurs.
-     *
-     * @param ProducteurRepository $repoProducteur Le repository pour accéder aux données des producteurs.
-     * @param Request $request L'objet de requête HTTP.
-     * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
-     */
-    #[Route('/producer', name: 'app_admin.producer', methods: ['GET'])]
-    public function listProducteur(ProducerRepository $producerRepository, Request $request): Response
-    {
-        // Récupérer les paramètres de tri depuis la requête
-        $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
-        $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
+    // /**
+    //  * Affiche une liste de producteurs.
+    //  *
+    //  * @param ProducteurRepository $repoProducteur Le repository pour accéder aux données des producteurs.
+    //  * @param Request $request L'objet de requête HTTP.
+    //  * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
+    //  */
+    // #[Route('/producer', name: 'app_admin.producer', methods: ['GET'])]
+    // public function listProducteur(ProducerRepository $producerRepository, Request $request): Response
+    // {
+    //     // Récupérer les paramètres de tri depuis la requête
+    //     $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
+    //     $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
     
-        // Récupérer les producteurs triés depuis le repository
-        $producers = $producerRepository->findBy([], [$sort => $direction]);
+    //     // Récupérer les producteurs triés depuis le repository
+    //     $producers = $producerRepository->findBy([], [$sort => $direction]);
     
-        return $this->render('adminProducer.html.twig', [
-            'producers' => $producers,
-            'sort' => $sort,
-            'direction' => $direction,
-        ]);
-    }
+    //     return $this->render('adminProducer.html.twig', [
+    //         'producers' => $producers,
+    //         'sort' => $sort,
+    //         'direction' => $direction,
+    //     ]);
+    // }
 
     /**
      * Supprime un producteur spécifique ainsi que ses produits associés.

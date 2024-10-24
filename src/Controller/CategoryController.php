@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
      * @param CategorieRepository $categorieRepository Le repository pour accéder aux données des catégories.
      * @return Response Une réponse HTTP qui rend le template backend/categorie/list.html.twig avec les catégories triées.
      */
-    #[Route('/category', name: 'app_admin_category', methods: ['GET'])]
+    #[Route('/admin/category', name: 'app_admin_category', methods: ['GET'])]
     public function list(Request $request, CategoryRepository $categoryRepository): Response
     {
         $sort = $request->query->get('sort', 'nom');
@@ -69,7 +69,7 @@ class CategoryController extends AbstractController
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
      * @return Response La réponse HTTP avec la vue du formulaire de création de catégorie.
      */
-    #[Route('/category/create', name: 'app_admin_category_create', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/create', name: 'app_admin_category_create', methods: ['GET', 'POST'])]
     public function createCategory(Request $request, EntityManagerInterface $manager): Response
     {
         $category = new Category();
@@ -93,12 +93,12 @@ class CategoryController extends AbstractController
     /**
      * Édite une catégorie existante.
      * 
-     * @param Categorie $categorie L'entité catégorie à éditer.
+     * @param Category $categorie L'entité catégorie à éditer.
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
      * @return Response La réponse HTTP avec la vue du formulaire d'édition de catégorie.
      */
-    #[Route('/category/edit/{id}', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/edit/{id}', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
     public function editCategory( Category $category, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -127,7 +127,7 @@ class CategoryController extends AbstractController
      * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
      * @return Response Une réponse HTTP qui redirige vers la liste des catégories après suppression.
      */
-    #[Route('/category/{id}', name: 'app_admin_category_delete', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/{id}', name: 'app_admin_category_delete', methods: ['GET', 'POST'])]
     public function deleteCategory(Category $category, Request $request, EntityManagerInterface $manager): response
     {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->get('_token'))) {

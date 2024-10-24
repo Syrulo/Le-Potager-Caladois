@@ -30,20 +30,20 @@
 	<section class="content">
 		<div class="container p-5 mb-5">
 			<div class="row justify-content-center">
-				{% for produit in produits %}
+				{% for product in products %}
 					<div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-4 listcard">
 						<div class="card d-flex flex-column h-100 mx-auto w-100">
-							<a href="{{ path('app_produit', {'slug': produit.slug}) }}"><img src="{{ asset('images/produits/' ~ produit.imageName) }}" alt="{{ produit.nom }}" class="card-img-top p-3 card-img-custom"></a>
+							<a href="{{ path('app_product_details', {'slug': product.slug}) }}"><img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="card-img-top p-3 card-img-custom"></a>
 							<div class="card-body text-center">
 								<h5 class="card-title text-center">
-								<a class="text-decoration-none" href="{{ path('app_produit', {'slug': produit.slug}) }}">
-									{{ produit.nom}}</h5>
+								<a class="text-decoration-none" href="{{ path('app_product_details', {'slug': product.slug}) }}">
+									{{ product.nom}}</h5>
 								</a>
 								<div class="card-text text-center mb-3">
-									<div>{{ produit.prix}}
+									<div>{{ product.prix}}
 										€ /kg</div>
-									<a href="{{ path('app_producteur.details', {'slug': produit.producteur.slug}) }}">
-										<div>{{ produit.producteur.nom }}</div>
+									<a href="{{ path('app_producer_details', {'slug': product.producer.slug}) }}">
+										<div>{{ product.producer.brandName}}</div>
 									</a>
 								</div>
 							</div>

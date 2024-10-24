@@ -15,15 +15,15 @@ class HomeController extends AbstractController
     /**
      * Affiche la page d'accueil.
      *
-     * @param CategoryRepository $repoCategorie Le repository pour accéder aux données des catégories.
+     * @param CategoryRepository $categoryRepository Le repository pour accéder aux données des catégories.
      * @return Response Une réponse HTTP qui rend le template frontend/home/index.html.twig avec les catégories.
      */
     #[Route('/', name: 'app_home_page')]
     public function index(CategoryRepository $categoryRepository): Response
     {
-        $categorys = $categoryRepository->findAll();
+        $categories = $categoryRepository->findAll();
         return $this->render('frontend/home_page/home.html.twig', [
-            'categorys' => $categorys
+            'categories' => $categories
         ]);
     }
 }

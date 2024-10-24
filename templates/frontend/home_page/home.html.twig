@@ -53,7 +53,7 @@ Bienvenue sur la page d'accueil du Potager Caladois
 <div class="container p-5 mb-5">
 	<img class="logo mb-5" src="{{ asset('/images/categories.png') }}" alt="Catégories" style="max-height: 80px; width: auto;">
 	<div class="row justify-content-center">
-		{% for category in categorys %}
+		{% for category in categories %}
 					<div class="col-12 col-md-4 col-sm-6 mb-4 d-flex align-items-center justify-content-center">
 						<a href="{{ path('app_categorie', {'slug': category.slug}) }}">
 							<div class="container-image background-image d-flex align-items-center justify-content-center">

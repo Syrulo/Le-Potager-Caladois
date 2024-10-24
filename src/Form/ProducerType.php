@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -34,10 +35,6 @@ class ProducerType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180]),
                 ]
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'Description du producteur',
-                'required' => true
-            ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'constraints' => [
@@ -47,6 +44,27 @@ class ProducerType extends AbstractType
                         'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
                     ])
                 ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description du producteur',
+                'required' => true
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'download_uri' => false,
+                'image_uri' => true,
+                'asset_helper' => true,
+                'label' => 'Image',
+                'constraints' => [
+                    new Assert\File([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
+                    ]),
+                ],                  
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
