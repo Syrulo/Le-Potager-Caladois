@@ -38,7 +38,7 @@
 							<th scope="col" class="d-none d-lg-table-cell">Rôles</th>
 							<th scope="col" class="d-none d-lg-table-cell">Prénom</th>
 							<th scope="col" class="d-none d-lg-table-cell">Nom</th>
-							<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
+							{# <th scope="col" class="d-none d-lg-table-cell">Téléphone</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Adresse</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Ville</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Code postal</th> #}
@@ -56,7 +56,7 @@
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.roles|join(', ') }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.firstname }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.lastname }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td>
+								{# <td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td> #}
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.status }}</td>
 								{# <td class="d-none d-lg-table-cell text-center">{{ utilisateur.adresse }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ utilisateur.ville }}</td>
@@ -110,7 +110,7 @@
 											<i class="bi bi-check-square"></i>
 										</a>
 									{% endif %}
-										<a href="{{ path('app_admin_visitor.edit', {'id': visitor.id}) }}" class="btn btn-primary">
+										<a href="{{ path('app_admin_visitor_edit', {'id': visitor.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/utilisateur/_delete_form.html.twig') }}
@@ -123,7 +123,7 @@
 												<i class="bi bi-check-square"></i>
 											</a>
 										{% endif %}
-										<a href="{{ path('app_admin_visitor.edit', {'id': visitor.id}) }}" class="btn btn-primary me-2">
+										<a href="{{ path('app_admin_visitor_edit', {'id': visitor.id}) }}" class="btn btn-primary me-2">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
 										{{ include('backend/utilisateur/_delete_form.html.twig') }}

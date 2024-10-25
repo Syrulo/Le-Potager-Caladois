@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $phone = null;
 
+    #[ORM\ManyToOne(inversedBy: 'users', cascade: ['persist'])]
+    private ?Address $address = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -152,6 +155,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): static
+    {
+        $this->address = $address;
 
         return $this;
     }

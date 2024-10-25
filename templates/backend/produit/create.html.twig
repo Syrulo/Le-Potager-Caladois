@@ -9,11 +9,11 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Ajouter un produit</h1>
+				<h1>Ajouter un produit</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="{{ path('app_admin_product') }}">Liste des produits</a>
+							<a href="{{ path('app_product') }}">Liste des produits</a>
 						</li>
 						<li class="breadcrumb-item active">Ajouter un produit</li>
 					</ol>
@@ -27,45 +27,48 @@
 				<div class="card-header">
 					<h3 class="card-title text-center">Ajouter un produit</h3>
 				</div>
-			<div class="card-body">
-				{{ form_start(form) }}
-				{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.nom) }}
-				{{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-				</div>
-				{{ form_label(form.prix, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.prix) }}
-				{{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
-				</div>
-				{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.description) }}
-				{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
-				</div>
-				{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.imageFile) }}
-				{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
-				</div>
-				{{ form_label(form.category, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.category) }}
-				{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-				</div>
-				{{ form_label(form.producer, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-				{{ form_errors(form.producer) }}
-				{{ form_widget(form.producer, {'attr': {'class': 'form-control'}}) }}
-				</div>
-			</div>
+				<div class="card-body">
+					{{ form_start(form) }}
+					{{ form_label(form.nom, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.nom) }}
+						{{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+					</div>
+					{{ form_label(form.prix, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.prix) }}
+						{{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
+					</div>
+					{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.description) }}
+						{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+					</div>
+					{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.imageFile) }}
+						{{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_label(form.category, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.category) }}
+						{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{% if is_granted('ROLE_ADMIN') %}
+						{{ form_label(form.producer, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+							{{ form_errors(form.producer) }}
+							{{ form_widget(form.producer, {'attr': {'class': 'form-control'}}) }}
+						</div>
+					{% endif %}
 
-			<div class="card-footer text-center">
-				<button type="submit" class="btn btn-color">Ajouter</button>
+				</div>
+
+				<div class="card-footer text-center">
+					<button type="submit" class="btn btn-color">Ajouter</button>
+				</div>
+				{{ form_row(form._token) }}
+				{{ form_end(form, {render_rest: false}) }}
 			</div>
-			{{ form_row(form._token) }}
-			{{ form_end(form, {render_rest: false}) }}
-		</div>
-	</section>
-{% endblock %}
+		</section>
+	{% endblock %}

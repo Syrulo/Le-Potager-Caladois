@@ -19,7 +19,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * Contrôleur pour la gestion des producteurs dans l'administration.
  */
-#[Route('/admin')]
 class AdminProducteurController extends AbstractController
 {
     /**
@@ -123,25 +122,25 @@ class AdminProducteurController extends AbstractController
      * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
      * @return Response Une réponse HTTP qui redirige vers la liste des producteurs après suppression.
      */
-    #[Route('/producer/{id}', name: 'app_admin.producer.delete', methods: ['GET', 'POST'])]
-    public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $producteur->getId(), $request->get('_token'))) {
-            // Supprimer les produits associés
-            foreach ($producteur->getProduits() as $produit) {
-                $manager->remove($produit);
-            }
+    // #[Route('/producer/{id}', name: 'app_admin.producer.delete', methods: ['GET', 'POST'])]
+    // public function deleteProducteur(Producteur $producteur, Request $request, EntityManagerInterface $manager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $producteur->getId(), $request->get('_token'))) {
+    //         // Supprimer les produits associés
+    //         foreach ($producteur->getProduits() as $produit) {
+    //             $manager->remove($produit);
+    //         }
     
-            // Supprimer le producteur
-            $manager->remove($producteur);
-            $manager->flush();
+    //         // Supprimer le producteur
+    //         $manager->remove($producteur);
+    //         $manager->flush();
     
-            $this->addFlash('success', 'Le producteur et ses produits ont bien été supprimés de la liste');
+    //         $this->addFlash('success', 'Le producteur et ses produits ont bien été supprimés de la liste');
             
-            return $this->redirectToRoute('app_admin.producteur');
-        }
+    //         return $this->redirectToRoute('app_admin.producteur');
+    //     }
     
-        return $this->redirectToRoute('app_admin.producteur');
-    }
+    //     return $this->redirectToRoute('app_admin.producteur');
+    // }
 
 }

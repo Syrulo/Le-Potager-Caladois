@@ -24,7 +24,7 @@ class Visitor extends User
     /**
      * @var Collection<int, Producer>
      */
-    #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'visitor')]
+    #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'visitor', cascade: ['remove'])]
     private Collection $producers;
 
     public function __construct()

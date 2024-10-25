@@ -50,7 +50,7 @@ class Producer
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'producers')]
+    #[ORM\ManyToOne(inversedBy: 'producers', cascade: ['remove'])]
     private ?Visitor $visitor = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -59,7 +59,7 @@ class Producer
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'producer')]
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'producer', cascade: ['remove'])]
     private Collection $products;
 
     #[ORM\Column(length: 255, nullable: true)]

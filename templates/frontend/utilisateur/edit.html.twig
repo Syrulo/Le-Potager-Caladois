@@ -28,7 +28,6 @@
 				</div>
 				<div class="card-body">
 					{{ form_start(form) }}
-					{% if form.firstname is defined and form.lastname is defined %}
 						{{ form_label(form.firstname, null, {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.firstname) }}
@@ -49,7 +48,6 @@
 								</span>
 							</div>
 						</div>
-					{% endif %}
 					{{ form_label(form.email) }}
 					<div class="input-group mb-3">
 						{{ form_errors(form.email) }}
@@ -60,7 +58,6 @@
 							</span>
 						</div>
 					</div>
-					{% if form.phone is defined %}
 						{{ form_label(form.phone, null, {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.phone) }}
@@ -71,43 +68,46 @@
 								</span>
 							</div>
 						</div>
-					{% endif %}
-					{% if form.adresse is defined %}
-						{{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.adresse) }}
-							{{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-home icon-large"></span>
-								</span>
-							</div>
+					{{ form_label(form.address.number, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.address.number) }}
+						{{ form_widget(form.address.number, {'attr': {'class': 'form-control', 'placeholder': 'Numéro'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-home icon-large"></span>
+							</span>
 						</div>
-					{% endif %}
-					{% if form.ville is defined %}
-						{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.ville) }}
-							{{ form_widget(form.ville, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-city icon-large"></span>
-								</span>
-							</div>
+					</div>
+					{{ form_label(form.address.street, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.address.street) }}
+						{{ form_widget(form.address.street, {'attr': {'class': 'form-control', 'placeholder': 'Rue'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-city icon-large"></span>
+							</span>
 						</div>
-					{% endif %}
-					{% if form.code_postal is defined %}
-						{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.code_postal) }}
-							{{ form_widget(form.code_postal, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-map-marker-alt icon-large"></span>
-								</span>
-							</div>
+					</div>
+					{{ form_label(form.address.postalCode, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.address.postalCode) }}
+						{{ form_widget(form.address.postalCode, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-map-marker-alt icon-large"></span>
+							</span>
 						</div>
-					{% endif %}
+					</div>
+					{{ form_label(form.address.city, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.address.city) }}
+						{{ form_widget(form.address.city, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-city icon-large"></span>
+							</span>
+						</div>
+					</div>
 				</div>
 
 				<div class="card-footer text-center">

@@ -27,7 +27,7 @@ class VisitorController extends AbstractController
      * @param UtilisateurRepository $repoUtilisateur Le repository pour accéder aux données des utilisateurs.
      * @return Response Une réponse HTTP qui rend le template backend/utilisateur/list.html.twig avec les utilisateurs.
      */
-    #[Route('/', name: 'app_admin.visitor', methods: ['GET'])]
+    #[Route('/', name: 'app_admin_visitor', methods: ['GET'])]
     public function listUtilisateur(VisitorRepository $visitorRepository): Response
     {
         return $this->render('backend/utilisateur/list.html.twig', [
@@ -45,7 +45,7 @@ class VisitorController extends AbstractController
      *
      * @return Response La réponse HTTP.
      */
-    #[Route('/edition/{id}', name: 'app_admin_visitor.edit', methods: ['GET', 'POST'])]
+    #[Route('/edition/{id}', name: 'app_admin_visitor_edit', methods: ['GET', 'POST'])]
     public function edit(Visitor $visitor, Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
         $form = $this->createForm(VisitorEditAsAdminType::class, $visitor);
@@ -74,7 +74,7 @@ class VisitorController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'utilisateur a bien été modifié');
-            return $this->redirectToRoute('app_admin.visitor', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('backend/utilisateur/edit.html.twig', [
@@ -88,7 +88,7 @@ class VisitorController extends AbstractController
     {
         $visitor->setStatus("confirmed");
         $em->flush();
-        return $this->redirectToRoute('app_admin.visitor');
+        return $this->redirectToRoute('app_admin_visitor');
     }
 
     /**
@@ -108,7 +108,7 @@ class VisitorController extends AbstractController
 
         $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
 
-        return $this->redirectToRoute('app_admin.visitor', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
         }
     }
 

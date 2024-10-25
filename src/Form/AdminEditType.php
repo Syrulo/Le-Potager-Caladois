@@ -63,6 +63,7 @@ class AdminEditType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180]),
                 ]
             ])
+            ->add('address', AddressType::class)
         ;
     }
 

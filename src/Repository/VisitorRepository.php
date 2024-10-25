@@ -39,6 +39,22 @@ class VisitorRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Visitor[] Returns an array of Visitor objects
+     */
+    public function findAllWithProducerAndProducts($id): array
+    {
+        return $this->createQueryBuilder('v')
+            ->addSelect('producer, product')
+            ->leftJoin('v.producers', 'producer')
+            ->leftJoin('producer.products', 'product')
+            ->andWhere('v.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    public function findOneBySomeField($value): ?Visitor
     //    {
     //        return $this->createQueryBuilder('v')

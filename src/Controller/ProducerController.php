@@ -40,13 +40,6 @@ class ProducerController extends AbstractController
             'products' => $products
         ]);
     }
-    // #[Route('/producer/validate/{id}', name: 'app_validate_producer')]
-    // public function validate(Producer $producer, EntityManagerInterface $em): Response
-    // {
-    //     $producer->setStatus("confirmed");
-    //     $em->flush();
-    //     return $this->redirectToRoute('app_admin_producer');
-    // }
 
     /**
      * Affiche une liste de producteurs.
@@ -61,10 +54,9 @@ class ProducerController extends AbstractController
         // Récupérer les paramètres de tri depuis la requête
         $sort = $request->query->get('sort', 'id'); // Trier par 'id' par défaut
         $direction = $request->query->get('direction', 'asc'); // Trier par ordre ascendant par défaut
-    
+
         // Récupérer les producteurs triés depuis le repository
         $producers = $producerRepository->findBy([], [$sort => $direction]);
-    
         return $this->render('adminProducer.html.twig', [
             'producers' => $producers,
             'sort' => $sort,
@@ -72,14 +64,14 @@ class ProducerController extends AbstractController
         ]);
     }
 
-        /**
-    * Édite un producteur existant.
-    *
-    * @param Producer $producer L'entité producer à éditer.
-    * @param Request $request L'objet de requête HTTP.
-    * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
-    * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
-    */
+    /**
+     * Édite un producteur existant.
+     *
+     * @param Producer $producer L'entité producer à éditer.
+     * @param Request $request L'objet de requête HTTP.
+     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
+     */
     #[Route('/admin/producer/edit/{id}', name: 'app_admin_producer_edit', methods: ['GET', 'POST'])]
     public function editProducteur(Producer $producer, Request $request, EntityManagerInterface $manager): Response
     {
@@ -91,12 +83,33 @@ class ProducerController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Le producteur a bien été modifié');
-            
+
             return $this->redirectToRoute('app_admin_producer');
         }
 
         return $this->render('backend/producteur/edit.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    /**
+     * Supprime un producteur spécifique.
+     *
+     * @param Producer $producer L'entité catégorie à supprimer.
+     * @param Request $request L'objet de requête HTTP.
+     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
+     * @return Response Une réponse HTTP qui redirige vers la liste des catégories après suppression.
+     */
+    #[Route('/admin/producer/{id}', name: 'app_admin_producer_delete', methods: ['GET', 'POST'])]
+    public function deleteProducer(Producer $producer, Request $request, EntityManagerInterface $manager)
+    {
+        if ($this->isCsrfTokenValid('delete' . $producer->getId(), $request->get('_token'))) {
+            $manager->remove($producer);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le produteur a bien été supprimé');
+
+            return $this->redirectToRoute('app_admin_producer');
+        }
     }
 }
