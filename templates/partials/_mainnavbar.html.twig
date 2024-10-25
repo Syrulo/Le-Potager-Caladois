@@ -87,7 +87,7 @@
 						{% endif %}
 						{% if not app.user %}
 							<li>
-								<a class="dropdown-item" href="{{ path('app_security.login') }}">Connexion</a>
+								<a class="dropdown-item" href="{{ path('app_security_login') }}">Connexion</a>
 							</li>
 						{% endif %}
 						{% if app.user %}
@@ -136,7 +136,7 @@
 				{% endif %}
 				{% if not app.user %}
 					<li>
-						<a class="dropdown-item" href="{{ path('app_security.login') }}">Connexion</a>
+						<a class="dropdown-item" href="{{ path('app_security_login') }}">Connexion</a>
 					</li>
 				{% endif %}
 				{% if app.user %}

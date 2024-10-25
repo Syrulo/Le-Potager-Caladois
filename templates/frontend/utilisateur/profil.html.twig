@@ -22,7 +22,7 @@
 		</div>
 	</section>
 	<section class="content">
-	<div class="container p-5 mb-5">
+	<div class="container p-3">
 		<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
 			<h3 class="text-center">Vos informations personnelles</h3>
 			<table class="table table-striped table-bordered align-middle">
@@ -74,48 +74,55 @@
 					</tr>
 				</tbody>
 			</table>
-			{# {% if is_granted('ROLE_PRODUCER') %}
-		<div class="container p-5 mb-5">
-		<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
-			<h3 class="text-center">Vos informations d'entreprise</h3>
-			<table class="table table-striped table-bordered align-middle">
-				<thead>
-					<tr class="text-center">
-						<th scope="col" class="d-none d-lg-table-cell">Nom de l'entreprise</th>
-						<th scope="col" class="d-none d-lg-table-cell">Email</th>
-						<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
-						<th scope="col" class="d-none d-lg-table-cell">Description</th>
-						<th scope="col" class="d-none d-lg-table-cell">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="d-none d-lg-table-cell text-center">{{ producer.brandName }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ producer.phone }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ producer.description }}</td>
-						<td class="d-table-cell d-lg-none d-flex flex-column">
-							<div class="mb-2"><strong>Nom:</strong> {{ producer.brandName }}</div>
-							<div class="mb-2"><strong>Prénom:</strong> {{ producer.phone }}</div>
-							<div class="mb-2"><strong>Email:</strong> {{ producer.contactEmail }}</div>
-							<div class="mb-2"><strong>Numéro:</strong> {{ producer.description}}</div>
-							<div class="d-flex mb-2 justify-content-center">
-								<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-								<i class="bi bi-pencil-square color-light"></i>
-								</a>
-							</div>
-						</td>
-						<td class="d-none d-lg-table-cell">
-							<div class="d-flex justify-content-center">
-								<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-								<i class="bi bi-pencil-square color-light"></i>
-								</a>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-                {% endif %} #}
+			</div>
+		</div>
+	</section>
+			{% if is_granted('ROLE_PRODUCER') %}
+			<section class="content">
+			<div class="container p-3 mb-5">
+			<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
+				<h3 class="text-center">Vos informations d'entreprise</h3>
+				<table class="table table-striped table-bordered align-middle">
+					<thead>
+						<tr class="text-center">
+							<th scope="col" class="d-none d-lg-table-cell">Nom de l'entreprise</th>
+							<th scope="col" class="d-none d-lg-table-cell">Email</th>
+							<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
+							<th scope="col" class="d-none d-lg-table-cell">Description</th>
+							<th scope="col" class="d-none d-lg-table-cell">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="d-none d-lg-table-cell text-center">{{ producer.brandName ?? 'N/A' }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail ?? 'N/A' }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ producer.phone ?? 'N/A' }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ producer.description ?? 'N/A' }}</td>
+							<td class="d-table-cell d-lg-none d-flex flex-column">
+								<div class="mb-2"><strong>Nom:</strong> {{ producer.brandName ?? 'N/A' }}</div>
+								<div class="mb-2"><strong>Prénom:</strong> {{ producer.phone ?? 'N/A' }}</div>
+								<div class="mb-2"><strong>Email:</strong> {{ producer.contactEmail ?? 'N/A' }}</div>
+								<div class="mb-2"><strong>Numéro:</strong> {{ producer.description ?? 'N/A' }}</div>
+								<div class="d-flex mb-2 justify-content-center">
+									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
+									<i class="bi bi-pencil-square color-light"></i>
+									</a>
+								</div>
+							</td>
+							<td class="d-none d-lg-table-cell">
+								<div class="d-flex justify-content-center">
+									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
+									<i class="bi bi-pencil-square color-light"></i>
+									</a>
+								</div>
+							</td> 
+						</tr
+					</tbody>
+				</table>
+			</div>
+			</div>
+			</section>
+                {% endif %}
 		</div>
 	</div>
 	</section>

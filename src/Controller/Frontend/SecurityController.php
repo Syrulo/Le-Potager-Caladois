@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
      * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir le dernier nom d'visitor et les erreurs.
      * @return Response Une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'visitor est déjà connecté.
      */
-    #[Route('/connexion', name: 'app_security.login', methods: ['GET', 'POST'])]
+    #[Route('/connexion', name: 'app_security_login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
      *
      * Cette méthode peut être vide - elle sera interceptée par le pare-feu de déconnexion de Symfony.
      */
-    #[Route('/deconnexion', 'app_security.logout')]
+    #[Route('/deconnexion', 'app_security_logout')]
     public function logout()
     {
         
@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour gérer les opérations de base de données.
      * @return Response Une réponse HTTP qui rend le template d'inscription ou redirige après l'inscription.
      */
-    #[Route('/inscription', 'app_security.inscription', methods: ['GET', 'POST'])]
+    #[Route('/inscription', 'app_security_inscription', methods: ['GET', 'POST'])]
     public function inscription(Request $request, EntityManagerInterface $manager) : Response
     {
 
@@ -68,7 +68,7 @@ class SecurityController extends AbstractController
                 'Votre compte a bien été crée.'
             );
 
-            return $this->redirectToRoute('app_security.login');
+            return $this->redirectToRoute('app_security_login');
         }    
         
         return $this->render('security/inscription.html.twig', [
