@@ -97,6 +97,7 @@ class CategoryController extends AbstractController
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
      * @return Response La réponse HTTP avec la vue du formulaire d'édition de catégorie.
+     * 
      */
     #[Route('/admin/category/edit/{id}', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
     public function editCategory( Category $category, Request $request, EntityManagerInterface $manager): Response
