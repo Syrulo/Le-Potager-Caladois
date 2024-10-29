@@ -86,6 +86,46 @@
 							{{ form_errors(form.description) }}
 							{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
 						</div>
+						{{ form_label(form.address.number, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+							{{ form_errors(form.address.number) }}
+							{{ form_widget(form.address.number, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de rue'}}) }}
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<span class="fas fa-home icon-large"></span>
+								</span>
+							</div>
+						</div>
+						{{ form_label(form.address.street, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+							{{ form_errors(form.address.street) }}
+							{{ form_widget(form.address.street, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<span class="fas fa-home icon-large"></span>
+								</span>
+							</div>
+						</div>
+						{{ form_label(form.address.city, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+							{{ form_errors(form.address.city) }}
+							{{ form_widget(form.address.city, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<span class="fas fa-home icon-large"></span>
+								</span>
+							</div>
+						</div>
+						{{ form_label(form.address.postalCode, null, {'label_attr': {'class': 'single-line-label'}}) }}
+						<div class="input-group mb-3">
+							{{ form_errors(form.address.postalCode) }}
+							{{ form_widget(form.address.postalCode, {'attr': {'class': 'form-control', 'placeholder': 'Code postal'}}) }}
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<span class="fas fa-home icon-large"></span>
+								</span>
+							</div>
+						</div>
 						{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
 						<div class="input-group mb-3">
 							{{ form_errors(form.imageFile) }}

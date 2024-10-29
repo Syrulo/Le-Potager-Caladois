@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Modifier un producteur</h1>
+					<h1 class>Modifier un producteur</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -26,7 +26,7 @@
 		<div class="container-fluid p-5 mb-5">
 			<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3">
 				<div class="card-header">
-					<h3 class="card-title">Modifier un producteur</h3>
+					<h3 class="card-title text-center">Modifier un producteur</h3>
 				</div>
 				<div class="card-body">
 					{{ form_start(form) }}
@@ -65,7 +65,7 @@
 						{{ form_errors(form.description) }}
 						{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
 					</div>
-					{{ form_label(form.address.number, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_label(form.address.number,'Numéro de rue', {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
 						{{ form_errors(form.address.number) }}
 						{{ form_widget(form.address.number, {'attr': {'class': 'form-control'}}) }}
@@ -75,26 +75,36 @@
 							</span>
 						</div>
 					</div>
-					{# {{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_label(form.address.street, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
-						{{ form_errors(form.ville) }}
-						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+						{{ form_errors(form.address.street) }}
+						{{ form_widget(form.address.street, {'attr': {'class': 'form-control'}}) }}
 						<div class="input-group-append">
 							<span class="input-group-text">
-								<span class="fas fa-city icon-large"></span>
+								<span class="fas fa-home icon-large"></span>
 							</span>
 						</div>
 					</div>
-					{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_label(form.address.city, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
-						{{ form_errors(form.code_postal) }}
-						{{ form_widget(form.code_postal, {'attr': {'class': 'form-control'}}) }}
+						{{ form_errors(form.address.city) }}
+						{{ form_widget(form.address.city, {'attr': {'class': 'form-control'}}) }}
 						<div class="input-group-append">
 							<span class="input-group-text">
-								<span class="fas fa-map-marker-alt icon-large"></span>
+								<span class="fas fa-home icon-large"></span>
 							</span>
 						</div>
-					</div> #}
+					</div>
+					{{ form_label(form.address.postalCode, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.address.postalCode) }}
+						{{ form_widget(form.address.postalCode, {'attr': {'class': 'form-control'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-home icon-large"></span>
+							</span>
+						</div>
+					</div>
 					{{ form_label(form.imageFile, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
 						{{ form_errors(form.imageFile) }}

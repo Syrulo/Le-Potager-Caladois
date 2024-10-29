@@ -90,7 +90,7 @@
 							<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
 							<th scope="col" class="d-none d-lg-table-cell">Description</th>
 							<th scope="col" class="d-none d-lg-table-cell">Adresse</th>
-							<th scope="col" class="d-none d-lg-table-cell">Actions</th>
+							<th scope="col" class="d-none d-lg-table-cell">Image</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -101,25 +101,15 @@
 							<td class="d-none d-lg-table-cell text-center">{{ producer.phone ?? 'N/A' }}</td>
 							<td class="d-none d-lg-table-cell text-center">{{ producer.description ?? 'N/A' }}</td>
 							<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</td>
+							<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td>
 							<td class="d-table-cell d-lg-none d-flex flex-column">
 								<div class="mb-2"><strong>Nom:</strong> {{ producer.brandName ?? 'N/A' }}</div>
 								<div class="mb-2"><strong>Prénom:</strong> {{ producer.phone ?? 'N/A' }}</div>
 								<div class="mb-2"><strong>Email:</strong> {{ producer.contactEmail ?? 'N/A' }}</div>
 								<div class="mb-2"><strong>Numéro:</strong> {{ producer.description ?? 'N/A' }}</div>
 								<div class="mb-2"><strong>Adresse:</strong>{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</div>
-								<div class="d-flex mb-2 justify-content-center">
-									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-									<i class="bi bi-pencil-square color-light"></i>
-									</a>
-								</div>
+								<div class="mb-2"><strong>Image:</strong><div class="d-flex justify-content-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></div></div>
 							</td>
-							<td class="d-none d-lg-table-cell">
-								<div class="d-flex justify-content-center">
-									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-									<i class="bi bi-pencil-square color-light"></i>
-									</a>
-								</div>
-							</td> 
 						</tr>
 					{% endfor %}
 					</tbody>

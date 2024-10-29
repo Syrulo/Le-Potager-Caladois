@@ -34,9 +34,7 @@
 							<h2 class="mb-2">{{ producer.brandName }}</h2>
 							<div class="mb-2"><strong>Email: </strong>{{ producer.contactEmail }}</div>
 							<div class="mb-2"><strong>Téléphone: </strong>{{ producer.phone }}</div>
-							{# <div class="mb-2"><strong>Adresse: </strong>{{ producer.adresse }}</div>
-							<div class="mb-2"><strong>Ville: </strong>{{ producer.ville }}</div>
-							<div class="mb-2"><strong>Code Postal: </strong>{{ producer.codePostal }}</div> #}
+							<div class="mb-2"><strong>Adresse: </strong>{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</div>
 						</div>
 					</div>
 				</div>
