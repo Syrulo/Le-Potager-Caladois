@@ -44,7 +44,7 @@ class CategoryController extends AbstractController
      * Affiche une liste de catégories.
      * 
      * @param Request $request L'objet de requête HTTP.
-     * @param CategorieRepository $categorieRepository Le repository pour accéder aux données des catégories.
+     * @param CategoryRepository $categoryRepository Le repository pour accéder aux données des catégories.
      * @return Response Une réponse HTTP qui rend le template backoffice/categorie/list.html.twig avec les catégories triées.
      */
     #[Route('/admin/category', name: 'app_admin_category', methods: ['GET'])]
@@ -93,7 +93,7 @@ class CategoryController extends AbstractController
     /**
      * Édite une catégorie existante.
      * 
-     * @param Category $categorie L'entité catégorie à éditer.
+     * @param Category $category L'entité catégorie à éditer.
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister les données.
      * @return Response La réponse HTTP avec la vue du formulaire d'édition de catégorie.

@@ -21,6 +21,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
+    /**
+     * Affiche le tableau de bord du producteur et gère la création d'un producteur.
+     *
+     * @param Request $request La requête HTTP
+     * @param EntityManagerInterface $em L'EntityManager pour interagir avec la base de données
+     * @param VisitorRepository $visitorRepository Le repository des visiteurs
+     * @return Response La réponse HTTP
+     */
     #[Route('/product', name: 'app_product')]
     public function index(Request $request, EntityManagerInterface $em, VisitorRepository $visitorRepository): Response
     {
@@ -32,11 +40,6 @@ class ProductController extends AbstractController
             $producer->setVisitor($this->getUser());
             $em->persist($producer);
             $em->flush();
-
-            // $visitor = $visitorRepository->find($this->getUser()->getId());
-            // // $visitor->setStatus("confirmed");
-            // $em->flush();
-
             return $this->redirectToRoute('app_producer_show', ['id' => $producer->getId()]);
         }
         return $this->render('backoffice/producteur/producerDashboard.html.twig', [

@@ -14,6 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProducerController extends AbstractController
 {
+    /**
+     * Affiche la liste des producteurs.
+     *
+     * @param ProducerRepository $producerRepository Le repository des producteurs
+     * @return Response La réponse HTTP
+     */
     #[Route('/producer', name: 'app_producer')]
     public function index(ProducerRepository $producerRepository): Response
     {
@@ -22,6 +28,13 @@ class ProducerController extends AbstractController
             'producers' => $producers
         ]);
     }
+
+    /**
+     * Affiche le tableau de bord d'un producteur.
+     *
+     * @param Producer $producer L'entité Producer à afficher
+     * @return Response La réponse HTTP
+     */
     #[Route('/producer/{id}', name: 'app_producer_show')]
     public function show(Producer $producer): Response
     {
@@ -31,6 +44,13 @@ class ProducerController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche les détails d'un producteur et ses produits associés.
+     *
+     * @param Producer $producer L'entité Producer à afficher
+     * @param ProductRepository $productRepository Le repository des produits
+     * @return Response La réponse HTTP
+     */
     #[Route('/producer/{slug}/details', name: 'app_producer_details', methods: ['GET'])]
     public function detailsProducteur(Producer $producer, ProductRepository $productRepository): Response
     {
@@ -57,7 +77,7 @@ class ProducerController extends AbstractController
 
         // Récupérer les producteurs triés depuis le repository
         $producers = $producerRepository->findBy([], [$sort => $direction]);
-        return $this->render('adminProducer.html.twig', [
+        return $this->render('backoffice/producteur/adminProducer.html.twig', [
             'producers' => $producers,
             'sort' => $sort,
             'direction' => $direction,
@@ -87,7 +107,7 @@ class ProducerController extends AbstractController
             return $this->redirectToRoute('app_admin_producer');
         }
 
-        return $this->render('back/producteur/edit.html.twig', [
+        return $this->render('backoffice/producteur/edit.html.twig', [
             'form' => $form,
         ]);
     }

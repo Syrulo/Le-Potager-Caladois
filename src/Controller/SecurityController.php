@@ -13,6 +13,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * Affiche le formulaire de connexion et gère les erreurs de connexion.
+     *
+     * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir les erreurs et le dernier nom d'utilisateur
+     * @return Response La réponse HTTP
+     */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -28,6 +34,11 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    /**
+     * Gère la déconnexion de l'utilisateur.
+     *
+     * @throws \LogicException Cette méthode peut être vide - elle sera interceptée par la clé de déconnexion dans votre firewall.
+     */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

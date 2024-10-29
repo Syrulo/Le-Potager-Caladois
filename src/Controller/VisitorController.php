@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VisitorController extends AbstractController
 {
-     /**
+    /**
      * Constructeur pour le contrôleur UtilisateurController.
      *
      * @param Security $security Le service de sécurité pour gérer les utilisateurs et les rôles.
@@ -31,7 +31,13 @@ class VisitorController extends AbstractController
     ) {
     }
 
-
+    /**
+     * Crée un nouveau producteur et affiche le formulaire de création.
+     *
+     * @param Request $request La requête HTTP
+     * @param EntityManagerInterface $em L'EntityManager pour interagir avec la base de données
+     * @return Response La réponse HTTP
+     */
     #[Route('/visitor/new', name: 'app_visitor_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
@@ -50,7 +56,6 @@ class VisitorController extends AbstractController
         ]);
     }
 
-   
     /**
      * Affiche le profil de l'utilisateur connecté.
      *
@@ -157,6 +162,13 @@ class VisitorController extends AbstractController
         ]);
     }
 
+    /**
+     * Valide un visiteur en changeant son statut à "confirmed".
+     *
+     * @param Visitor $visitor L'entité Visitor à valider
+     * @param EntityManagerInterface $em L'EntityManager pour interagir avec la base de données
+     * @return Response La réponse HTTP
+     */
     #[Route('/admin/visitor/validate/{id}', name: 'app_validate_visitor')]
     public function validateVisitor(Visitor $visitor, EntityManagerInterface $em): Response
     {
