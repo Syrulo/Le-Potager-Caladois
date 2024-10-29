@@ -14,7 +14,7 @@ class AdminController extends AbstractController
 {
     /**
      * Affiche le tableau de bord de l'administration.
-     
+     *
      * @return Response Une réponse HTTP qui rend le template backoffice/adminDashboard.html.twig.
      */
     #[Route('', name: 'app_admin')]

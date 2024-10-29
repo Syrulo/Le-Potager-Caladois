@@ -65,17 +65,17 @@
 						{{ form_errors(form.description) }}
 						{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
 					</div>
-					{# {{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_label(form.address.number, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
-						{{ form_errors(form.adresse) }}
-						{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+						{{ form_errors(form.address.number) }}
+						{{ form_widget(form.address.number, {'attr': {'class': 'form-control'}}) }}
 						<div class="input-group-append">
 							<span class="input-group-text">
 								<span class="fas fa-home icon-large"></span>
 							</span>
 						</div>
 					</div>
-					{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{# {{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
 						{{ form_errors(form.ville) }}
 						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
@@ -105,8 +105,7 @@
 					<button type="submit" class="btn btn-color">{{ button_label|default('Mettre à jour') }}</button>
 				</div>
 			</div>
-			{{ form_row(form._token) }}
-			{{ form_end(form, {render_rest: false}) }}
+			{{ form_end(form) }}
 		</div>
 	</div></section>
 {% endblock %}
