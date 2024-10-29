@@ -65,6 +65,10 @@ class Producer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Address $address = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -304,5 +308,17 @@ class Producer
         $slugger = new AsciiSlugger();
         $this->slug = $slugger->slug($this->brandName);
         unset($slugger);
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): static
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }

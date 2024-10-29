@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -66,10 +68,12 @@ class ProducerType extends AbstractType
                     ]),
                 ],                  
             ])
+            ->add('address', AddressType::class, [
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'btn btn-color mt-4'
+                    'class' => 'btn btn-color'
                 ]
             ])
         ;
