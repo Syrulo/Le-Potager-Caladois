@@ -24,6 +24,7 @@ class VisitorRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
     /**
      * @return Visitor[] Returns an array of Visitor objects
      */
@@ -40,7 +41,10 @@ class VisitorRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Visitor[] Returns an array of Visitor objects
+     * Trouve tous les visiteurs avec leurs producteurs et produits associés.
+     *
+     * @param int $id L'identifiant du visiteur
+     * @return Visitor[] Retourne un tableau d'objets Visitor
      */
     public function findAllWithProducerAndProducts($id): array
     {
