@@ -55,11 +55,11 @@
 	<script>
 		function toggleDescription(element) {
 			// Trouve le parent commun le plus proche, dans ce cas, la div 'producteur-description'
-			var container = element.closest('.producteur-description');
+			let container = element.closest('.producteur-description');
 			
 			// Utilise querySelector au lieu de getElementById pour trouver les éléments dans ce conteneur spécifique
-			var courte = container.querySelector('.description-courte');
-			var complete = container.querySelector('.description-complete');
+			let courte = container.querySelector('.description-courte');
+			let complete = container.querySelector('.description-complete');
 			
 			// Bascule la visibilité des descriptions courte et complète
 			if (courte.style.display === 'none') {

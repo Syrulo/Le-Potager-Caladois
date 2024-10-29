@@ -31,13 +31,7 @@ class VisitorController extends AbstractController
     ) {
     }
 
-    #[Route('/visitor', name: 'app_visitor')]
-    public function index(): Response
-    {
-        return $this->render('visitor/index.html.twig', [
-            'controller_name' => 'VisitorController',
-        ]);
-    }
+
     #[Route('/visitor/new', name: 'app_visitor_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
@@ -51,7 +45,7 @@ class VisitorController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_login');
         }
-        return $this->render('visitor/new.html.twig', [
+        return $this->render('/frontoffice/utilisateur/new.html.twig', [
             'form' => $form,
         ]);
     }
@@ -60,14 +54,14 @@ class VisitorController extends AbstractController
     /**
      * Affiche le profil de l'utilisateur connecté.
      *
-     * @return Response Une réponse HTTP qui rend le template frontend/utilisateur/profil.html.twig avec les informations de l'utilisateur connecté.
+     * @return Response Une réponse HTTP qui rend le template frontoffice/utilisateur/profil.html.twig avec les informations de l'utilisateur connecté.
      */
     #[Route('/profil', name: 'profil')]
     public function showProfil(): Response
     {
         $user = $this->security->getUser();
 
-        return $this->render('frontend/utilisateur/profil.html.twig', [
+        return $this->render('frontoffice/utilisateur/profil.html.twig', [
             'visitor' => $user,
         ]);
     }
@@ -95,7 +89,7 @@ class VisitorController extends AbstractController
             return $this->redirectToRoute('profil', [], Response::HTTP_SEE_OTHER);
         }
         // dd($form);
-        return $this->render('frontend/utilisateur/edit.html.twig', [
+        return $this->render('frontoffice/utilisateur/edit.html.twig', [
             'form' => $form,
             'title_heading' => 'Editez votre profil'
         ]);
@@ -105,12 +99,12 @@ class VisitorController extends AbstractController
      * Affiche une liste d'utilisateurs, à l'exception des producteurs.
      *
      * @param UtilisateurRepository $repoUtilisateur Le repository pour accéder aux données des utilisateurs.
-     * @return Response Une réponse HTTP qui rend le template backend/utilisateur/list.html.twig avec les utilisateurs.
+     * @return Response Une réponse HTTP qui rend le template backoffice/utilisateur/list.html.twig avec les utilisateurs.
      */
     #[Route('/admin/visitor/', name: 'app_admin_visitor', methods: ['GET'])]
     public function listUtilisateur(VisitorRepository $visitorRepository): Response
     {
-        return $this->render('backend/utilisateur/list.html.twig', [
+        return $this->render('backoffice/utilisateur/list.html.twig', [
             'visitors' => $visitorRepository->findAll(),
         ]);
     }
@@ -157,7 +151,7 @@ class VisitorController extends AbstractController
             return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('backend/utilisateur/edit.html.twig', [
+        return $this->render('backoffice/utilisateur/edit.html.twig', [
             'utilisateur' => $visitor,
             'form' => $form,
         ]);

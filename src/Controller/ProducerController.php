@@ -18,14 +18,14 @@ class ProducerController extends AbstractController
     public function index(ProducerRepository $producerRepository): Response
     {
         $producers = $producerRepository->findAll();
-        return $this->render('frontend/producteur/list.html.twig', [
+        return $this->render('frontoffice/producteur/list.html.twig', [
             'producers' => $producers
         ]);
     }
     #[Route('/producer/{id}', name: 'app_producer_show')]
     public function show(Producer $producer): Response
     {
-        return $this->render('producerDashboard.html.twig', [
+        return $this->render('backoffice/producteur/producerDashboard.html.twig', [
             'producer' => $producer,
             'visitor' => $this->getUser(),
         ]);
@@ -35,7 +35,7 @@ class ProducerController extends AbstractController
     public function detailsProducteur(Producer $producer, ProductRepository $productRepository): Response
     {
         $products = $productRepository->findByProducer($producer->getId());
-        return $this->render('frontend/producteur/detailsProducteur.html.twig', [
+        return $this->render('frontoffice/producteur/detailsProducteur.html.twig', [
             'producer' => $producer,
             'products' => $products
         ]);
@@ -46,7 +46,7 @@ class ProducerController extends AbstractController
      *
      * @param ProducerRepository $producerRepository Le repository pour accéder aux données des producteurs.
      * @param Request $request L'objet de requête HTTP.
-     * @return Response Une réponse HTTP qui rend le template backend/producteur/list.html.twig avec les producteurs triés.
+     * @return Response Une réponse HTTP qui rend le template backoffice/producteur/list.html.twig avec les producteurs triés.
      */
     #[Route('/admin/producer', name: 'app_admin_producer', methods: ['GET'])]
     public function listProducteur(ProducerRepository $producerRepository, Request $request): Response
@@ -87,7 +87,7 @@ class ProducerController extends AbstractController
             return $this->redirectToRoute('app_admin_producer');
         }
 
-        return $this->render('backend/producteur/edit.html.twig', [
+        return $this->render('back/producteur/edit.html.twig', [
             'form' => $form,
         ]);
     }

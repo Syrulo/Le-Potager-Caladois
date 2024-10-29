@@ -20,7 +20,7 @@ class CategoryController extends AbstractController
      * @param string $slug Le slug de la catégorie.
      * @param ProductRepository $productRepository Le repository pour accéder aux données des produits.
      * @param CategoryRepository $categoryRepository Le repository pour accéder aux données des catégories.
-     * @return Response Une réponse HTTP qui rend le template frontend/categorie/show.html.twig avec la catégorie et ses produits.
+     * @return Response Une réponse HTTP qui rend le template frontoffice/categorie/show.html.twig avec la catégorie et ses produits.
      */
     #[Route('/categories/{slug}', name: 'app_category_list', methods: ['GET'])]
     public function categoryList(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
         // Utiliser l'ID de la catégorie pour trouver les produits associés
         $products = $productRepository->findByCategory($category->getId());
 
-        return $this->render('frontend/categorie/show.html.twig', [
+        return $this->render('frontoffice/categorie/show.html.twig', [
             'category' => $category,
             'products' => $products
         ]);
@@ -45,7 +45,7 @@ class CategoryController extends AbstractController
      * 
      * @param Request $request L'objet de requête HTTP.
      * @param CategorieRepository $categorieRepository Le repository pour accéder aux données des catégories.
-     * @return Response Une réponse HTTP qui rend le template backend/categorie/list.html.twig avec les catégories triées.
+     * @return Response Une réponse HTTP qui rend le template backoffice/categorie/list.html.twig avec les catégories triées.
      */
     #[Route('/admin/category', name: 'app_admin_category', methods: ['GET'])]
     public function list(Request $request, CategoryRepository $categoryRepository): Response
@@ -55,7 +55,7 @@ class CategoryController extends AbstractController
     
         $categories = $categoryRepository->findBy([], [$sort => $direction]);
     
-        return $this->render('backend/categorie/list.html.twig', [
+        return $this->render('backoffice/categorie/list.html.twig', [
             'categories' => $categories,
             'sort' => $sort,
             'direction' => $direction,
@@ -84,7 +84,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_category');
         }
 
-        return $this->render('backend/categorie/create.html.twig', [
+        return $this->render('backoffice/categorie/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -113,7 +113,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_category', ['id' => $category->getId()]);
         }
 
-        return $this->render('backend/categorie/edit.html.twig', [
+        return $this->render('backoffice/categorie/edit.html.twig', [
             'form' => $form,
             'category' => $category,
         ]);

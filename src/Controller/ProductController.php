@@ -39,7 +39,7 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('app_producer_show', ['id' => $producer->getId()]);
         }
-        return $this->render('producerDashboard.html.twig', [
+        return $this->render('backoffice/producteur/producerDashboard.html.twig', [
             'visitor' => $visitorRepository->findAllWithProducerAndProducts(["id" => $this->getUser()->getId()])[0],
             'form' => $form,
         ]);
@@ -49,12 +49,12 @@ class ProductController extends AbstractController
      * Affiche les détails d'un produit spécifique.
      *
      * @param Product $product L'entité produit dont les détails doivent être affichés.
-     * @return Response Une réponse HTTP qui rend le template frontend/produit/show.html.twig avec les détails du produit.
+     * @return Response Une réponse HTTP qui rend le template frontoffice/produit/show.html.twig avec les détails du produit.
      */
     #[Route('/product/details/{slug}', name: 'app_product_details')]
     public function show(Product $product): Response
     {
-        return $this->render('frontend/produit/show.html.twig', [
+        return $this->render('frontoffice/produit/show.html.twig', [
             'product' => $product,
         ]);
     }
@@ -64,7 +64,7 @@ class ProductController extends AbstractController
      *
      * @param ProductRepository $productRepository Le repository pour accéder aux données des produits.
      * @param Request $request La requête HTTP.
-     * @return Response Une réponse HTTP qui rend le template frontend/produit/list.html.twig avec les produits trouvés ou un message d'erreur.
+     * @return Response Une réponse HTTP qui rend le template frontoffice/produit/list.html.twig avec les produits trouvés ou un message d'erreur.
      */
     #[Route('/product/list', name: 'app_product_list', methods: ['GET'])]
     public function search(ProductRepository $productRepository, Request $request): Response
@@ -84,7 +84,7 @@ class ProductController extends AbstractController
         } else {
             $this->addFlash('error', 'Veuillez fournir un critère de recherche.');
         }
-        return $this->render('frontend/produit/list.html.twig', [
+        return $this->render('frontoffice/produit/list.html.twig', [
             'products' => $products,
         ]);
     }
@@ -112,7 +112,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product');
         }
 
-        return $this->render('backend/produit/create.html.twig', [
+        return $this->render('backoffice/produit/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -142,7 +142,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product');
         }
 
-        return $this->render('backend/produit/edit.html.twig', [
+        return $this->render('backoffice/produit/edit.html.twig', [
             'form' => $form,
         ]);
     }
@@ -187,7 +187,7 @@ class ProductController extends AbstractController
 
         $products = $productRepository->findBy([], [$sort => $direction]);
 
-        return $this->render('backend/produit/list.html.twig', [
+        return $this->render('backoffice/produit/list.html.twig', [
             'products' => $products,
             'sort' => $sort,
             'direction' => $direction,
@@ -217,7 +217,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_admin_product');
         }
 
-        return $this->render('backend/produit/create.html.twig', [
+        return $this->render('backoffice/produit/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -245,7 +245,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_admin_product');
         }
 
-        return $this->render('backend/produit/edit.html.twig', [
+        return $this->render('backoffice/produit/edit.html.twig', [
             'form' => $form,
         ]);
     }
