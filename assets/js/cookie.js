@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fonction pour effacer un cookie
     function eraseCookie(name) {
-        document.cookie = name + '=; Max-Age=-99999999;';
+        document.cookie = name + '=; path=/; Max-Age=-99999999;';
     }
 
     // Fonction pour mettre à jour le texte du lien de révocation
@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Empêche le lien de recharger la page
         const cookieConsent = getCookie(cookieName);
         if (cookieConsent === "accepted") {
-            eraseCookie(cookieName); // Efface le cookie
             alert("Votre consentement aux cookies a été réinitialisé. La prochaine fois que vous visiterez cette page, vous pourrez refaire votre choix.");
+            eraseCookie(cookieName); // Efface le cookie
             location.reload(); // Rafraîchit la page pour afficher la modale
         } else {
             cookieModal.style.display = "block"; // Réouvre la modale

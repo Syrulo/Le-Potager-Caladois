@@ -26,6 +26,20 @@
         {% block header %}
             {% include "./partials/_mainnavbar.html.twig" %}
         {% endblock %}
+        <!-- Modal de choix des cookies -->
+    <div id="cookieModal" class="cookie-modal">
+        <div class="cookie-modal-content">
+            <h3>Gestion des cookies</h3>
+            <p>
+                Nous utilisons des cookies pour améliorer votre expérience sur notre site. 
+                Vous pouvez choisir d'accepter ou de refuser les cookies.
+            </p>
+            <div class="cookie-modal-actions">
+                <button id="acceptCookies" class="btn btn-primary">Accepter</button>
+                <button id="rejectCookies" class="btn btn-secondary">Refuser</button>
+            </div>
+        </div>
+    </div>
 
         {% block body %}
         {% endblock %}
