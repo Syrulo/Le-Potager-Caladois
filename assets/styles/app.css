@@ -37,6 +37,19 @@ footer {
     width: auto; /* Largeur du logo dans la barre de navigation */
 }
 
+.offcanvas {
+    background-color: var(--nav-bg); /* Couleur de fond du menu déroulant */
+}
+
+.nav-link {
+    font-size: 18px; /* Taille de la police */
+    text-decoration: underline;
+}
+
+.icone-account {
+    font-size: 2em; /* Taille de la police */
+}
+
 .btn-wrap-text {
     white-space: normal; /* Permet d'afficher le texte sur plusieurs lignes */
 }
@@ -55,6 +68,8 @@ footer {
 
 .card {
     background-color: var(--nav-bg); /* Couleur de fond de la carte */
+    border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-footer {
@@ -67,6 +82,10 @@ footer {
 
 .card-img-top {
     width: 100%; /* Largeur de l'image dans la carte */
+}
+
+.carousel {
+    width: 65%; /* Largeur de la fenêtre */
 }
 
 .carousel-caption { 
@@ -110,6 +129,10 @@ footer {
     left: 0; /* texte à gauche */
     color: black; /* Couleur du texte */
     padding: 10px; /* Espacement autour du texte */
+}
+
+.categorie-image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .voir-categorie {
@@ -307,8 +330,12 @@ footer {
         width: auto; /* Largeur de l'image */
     }
 
+    .carousel {
+        width: 75%; /* Largeur de la fenêtre */
+    }
+
     .carousel-caption {
-        width: 50%; /* Augmente la largeur pour les petits écrans */
+        width: 60%; /* Augmente la largeur pour les petits écrans */
         font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
     }
 
@@ -326,13 +353,12 @@ footer {
 }
 
 @media (min-width: 360px) and (max-width: 571px) {
-    
     .dropdown-item {
         font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
     }
 
     .nav-item .nav-link {
-        font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
+        font-size: 20px; /* Augmenter la taille de la police pour les petits écrans */
     }
     
     .offcanvas-title {
@@ -352,9 +378,6 @@ footer {
 
     .breadcrumb {
         text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
-    }
-    
-    .breadcrumb {
         display: flex; /* Permet de faire descendre le texte en bas de la carte */
         align-items: center; /* Centrer les éléments de la liste verticalement */
         justify-content: center; /* Ajout pour centrer la liste horizontalement */
@@ -379,8 +402,13 @@ footer {
         width: auto; /* Largeur de l'image dans la carte */
     }
 
+    .carousel {
+        width: 75%; /* Largeur de la fenêtre */
+    }
+
     .carousel-caption {
-        width: 89%; /* Augmente la largeur pour les petits écrans */
+        width: 75%; /* Augmente la largeur pour les petits écrans */
+        height: auto;
         font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
     }
 
@@ -393,5 +421,10 @@ footer {
     }
     .description-complete {
         display: none; /* Cache les éléments */
+    }
+
+    .categorie-image {
+        width: 70%; /* Largeur de l'image */
+        height: auto; /* Hauteur de l'image */
     }
 }
