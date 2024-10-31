@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Liste des producteurs</h1>
+				<h1>Liste des producteurs</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -34,107 +34,107 @@
 				<table class="table table-striped table-bordered align-middle">
 					<thead>
 						<tr class="text-center">
-                            <th scope="col" style="width: 6%" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+							<th scope="col" style="width: 6%" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'id', direction: sort == 'id' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
 									Id
-                                    {% if sort == 'id' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'brandName', direction: sort == 'brandName' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Nom commercial
-                                    {% if sort == 'brandName' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'contactEmail', direction: sort == 'contactEmail' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Email
-                                    {% if sort == 'contactEmail' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'phone', direction: sort == 'phone' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Téléphone
-                                    {% if sort == 'phone' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'description', direction: sort == 'description' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Description
-                                    {% if sort == 'description' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'adresse', direction: sort == 'adresse' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Adresse
-                                    {% if sort == 'adresse' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">Image</th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Created At
-                                    {% if sort == 'createdAt' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" class="d-none d-lg-table-cell">
-                                <a href="{{ path('app_admin_producer', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
-                                    Updated At
-                                    {% if sort == 'updatedAt' %}
-                                        {% if direction == 'asc' %}
-                                            &#9650;
-                                        {% else %}
-                                            &#9660;
-                                        {% endif %}
-                                    {% endif %}
-                                </a>
-                            </th>
-                            <th scope="col" style="width: 12%" class="d-none d-lg-table-cell">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+									{% if sort == 'id' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'brandName', direction: sort == 'brandName' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Nom commercial
+									{% if sort == 'brandName' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'contactEmail', direction: sort == 'contactEmail' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Email
+									{% if sort == 'contactEmail' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'phone', direction: sort == 'phone' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Téléphone
+									{% if sort == 'phone' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" style="width: 15%" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'description', direction: sort == 'description' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Description
+									{% if sort == 'description' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'adresse', direction: sort == 'adresse' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Adresse
+									{% if sort == 'adresse' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">Image</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'createdAt', direction: sort == 'createdAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Created At
+									{% if sort == 'createdAt' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" class="d-none d-lg-table-cell">
+								<a href="{{ path('app_admin_producer', { sort: 'updatedAt', direction: sort == 'updatedAt' and direction == 'asc' ? 'desc' : 'asc' }) }}" class="text-decoration-none text-dark">
+									Updated At
+									{% if sort == 'updatedAt' %}
+										{% if direction == 'asc' %}
+											&#9650;
+										{% else %}
+											&#9660;
+										{% endif %}
+									{% endif %}
+								</a>
+							</th>
+							<th scope="col" style="width: 12%" class="d-none d-lg-table-cell">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
 						{% for producer in producers %}
 							<tr>
 								<th scope="row" class="d-none d-lg-table-cell text-center">{{ producer.id }}</th>
@@ -142,8 +142,11 @@
 								<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producer.phone }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producer.description }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</td>
-								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td> 
+								<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }},
+									{{ producer.address.street }},
+									{{ producer.address.city }},
+									{{ producer.address.postalCode }}</td>
+								<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td>
 								<td class="d-none d-lg-table-cell text-center">{{ producer.createdAt ? producer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-none d-lg-table-cell text-center">{{ producer.updatedAt ? producer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 								<td class="d-table-cell d-lg-none d-flex flex-column">
@@ -161,27 +164,41 @@
 										{{ producer.phone }}</div>
 									<div class="mb-2">
 										<strong>Description:</strong>
-										{{ producer.description }}</div>
+										<div class="producteur-description">
+											<p id="descriptionCourte" class="description-courte">
+												{{ producer.description|length > 150 ? producer.description|slice(0, 150) ~ '...' : producer.description }}
+											</p>
+											<p id="descriptionComplete" class="description-complete">
+												{{ producer.description }}
+											</p>
+											{% if producer.description|length > 150 %}
+												<a href="#" id="voirPlus" onclick="toggleDescription(this); return false;" class="voir-plus">Voir plus</a>
+											{% endif %}
+										</div>
+									</div>
 									<div class="mb-2">
 										<strong>Adresse:</strong>
-										{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</div>
+										{{ producer.address.number }},
+										{{ producer.address.street }},
+										{{ producer.address.city }},
+										{{ producer.address.postalCode }}</div>
 									<div class="mb-2">
 										<strong>Image:</strong>
-                                        <div class="d-flex justify-content-center">
-										<img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image">
-                                        </div>
-                                    </div>
+										<div class="d-flex justify-content-center">
+											<img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image">
+										</div>
+									</div>
 									<div class="mb-2">
 										<strong>Créé le:</strong>
 										{{ producer.createdAt ? producer.createdAt|date('Y-m-d H:i:s') : '' }}</div>
 									<div class="mb-2">
 										<strong>Mis à jour le:</strong>
-										{{ producer.updatedAt ? producer.updatedAt|date('Y-m-d H:i:s') : '' }}</div> 
+										{{ producer.updatedAt ? producer.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
 									<div class="d-flex justify-content-around mb-2">
 										<a href="{{ path('app_admin_producer_edit', {'id': producer.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>
-                                        {{ include('backoffice/producteur/_delete_form.html.twig') }}
+										{{ include('backoffice/producteur/_delete_form.html.twig') }}
 									</div>
 								</td>
 								<td class="d-none d-lg-table-cell">
@@ -199,5 +216,26 @@
 			</div>
 		</div>
 	</section>
-{% endblock %}
 
+	<script>
+		function toggleDescription(element) { // Trouve le parent commun le plus proche, dans ce cas, la div 'producteur-description'
+			let container = element.closest('.producteur-description');
+
+			// Utilise querySelector au lieu de getElementById pour trouver les éléments dans ce conteneur spécifique
+			let courte = container.querySelector('.description-courte');
+			let complete = container.querySelector('.description-complete');
+
+			// Bascule la visibilité des descriptions courte et complète
+			if (courte.style.display === 'none') {
+			courte.style.display = 'block';
+			complete.style.display = 'none';
+			element.innerHTML = 'Voir plus';
+			} else {
+			courte.style.display = 'none';
+			complete.style.display = 'block';
+			element.innerHTML = 'Voir moins';
+			}
+		}
+	</script>
+
+{% endblock %}

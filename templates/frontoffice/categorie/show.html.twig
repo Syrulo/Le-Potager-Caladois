@@ -28,30 +28,31 @@
 				{% for product in products %}
 					<div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-4 listcard">
 						<div class="card d-flex flex-column h-100 mx-auto w-100">
-							<a href="{{ path('app_product', {'slug': product.slug}) }}"><img src="{{ asset('images/produits/' ~ product.imageName) }}" class="card-img-top p-3 card-img-custom" alt="{{ product.nom }}"><a>
-							<div class="card-body text-center">
-								<h5 class="card-title text-center">{{ product.nom}}</h5>
-								<div class="card-text text-center mb-3">
-									<div>
-									{{ product.prix}} € /
-									{% if product.category.nom == 'Boissons' %}
-                                        litre TTC
-                                    {% else %}
-                                        kg TTC
-                                    {% endif %}
+							<a href="{{ path('app_product_details', {'slug': product.slug}) }}"><img src="{{ asset('images/produits/' ~ product.imageName) }}" class="card-img-top p-3 card-img-custom" alt="{{ product.nom }}"><a>
+									<div class="card-body text-center">
+										<h5 class="card-title text-center">{{ product.nom}}</h5>
+										<div class="card-text text-center mb-3">
+											<div>
+												{{ product.prix}}
+												€ /
+												{% if product.category.nom == 'Boissons' %}
+													litre TTC
+												{% else %}
+													kg TTC
+												{% endif %}
+											</div>
+											<a href="{{ path('app_producer_details', {'slug': product.producer.slug}) }}">
+												<div>{{ product.producer.brandName }}</div>
+											</a>
+										</div>
+										<a href="{{ path('app_product_details', {'slug': product.slug}) }}" class="btn-bottom">
+											<button type="submit" class="btn btn-color">Détails</button>
+										</a>
 									</div>
-									<a href="{{ path('app_producer_details', {'slug': product.producer.slug}) }}">
-										<div>{{ product.producer.brandName }}</div>
-									</a>
 								</div>
-								<a href="{{ path('app_product_details', {'slug': product.slug}) }}" class="btn-bottom">
-									<button type="submit" class="btn btn-color">Détails</button>
-								</a>
 							</div>
-						</div>
+						{% endfor %}
 					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
-{% endblock %}
+				</div>
+			</section>
+		{% endblock %}

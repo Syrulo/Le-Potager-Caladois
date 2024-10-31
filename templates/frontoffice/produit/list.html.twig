@@ -26,7 +26,7 @@
 			{% endfor %}
 		</div>
 	</section>
-	
+
 	<section class="content">
 		<div class="container p-5 mb-5">
 			<div class="row justify-content-center">
@@ -36,8 +36,8 @@
 							<a href="{{ path('app_product_details', {'slug': product.slug}) }}"><img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="card-img-top p-3 card-img-custom"></a>
 							<div class="card-body text-center">
 								<h5 class="card-title text-center">
-								<a class="text-decoration-none" href="{{ path('app_product_details', {'slug': product.slug}) }}">
-									{{ product.nom}}</h5>
+									<a class="text-decoration-none" href="{{ path('app_product_details', {'slug': product.slug}) }}">
+										{{ product.nom}}</h5>
 								</a>
 								<div class="card-text text-center mb-3">
 									<div>{{ product.prix}}
@@ -59,4 +59,3 @@
 		</div>
 	</section>
 {% endblock %}
-

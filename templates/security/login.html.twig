@@ -58,9 +58,9 @@
 							<label class="form-check-label" for="showPassword">Afficher le mot de passe</label>
 						</div>
 						{# <div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
-							<label class="form-check-label" for="remember_me">Remember me!</label>
-						</div> #}
+													<input type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
+													<label class="form-check-label" for="remember_me">Remember me!</label>
+												</div> #}
 						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 						<div class="card-footer text-center">
 							<button type="submit" class="btn btn-color mt-4">Se connecter</button>

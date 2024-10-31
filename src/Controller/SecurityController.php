@@ -71,7 +71,7 @@ class SecurityController extends AbstractController
      * @return Response Une réponse HTTP qui rend le template d'inscription ou redirige après l'inscription.
      */
     #[Route('/inscription', 'app_security_inscription', methods: ['GET', 'POST'])]
-    public function inscription(Request $request, EntityManagerInterface $manager) : Response
+    public function inscription(Request $request, EntityManagerInterface $manager): Response
     {
 
         $visitor = new Visitor();
@@ -87,8 +87,8 @@ class SecurityController extends AbstractController
             );
 
             return $this->redirectToRoute('app_security_login');
-        }    
-        
+        }
+
         return $this->render('security/inscription.html.twig', [
             'form' => $form
         ]);

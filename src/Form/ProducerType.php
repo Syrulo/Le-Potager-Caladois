@@ -2,11 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -66,10 +64,9 @@ class ProducerType extends AbstractType
                         ],
                         'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
                     ]),
-                ],                  
+                ],
             ])
-            ->add('address', AddressType::class, [
-            ])
+            ->add('address', AddressType::class, [])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [

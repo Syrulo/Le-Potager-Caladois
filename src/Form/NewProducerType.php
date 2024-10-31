@@ -76,7 +76,7 @@ class NewProducerType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 50])
                 ]
             ])
-            
+
         ;
     }
 

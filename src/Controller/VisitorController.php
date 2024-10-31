@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\Visitor;
-use App\Entity\Producer;
 use App\Form\AdminEditType;
 use App\Form\NewProducerType;
 use App\Form\VisitorEditAsAdminType;
 use App\Repository\VisitorRepository;
-use App\Repository\ProducerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +26,7 @@ class VisitorController extends AbstractController
     public function __construct(
         private Security $security,
         private VisitorRepository $visitorRepository
-    ) {
-    }
+    ) {}
 
     /**
      * Crée un nouveau producteur et affiche le formulaire de création.
@@ -79,7 +76,7 @@ class VisitorController extends AbstractController
      * @return Response Une réponse HTTP qui rend le formulaire d'édition de profil ou redirige après la modification.
      */
     #[Route('/profil/edit', name: 'profil_edit', methods: ['GET', 'POST'])]
-    public function editProfil(Request $request, EntityManagerInterface $em): Response 
+    public function editProfil(Request $request, EntityManagerInterface $em): Response
     {
 
         $user = $this->security->getUser();
@@ -192,10 +189,9 @@ class VisitorController extends AbstractController
             $entityManager->remove($visitor);
             $entityManager->flush();
 
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+            $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
 
-        return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
         }
     }
-    
 }

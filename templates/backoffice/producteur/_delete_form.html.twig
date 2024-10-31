@@ -1,4 +1,6 @@
 <form action="{{ path('app_admin_producer_delete', { id: producer.id }) }}" method="post" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce producteur?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ producer.id) }}">
-	<button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+	<button type="submit" class="btn btn-danger">
+		<i class="bi bi-trash"></i>
+	</button>
 </form>

@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Mon profil</h1>
+				<h1>Mon profil</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -21,104 +21,127 @@
 			</div>
 		</div>
 	</section>
-	<section class="content">
-	<div class="container p-3">
-		<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
-			<h3 class="text-center">Vos informations personnelles</h3>
-			<table class="table table-striped table-bordered align-middle">
-				<thead>
-					<tr class="text-center">
-						<th scope="col" class="d-none d-lg-table-cell">Prenom</th>
-						<th scope="col" class="d-none d-lg-table-cell">Nom</th>
-						<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
-						<th scope="col" class="d-none d-lg-table-cell">Email</th>
-						<th scope="col" class="d-none d-lg-table-cell">Numéro</th>
-						<th scope="col" class="d-none d-lg-table-cell">Rue</th>
-						<th scope="col" class="d-none d-lg-table-cell">Ville</th>
-						<th scope="col" class="d-none d-lg-table-cell">Code postal</th>
-						<th scope="col" class="d-none d-lg-table-cell">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.firstname }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.lastname }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.email }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.address.number ?? 'N/A' }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.address.street ?? 'N/A' }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.address.postalCode ?? 'N/A' }}</td>
-						<td class="d-none d-lg-table-cell text-center">{{ visitor.address.city ?? 'N/A' }}</td>
-						<td class="d-table-cell d-lg-none d-flex flex-column">
-							<div class="mb-2"><strong>Nom:</strong> {{ visitor.lastname }}</div>
-							<div class="mb-2"><strong>Prénom:</strong> {{ visitor.firstname }}</div>
-							<div class="mb-2"><strong>Téléphone:</strong> {{ visitor.phone }}</div>
-							<div class="mb-2"><strong>Email:</strong> {{ visitor.email }}</div>
-							<div class="mb-2"><strong>Numéro:</strong> {{ visitor.address.number ?? 'N/A' }}</div>
-							<div class="mb-2"><strong>Rue:</strong> {{ visitor.address.street ?? 'N/A' }}</div>
-							<div class="mb-2"><strong>Code Postal:</strong> {{ visitor.address.postalCode ?? 'N/A' }}</div>
-							<div class="mb-2"><strong>Ville:</strong> {{ visitor.address.city ?? 'N/A' }}</div>
-							<div class="d-flex mb-2 justify-content-center">
-								<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-								<i class="bi bi-pencil-square color-light"></i>
-								</a>
-							</div>
-						</td>
-						<td class="d-none d-lg-table-cell">
-							<div class="d-flex justify-content-center">
-								<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
-								<i class="bi bi-pencil-square color-light"></i>
-								</a>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-		</div>
-	</section>
-			{% if is_granted('ROLE_PRODUCER') %}
-			<section class="content">
-			<div class="container p-3 mb-5">
+	<section class="content mb-5">
+		<div class="container p-3">
 			<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
-				<h3 class="text-center">Vos informations d'entreprise</h3>
+				<h3 class="text-center">Vos informations personnelles</h3>
 				<table class="table table-striped table-bordered align-middle">
 					<thead>
 						<tr class="text-center">
-							<th scope="col" class="d-none d-lg-table-cell">Nom de l'entreprise</th>
-							<th scope="col" class="d-none d-lg-table-cell">Email</th>
+							<th scope="col" class="d-none d-lg-table-cell">Prenom</th>
+							<th scope="col" class="d-none d-lg-table-cell">Nom</th>
 							<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
-							<th scope="col" class="d-none d-lg-table-cell">Description</th>
+							<th scope="col" class="d-none d-lg-table-cell">Email</th>
 							<th scope="col" class="d-none d-lg-table-cell">Adresse</th>
-							<th scope="col" class="d-none d-lg-table-cell">Image</th>
+							<th scope="col" class="d-none d-lg-table-cell">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-					{% for producer in visitor.producers %}
 						<tr>
-							<td class="d-none d-lg-table-cell text-center">{{ producer.brandName ?? 'N/A' }}</td>
-							<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail ?? 'N/A' }}</td>
-							<td class="d-none d-lg-table-cell text-center">{{ producer.phone ?? 'N/A' }}</td>
-							<td class="d-none d-lg-table-cell text-center">{{ producer.description ?? 'N/A' }}</td>
-							<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</td>
-							<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td>
+							<td class="d-none d-lg-table-cell text-center">{{ visitor.firstname }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ visitor.lastname }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ visitor.email }}</td>
+							<td class="d-none d-lg-table-cell text-center">{{ visitor.address.number ?? 'N/A' }},
+								{{ visitor.address.street ?? 'N/A' }},
+								{{ visitor.address.postalCode ?? 'N/A' }},
+								{{ visitor.address.city ?? 'N/A' }}</td>
 							<td class="d-table-cell d-lg-none d-flex flex-column">
-								<div class="mb-2"><strong>Nom:</strong> {{ producer.brandName ?? 'N/A' }}</div>
-								<div class="mb-2"><strong>Prénom:</strong> {{ producer.phone ?? 'N/A' }}</div>
-								<div class="mb-2"><strong>Email:</strong> {{ producer.contactEmail ?? 'N/A' }}</div>
-								<div class="mb-2"><strong>Numéro:</strong> {{ producer.description ?? 'N/A' }}</div>
-								<div class="mb-2"><strong>Adresse:</strong>{{ producer.address.number }}, {{ producer.address.street }}, {{ producer.address.city }}, {{ producer.address.postalCode }}</div>
-								<div class="mb-2"><strong>Image:</strong><div class="d-flex justify-content-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></div></div>
+								<div class="mb-2">
+									<strong>Nom:</strong>
+									{{ visitor.lastname }}</div>
+								<div class="mb-2">
+									<strong>Prénom:</strong>
+									{{ visitor.firstname }}</div>
+								<div class="mb-2">
+									<strong>Téléphone:</strong>
+									{{ visitor.phone }}</div>
+								<div class="mb-2">
+									<strong>Email:</strong>
+									{{ visitor.email }}</div>
+								<div class="mb-2">
+									<strong>Adresse:</strong>
+									{{ visitor.address.number }},
+									{{ visitor.address.street }},
+									{{ visitor.address.city }},
+									{{ visitor.address.postalCode }}</div>
+								<div class="d-flex mb-2 justify-content-center">
+									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
+										<i class="bi bi-pencil-square color-light"></i>
+									</a>
+								</div>
+							</td>
+							<td class="d-none d-lg-table-cell">
+								<div class="d-flex justify-content-center">
+									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
+										<i class="bi bi-pencil-square color-light"></i>
+									</a>
+								</div>
 							</td>
 						</tr>
-					{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			</div>
-			</section>
-                {% endif %}
 		</div>
-	</div>
 	</section>
-{% endblock %}
+	{% if is_granted('ROLE_PRODUCER') %}
+		<section class="content">
+			<div class="container p-3 mb-5">
+				<div class="card col-lg-10 col-md-8 col-12 mx-auto p-3">
+					<h3 class="text-center">Vos informations d'entreprise</h3>
+					<table class="table table-striped table-bordered align-middle">
+						<thead>
+							<tr class="text-center">
+								<th scope="col" class="d-none d-lg-table-cell">Nom de l'entreprise</th>
+								<th scope="col" class="d-none d-lg-table-cell">Email</th>
+								<th scope="col" class="d-none d-lg-table-cell">Téléphone</th>
+								<th scope="col" class="d-none d-lg-table-cell">Description</th>
+								<th scope="col" class="d-none d-lg-table-cell">Adresse</th>
+								<th scope="col" class="d-none d-lg-table-cell">Image</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for producer in visitor.producers %}
+								<tr>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.brandName ?? 'N/A' }}</td>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail ?? 'N/A' }}</td>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.phone ?? 'N/A' }}</td>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.description ?? 'N/A' }}</td>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }},
+										{{ producer.address.street }},
+										{{ producer.address.city }},
+										{{ producer.address.postalCode }}</td>
+									<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td>
+									<td class="d-table-cell d-lg-none d-flex flex-column">
+										<div class="mb-2">
+											<strong>Nom:</strong>
+											{{ producer.brandName ?? 'N/A' }}</div>
+										<div class="mb-2">
+											<strong>Prénom:</strong>
+											{{ producer.phone ?? 'N/A' }}</div>
+										<div class="mb-2">
+											<strong>Email:</strong>
+											{{ producer.contactEmail ?? 'N/A' }}</div>
+										<div class="mb-2">
+											<strong>Numéro:</strong>
+											{{ producer.description ?? 'N/A' }}</div>
+										<div class="mb-2">
+											<strong>Adresse:</strong>
+											{{ producer.address.number }},
+											{{ producer.address.street }},
+											{{ producer.address.city }},
+											{{ producer.address.postalCode }}</div>
+										<div class="mb-2">
+											<strong>Image:</strong>
+											<div class="d-flex justify-content-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></div>
+										</div>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+</div></div></section>{% endblock %}

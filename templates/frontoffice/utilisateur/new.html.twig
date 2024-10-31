@@ -4,94 +4,94 @@
 	{{ parent() }}
 {% endblock %}
 {% block body %}
-<section class="content-header">
-	<div class="container p-4">
-		<div class="d-flex flex-column align-items-center">
-			<h1>Ajouter un producteur</h1>
-			<div class="d-flex justify-content-center">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="{{ path('app_admin_producer') }}">Liste des producteurs</a>
-					</li>
-					<li class="breadcrumb-item active">Ajouter un producteur</li>
-				</ol>
+	<section class="content-header">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+				<h1>Ajouter un producteur</h1>
+				<div class="d-flex justify-content-center">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_admin_producer') }}">Liste des producteurs</a>
+						</li>
+						<li class="breadcrumb-item active">Ajouter un producteur</li>
+					</ol>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<section class="content">
-	<div class="container-fluid p-5 mb-5">
-		<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3 mt-1">
-			<div class="card-header">
-				<h3 class="card-title text-center">Ajouter un producteur</h3>
-			</div>
-			<div class="card-body">
-				{{ form_start(form) }}
-				{{ form_label(form.firstname, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.firstname) }}
-					{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-user icon-large"></span>
-						</span>
-					</div>
+	</section>
+	<section class="content">
+		<div class="container-fluid p-5 mb-5">
+			<div class="card col-lg-5 col-md-10 col-12 mx-auto p-3 mt-1">
+				<div class="card-header">
+					<h3 class="card-title text-center">Ajouter un producteur</h3>
 				</div>
-				{{ form_label(form.lastname, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.lastname) }}
-					{{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-user icon-large"></span>
-						</span>
+				<div class="card-body">
+					{{ form_start(form) }}
+					{{ form_label(form.firstname, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.firstname) }}
+						{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-user icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.phone, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.phone) }}
-					{{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-phone icon-large"></span>
-						</span>
+					{{ form_label(form.lastname, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.lastname) }}
+						{{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-user icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{# Champs du formulaire utilisateur #}
-				{{ form_label(form.email, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.email) }}
-					{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse email'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-envelope icon-large"></span>
-						</span>
+					{{ form_label(form.phone, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.phone) }}
+						{{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-phone icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.plainPassword.first) }}
-					{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-lock icon-large"></span>
-						</span>
+					{# Champs du formulaire utilisateur #}
+					{{ form_label(form.email, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.email) }}
+						{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse email'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-envelope icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
-				{{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'single-line-label'}}) }}
-				<div class="input-group mb-3">
-					{{ form_errors(form.plainPassword.second) }}
-					{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirmez le mot de passe'}}) }}
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<span class="fas fa-lock icon-large"></span>
-						</span>
+					{{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.plainPassword.first) }}
+						{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-lock icon-large"></span>
+							</span>
+						</div>
 					</div>
-				</div>
+					{{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					<div class="input-group mb-3">
+						{{ form_errors(form.plainPassword.second) }}
+						{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirmez le mot de passe'}}) }}
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<span class="fas fa-lock icon-large"></span>
+							</span>
+						</div>
+					</div>
 
-				<div class="card-footer text-center">
-					<button type="submit" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
-				</div>
+					<div class="card-footer text-center">
+						<button type="submit" class="btn btn-secondary">{{ button_label|default('Valider') }}</button>
+					</div>
 					{{ form_row(form._token) }}
 					{{ form_end(form, {render_rest: false}) }}
 				</div>

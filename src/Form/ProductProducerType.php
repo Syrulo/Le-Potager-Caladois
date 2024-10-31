@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Entity\Category;
-use App\Entity\Producer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,7 +12,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductProducerType extends AbstractType
@@ -48,12 +46,12 @@ class ProductProducerType extends AbstractType
                         ],
                         'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
                     ]),
-                ],                
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
-            ;
+        ;
     }
 
     /**

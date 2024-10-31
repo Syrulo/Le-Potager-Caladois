@@ -34,7 +34,7 @@ class CategoryType extends AbstractType
                         ],
                         'mimeTypesMessage' => 'Veuillez télécharger une image valide (formats autorisés : .jpg, .png, .webp).',
                     ]),
-                ],                           
+                ],
             ]);
     }
 

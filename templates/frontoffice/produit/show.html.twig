@@ -9,11 +9,12 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Produit</h1>
+				<h1>Produit</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="{{ path('app_category_list', {'slug': product.category.slug}) }}">Retour à la liste des {{ product.category.nom }}</a>
+							<a href="{{ path('app_category_list', {'slug': product.category.slug}) }}">Retour à la liste des
+								{{ product.category.nom }}</a>
 						</li>
 						<li class="breadcrumb-item active">produit</li>
 					</ol>
@@ -48,7 +49,7 @@
 								{{ product.producer.brandName }}</p>
 							<div class="mt-lg-5">
 								<a href="{{ path('app_producer_details', {'slug': product.producer.slug}) }}" class="btn btn-color produit-commande">Commander</a>
-							</div>							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -57,20 +58,20 @@
 	</section>
 
 	<script>
-	function toggleDescription() {
-		let courte = document.getElementById('descriptionCourte');
-		let complete = document.getElementById('descriptionComplete');
-		let lien = document.getElementById('voirPlus');
+		function toggleDescription() {
+let courte = document.getElementById('descriptionCourte');
+let complete = document.getElementById('descriptionComplete');
+let lien = document.getElementById('voirPlus');
 
-		if (courte.style.display === 'none') {
-			courte.style.display = 'block';
-			complete.style.display = 'none';
-			lien.innerHTML = 'Voir plus';
-		} else {
-			courte.style.display = 'none';
-			complete.style.display = 'block';
-			lien.innerHTML = 'Voir moins';
-		}
-	}
+if (courte.style.display === 'none') {
+courte.style.display = 'block';
+complete.style.display = 'none';
+lien.innerHTML = 'Voir plus';
+} else {
+courte.style.display = 'none';
+complete.style.display = 'block';
+lien.innerHTML = 'Voir moins';
+}
+}
 	</script>
 {% endblock %}

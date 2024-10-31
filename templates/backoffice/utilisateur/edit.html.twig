@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Modifier l'utilisateur</h1>
+				<h1>Modifier l'utilisateur</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -66,43 +66,43 @@
 					{% endif %}
 
 					{# {% if form.adresse is defined %}
-						{{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.adresse) }}
-							{{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-home icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.ville is defined %}
-						{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.ville) }}
-							{{ form_widget(form.ville, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-city icon-large"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %}
-
-					{% if form.code_postal is defined %}
-						{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
-						<div class="input-group mb-3">
-							{{ form_errors(form.code_postal) }}
-							{{ form_widget(form.code_postal, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<span class="fas fa-map-marker-alt"></span>
-								</span>
-							</div>
-						</div>
-					{% endif %} #}
+											{{ form_label(form.adresse, null, {'label_attr': {'class': 'single-line-label'}}) }}
+											<div class="input-group mb-3">
+												{{ form_errors(form.adresse) }}
+												{{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+												<div class="input-group-append">
+													<span class="input-group-text">
+														<span class="fas fa-home icon-large"></span>
+													</span>
+												</div>
+											</div>
+										{% endif %}
+					
+										{% if form.ville is defined %}
+											{{ form_label(form.ville, null, {'label_attr': {'class': 'single-line-label'}}) }}
+											<div class="input-group mb-3">
+												{{ form_errors(form.ville) }}
+												{{ form_widget(form.ville, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
+												<div class="input-group-append">
+													<span class="input-group-text">
+														<span class="fas fa-city icon-large"></span>
+													</span>
+												</div>
+											</div>
+										{% endif %}
+					
+										{% if form.code_postal is defined %}
+											{{ form_label(form.code_postal, null, {'label_attr': {'class': 'single-line-label'}}) }}
+											<div class="input-group mb-3">
+												{{ form_errors(form.code_postal) }}
+												{{ form_widget(form.code_postal, {'attr': {'class': 'form-control', 'placeholder': 'Code Postal'}}) }}
+												<div class="input-group-append">
+													<span class="input-group-text">
+														<span class="fas fa-map-marker-alt"></span>
+													</span>
+												</div>
+											</div>
+										{% endif %} #}
 
 					{% if form.roles is defined %}
 						{{ form_label(form.roles, null, {'label_attr': {'class': 'single-line-label'}}) }}
@@ -119,4 +119,3 @@
 		</div>
 	</section>
 {% endblock %}
-

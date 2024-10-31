@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1>Liste des utilisateurs</h1>
+				<h1>Liste des utilisateurs</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -41,8 +41,7 @@
 							{# <th scope="col" class="d-none d-lg-table-cell">Téléphone</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Adresse</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Ville</th> #}
-							{# <th scope="col" class="d-none d-lg-table-cell">Code postal</th> #}
-							<th scope="col" class="d-none d-lg-table-cell">Statut</th>
+							{# <th scope="col" class="d-none d-lg-table-cell">Code postal</th> #}<th scope="col" class="d-none d-lg-table-cell"> Statut</th>
 							{# <th scope="col" class="d-none d-lg-table-cell">Créé le</th> #}
 							{# <th scope="col" class="d-none d-lg-table-cell">Mis à jour le</th> #}
 							<th scope="col" style="width: 15%" class="d-none d-lg-table-cell">Actions</th>
@@ -59,12 +58,11 @@
 								{# <td class="d-none d-lg-table-cell text-center">{{ visitor.phone }}</td> #}
 								<td class="d-none d-lg-table-cell text-center">{{ visitor.status }}</td>
 								{# <td class="d-none d-lg-table-cell text-center">{{ utilisateur.adresse }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ utilisateur.ville }}</td>
-								<td class="d-none d-lg-table-cell text-center">{{ utilisateur.codePostal }}</td> #}
+																<td class="d-none d-lg-table-cell text-center">{{ utilisateur.ville }}</td>
+																<td class="d-none d-lg-table-cell text-center">{{ utilisateur.codePostal }}</td> #}
 								{# <td class="d-none d-lg-table-cell text-center">{{ utilisateur.createdAt ? utilisateur.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
 								{# <td class="d-none d-lg-table-cell text-center">{{ utilisateur.updatedAt ? utilisateur.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
-								<td class="d-table-cell d-lg-none d-flex flex-column">
-									<div class="mb-2">
+									<td class="d-table-cell d-lg-none d-flex flex-column"> <div class="mb-2">
 										<strong>Id:</strong>
 										{{ visitor.id }}</div>
 									<div class="mb-2">
@@ -86,30 +84,29 @@
 										<strong>Statut:</strong>
 										{{ visitor.status }}</div>
 									{# <div class="mb-2">
-										<strong>Adresse:</strong>
-										{{ utilisateur.adresse }}</div>
-									<div class="mb-2">
-										<strong>Ville:</strong>
-										{{ utilisateur.ville }}</div>
-									<div class="mb-2">
-										<strong>Code Postal:</strong>
-										{{ utilisateur.codePostal }}</div> #}
+																			<strong>Adresse:</strong>
+																			{{ utilisateur.adresse }}</div>
+																		<div class="mb-2">
+																			<strong>Ville:</strong>
+																			{{ utilisateur.ville }}</div>
+																		<div class="mb-2">
+																			<strong>Code Postal:</strong>
+																			{{ utilisateur.codePostal }}</div> #}
 									{# <div class="mb-2">
-										<strong>Créé le:</strong>
-										{{ utilisateur.createdAt ? utilisateur.createdAt|date('Y-m-d H:i:s') : '' }}</div>
-									<div class="mb-2">
-										<strong>Mis à jour le:</strong>
-										{{ utilisateur.updatedAt ? utilisateur.updatedAt|date('Y-m-d H:i:s') : '' }}</div> #}
+																			<strong>Créé le:</strong>
+																			{{ utilisateur.createdAt ? utilisateur.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+																		<div class="mb-2">
+																			<strong>Mis à jour le:</strong>
+																			{{ utilisateur.updatedAt ? utilisateur.updatedAt|date('Y-m-d H:i:s') : '' }}</div> #}
 									{# <div class="d-flex justify-content-around mb-2">
-										<a href="{{ path('app_validate_producer', {'id': producer.id}) }}" class="btn btn-success">
-											<i class="bi bi-check-square"></i>
-										</a> #}
-									<div class="d-flex justify-content-around mb-2">
-									{% if visitor.status == 'pending' %}
-										<a href="{{ path('app_validate_visitor', {'id': visitor.id}) }}" class="btn btn-success">
-											<i class="bi bi-check-square"></i>
-										</a>
-									{% endif %}
+																			<a href="{{ path('app_validate_producer', {'id': producer.id}) }}" class="btn btn-success">
+																				<i class="bi bi-check-square"></i>
+																			</a> #}
+										<div class="d-flex justify-content-around mb-2"> {% if visitor.status == 'pending' %}
+											<a href="{{ path('app_validate_visitor', {'id': visitor.id}) }}" class="btn btn-success">
+												<i class="bi bi-check-square"></i>
+											</a>
+										{% endif %}
 										<a href="{{ path('app_admin_visitor_edit', {'id': visitor.id}) }}" class="btn btn-primary">
 											<i class="bi bi-pencil-square color-light"></i>
 										</a>

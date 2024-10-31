@@ -1,430 +1,444 @@
-:root { 
-    --body-background:#E3EBD0; /* Couleurs de fond de site */ 
-    --nav-bg: #FBFBF1;  /* Couleur de fond du nav */
+:root {
+  --body-background: #e3ebd0; /* Couleurs de fond de site */
+  --nav-bg: #fbfbf1; /* Couleur de fond du nav */
 }
-html, body { /* Taille de la page */
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  /* Taille de la page */
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-body { 
-    background-color: var(--body-background); /* Couleur de fond de la page */
-    font-size: 16px; /* Taille de la police */
-    font-family: 'Roboto', sans-serif; /* Police de la page */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+body {
+  background-color: var(--body-background); /* Couleur de fond de la page */
+  font-size: 16px; /* Taille de la police */
+  font-family: "Roboto", sans-serif; /* Police de la page */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .navbar {
-    background-color: var(--nav-bg); /* Couleur de fond de la barre de navigation */
-    min-height: 100px; /* Hauteur de la barre de naviguation */
-    width: 100vw; /* Largeur de la barre de navigation */
+  background-color: var(
+    --nav-bg
+  ); /* Couleur de fond de la barre de navigation */
+  min-height: 100px; /* Hauteur de la barre de naviguation */
+  width: 100vw; /* Largeur de la barre de navigation */
 }
 
 footer {
-    width: 100%; /* Largeur du footer */
-    background-color: var(--nav-bg); /* Couleur de fond du footer */
-    position: relative;
-    bottom: 0;
-    text-align: center;
-    margin-top: auto;
+  width: 100%; /* Largeur du footer */
+  background-color: var(--nav-bg); /* Couleur de fond du footer */
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  margin-top: auto;
 }
 
 .logo {
-    max-height: 80px; /* Hauteur maximale du logo dans la barre de navigation */
-    width: auto; /* Largeur du logo dans la barre de navigation */
+  max-height: 80px; /* Hauteur maximale du logo dans la barre de navigation */
+  width: auto; /* Largeur du logo dans la barre de navigation */
 }
 
 .offcanvas {
-    background-color: var(--nav-bg); /* Couleur de fond du menu déroulant */
+  background-color: var(--nav-bg); /* Couleur de fond du menu déroulant */
 }
 
 .nav-link {
-    font-size: 18px; /* Taille de la police */
-    text-decoration: underline;
+  font-size: 18px; /* Taille de la police */
+  text-decoration: underline;
 }
 
 .icone-account {
-    font-size: 2em; /* Taille de la police */
+  font-size: 2em; /* Taille de la police */
 }
 
 .btn-wrap-text {
-    white-space: normal; /* Permet d'afficher le texte sur plusieurs lignes */
+  white-space: normal; /* Permet d'afficher le texte sur plusieurs lignes */
 }
 
 .table {
-    table-layout: fixed; /* Permet d'afficher le texte sur plusieurs lignes */
-    width: 100%; /* Largeur de la table */
+  table-layout: fixed; /* Permet d'afficher le texte sur plusieurs lignes */
+  width: 100%; /* Largeur de la table */
 }
 
 .table-striped {
-    --bs-table-bg: var(--body-background); /* Couleur de fond de la table */
+  --bs-table-bg: var(--body-background); /* Couleur de fond de la table */
 }
 .table-striped {
-    --bs-table-striped-bg: var(--nav-bg); /* Couleur de fond des lignes impaires de la table */
+  --bs-table-striped-bg: var(
+    --nav-bg
+  ); /* Couleur de fond des lignes impaires de la table */
 }
 
 .card {
-    background-color: var(--nav-bg); /* Couleur de fond de la carte */
-    border-color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--nav-bg); /* Couleur de fond de la carte */
+  border-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-footer {
-    background-color: var(--nav-bg); /* Couleur de fond de la carte */
+  background-color: var(--nav-bg); /* Couleur de fond de la carte */
 }
 
 .card-header {
-    background-color: var(--body-background) /* Couleur de fond de la carte */
+  background-color: var(--body-background); /* Couleur de fond de la carte */
 }
 
 .card-img-top {
-    width: 100%; /* Largeur de l'image dans la carte */
+  width: 100%; /* Largeur de l'image dans la carte */
 }
 
 .carousel {
-    width: 65%; /* Largeur de la fenêtre */
+  width: 65%; /* Largeur de la fenêtre */
 }
 
-.carousel-caption { 
-    bottom: 10%; /* Positionne la le texte de la fenêtre en bas */
-    left: 50%; /* Positionne la le texte de la fenêtre au centre */
-    transform: translateX(-50%); /* Positionne la le texte de la fenêtre au centre */
-    right: auto; /* Supprime la position de droite */
-    top: auto; /* Supprime la position de haut */
-    color: black; /* Couleur du texte */
-    background-color: #7dc2a5a9; /* Couleur de fond du texte */
-    border-radius: 10px; /* Arrondi les coins du texte */
-    padding: 10px; /* Espacement interne du texte */
+.carousel-caption {
+  bottom: 10%; /* Positionne la le texte de la fenêtre en bas */
+  left: 50%; /* Positionne la le texte de la fenêtre au centre */
+  transform: translateX(
+    -50%
+  ); /* Positionne la le texte de la fenêtre au centre */
+  right: auto; /* Supprime la position de droite */
+  top: auto; /* Supprime la position de haut */
+  color: black; /* Couleur du texte */
+  background-color: #7dc2a5a9; /* Couleur de fond du texte */
+  border-radius: 10px; /* Arrondi les coins du texte */
+  padding: 10px; /* Espacement interne du texte */
 }
 
 .carousel-item img {
-    object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible */
+  object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible */
 }
 
 .caroussel-text {
-    font-size: 5px; /* Augmenter la taille de la police pour les petits écrans */
+  font-size: 5px; /* Augmenter la taille de la police pour les petits écrans */
 }
 
 .container-image {
-    width: 100%; /* Prend toute la largeur du conteneur parent */
-    height: auto; /* Hauteur fixe pour toutes les images */
+  width: 100%; /* Prend toute la largeur du conteneur parent */
+  height: auto; /* Hauteur fixe pour toutes les images */
 }
 
 .text-on-image {
-    position: relative; /* Le conteneur de l'image devient un conteneur de positionnement */
+  position: relative; /* Le conteneur de l'image devient un conteneur de positionnement */
 }
 
-.text-on-image img{
-    width: 100%; /* Pour que l'image couvre la largeur du conteneur */
-    height: auto; /* Ajuste la hauteur automatiquement pour conserver les proportions */
-    object-fit: contain; /* Réduit la taille de l'image pour s'adapter au conteneur sans la rogner */
+.text-on-image img {
+  width: 100%; /* Pour que l'image couvre la largeur du conteneur */
+  height: auto; /* Ajuste la hauteur automatiquement pour conserver les proportions */
+  object-fit: contain; /* Réduit la taille de l'image pour s'adapter au conteneur sans la rogner */
 }
 
-.text-on-image p, .text-on-image .voir-categorie {
-    position: absolute; /* Positionne le texte absolument par rapport à son parent .text-on-image */
-    bottom: 0; /* Positionne le texte en bas de l'image */
-    left: 0; /* texte à gauche */
-    color: black; /* Couleur du texte */
-    padding: 10px; /* Espacement autour du texte */
+.text-on-image p,
+.text-on-image .voir-categorie {
+  position: absolute; /* Positionne le texte absolument par rapport à son parent .text-on-image */
+  bottom: 0; /* Positionne le texte en bas de l'image */
+  left: 0; /* texte à gauche */
+  color: black; /* Couleur du texte */
+  padding: 10px; /* Espacement autour du texte */
 }
 
 .categorie-image {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .voir-categorie {
-    top: 0; /* Pour positionner "Voir la catégorie" en haut */
+  top: 0; /* Pour positionner "Voir la catégorie" en haut */
 }
 
 .card-img-top1 {
-    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de la carte */
-    height: auto; /* Maintient les proportions de l'image */
-    display: block; /* Permet d'utiliser margin: auto pour centrer */
-    margin: auto; /* Centre l'image horizontalement */
+  max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de la carte */
+  height: auto; /* Maintient les proportions de l'image */
+  display: block; /* Permet d'utiliser margin: auto pour centrer */
+  margin: auto; /* Centre l'image horizontalement */
 }
 
 .btn-bottom {
-    margin-top: auto; /* Permet de faire descendre le bouton en bas de la carte */
+  margin-top: auto; /* Permet de faire descendre le bouton en bas de la carte */
 }
 
 .card-img-custom {
-    max-width: 100%; /* Largeur de l'image dans la carte */
-    height: 200px; /* Hauteur de l'image dans la carte */
-    object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible */
+  max-width: 100%; /* Largeur de l'image dans la carte */
+  height: 200px; /* Hauteur de l'image dans la carte */
+  object-fit: cover; /* Ajuste l'image pour couvrir l'espace disponible */
 }
 
 .image {
-    width: 50%; /* Largeur de l'image dans la carte */
+  width: 50%; /* Largeur de l'image dans la carte */
 }
 
 .vich-image img {
-    height: 100px; /* Hauteur de l'image dans la carte */
-    width: 100px; /* Largeur de l'image dans la carte */
+  height: 100px; /* Hauteur de l'image dans la carte */
+  width: 100px; /* Largeur de l'image dans la carte */
 }
 
 .imgFruit {
-    height: 40%; /* Hauteur de l'image dans la carte */
-    width: 40%; /* Largeur de l'image dans la carte */
-    border-radius: 5%; /* Arrondi les coins du texte */
+  height: 40%; /* Hauteur de l'image dans la carte */
+  width: 40%; /* Largeur de l'image dans la carte */
+  border-radius: 5%; /* Arrondi les coins du texte */
 }
 
 .btn-color {
-    color: #fff; /* Couleur du texte */
-    background-color: #7DC2A5; /* Couleur de fond du texte */
-    border-color: #9FCDA8; /* Couleur de bordure du texte */
+  color: #fff; /* Couleur du texte */
+  background-color: #7dc2a5; /* Couleur de fond du texte */
+  border-color: #9fcda8; /* Couleur de bordure du texte */
 }
-.btn-color:hover, .btn-color:focus, .btn-color:active, .btn-color.active, .open>.dropdown-toggle.btn-color {
-    color: #fff; /* Couleur du texte */
-    border-color: #7DC2A5; /* Couleur de bordure du texte */
-    background-color: #9FCDA8; /* Couleur de fond du texte */
+.btn-color:hover,
+.btn-color:focus,
+.btn-color:active,
+.btn-color.active,
+.open > .dropdown-toggle.btn-color {
+  color: #fff; /* Couleur du texte */
+  border-color: #7dc2a5; /* Couleur de bordure du texte */
+  background-color: #9fcda8; /* Couleur de fond du texte */
 }
 
 .main-footer {
-    position: fixed; /* Positionne le footer en bas de la page */
-    bottom: 0; /* Positionne le footer en bas de la page */
-    width: 100%; /* Largeur de la page */
+  position: fixed; /* Positionne le footer en bas de la page */
+  bottom: 0; /* Positionne le footer en bas de la page */
+  width: 100%; /* Largeur de la page */
 }
 
 .custom-input {
-    background-color: white; /* Couleur de fond du texte */
-    color: black; /* Couleur du texte */
+  background-color: white; /* Couleur de fond du texte */
+  color: black; /* Couleur du texte */
 }
 
 .icon-large {
-    font-size: 1.5em; /* Augmente la taille de la police pour les petits écrans */
+  font-size: 1.5em; /* Augmente la taille de la police pour les petits écrans */
 }
 
 .input-group-text .fas {
-    width: 1em; /* Largeur de l'image */
-    text-align: center; /* Aligne l'image au centre */
+  width: 1em; /* Largeur de l'image */
+  text-align: center; /* Aligne l'image au centre */
 }
 
 .single-line-label {
-    white-space: nowrap; /* Empeche le texte de se redimensionner */
+  white-space: nowrap; /* Empeche le texte de se redimensionner */
 }
 
 .centrer-unique-producteur .row {
-    justify-content: center; /* Centrer les éléments horizontalement */
+  justify-content: center; /* Centrer les éléments horizontalement */
 }
 
 .centrer-unique-producteur .col-12.col-md-4.col-sm-6.mb-4 {
-    flex: 0 0 auto; /* Empêche le redimensionnement */
-    max-width: none; /* Annule la largeur maximale par défaut */
+  flex: 0 0 auto; /* Empêche le redimensionnement */
+  max-width: none; /* Annule la largeur maximale par défaut */
 }
 
-.centrer-unique-produits .row{
-    justify-content: center; /* Centrer les éléments horizontalement */
+.centrer-unique-produits .row {
+  justify-content: center; /* Centrer les éléments horizontalement */
 }
 
 .centrer-unique-produits .col-12.col-md-4.col-sm-6.mb-4 {
-    flex: 0 0 auto; /* Empêche le redimensionnement */
-    max-width: none; /* Annule la largeur maximale par défaut */
+  flex: 0 0 auto; /* Empêche le redimensionnement */
+  max-width: none; /* Annule la largeur maximale par défaut */
 }
 
 .produit-prix {
-    font-size: 20px; /* Taille de la police */
+  font-size: 20px; /* Taille de la police */
 }
 
 .produit-image {
-    max-height: 200px; /* Hauteur maximale de l'image */
-    object-fit: contain; /* Ajuste l'image pour couvrir l'espace disponible */
-    width: 100%; /* Largeur de l'image */
+  max-height: 200px; /* Hauteur maximale de l'image */
+  object-fit: contain; /* Ajuste l'image pour couvrir l'espace disponible */
+  width: 100%; /* Largeur de l'image */
 }
 
 .produit-image-detail {
-    max-height: 300px; /* Hauteur maximale de l'image */
-    object-fit: contain; /* Ajuste l'image pour couvrir l'espace disponible */
-    width: 100%; /* Largeur de l'image */
+  max-height: 300px; /* Hauteur maximale de l'image */
+  object-fit: contain; /* Ajuste l'image pour couvrir l'espace disponible */
+  width: 100%; /* Largeur de l'image */
 }
 
 .listcard {
-    flex: 0 0 auto; /* Empêche le redimensionnement */
-    max-width: 300px; /* Largeur maximale de la carte */
-    width: 300px; /* Largeur de la carte */
+  flex: 0 0 auto; /* Empêche le redimensionnement */
+  max-width: 300px; /* Largeur maximale de la carte */
+  width: 300px; /* Largeur de la carte */
 }
 
-.description-courte, .voir-plus {
-    display: none; /* Cache les éléments */
+.description-courte,
+.voir-plus {
+  display: none; /* Cache les éléments */
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 /* Styles pour la modale des cookies */
 .cookie-modal {
-    display: none; /* Masquée par défaut */
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+  display: none; /* Masquée par défaut */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .cookie-modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 8px;
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .cookie-modal-actions button {
-    margin: 10px;
+  margin: 10px;
 }
 
 /* RESPONSIVE DESIGN */
 
 @media (min-width: 572px) and (max-width: 991px) {
+  .nav-item .nav-link {
+    font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .nav-item .nav-link {
-        font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
-    }
+  .dropdown-item {
+    font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .dropdown-item {
-        font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
-    }
+  .offcanvas-title {
+    font-size: 35px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .offcanvas-title {  
-      font-size: 35px; /* Augmenter la taille de la police pour les petits écrans */
-    }
+  .logo {
+    width: 100%; /* Largeur du logo dans la barre de navigation */
+  }
 
-    .logo {
-        width: 100%; /* Largeur du logo dans la barre de navigation */
-    }
+  .breadcrumb {
+    text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center; /* Centrer les éléments de la liste verticalement */
+    justify-content: center; /* Ajout pour centrer la liste horizontalement */
+  }
+  .content-header .row > div {
+    margin: 0 auto; /* Assurez-vous que les divs sont centrés */
+    flex-basis: 100%; /* Les divs prennent toute la largeur */
+  }
 
-    .breadcrumb {
-        text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
-    }
-    .breadcrumb {
-        display: flex;
-        align-items: center; /* Centrer les éléments de la liste verticalement */
-        justify-content: center; /* Ajout pour centrer la liste horizontalement */
-    }
-    .content-header .row > div {
-        margin: 0 auto; /* Assurez-vous que les divs sont centrés */
-        flex-basis: 100%; /* Les divs prennent toute la largeur */
-    }
+  .image {
+    width: 20vw; /* Largeur de l'image */
+    max-width: 150px; /* Largeur maximale de l'image */
+  }
 
-    .image {
-        width: 20vw; /* Largeur de l'image */
-        max-width: 150px; /* Largeur maximale de l'image */
-    }
+  .btn-color {
+    font-size: 16px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .btn-color {
-        font-size: 16px; /* Augmenter la taille de la police pour les petits écrans */
-    }
+  .card-img-top {
+    max-height: 100%; /* Hauteur maximale de l'image */
+    width: auto; /* Largeur de l'image */
+  }
 
-    .card-img-top {
-        max-height: 100%; /* Hauteur maximale de l'image */
-        width: auto; /* Largeur de l'image */
-    }
+  .carousel {
+    width: 75%; /* Largeur de la fenêtre */
+  }
 
-    .carousel {
-        width: 75%; /* Largeur de la fenêtre */
-    }
+  .carousel-caption {
+    width: 60%; /* Augmente la largeur pour les petits écrans */
+    font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
+  }
 
-    .carousel-caption {
-        width: 60%; /* Augmente la largeur pour les petits écrans */
-        font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
-    }
+  .card-body {
+    flex-direction: column; /* Permet de faire descendre le texte en bas de la carte */
+  }
 
-    .card-body {
-        flex-direction: column; /* Permet de faire descendre le texte en bas de la carte */
-    }
-
-    .description-courte, .voir-plus {
-        display: block; /* Affiche les éléments */
-    }
-    .description-complete {
-        display: none; /* Cache les éléments */
-    }
-
+  .description-courte,
+  .voir-plus {
+    display: block; /* Affiche les éléments */
+  }
+  .description-complete {
+    display: none; /* Cache les éléments */
+  }
 }
 
 @media (min-width: 360px) and (max-width: 571px) {
-    .dropdown-item {
-        font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
-    }
+  .dropdown-item {
+    font-size: 18px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .nav-item .nav-link {
-        font-size: 20px; /* Augmenter la taille de la police pour les petits écrans */
-    }
-    
-    .offcanvas-title {
-        font-size: 35px; /* Augmenter la taille de la police pour les petits écrans */
-    }
-    
-    .logo {
-        width: 100%; /* Largeur du logo dans la barre de navigation */
-    }
-    
-    .bienvenue {
-        display: flex; /* Permet de faire descendre le texte en bas de la carte */
-        align-items: center; /* Centrer les éléments de la liste verticalement */
-        justify-content: center; /* Ajout pour centrer la liste horizontalement */
-        text-align: center;
-    }
+  .nav-item .nav-link {
+    font-size: 20px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .breadcrumb {
-        text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
-        display: flex; /* Permet de faire descendre le texte en bas de la carte */
-        align-items: center; /* Centrer les éléments de la liste verticalement */
-        justify-content: center; /* Ajout pour centrer la liste horizontalement */
-    }
-    
-    .content-header .row>div {
-        margin: 0 auto; /* Assurez-vous que les divs sont centrés */
-        flex-basis: 100%; /* Les divs prennent toute la largeur */
-    }
-    
-    .image {
-        width: 20vw; /* Largeur de l'image */
-        max-width: 150px; /* Largeur maximale de l'image */
-    }
-    
-    .btn-color {
-        font-size: 16px; /* Augmenter la taille de la police pour les petits écrans */
-    }
-    
-    .card-img-top {
-        max-height: 100%; /* Hauteur maximale de l'image dans la carte */
-        width: auto; /* Largeur de l'image dans la carte */
-    }
+  .offcanvas-title {
+    font-size: 35px; /* Augmenter la taille de la police pour les petits écrans */
+  }
 
-    .carousel {
-        width: 75%; /* Largeur de la fenêtre */
-    }
+  .logo {
+    width: 100%; /* Largeur du logo dans la barre de navigation */
+  }
 
-    .carousel-caption {
-        width: 75%; /* Augmente la largeur pour les petits écrans */
-        height: auto;
-        font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
-    }
+  .bienvenue {
+    display: flex; /* Permet de faire descendre le texte en bas de la carte */
+    align-items: center; /* Centrer les éléments de la liste verticalement */
+    justify-content: center; /* Ajout pour centrer la liste horizontalement */
+    text-align: center;
+  }
 
-    .card-body {
-        flex-direction: column; /* Permet de faire descendre le texte en bas de la carte */
-    }
+  .breadcrumb {
+    text-align: center; /* Centrer le texte horizontalement pour les petits écrans */
+    display: flex; /* Permet de faire descendre le texte en bas de la carte */
+    align-items: center; /* Centrer les éléments de la liste verticalement */
+    justify-content: center; /* Ajout pour centrer la liste horizontalement */
+  }
 
-    .description-courte, .voir-plus {
-        display: block; /* Affiche les éléments */
-    }
-    .description-complete {
-        display: none; /* Cache les éléments */
-    }
+  .content-header .row > div {
+    margin: 0 auto; /* Assurez-vous que les divs sont centrés */
+    flex-basis: 100%; /* Les divs prennent toute la largeur */
+  }
 
-    .categorie-image {
-        width: 70%; /* Largeur de l'image */
-        height: auto; /* Hauteur de l'image */
-    }
+  .image {
+    width: 20vw; /* Largeur de l'image */
+    max-width: 150px; /* Largeur maximale de l'image */
+  }
+
+  .btn-color {
+    font-size: 16px; /* Augmenter la taille de la police pour les petits écrans */
+  }
+
+  .card-img-top {
+    max-height: 100%; /* Hauteur maximale de l'image dans la carte */
+    width: auto; /* Largeur de l'image dans la carte */
+  }
+
+  .carousel {
+    width: 75%; /* Largeur de la fenêtre */
+  }
+
+  .carousel-caption {
+    width: 75%; /* Augmente la largeur pour les petits écrans */
+    height: auto;
+    font-size: 14px; /* Réduit la taille de la police pour les petits écrans */
+  }
+
+  .card-body {
+    flex-direction: column; /* Permet de faire descendre le texte en bas de la carte */
+  }
+
+  .description-courte,
+  .voir-plus {
+    display: block; /* Affiche les éléments */
+  }
+  .description-complete {
+    display: none; /* Cache les éléments */
+  }
+
+  .categorie-image {
+    width: 70%; /* Largeur de l'image */
+    height: auto; /* Hauteur de l'image */
+  }
 }

@@ -53,25 +53,24 @@
 	</section>
 
 	<script>
-		function toggleDescription(element) {
-			// Trouve le parent commun le plus proche, dans ce cas, la div 'producteur-description'
-			let container = element.closest('.producteur-description');
-			
-			// Utilise querySelector au lieu de getElementById pour trouver les éléments dans ce conteneur spécifique
-			let courte = container.querySelector('.description-courte');
-			let complete = container.querySelector('.description-complete');
-			
-			// Bascule la visibilité des descriptions courte et complète
-			if (courte.style.display === 'none') {
-				courte.style.display = 'block';
-				complete.style.display = 'none';
-				element.innerHTML = 'Voir plus';
-			} else {
-				courte.style.display = 'none';
-				complete.style.display = 'block';
-				element.innerHTML = 'Voir moins';
-			}
-		}
+		function toggleDescription(element) { // Trouve le parent commun le plus proche, dans ce cas, la div 'producteur-description'
+let container = element.closest('.producteur-description');
+
+// Utilise querySelector au lieu de getElementById pour trouver les éléments dans ce conteneur spécifique
+let courte = container.querySelector('.description-courte');
+let complete = container.querySelector('.description-complete');
+
+// Bascule la visibilité des descriptions courte et complète
+if (courte.style.display === 'none') {
+courte.style.display = 'block';
+complete.style.display = 'none';
+element.innerHTML = 'Voir plus';
+} else {
+courte.style.display = 'none';
+complete.style.display = 'block';
+element.innerHTML = 'Voir moins';
+}
+}
 	</script>
 
 {% endblock %}

@@ -97,5 +97,4 @@ class Visitor extends User
 
         return $this;
     }
-   
 }

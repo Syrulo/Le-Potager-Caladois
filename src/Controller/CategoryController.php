@@ -52,9 +52,9 @@ class CategoryController extends AbstractController
     {
         $sort = $request->query->get('sort', 'nom');
         $direction = $request->query->get('direction', 'asc');
-    
+
         $categories = $categoryRepository->findBy([], [$sort => $direction]);
-    
+
         return $this->render('backoffice/categorie/list.html.twig', [
             'categories' => $categories,
             'sort' => $sort,
@@ -100,7 +100,7 @@ class CategoryController extends AbstractController
      * 
      */
     #[Route('/admin/category/edit/{id}', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
-    public function editCategory( Category $category, Request $request, EntityManagerInterface $manager): Response
+    public function editCategory(Category $category, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -108,7 +108,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($category);
             $manager->flush();
-            
+
             $this->addFlash('success', 'La catégorie a bien été modifiée');
 
             return $this->redirectToRoute('app_admin_category', ['id' => $category->getId()]);
@@ -134,10 +134,10 @@ class CategoryController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->get('_token'))) {
             $manager->remove($category);
             $manager->flush();
-            
+
             $this->addFlash('success', 'La catégorie a bien été supprimée');
-        
-        return $this->redirectToRoute('app_admin_category');
+
+            return $this->redirectToRoute('app_admin_category');
         }
     }
 }

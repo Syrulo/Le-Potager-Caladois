@@ -9,7 +9,7 @@
 	<section class="content-header">
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
-					<h1 class>Modifier un producteur</h1>
+				<h1 class>Modifier un producteur</h1>
 				<div class="d-flex justify-content-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -60,7 +60,7 @@
 							</span>
 						</div>
 					</div>
-						{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
+					{{ form_label(form.description, null, {'label_attr': {'class': 'single-line-label'}}) }}
 					<div class="input-group mb-3">
 						{{ form_errors(form.description) }}
 						{{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
@@ -117,5 +117,5 @@
 			</div>
 			{{ form_end(form) }}
 		</div>
-	</div></section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

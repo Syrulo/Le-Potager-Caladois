@@ -12,7 +12,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserListener
 {
-    
+
     private UserPasswordHasherInterface $hasher;
 
     /**
@@ -53,7 +53,7 @@ class UserListener
      */
     public function encodePassword(User $User)
     {
-        if($User->getPlainPassword() === null) {
+        if ($User->getPlainPassword() === null) {
             return;
         }
 
