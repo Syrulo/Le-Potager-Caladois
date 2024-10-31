@@ -23,65 +23,64 @@
 						</form>
 					</li>
 					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'legumes'}) }}">Légumes</span>
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'legumes'}) }}">Légumes</a>
 					</li>
-				</a>
-			</li>
-			<li class="nav-item mt-1">
-				<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'fruits'}) }}">Fruits</a>
-			</li>
-			<li class="nav-item mt-1">
-				<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'boissons'}) }}">Boissons</a>
-			</li>
-			<li class="nav-item mt-1">
-				<a class="nav-link active" href="{{ path('app_producer') }}">Producteurs</a>
-			</li>
-			{% if not is_granted('ROLE_PRODUCER') %}
-				<li class="nav-item mt-1">
-					<div class="menu-separator">
-						<a class="nav-link active" href="{{ path('app_visitor_new') }}">Je suis un producteur</a>
-					</div>
-				</li>
-			{% endif %}
-		</ul>
-		<div class="nav-item dropdown mt-3 d-lg-none">
-			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				<i class="bi bi-person-circle d-inline d-lg-none"></i>
-				Mon Compte
-			</a>
-			<ul class="dropdown-menu">
-				{% if is_granted('ROLE_ADMIN') %}
-					<li>
-						<a class="dropdown-item" href="{{ path('app_admin') }}">AdminDashBoard</a>
 					</li>
-					<li><hr class="dropdown-divider"></li>
-				{% endif %}
-				{% if is_granted('ROLE_PRODUCER') %}
-					<li>
-						<a class="dropdown-item" href="{{ path('app_product') }}">Gérer produits</a>
+					<li class="nav-item mt-1">
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'fruits'}) }}">Fruits</a>
 					</li>
-					<li><hr class="dropdown-divider"></li>
-				{% endif %}
-				{% if app.user %}
-					<li>
-						<a class="dropdown-item" href="{{ path('profil') }}">Mon profil</a>
+					<li class="nav-item mt-1">
+						<a class="nav-link active" href="{{ path('app_category_list', {'slug': 'boissons'}) }}">Boissons</a>
 					</li>
-				{% endif %}
-				{% if not app.user %}
-					<li>
-						<a class="dropdown-item" href="{{ path('app_security_login') }}">Connexion</a>
+					<li class="nav-item mt-1">
+						<a class="nav-link active" href="{{ path('app_producer') }}">Producteurs</a>
 					</li>
-				{% endif %}
-				{% if app.user %}
-					<li><hr class="dropdown-divider"></li>
-					<li>
-						<a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+					{% if not is_granted('ROLE_PRODUCER') %}
+					<li class="nav-item mt-1">
+						<div class="menu-separator">
+							<a class="nav-link active" href="{{ path('app_visitor_new') }}">Je suis un producteur</a>
+						</div>
 					</li>
-				{% endif %}
-			</ul>
+					{% endif %}
+				</ul>
+				<div class="nav-item dropdown mt-3 d-lg-none">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="bi bi-person-circle d-inline d-lg-none"></i>
+						Mon Compte
+					</a>
+					<ul class="dropdown-menu">
+						{% if is_granted('ROLE_ADMIN') %}
+							<li>
+								<a class="dropdown-item" href="{{ path('app_admin') }}">AdminDashBoard</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+						{% endif %}
+						{% if is_granted('ROLE_PRODUCER') %}
+							<li>
+								<a class="dropdown-item" href="{{ path('app_product') }}">Gérer produits</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+						{% endif %}
+						{% if app.user %}
+							<li>
+								<a class="dropdown-item" href="{{ path('profil') }}">Mon profil</a>
+							</li>
+						{% endif %}
+						{% if not app.user %}
+							<li>
+								<a class="dropdown-item" href="{{ path('app_security_login') }}">Connexion</a>
+							</li>
+						{% endif %}
+						{% if app.user %}
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
 <li class="nav-item search mt-3 me-5 d-none d-lg-block">
 	<form class="d-flex mt-2" role="search" action="{{ path('app_product_list') }}">
 		<div class="input-group mb-3">
