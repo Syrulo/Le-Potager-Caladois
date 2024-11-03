@@ -1,0 +1,19 @@
+{% extends './layout/base.html.twig' %}
+
+{% block title %}
+	Votre panier
+{% endblock %}
+
+
+{% block body %}
+    <ul>
+        {% for product in products %}
+            <li class="list-group">
+                <h5>Product: {{ product.nom }} x {{ app.session.get('cart')[product.id] }}</h5> 
+                <span>Prix par unité: {{ product.prix}}</span>
+                <span>Total: {{ product.prix * app.session.get('cart')[product.id] }}</span>
+            </li>
+        {% endfor %}
+        <h2>Total: {{ totalPrice }}</h2>
+    </ul>
+{% endblock %}

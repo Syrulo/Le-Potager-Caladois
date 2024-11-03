@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Form\ProductQuantityType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
@@ -23,7 +25,7 @@ class CategoryController extends AbstractController
      * @return Response Une réponse HTTP qui rend le template frontoffice/categorie/show.html.twig avec la catégorie et ses produits.
      */
     #[Route('/categories/{slug}', name: 'app_category_list', methods: ['GET'])]
-    public function categoryList(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    public function categoryList(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository, SessionInterface $session): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $slug]); // Utiliser le slug pour trouver la catégorie
 
@@ -34,9 +36,18 @@ class CategoryController extends AbstractController
         // Utiliser l'ID de la catégorie pour trouver les produits associés
         $products = $productRepository->findByCategory($category->getId());
 
+        $forms = [];
+        foreach ($products as $product) {
+            $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null,[
+            'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
+            'method' => 'POST'
+            ])->createView();
+        }
+
         return $this->render('frontoffice/categorie/show.html.twig', [
             'category' => $category,
-            'products' => $products
+            'products' => $products,
+            'forms' => $forms
         ]);
     }
 

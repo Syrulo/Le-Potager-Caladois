@@ -45,8 +45,18 @@
 												<div>{{ product.producer.brandName }}</div>
 											</a>
 										</div>
+										{{ form_start(forms[product.id]) }}
+											<div class="row align-items-center">
+												<div class="col mt-2">
+													{{ form_widget(forms[product.id].quantity) }}
+												</div>
+												<div class="col mt-2">
+													<button type="submit" class="btn btn-color">Add</button>
+												</div>
+											</div>
+										{{ form_end(forms[product.id]) }}
 										<a href="{{ path('app_product_details', {'slug': product.slug}) }}" class="btn-bottom">
-											<button type="submit" class="btn btn-color">Détails</button>
+											<button type="submit" class="btn btn-color mt-2">Détails</button>
 										</a>
 									</div>
 								</div>

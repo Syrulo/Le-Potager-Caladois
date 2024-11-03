@@ -61,10 +61,10 @@
 									{{ visitor.email }}</div>
 								<div class="mb-2">
 									<strong>Adresse:</strong>
-									{{ visitor.address.number }},
-									{{ visitor.address.street }},
-									{{ visitor.address.city }},
-									{{ visitor.address.postalCode }}</div>
+									{{ visitor.address.number ?? 'N/A'  }},
+									{{ visitor.address.street ?? 'N/A'  }},
+									{{ visitor.address.city ?? 'N/A'  }},
+									{{ visitor.address.postalCode ?? 'N/A'  }}</div>
 								<div class="d-flex mb-2 justify-content-center">
 									<a href="{{ path('profil_edit', {'id': visitor.id}) }}" class="btn btn-primary">
 										<i class="bi bi-pencil-square color-light"></i>
@@ -107,23 +107,23 @@
 									<td class="d-none d-lg-table-cell text-center">{{ producer.contactEmail ?? 'N/A' }}</td>
 									<td class="d-none d-lg-table-cell text-center">{{ producer.phone ?? 'N/A' }}</td>
 									<td class="d-none d-lg-table-cell text-center">{{ producer.description ?? 'N/A' }}</td>
-									<td class="d-none d-lg-table-cell text-center">{{ producer.address.number }},
-										{{ producer.address.street }},
-										{{ producer.address.city }},
-										{{ producer.address.postalCode }}</td>
+									<td class="d-none d-lg-table-cell text-center">{{ producer.address.number ?? 'N/A'  }},
+										{{ producer.address.street ?? 'N/A'  }},
+										{{ producer.address.city ?? 'N/A'  }},
+										{{ producer.address.postalCode ?? 'N/A'  }}</td>
 									<td class="d-none d-lg-table-cell text-center"><img src="{{ asset('images/producteurs/' ~ producer.imageName) }}" alt="{{ producer.brandName }}" class="image"></td>
 									<td class="d-table-cell d-lg-none d-flex flex-column">
 										<div class="mb-2">
 											<strong>Nom:</strong>
 											{{ producer.brandName ?? 'N/A' }}</div>
 										<div class="mb-2">
-											<strong>Prénom:</strong>
+											<strong>Téléphone:</strong>
 											{{ producer.phone ?? 'N/A' }}</div>
 										<div class="mb-2">
 											<strong>Email:</strong>
 											{{ producer.contactEmail ?? 'N/A' }}</div>
 										<div class="mb-2">
-											<strong>Numéro:</strong>
+											<strong>Description:</strong>
 											{{ producer.description ?? 'N/A' }}</div>
 										<div class="mb-2">
 											<strong>Adresse:</strong>
