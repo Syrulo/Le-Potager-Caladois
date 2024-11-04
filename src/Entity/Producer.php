@@ -50,8 +50,6 @@ class Producer
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'producers', cascade: ['remove'])]
-    private ?Visitor $visitor = null;
 
     /**
      * @var Collection<int, Product>
@@ -65,6 +63,10 @@ class Producer
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Address $address = null;
+
+    #[ORM\OneToOne(inversedBy: 'producer', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Visitor $visitor = null;
 
     public function __construct()
     {
@@ -214,18 +216,6 @@ class Producer
         return $this;
     }
 
-    public function getVisitor(): ?Visitor
-    {
-        return $this->visitor;
-    }
-
-    public function setVisitor(?Visitor $visitor): static
-    {
-        $this->visitor = $visitor;
-
-        return $this;
-    }
-
     /**
      * Retourne une collection de produits associés au producteur.
      *
@@ -303,6 +293,18 @@ class Producer
     public function setAddress(Address $address): static
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getVisitor(): ?Visitor
+    {
+        return $this->visitor;
+    }
+
+    public function setVisitor(Visitor $visitor): static
+    {
+        $this->visitor = $visitor;
 
         return $this;
     }

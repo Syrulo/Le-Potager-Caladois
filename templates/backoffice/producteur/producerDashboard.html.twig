@@ -10,8 +10,8 @@
 		<div class="container p-4">
 			<div class="d-flex flex-column align-items-center">
 				<h1 class="bienvenue">Bienvenue
-					{% if visitor.producers|length > 0 %}
-						{{ visitor.producers[0].brandName }}
+					{% if visitor.producer %}
+						{{ visitor.producer.brandName }}
 					{% else %}
 						{{ visitor.firstname }}
 						{{ visitor.lastname }}
@@ -42,7 +42,7 @@
 			</div>
 		{% endif %}
 	</div>
-	{% if visitor.status == 'confirmed' and visitor.producers|length == 0 %}
+	{% if visitor.status == 'confirmed' and visitor.producer is null %}
 		<section class="content">
 			<div class="container-fluid p-5 mb-5">
 				<div class="card col-lg-6 col-md-10 col-12 mx-auto p-3">
@@ -139,7 +139,7 @@
 			</div>
 		</section>
 	{% endif %}
-	{% if visitor.producers|length > 0  %}
+	{% if visitor.producer %}
 		<section class="content">
 			<div class="container p-5 mb-5">
 				<div class="card col-lg-12 col-md-8 col-12 mx-auto p-3">
@@ -157,7 +157,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for product in visitor.producers[0].products %}
+							{% for product in visitor.producer.products %}
 								<tr>
 									<td class="d-none d-lg-table-cell text-center">{{ product.nom }}</td>
 									<td class="d-none d-lg-table-cell text-center">{{ product.category.nom }}</td>

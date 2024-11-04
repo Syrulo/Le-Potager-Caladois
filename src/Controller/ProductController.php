@@ -167,6 +167,7 @@ class ProductController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Le produit a bien été supprimé');
+            
             if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('app_admin_product');
             }

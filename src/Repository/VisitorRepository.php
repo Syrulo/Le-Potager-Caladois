@@ -32,7 +32,7 @@ class VisitorRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('v')
             ->addSelect('p')
-            ->leftJoin('v.producers', 'p')
+            ->leftJoin('v.producer', 'p')
             ->andWhere('v.id = :val')
             ->setParameter('val', $id)
             ->getQuery()
@@ -50,7 +50,7 @@ class VisitorRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('v')
             ->addSelect('producer, product')
-            ->leftJoin('v.producers', 'producer')
+            ->leftJoin('v.producer', 'producer')
             ->leftJoin('producer.products', 'product')
             ->andWhere('v.id = :val')
             ->setParameter('val', $id)

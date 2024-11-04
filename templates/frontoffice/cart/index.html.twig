@@ -6,14 +6,50 @@
 
 
 {% block body %}
-    <ul>
-        {% for product in products %}
-            <li class="list-group">
-                <h5>Product: {{ product.nom }} x {{ app.session.get('cart')[product.id] }}</h5> 
-                <span>Prix par unité: {{ product.prix}}</span>
-                <span>Total: {{ product.prix * app.session.get('cart')[product.id] }}</span>
-            </li>
-        {% endfor %}
-        <h2>Total: {{ totalPrice }}</h2>
-    </ul>
+	<section class="content-header">
+		<div class="container p-4">
+			<div class="d-flex flex-column align-items-center">
+				<h1>Votre panier</h1>
+				<div class="d-flex justify-content-center">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_home_page') }}">Accueil</a>
+						</li>
+						<li class="breadcrumb-item active">Votre panier</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+    <section class="content">
+		<div class="container mb-5">
+			<div class="row justify-content-center">
+                {% for product in products %}
+                    <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-4 listcard">
+                        <div class="card d-flex flex-column h-100 mx-auto w-100">
+                            <img src="{{ asset('images/produits/' ~ product.imageName) }}" alt="{{ product.nom }}" class="card-img-top p-1 card-img-custom">
+                            <div class="card-body text-center">
+                                <h5>{{ product.nom }} x {{ app.session.get('cart')[product.id] }}</h5> 
+                            <div>
+						    {{ product.prix}}
+							    € /
+							{% if product.category.nom == 'Boissons' %}
+							    litre TTC
+							{% else %}
+								kg TTC
+							{% endif %}
+							</div>
+                            <div>
+                            Total: {{ product.prix * app.session.get('cart')[product.id] }} €
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center">
+                <h2>Total: {{ totalPrice }} € TTC</h2>
+            </div>
+        </div>
+    </section>
 {% endblock %}

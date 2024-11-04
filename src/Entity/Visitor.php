@@ -21,16 +21,8 @@ class Visitor extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
 
-    /**
-     * @var Collection<int, Producer>
-     */
-    #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'visitor', cascade: ['remove'])]
-    private Collection $producers;
-
-    public function __construct()
-    {
-        $this->producers = new ArrayCollection();
-    }
+    #[ORM\OneToOne(mappedBy: 'visitor', cascade: ['persist', 'remove'])]
+    private ?Producer $producer = null;
 
     public function getFirstname(): ?string
     {
@@ -68,33 +60,21 @@ class Visitor extends User
         return $this;
     }
 
-    /**
-     * @return Collection<int, Producer>
-     */
-    public function getProducers(): Collection
+    public function getProducer(): ?Producer
     {
-        return $this->producers;
+        return $this->producer;
     }
 
-    public function addProducer(Producer $producer): static
+    public function setProducer(Producer $producer): static
     {
-        if (!$this->producers->contains($producer)) {
-            $this->producers->add($producer);
+        // set the owning side of the relation if necessary
+        if ($producer->getVisitor() !== $this) {
             $producer->setVisitor($this);
         }
 
-        return $this;
-    }
-
-    public function removeProducer(Producer $producer): static
-    {
-        if ($this->producers->removeElement($producer)) {
-            // set the owning side to null (unless already changed)
-            if ($producer->getVisitor() === $this) {
-                $producer->setVisitor(null);
-            }
-        }
+        $this->producer = $producer;
 
         return $this;
     }
+
 }

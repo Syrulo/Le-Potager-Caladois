@@ -38,13 +38,13 @@ class VisitorController extends AbstractController
     #[Route('/visitor/new', name: 'app_visitor_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
-        $producer = new Visitor();
-        $form = $this->createForm(NewProducerType::class, $producer);
+        $visitor = new Visitor();
+        $form = $this->createForm(NewProducerType::class, $visitor);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $producer->setRoles(['ROLE_PRODUCER']);
-            $producer->setStatus("pending");
-            $em->persist($producer);
+            $visitor->setRoles(['ROLE_PRODUCER']);
+            $visitor->setStatus("pending");
+            $em->persist($visitor);
             $em->flush();
             return $this->redirectToRoute('app_login');
         }
@@ -171,6 +171,8 @@ class VisitorController extends AbstractController
     {
         $visitor->setStatus("confirmed");
         $em->flush();
+
+        $this->addFlash('success', 'L\'utilisateur a bien été validé');
         return $this->redirectToRoute('app_admin_visitor');
     }
 
