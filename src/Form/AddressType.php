@@ -27,7 +27,7 @@ class AddressType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            ->add('postalCode', NumberType::class, [
+            ->add('postalCode', TextType::class, [
                 'label' => 'Code Postal',
                 'constraints' => [
                     new Assert\NotBlank(),

@@ -82,7 +82,7 @@
             "importmap:install": "symfony-cmd",
             "asset-map:compile": "symfony-cmd",
             "doctrine:database:create --if-not-exists": "symfony-cmd",
-            "doctrine:schema:update --force": "symfony-cmd"
+            "doctrine:migrations:migrate": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts",
