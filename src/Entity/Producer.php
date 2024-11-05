@@ -65,7 +65,7 @@ class Producer
     private ?Address $address = null;
 
     #[ORM\OneToOne(inversedBy: 'producer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\JoinColumn(nullable: false)]
     private ?Visitor $visitor = null;
 
     public function __construct()
