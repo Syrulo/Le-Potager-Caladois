@@ -38,14 +38,9 @@ class AddressType extends AbstractType
                 ]
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville',
+                'label' => 'Ville:',
                 'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '80',
-                ],
-                'constraints' => [
-                    new Assert\NotBlank()
+                    'data-action' => 'address-input',
                 ]
             ])
         ;

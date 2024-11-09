@@ -298,6 +298,33 @@ footer {
   margin: 10px;
 }
 
+/* Assurez-vous que le menu déroulant est correctement positionné */
+.dropdown-city  {
+  position: absolute;
+  top: 100%; /* Place le menu déroulant juste en dessous du champ de saisie */
+  left: 0;
+  z-index: 1; /* Assurez-vous que le menu déroulant est au-dessus des autres éléments */
+  display: none; /* Cache le menu déroulant par défaut */
+  max-height: 200px; /* Limite la hauteur maximale du menu déroulant */
+  overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
+  background-color: #fff; /* Couleur de fond du menu déroulant */
+  border: 1px solid #ccc; /* Bordure du menu déroulant */
+  border-radius: 4px; /* Bordures arrondies du menu déroulant */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre du menu déroulant */
+  overscroll-behavior: contain; /* Empêche le défilement de la page lorsque le menu déroulant est défilé */
+}
+
+/* Affiche le menu déroulant lorsqu'il n'a pas la classe 'hidden' */
+.dropdown-city:not(.hidden) {
+  display: block;
+}
+
+/* Ajustez les marges et les paddings des éléments de la liste */
+.list-group-item {
+  margin: 0; /* Supprimez les marges */
+  padding: 0.5rem 1rem; /* Ajustez le padding selon vos besoins */
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (min-width: 572px) and (max-width: 991px) {
