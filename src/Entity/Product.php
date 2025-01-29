@@ -48,8 +48,8 @@ class Product
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;    
 
     #[ORM\Column(length: 50)]
     private ?string $slug = null;
@@ -70,7 +70,7 @@ class Product
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTime('now');
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     /**
@@ -255,7 +255,7 @@ class Product
      * @param \DateTimeInterface|null $updatedAt La date de mise à jour du produit.
      * @return static L'instance du produit pour permettre le chaînage.
      */
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 

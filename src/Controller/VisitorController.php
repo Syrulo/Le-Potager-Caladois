@@ -6,6 +6,7 @@ use App\Entity\Address;
 use App\Entity\Visitor;
 use App\Form\AdminEditType;
 use App\Form\NewProducerType;
+use App\Form\VisitorEditType;
 use App\Form\VisitorEditAsAdminType;
 use App\Repository\VisitorRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -81,7 +82,7 @@ class VisitorController extends AbstractController
 
         $user = $this->security->getUser();
         $address = new Address();
-        $form = $this->createForm(AdminEditType::class, $user);
+        $form = $this->createForm(VisitorEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

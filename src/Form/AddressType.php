@@ -18,19 +18,19 @@ class AddressType extends AbstractType
             ->add('number')
             ->add('street', TextType::class, [
                 'label' => 'Adresse',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
                     'maxlength' => '255',
                 ],
                 'constraints' => [
-                    new Assert\NotBlank()
                 ]
             ])
             ->add('postalCode', TextType::class, [
                 'label' => 'Code Postal',
+                'required' => false,
                 'constraints' => [
-                    new Assert\NotBlank(),
                     new Assert\Regex([
                         'pattern' => '/^[0-9]{5}$/',
                         'message' => 'Le code postal doit contenir exactement 5 chiffres.',
@@ -39,6 +39,7 @@ class AddressType extends AbstractType
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville:',
+                'required' => false,
                 'attr' => [
                     'data-action' => 'address-input',
                 ]

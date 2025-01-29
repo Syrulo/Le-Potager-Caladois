@@ -41,12 +41,12 @@ class Producer
     #[ORM\Column]
     private ?int $imageSize = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: "datetime_immutable", nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
-
+    
+    #[ORM\Column(type: "datetime_immutable", nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+    
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
@@ -114,7 +114,7 @@ class Producer
         return $this;
     }
 
-     /**
+    /**
      * Définit le fichier image du producteur.
      *
      * @param File|null $imageFile Le fichier image du producteur.
@@ -199,7 +199,7 @@ class Producer
     #[ORM\PreUpdate]
     public function setUpdatedAt(): static
     {
-        $this->updatedAt = new \DateTime('now');
+        $this->updatedAt = new \DateTimeImmutable('now');
 
         return $this;
     }

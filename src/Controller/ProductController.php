@@ -138,7 +138,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product->setUpdatedAt(new \DateTime());
+            $product->setUpdatedAt(new \DateTimeImmutable());
             $manager->persist($product);
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été modifié');
@@ -242,7 +242,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product->setUpdatedAt(new \DateTime());
+            $product->setUpdatedAt(new \DateTimeImmutable());
             $manager->persist($product);
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été modifié');

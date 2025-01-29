@@ -33,32 +33,32 @@ class VisitorEditAsAdminType extends AbstractType
                 $form
                     ->add('firstname', TextType::class, [
                         'label' => 'Prénom',
+                        'required' => false,
                         'attr' => [
                             'class' => 'form-control',
                             'minlength' => '2',
                             'maxlength' => '50',
                         ],
                         'constraints' => [
-                            new Assert\NotBlank(),
                             new Assert\Length(['min' => 2, 'max' => 50])
                         ]
                     ])
                     ->add('lastname', TextType::class, [
                         'label' => 'Nom',
+                        'required' => false,
                         'attr' => [
                             'class' => 'form-control',
                             'minlength' => '2',
                             'maxlength' => '50',
                         ],
                         'constraints' => [
-                            new Assert\NotBlank(),
                             new Assert\Length(['min' => 2, 'max' => 50])
                         ]
                     ])
                     ->add('phone', TelType::class, [
                         'label' => 'Téléphone',
+                        'required' => false,
                         'constraints' => [
-                            new Assert\NotBlank(),
                             new Assert\Regex([
                                 'pattern' => '/^0[0-9]{9}$/',
                                 'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
@@ -73,7 +73,6 @@ class VisitorEditAsAdminType extends AbstractType
                             'maxlength' => '180',
                         ],
                         'constraints' => [
-                            new Assert\NotBlank(),
                             new Assert\Email(),
                             new Assert\Length(['min' => 2, 'max' => 180]),
                         ]
