@@ -32,7 +32,7 @@ Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le
 
 ## Technologies utilisées :
 
-- **Symfony** (Framework PHP)
+- **Symfony 7.2** (Framework PHP)
 - **Doctrine** (ORM pour la gestion de base de données)
 - **Twig** (moteur de templates)
 - **MySQL** (base de données)
