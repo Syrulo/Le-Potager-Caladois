@@ -18,8 +18,9 @@ Ce projet est une application web développée avec **Symfony** pour mettre en r
 
 ## Installation et démo rapide :
 
-Pour voir ce projet en action, vous pouvez facilement tester l'application via la démo en ligne accessible ici :  
-[https://le-potager-caladois-473dbd9489eb.herokuapp.com/](https://le-potager-caladois-473dbd9489eb.herokuapp.com/)
+Pour tester rapidement l'application, vous pouvez accéder à la démo en ligne ici :
+
+https://le-potager-caladois-473dbd9489eb.herokuapp.com/
 
 Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
 
@@ -61,5 +62,7 @@ Pour gérer efficacement les produits et les transactions, j’ai optimisé les 
 ## Auteur :
 
 **Thomas Borestel**
+
+## Contact :
 
 N'hésitez pas à me contacter via une issue ou une discussion sur GitHub pour toute suggestion ou signalement de bug.
