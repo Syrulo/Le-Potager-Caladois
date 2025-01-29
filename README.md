@@ -1,90 +1,48 @@
 Projet Symfony
 
 Description :
-
+  
 Projet de fin d'études ayant été présenté lors de l'examen de développeur web / web mobile.
-
-Ce projet est une application web utilisant Symfony destinée à mettre en contact des producteurs locaux avec des particuliers pour l'achat de produits. Il permet une visibilité accrue des producteurs sur internet et propose des fonctionnalités telles que :
+  
+Ce projet est une application web développée avec Symfony pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles locaux.
+Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique.
+Ce projet soutient ainsi l'agriculture locale et l'achat responsable.
 
 Fonctionnalités principales
 
-[✔] Authentification des utilisateurs
+  [✔] Authentification des utilisateurs
+  
+  [✔] Possibilité pour un utilisateur de s'inscrire en tant que producteur
+  
+  [✔] Gestion des articles ou produits par le producteur lui-même
 
-[✔] Possibilité pour un utilisateur de s'inscrire en tant que producteur
+Installation et démo rapide :
 
-[✔] Gestion des articles ou produits par le producteur lui-même
-
-Di vous souhaitez voir une démonstration en ligne via Heroku:
-
-https://le-potager-caladois-473dbd9489eb.herokuapp.com/
-
-Prérequis :
-
-Avant d'installer et d'exécuter ce projet, assurez-vous d'avoir les éléments suivants installés sur votre machine :
-
-PHP (>= 8.0)
-
-Composer
-
-Symfony CLI
-
-MySQL ou PostgreSQL
-
-Installation
-
-Cloner le dépôt :
-
-git clone https://github.com/Syrulo/Projet.git
-cd Projet
-
-Installer les dépendances :
-
-composer install
-
-Configurer la base de données :
-
-Copier le fichier .env et renommer en .env.local
-
-Modifier la ligne DATABASE_URL="mysql://user:password@127.0.0.1:3306/nom_de_la_db"
-
-Créer la base de données et exécuter les migrations :
-
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
-
-Lancer le serveur Symfony :
-
-symfony server:start
-
-L’application sera accessible via http://127.0.0.1:8000.
-
-Utilisation :
-
-Accéder à http://127.0.0.1:8000/
-
-Se connecter avec un compte utilisateur que vous passez en rôle admin dans la base de données pour avoir accès au dashboard administrateur (par la suite vous pourrez attribuer un rôle admin à un utilisateur via ce même dashboard).
+  Pour voir ce projet en action, vous pouvez facilement tester l'application via la démo en ligne accessible ici :
+  
+  https://le-potager-caladois-473dbd9489eb.herokuapp.com/ 
+  
+  Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
+  
+      Clonez le dépôt : git clone https://github.com/Syrulo/Projet.git
+      Installez les dépendances avec Composer : composer install
+      Configurez la base de données en ajustant le fichier .env.local.
+      Lancez l'application localement : symfony server:start
 
 Technologies utilisées :
 
-Symfony (Framework PHP)
-
-Doctrine (ORM pour base de données)
-
-Twig (Moteur de templates)
-
-SGBD MySQL (Base de données)
-
-JavaScript (Pour certaines fonctionnalités)
-
-Bootstrap (Pour le design)
-
+    Symfony (Framework PHP)
+    Doctrine (ORM pour la gestion de base de données)
+    Twig (moteur de templates)
+    MySQL (base de données)
+    JavaScript (Gestion des cookies, affichage sécurisé du mot de passe, etc.)
+    Bootstrap (Framework CSS pour le design responsive)
+    
 Améliorations futures :
 
-Ajout d’un système de commentaires
+- Ajout d’un système de commentaires pour renforcer la confiance des utilisateurs
 
-Possibilité d'effectuer des achats en ligne
-
-Déploiement sur un serveur distant
+- Implémentation d'une fonctionnalité d'achat en ligne pour permettre aux utilisateurs de passer commande
 
 Auteur :
 
