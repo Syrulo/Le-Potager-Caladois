@@ -6,7 +6,7 @@ Projet de fin d'études ayant été présenté lors de l'examen de développeur 
   
 Ce projet est une application web développée avec Symfony pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles locaux.
 Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique.
-Ce projet soutient ainsi l'agriculture locale et l'achat responsable.
+Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
 
 Fonctionnalités principales
 
@@ -42,7 +42,7 @@ Améliorations futures :
 
 - Ajout d’un système de commentaires pour renforcer la confiance des utilisateurs
 
-- Implémentation d'une fonctionnalité d'achat en ligne pour permettre aux utilisateurs de passer commande
+- Implémentation d'une fonctionnalité d'achat en ligne pour permettre aux utilisateurs de passer commande directement via la plateforme.
 
 Auteur :
 
