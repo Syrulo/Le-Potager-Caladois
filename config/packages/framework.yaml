@@ -6,8 +6,8 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session:
         handler_id: null # Utilise le gestionnaire de sessions par défaut
-        cookie_secure: true # Sécuriser le cookie sur HTTPS
-        cookie_samesite: none # Permettre l'utilisation du cookie sur des requêtes cross-site
+        cookie_secure: auto # Assure que les cookies sont sécurisés (recommandé en production)
+        cookie_samesite: lax # Empêche les attaques CSRF tout en permettant les sessions
 
     #esi: true
     #fragments: true
