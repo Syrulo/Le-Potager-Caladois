@@ -61,3 +61,5 @@ Pour gérer efficacement les produits et les transactions, j’ai optimisé les 
 ## Auteur :
 
 **Thomas Borestel**
+
+N'hésitez pas à me contacter via une issue ou une discussion sur GitHub pour toute suggestion ou signalement de bug.
