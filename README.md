@@ -1,10 +1,10 @@
-# Projet Symfony
+# Le Potager Caladois
 
 ## Description :
 
 Projet de fin d'études ayant été présenté lors de l'examen de développeur web / web mobile.
 
-Ce projet est une application web développée avec **Symfony** pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
+Le Potager Caladois est une application web développée avec **Symfony** pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
 
 ---
 
