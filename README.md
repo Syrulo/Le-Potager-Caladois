@@ -1,10 +1,10 @@
-# Projet Symfony
+# Le Potager Caladois
 
 ## Description :
 
 Projet de fin d'études ayant été présenté lors de l'examen de développeur web / web mobile.
 
-Ce projet est une application web développée avec **Symfony** pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles locaux. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
+Le Potager Caladois est une application web développée avec **Symfony** pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
 
 ---
 
@@ -18,8 +18,9 @@ Ce projet est une application web développée avec **Symfony** pour mettre en r
 
 ## Installation et démo rapide :
 
-Pour voir ce projet en action, vous pouvez facilement tester l'application via la démo en ligne accessible ici :  
-[https://le-potager-caladois-473dbd9489eb.herokuapp.com/](https://le-potager-caladois-473dbd9489eb.herokuapp.com/)
+Pour tester rapidement l'application, vous pouvez accéder à la démo en ligne ici :
+
+[Le Potager Caladois - Démo en ligne](https://le-potager-caladois-473dbd9489eb.herokuapp.com/)
 
 Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
 
@@ -32,7 +33,7 @@ Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le
 
 ## Technologies utilisées :
 
-- **Symfony** (Framework PHP)
+- **Symfony 7.2** (Framework PHP)
 - **Doctrine** (ORM pour la gestion de base de données)
 - **Twig** (moteur de templates)
 - **MySQL** (base de données)
@@ -61,3 +62,7 @@ Pour gérer efficacement les produits et les transactions, j’ai optimisé les 
 ## Auteur :
 
 **Thomas Borestel**
+
+## Contact :
+
+N'hésitez pas à me contacter via une issue ou une discussion sur GitHub pour toute suggestion ou signalement de bug.
