@@ -20,8 +20,8 @@ class AddressType extends AbstractType
                 'label' => 'Adresse',
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '255',
+                    'minlength' => '2',
+                    'maxlength' => '255',
                 ],
                 'constraints' => [
                     new Assert\NotBlank()

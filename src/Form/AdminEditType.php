@@ -20,8 +20,8 @@ class AdminEditType extends AbstractType
                 'label' => 'Prénom',
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50',
+                    'minlength' => '2',
+                    'maxlength' => '50',
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -32,8 +32,8 @@ class AdminEditType extends AbstractType
                 'label' => 'Nom',
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50',
+                    'minlength' => '2',
+                    'maxlength' => '50',
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
