@@ -38,48 +38,7 @@ Technologies utilisées :
     JavaScript (Gestion des cookies, affichage sécurisé du mot de passe, etc.)
     Bootstrap (Framework CSS pour le design responsive)
 
-    Je voulais dire qu'en structurant ton texte avec des titres et sous-titres, tu peux rendre ton projet encore plus facile à lire et plus agréable à parcourir pour un recruteur, surtout si celui-ci cherche rapidement des informations spécifiques. Cela aide à mettre en valeur chaque section et à guider le lecteur de manière plus fluide.
-
-Par exemple, au lieu d’avoir un long paragraphe continu, tu pourrais séparer ton contenu en sections distinctes, chacune avec un titre qui décrit ce que tu abordes. Cela rend le texte plus aéré et permet au recruteur de trouver facilement ce qu’il cherche (par exemple : Fonctionnalités, Technologies utilisées, Défis rencontrés, Améliorations futures, etc.).
-
-Voici un exemple de structure avec des titres clairs :
-Description du projet
-
-Ce projet est une application web développée avec Symfony pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles locaux. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
-Objectifs du projet
-
-    Offrir aux producteurs locaux une plateforme pour vendre leurs produits en ligne.
-    Permettre aux consommateurs d'acheter directement des produits agricoles locaux.
-    Améliorer la visibilité des producteurs locaux sur internet.
-
-Fonctionnalités principales
-
-    [✔] Authentification des utilisateurs
-    [✔] Possibilité pour un utilisateur de s'inscrire en tant que producteur
-    [✔] Gestion des articles ou produits par le producteur lui-même
-
-Installation et démo rapide
-
-Pour voir ce projet en action, vous pouvez facilement tester l'application via la démo en ligne accessible ici :
-[lien vers la démo Heroku].
-
-Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
-
-    Clonez le dépôt : git clone https://github.com/Syrulo/Projet.git
-    Installez les dépendances avec Composer : composer install
-    Configurez la base de données en ajustant le fichier .env.local.
-    Lancez l'application localement : symfony server:start
-
-Technologies utilisées
-
-    Symfony (Framework PHP)
-    Doctrine (ORM pour la gestion de base de données)
-    Twig (moteur de templates)
-    MySQL (base de données)
-    JavaScript (Gestion des cookies, affichage sécurisé du mot de passe, etc.)
-    Bootstrap (Framework CSS pour le design responsive)
-
-Défis rencontrés et solutions
+Défis rencontrés et solutions :
 
     Gestion des rôles utilisateurs : La mise en place d’un système d’administration permettant de définir différents rôles (producteurs, administrateurs) a nécessité la compréhension approfondie de la gestion des rôles et des permissions sous Symfony.
     Optimisation de la base de données : Pour gérer efficacement les produits et les transactions, j’ai optimisé les requêtes SQL avec Doctrine pour éviter des performances lentes à grande échelle.
