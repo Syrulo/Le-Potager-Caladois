@@ -44,6 +44,7 @@
 				{% endif %}
 
 				<form action="{{ path('app_login') }}" method="post">
+				{{ dump(csrf_token('authenticate')) }}
 					<div class="card-body">
 						<div class="form-group">
 							<label for="username" class="form-label mt-4">Adresse email</label>
@@ -57,10 +58,6 @@
 							<input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
 							<label class="form-check-label" for="showPassword">Afficher le mot de passe</label>
 						</div>
-						{# <div class="mb-3 form-check">
-													<input type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
-													<label class="form-check-label" for="remember_me">Remember me!</label>
-												</div> #}
 						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 						<div class="card-footer text-center">
 							<button type="submit" class="btn btn-color mt-4">Se connecter</button>
