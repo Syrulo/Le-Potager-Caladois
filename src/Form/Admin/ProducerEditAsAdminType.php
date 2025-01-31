@@ -1,35 +1,55 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
-use App\Entity\Product;
-use App\Entity\Category;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Producer;
+use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ProductEditAsProducerType extends AbstractType
+class ProducerEditAsAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Nom du produit',
+            ->add('brandName', TextType::class, [
+                'label' => 'Nom',
                 'required' => true
             ])
-            ->add('prix', MoneyType::class, [
-                'label' => 'Prix du produit',
-                'required' => true
+            ->add('contactEmail', EmailType::class, [
+                'label' => 'Adresse email de contact',
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => '2',
+                    'maxlength' => '180',
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Email(),
+                    new Assert\Length(['min' => 2, 'max' => 180]),
+                ]
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description du produit',
+                'label' => 'Description du producteur',
                 'required' => true
+            ])
+            ->add('phone', TelType::class, [
+                'label' => 'Téléphone',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => '/^0[0-9]{9}$/',
+                        'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
+                    ])
+                ]
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
@@ -48,10 +68,9 @@ class ProductEditAsProducerType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-            ]);
+            ->add('address', AddressType::class, []);
     }
+
 
     /**
      * Configure les options du formulaire.
@@ -61,7 +80,7 @@ class ProductEditAsProducerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => Producer::class,
         ]);
     }
 }

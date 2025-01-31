@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Producer;
-use App\Form\ProductType;
-use App\Form\ProducerType;
-use App\Form\ProductProducerType;
-use App\Form\ProductEditAsAdminType;
+use App\Form\Admin\AdminProductType;
+use App\Form\Producer\ProducerType;
+use App\Form\Producer\NewProductProducerType;
+use App\Form\Admin\ProductEditAsAdminType;
 use App\Repository\ProductRepository;
 use App\Repository\VisitorRepository;
 use App\Repository\ProducerRepository;
-use App\Form\ProductEditAsProducerType;
+use App\Form\Producer\ProductEditAsProducerType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -106,7 +106,7 @@ class ProductController extends AbstractController
         $product = new Product();
         $producer = $producerRepository->findBy(["visitor" => $this->getUser()->getId()]);
         $product->setProducer($producer[0]);
-        $form = $this->createForm(ProductProducerType::class, $product);
+        $form = $this->createForm(NewProductProducerType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($product);
@@ -211,7 +211,7 @@ class ProductController extends AbstractController
     {
         $product = new Product();
 
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(AdminProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 

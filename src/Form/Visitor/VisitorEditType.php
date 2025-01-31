@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Visitor;
 
 use App\Entity\Visitor;
+use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

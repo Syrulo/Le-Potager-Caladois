@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Producer;
 
 use App\Entity\Visitor;
 use Symfony\Component\Form\AbstractType;

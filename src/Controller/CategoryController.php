@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Form\CategoryType;
+use App\Form\Admin\AdminCategoryType;
 use App\Form\ProductQuantityType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
@@ -85,7 +85,7 @@ class CategoryController extends AbstractController
     {
         $category = new Category();
 
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(AdminCategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -113,7 +113,7 @@ class CategoryController extends AbstractController
     #[Route('/admin/category/edit/{id}', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
     public function editCategory(Category $category, Request $request, EntityManagerInterface $manager): Response
     {
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(AdminCategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Producer;
-use App\Form\ProducerEditAsAdminType;
+use App\Form\Admin\ProducerEditAsAdminType;
 use App\Repository\ProductRepository;
 use App\Repository\ProducerRepository;
 use Doctrine\ORM\EntityManagerInterface;

@@ -4,10 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\Visitor;
-use App\Form\AdminEditType;
-use App\Form\NewProducerType;
-use App\Form\VisitorEditType;
-use App\Form\VisitorEditAsAdminType;
+use App\Form\Producer\NewProducerType;
+use App\Form\Visitor\VisitorEditType;
+use App\Form\Admin\VisitorEditAsAdminType;
 use App\Repository\VisitorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;

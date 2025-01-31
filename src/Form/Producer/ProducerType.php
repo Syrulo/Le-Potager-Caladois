@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Producer;
 
-use App\Entity\Producer;
+use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -11,10 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ProducerEditAsAdminType extends AbstractType
+class ProducerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -36,10 +36,6 @@ class ProducerEditAsAdminType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180]),
                 ]
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'Description du producteur',
-                'required' => true
-            ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'constraints' => [
@@ -49,6 +45,10 @@ class ProducerEditAsAdminType extends AbstractType
                         'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
                     ])
                 ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description du producteur',
+                'required' => true
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
@@ -67,19 +67,20 @@ class ProducerEditAsAdminType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('address', AddressType::class, []);
+            ->add('address', AddressType::class, [])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr' => [
+                    'class' => 'btn btn-color'
+                ]
+            ])
+        ;
     }
 
-
-    /**
-     * Configure les options du formulaire.
-     *
-     * @param OptionsResolver $resolver Le résolveur d'options.
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Producer::class,
+            // Configure your form options here
         ]);
     }
 }
