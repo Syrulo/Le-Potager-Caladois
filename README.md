@@ -17,11 +17,7 @@ Le Potager Caladois est une application web développée avec **Symfony** pour m
 
 ---
 
-## Installation et démo rapide :
-
-Pour tester rapidement l'application, vous pouvez accéder à la démo en ligne ici :
-
-[Le Potager Caladois - Démo en ligne](https://le-potager-caladois-473dbd9489eb.herokuapp.com/)
+## Installation :
 
 Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
 
