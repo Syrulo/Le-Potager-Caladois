@@ -5,18 +5,19 @@ namespace App\Controller;
 use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Producer;
-use App\Form\Admin\AdminProductType;
+use App\Service\PriceChecker;
 use App\Form\Producer\ProducerType;
-use App\Form\Producer\NewProductProducerType;
-use App\Form\Admin\ProductEditAsAdminType;
+use App\Form\Admin\AdminProductType;
 use App\Repository\ProductRepository;
 use App\Repository\VisitorRepository;
 use App\Repository\ProducerRepository;
-use App\Form\Producer\ProductEditAsProducerType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\Admin\ProductEditAsAdminType;
+use App\Form\Producer\NewProductProducerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Form\Producer\ProductEditAsProducerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
@@ -126,22 +127,38 @@ class ProductController extends AbstractController
      * @param Product $product L'entité produit à éditer.
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités.
+     * @param PriceChecker $priceChecker le service de vérification des prix
      *
      * @return Response La réponse HTTP.
      */
     #[Route('/product/edit/{id}', name: 'app_producer_product_edit', methods: ['GET', 'POST'])]
-    public function editProducerProduct(Product $product, Request $request, EntityManagerInterface $manager, ProducerRepository $producerRepository): Response
+    public function editProducerProduct(
+        Product $product,
+        Request $request, 
+        EntityManagerInterface $manager, 
+        ProducerRepository $producerRepository,
+        PriceChecker $priceChecker
+        ): Response
     {
+        $oldPrice = $product->getPrix();
+
         $producer = $producerRepository->findBy(["visitor" => $this->getUser()->getId()]);
         $product->setProducer($producer[0]);
+
         $form = $this->createForm(ProductEditAsProducerType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setUpdatedAt(new \DateTimeImmutable());
-            $manager->persist($product);
+
+            $percentageVariation = $priceChecker->calculatePriceVariation($oldPrice, $product->getPrix());
+            if($percentageVariation == true) {
+                $this->addFlash('warning', 'La variation de prix est supérieure à 30%');
+            }
+
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été modifié');
+
             return $this->redirectToRoute('app_product');
         }
 
