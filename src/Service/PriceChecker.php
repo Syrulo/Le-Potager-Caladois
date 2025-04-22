@@ -6,12 +6,23 @@ class PriceChecker
 {
     public function calculatePriceVariation(float $oldPrice, float $newPrice, float $threshold = 30.0): bool
     {
-        if($oldPrice == 0) {
+        if($oldPrice <= 0) {
             return false;
         }
 
-        $variation = abs(($newPrice - $oldPrice) / $oldPrice) * 100;
+        if ($newPrice >= $oldPrice) {
+            return false;
+        }
+
+        $variation = (($oldPrice - $newPrice) / $oldPrice) * 100;
 
         return $variation >= $threshold;
+    }
+
+    public function getVariationPercentage(float $oldPrice, float $newPrice) :int
+    {
+        $variation = (($oldPrice - $newPrice) / $oldPrice) * 100;
+
+        return $variation;
     }
 }

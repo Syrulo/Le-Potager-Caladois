@@ -6,6 +6,7 @@ use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Producer;
 use App\Service\PriceChecker;
+use App\Service\MailerService;
 use App\Form\Producer\ProducerType;
 use App\Form\Admin\AdminProductType;
 use App\Repository\ProductRepository;
@@ -22,6 +23,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
+
+    public function __construct(
+        private MailerService $mailerService,
+        private PriceChecker $priceChecker
+        ) {}
+
     /**
      * Affiche le tableau de bord du producteur et gère la création d'un producteur.
      *
@@ -127,7 +134,6 @@ class ProductController extends AbstractController
      * @param Product $product L'entité produit à éditer.
      * @param Request $request La requête HTTP.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités.
-     * @param PriceChecker $priceChecker le service de vérification des prix
      *
      * @return Response La réponse HTTP.
      */
@@ -136,8 +142,7 @@ class ProductController extends AbstractController
         Product $product,
         Request $request, 
         EntityManagerInterface $manager, 
-        ProducerRepository $producerRepository,
-        PriceChecker $priceChecker
+        ProducerRepository $producerRepository
         ): Response
     {
         $oldPrice = $product->getPrix();
@@ -151,8 +156,10 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setUpdatedAt(new \DateTimeImmutable());
 
-            $percentageVariation = $priceChecker->calculatePriceVariation($oldPrice, $product->getPrix());
-            if($percentageVariation == true) {
+            $percentageVariation = $this->priceChecker->calculatePriceVariation($oldPrice, $product->getPrix());
+
+            if($percentageVariation) {
+                $this->mailerService->sendPriceAlert($product, $oldPrice, $product->getPrix());
                 $this->addFlash('warning', 'La variation de prix est supérieure à 30%');
             }
 
