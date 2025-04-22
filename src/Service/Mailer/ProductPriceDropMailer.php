@@ -1,17 +1,23 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Mailer;
 
 use App\Entity\Product;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Service\PriceChecker;
 
-class MailerService {
+class ProductPriceDropMailer implements ProductPriceDropMailerInterface {
 
-    public function __construct(private MailerInterface $mailer, private PriceChecker $priceChecker) {}
+    public function __construct(
+    private MailerInterface $mailer,
+    private PriceChecker $priceChecker
+    ) {}
 
-    public function sendPriceAlert(Product $product, float $oldPrice, float $newPrice): void
+    public function sendPriceAlert(Product $product,
+    float $oldPrice,
+    float $newPrice
+    ): void
     {
         $percentage = $this->priceChecker->getVariationPercentage($oldPrice, $newPrice);
 

@@ -6,7 +6,6 @@ use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Producer;
 use App\Service\PriceChecker;
-use App\Service\MailerService;
 use App\Form\Producer\ProducerType;
 use App\Form\Admin\AdminProductType;
 use App\Repository\ProductRepository;
@@ -19,13 +18,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\Producer\ProductEditAsProducerType;
+use App\Service\Mailer\ProductPriceDropMailerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
 
+    /**
+     * @param ProductPriceDropMailerInterface $productPriceDropMailerInterface injection du service d'envoi de mail lors d'une baisse de prix de 30% minimum
+     * @param PriceCkecker $priceChecker injection du service de vérification de la baisse de 30% du prix d'un produit
+     */
     public function __construct(
-        private MailerService $mailerService,
+        private ProductPriceDropMailerInterface $productPriceDropMailerInterface,
         private PriceChecker $priceChecker
         ) {}
 
@@ -159,8 +163,8 @@ class ProductController extends AbstractController
             $percentageVariation = $this->priceChecker->calculatePriceVariation($oldPrice, $product->getPrix());
 
             if($percentageVariation) {
-                $this->mailerService->sendPriceAlert($product, $oldPrice, $product->getPrix());
-                $this->addFlash('warning', 'La variation de prix est supérieure à 30%');
+                $this->productPriceDropMailerInterface->sendPriceAlert($product, $oldPrice, $product->getPrix());
+                $this->addFlash('warning', 'La baisse de prix est égale ou supérieure à 30%');
             }
 
             $manager->flush();
