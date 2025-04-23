@@ -18,19 +18,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\Producer\ProductEditAsProducerType;
-use App\Service\Mailer\ProductPriceDropMailerInterface;
+use App\Service\Mailer\PromoMailerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
 
     /**
-     * @param ProductPriceDropMailerInterface $productPriceDropMailerInterface injection du service d'envoi de mail lors d'une baisse de prix de 30% minimum
+     * @param PromoMailerInterface $promoMailer injection du service d'envoi de mail lors d'une baisse de prix de 30% minimum
      * @param PriceCkecker $priceChecker injection du service de vérification de la baisse de 30% du prix d'un produit
      */
     public function __construct(
-        private ProductPriceDropMailerInterface $productPriceDropMailerInterface,
-        private PriceChecker $priceChecker
+        private readonly PromoMailerInterface $promoMailer,
+        private readonly PriceChecker $priceChecker
         ) {}
 
     /**
@@ -160,15 +160,16 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setUpdatedAt(new \DateTimeImmutable());
 
+            $newPrice = $product->getPrix();
             $percentageVariation = $this->priceChecker->calculatePriceVariation($oldPrice, $product->getPrix());
-
-            if($percentageVariation) {
-                $this->productPriceDropMailerInterface->sendPriceAlert($product, $oldPrice, $product->getPrix());
-                $this->addFlash('warning', 'La baisse de prix est égale ou supérieure à 30%');
-            }
 
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été modifié');
+
+            if($percentageVariation) {
+                $this->promoMailer->sendPriceAlert($product, $oldPrice, $newPrice);
+                $this->addFlash('warning', 'La baisse de prix est égale ou supérieure à 30%');
+            }
 
             return $this->redirectToRoute('app_product');
         }

@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\Visitor;
-use App\Form\Producer\NewProducerType;
 use App\Form\Visitor\VisitorEditType;
-use App\Form\Admin\VisitorEditAsAdminType;
 use App\Repository\VisitorRepository;
+use App\Form\Producer\NewProducerType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\Admin\VisitorEditAsAdminType;
+use App\Service\Mailer\UserMailerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,12 @@ class VisitorController extends AbstractController
      *
      * @param Security $security Le service de sécurité pour gérer les utilisateurs et les rôles.
      * @param VisitorRepository $visitorRepository Le repository pour accéder aux données des utilisateurs.
+     * @param UserMailerInterface $userMailer Le service pour envoyé un mail pour la validation d'un nouveau producteur
      */
     public function __construct(
         private Security $security,
-        private VisitorRepository $visitorRepository
+        private VisitorRepository $visitorRepository,
+        private readonly UserMailerInterface $userMailer
     ) {}
 
     /**
@@ -46,6 +49,7 @@ class VisitorController extends AbstractController
             $visitor->setStatus("pending");
             $em->persist($visitor);
             $em->flush();
+            $this->userMailer->newPendingProducer($visitor);
             return $this->redirectToRoute('app_login');
         }
         return $this->render('/frontoffice/utilisateur/new.html.twig', [

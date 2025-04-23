@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nouveau producteur en attente !</title>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+        <style>
+            * {
+                text-align: center;
+            }
+
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                background-color: #e3ebd0;
+            }
+            
+            .main {
+                flex: 1;
+            }
+
+            .image {
+                display: block;
+                margin: 0 auto;
+                width: 25%;
+            }
+
+            .footer {
+                background-color: #fbfbf1;
+                text-align: center;
+                padding: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='main'>
+            <img class="image" src="https://cdn-icons-png.flaticon.com/512/8622/8622498.png">
+            <div class="header">
+                <h2>Hey, y'a un potentiel nouveau producteur qui attend !</h2>
+            </div>
+            <div>
+                <p>
+                    L'utilisateur {{ visitor.firstname }} {{ visitor.lastname }} demande à devenir producteur !
+                </p>
+            </div>
+        </div>
+        <div class="footer">
+            Ce mail est envoyé automatiquement lorsqu'un utilisateur doit être géré par un administrateur <br />
+        </div>
+    </body>
+</html>

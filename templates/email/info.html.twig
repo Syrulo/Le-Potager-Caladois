@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Debug de la requête</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 2rem;
+        }
+        h1, h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.3rem;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        pre {
+            background-color: #eee;
+            padding: 0.5rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    {% if value is defined %}
+        <h1>Value</h1>
+        <pre>{{ value }}</pre>
+    {% endif %}
+
+    <h1>Debug de la requête Symfony</h1>
+
+    <div class="section">
+        <h2>Infos générales</h2>
+        <ul>
+            <li><strong>Méthode :</strong> <pre>{{ app.request.method }}</pre></li>
+            <li><strong>Nom de la route :</strong> <pre>{{ app.request.attributes.get('_route') }}</pre></li>
+            <li><strong>URI :</strong> <pre>{{ app.request.uri }}</pre></li>
+            <li><strong>Path Info :</strong> <pre>{{ app.request.pathInfo }}</pre></li>
+            <li><strong>Query string :</strong> <pre>{{ app.request.queryString }}</pre></li>
+            <li><strong>Client IP :</strong> <pre>{{ app.request.clientIp }}</pre></li>
+            <li><strong>User-Agent :</strong> <pre>{{ app.request.headers.get('User-Agent') }}</pre></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Paramètres de route</h2>
+        <ul>
+            {% for key, value in app.request.attributes.get('_route_params') %}
+                <li><strong>{{ key }}:</strong> <pre>{{ dump(value) }}</pre></li>
+            {% else %}
+                <li><em>Aucun paramètre</em></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Query parameters (GET)</h2>
+        <ul>
+            {% for key, value in app.request.query.all %}
+                <li><strong>{{ key }}:</strong> <pre>{{ dump(value) }}</pre></li>
+            {% else %}
+                <li><em>Aucun</em></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Body parameters (POST)</h2>
+        <ul>
+            {% for key, value in app.request.request.all %}
+                <li><strong>{{ key }}:</strong> <pre>{{ dump(value) }}</pre></li>
+            {% else %}
+                <li><em>Aucun</em></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Headers</h2>
+        <ul>
+            {% for key, value in app.request.headers.all %}
+                <li><strong>{{ key }}:</strong> <pre>{{ dump(value) }}</pre></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Attributs</h2>
+        <ul>
+            {% for key, value in app.request.attributes.all %}
+                <li><strong>{{ key }}:</strong> <pre>{{ dump(value) }}</pre></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
