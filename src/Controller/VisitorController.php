@@ -175,6 +175,7 @@ class VisitorController extends AbstractController
     {
         $visitor->setStatus("confirmed");
         $em->flush();
+        $this->userMailer->newProducerValidated($visitor);
 
         $this->addFlash('success', 'L\'utilisateur a bien été validé');
         return $this->redirectToRoute('app_admin_visitor');

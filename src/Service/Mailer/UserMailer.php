@@ -3,7 +3,6 @@
 namespace App\Service\Mailer;
 
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use App\Entity\Visitor;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
@@ -18,6 +17,17 @@ class UserMailer implements UserMailerInterface
         ->to('tborestel@gmail.com')
         ->subject("Nouveau producteur {$visitor->getFirstname()} {$visitor->getLastname()} en attente de validation")
         ->htmlTemplate('email/admin/newPendingProducer.html.twig')
+        ->context(['visitor' => $visitor]);
+
+        $this->mailer->send($email);
+    }
+
+    public function newProducerValidated(Visitor $visitor) : void
+    {
+        $email = (new TemplatedEmail())
+        ->to('tborestel@gmail.com')
+        ->subject('Demande de statut producteur validée')
+        ->htmlTemplate('email/producer/newProducerValidated.html.twig')
         ->context(['visitor' => $visitor]);
 
         $this->mailer->send($email);
