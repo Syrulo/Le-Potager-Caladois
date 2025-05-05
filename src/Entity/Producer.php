@@ -10,6 +10,7 @@ use App\Repository\ProducerRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use SebastianBergmann\Type\TrueType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -35,10 +36,10 @@ class Producer
     #[Vich\UploadableField(mapping: 'producteurs_image', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
     #[ORM\Column(type: "datetime_immutable", nullable: true)]

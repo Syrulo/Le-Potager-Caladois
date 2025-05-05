@@ -45,7 +45,6 @@ class VisitorController extends AbstractController
         $form = $this->createForm(NewProducerType::class, $visitor);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $visitor->setRoles(['ROLE_PRODUCER']);
             $visitor->setStatus("pending");
             $em->persist($visitor);
             $em->flush();
@@ -82,7 +81,6 @@ class VisitorController extends AbstractController
     #[Route('/profil/edit', name: 'profil_edit', methods: ['GET', 'POST'])]
     public function editProfil(Request $request, EntityManagerInterface $em): Response
     {
-
         $user = $this->security->getUser();
         $address = new Address();
         $form = $this->createForm(VisitorEditType::class, $user);
@@ -94,7 +92,6 @@ class VisitorController extends AbstractController
 
             return $this->redirectToRoute('profil', [], Response::HTTP_SEE_OTHER);
         }
-        // dd($form);
         return $this->render('frontoffice/utilisateur/edit.html.twig', [
             'form' => $form,
             'title_heading' => 'Editez votre profil'
@@ -174,6 +171,7 @@ class VisitorController extends AbstractController
     public function validateVisitor(Visitor $visitor, EntityManagerInterface $em): Response
     {
         $visitor->setStatus("confirmed");
+        $visitor->setRoles(['ROLE_PRODUCER']);
         $em->flush();
         $this->userMailer->newProducerValidated($visitor);
 
