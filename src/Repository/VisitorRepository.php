@@ -16,7 +16,10 @@ class VisitorRepository extends ServiceEntityRepository
         parent::__construct($registry, Visitor::class);
     }
 
-    public function findAllExceptProducer()
+    /**
+     * @return Visitor[] Liste des utilisateurs sans le rôle producteur
+     */
+    public function findAllExceptProducer(): array
     {
         return $this->createQueryBuilder('u')
             ->where('NOT u.roles LIKE :role')
@@ -24,11 +27,11 @@ class VisitorRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    
+
     /**
      * @return Visitor[] Returns an array of Visitor objects
      */
-    public function findByIdWithProducers($id): array
+    public function findByIdWithProducers(int $id): array
     {
         return $this->createQueryBuilder('v')
             ->addSelect('p')
@@ -44,9 +47,10 @@ class VisitorRepository extends ServiceEntityRepository
      * Trouve tous les visiteurs avec leurs producteurs et produits associés.
      *
      * @param int $id L'identifiant du visiteur
+     *
      * @return Visitor[] Retourne un tableau d'objets Visitor
      */
-    public function findAllWithProducerAndProducts($id): array
+    public function findAllWithProducerAndProducts(int $id): array
     {
         return $this->createQueryBuilder('v')
             ->addSelect('producer, product')

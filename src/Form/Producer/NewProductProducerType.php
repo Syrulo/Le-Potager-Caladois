@@ -2,17 +2,17 @@
 
 namespace App\Form\Producer;
 
-use App\Entity\Product;
 use App\Entity\Category;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class NewProductProducerType extends AbstractType
 {
@@ -21,15 +21,15 @@ class NewProductProducerType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'label' => 'Nom du produit',
-                'required' => true
+                'required' => true,
             ])
             ->add('prix', MoneyType::class, [
                 'label' => 'Prix du produit',
-                'required' => true
+                'required' => true,
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description du produit',
-                'required' => true
+                'required' => true,
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
@@ -57,7 +57,7 @@ class NewProductProducerType extends AbstractType
     /**
      * Configure les options du formulaire.
      *
-     * @param OptionsResolver $resolver Le résolveur d'options.
+     * @param OptionsResolver $resolver le résolveur d'options
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

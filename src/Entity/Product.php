@@ -5,13 +5,13 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\String\Slugger\AsciiSlugger;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Vich\Uploadable]
@@ -49,7 +49,7 @@ class Product
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;    
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 50)]
     private ?string $slug = null;
@@ -76,7 +76,7 @@ class Product
     /**
      * Retourne l'identifiant du produit.
      *
-     * @return int|null L'identifiant du produit ou null si non défini.
+     * @return int|null L'identifiant du produit ou null si non défini
      */
     public function getId(): ?int
     {
@@ -86,7 +86,7 @@ class Product
     /**
      * Retourne le nom du produit.
      *
-     * @return string|null Le nom du produit ou null si non défini.
+     * @return string|null le nom du produit ou null si non défini
      */
     public function getNom(): ?string
     {
@@ -96,8 +96,9 @@ class Product
     /**
      * Définit le nom du produit.
      *
-     * @param string $nom Le nom du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param string $nom le nom du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setNom(string $nom): static
     {
@@ -109,7 +110,7 @@ class Product
     /**
      * Retourne le prix du produit.
      *
-     * @return float|null Le prix du produit ou null si non défini.
+     * @return float|null le prix du produit ou null si non défini
      */
     public function getPrix(): ?float
     {
@@ -119,8 +120,9 @@ class Product
     /**
      * Définit le prix du produit.
      *
-     * @param float $prix Le prix du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param float $prix le prix du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setPrix(float $prix): static
     {
@@ -132,7 +134,7 @@ class Product
     /**
      * Retourne la description du produit.
      *
-     * @return string|null La description du produit ou null si non défini.
+     * @return string|null la description du produit ou null si non défini
      */
     public function getDescription(): ?string
     {
@@ -142,8 +144,9 @@ class Product
     /**
      * Définit la description du produit.
      *
-     * @param string $description La description du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param string $description la description du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setDescription(string $description): static
     {
@@ -155,7 +158,7 @@ class Product
     /**
      * Définit le fichier image du produit.
      *
-     * @param File|null $imageFile Le fichier image du produit.
+     * @param File|null $imageFile le fichier image du produit
      */
     public function setImageFile(?File $imageFile = null): void
     {
@@ -169,7 +172,7 @@ class Product
     /**
      * Retourne le fichier image du produit.
      *
-     * @return File|null Le fichier image du produit ou null si non défini.
+     * @return File|null le fichier image du produit ou null si non défini
      */
     public function getImageFile(): ?File
     {
@@ -179,7 +182,7 @@ class Product
     /**
      * Définit le nom de l'image du produit.
      *
-     * @param string|null $imageName Le nom de l'image du produit.
+     * @param string|null $imageName le nom de l'image du produit
      */
     public function setImageName(?string $imageName): void
     {
@@ -189,7 +192,7 @@ class Product
     /**
      * Retourne le nom de l'image du produit.
      *
-     * @return string|null Le nom de l'image du produit ou null si non défini.
+     * @return string|null le nom de l'image du produit ou null si non défini
      */
     public function getImageName(): ?string
     {
@@ -199,7 +202,7 @@ class Product
     /**
      * Définit la taille de l'image du produit.
      *
-     * @param int|null $imageSize La taille de l'image du produit.
+     * @param int|null $imageSize la taille de l'image du produit
      */
     public function setImageSize(?int $imageSize): void
     {
@@ -209,7 +212,7 @@ class Product
     /**
      * Retourne la taille de l'image du produit.
      *
-     * @return int|null La taille de l'image du produit ou null si non défini.
+     * @return int|null la taille de l'image du produit ou null si non défini
      */
     public function getImageSize(): ?int
     {
@@ -219,7 +222,7 @@ class Product
     /**
      * Retourne la date de création du produit.
      *
-     * @return \DateTimeImmutable|null La date de création du produit ou null si non défini.
+     * @return \DateTimeImmutable|null la date de création du produit ou null si non défini
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -229,8 +232,9 @@ class Product
     /**
      * Définit la date de création du produit.
      *
-     * @param \DateTimeImmutable $createdAt La date de création du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param \DateTimeImmutable $createdAt la date de création du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -242,7 +246,7 @@ class Product
     /**
      * Retourne la date de mise à jour du produit.
      *
-     * @return \DateTimeInterface|null La date de mise à jour du produit ou null si non défini.
+     * @return \DateTimeInterface|null la date de mise à jour du produit ou null si non défini
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -252,8 +256,9 @@ class Product
     /**
      * Définit la date de mise à jour du produit.
      *
-     * @param \DateTimeInterface|null $updatedAt La date de mise à jour du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param \DateTimeImmutable|null $updatedAt la date de mise à jour du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
@@ -265,7 +270,7 @@ class Product
     /**
      * Retourne le slug du produit.
      *
-     * @return string|null Le slug du produit ou null si non défini.
+     * @return string|null le slug du produit ou null si non défini
      */
     public function getSlug(): ?string
     {
@@ -275,14 +280,16 @@ class Product
     /**
      * Définit le slug du produit.
      *
-     * @param string $slug Le slug du produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param string $slug le slug du produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setSlug(string $slug): static
     {
         $slugger = new AsciiSlugger();
         $this->slug = $slugger->slug($slug);
         unset($slugger);
+
         return $this;
     }
 
@@ -301,7 +308,7 @@ class Product
     /**
      * Retourne la catégorie associée au produit.
      *
-     * @return Category|null La catégorie associée au produit ou null si non défini.
+     * @return Category|null la catégorie associée au produit ou null si non défini
      */
     public function getCategory(): ?Category
     {
@@ -311,8 +318,9 @@ class Product
     /**
      * Définit la catégorie associée au produit.
      *
-     * @param Category|null $category La catégorie à associer au produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @param Category|null $category la catégorie à associer au produit
+     *
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setCategory(?Category $category): static
     {
@@ -324,7 +332,7 @@ class Product
     /**
      * Retourne le producteur associé au produit.
      *
-     * @return Producer|null Le producteur associé au produit ou null si non défini.
+     * @return Producer|null le producteur associé au produit ou null si non défini
      */
     public function getProducer(): ?Producer
     {
@@ -334,8 +342,7 @@ class Product
     /**
      * Définit le producteur associé au produit.
      *
-     * @param Producer|null $producteur Le producteur à associer au produit.
-     * @return static L'instance du produit pour permettre le chaînage.
+     * @return static L'instance du produit pour permettre le chaînage
      */
     public function setProducer(?Producer $producer): static
     {
@@ -343,5 +350,4 @@ class Product
 
         return $this;
     }
-
 }

@@ -2,18 +2,18 @@
 
 namespace App\Entity;
 
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\PreUpdate;
-use Doctrine\ORM\Mapping\PrePersist;
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[Vich\Uploadable]
@@ -69,7 +69,7 @@ class Category
     /**
      * Retourne l'identifiant de la catégorie.
      *
-     * @return int|null L'identifiant de la catégorie ou null si non défini.
+     * @return int|null L'identifiant de la catégorie ou null si non défini
      */
     public function getId(): ?int
     {
@@ -79,7 +79,7 @@ class Category
     /**
      * Retourne le nom de la catégorie.
      *
-     * @return string|null Le nom de la catégorie ou null si non défini.
+     * @return string|null le nom de la catégorie ou null si non défini
      */
     public function getNom(): ?string
     {
@@ -89,8 +89,9 @@ class Category
     /**
      * Définit le nom de la catégorie.
      *
-     * @param string $nom Le nom de la catégorie.
-     * @return static L'instance de la catégorie pour permettre le chaînage.
+     * @param string $nom le nom de la catégorie
+     *
+     * @return static L'instance de la catégorie pour permettre le chaînage
      */
     public function setNom(string $nom): static
     {
@@ -102,7 +103,7 @@ class Category
     /**
      * Définit le fichier image de la catégorie.
      *
-     * @param File|null $imageFile Le fichier image de la catégorie.
+     * @param File|null $imageFile le fichier image de la catégorie
      */
     public function setImageFile(?File $imageFile = null): void
     {
@@ -116,7 +117,7 @@ class Category
     /**
      * Retourne le fichier image de la catégorie.
      *
-     * @return File|null Le fichier image de la catégorie ou null si non défini.
+     * @return File|null le fichier image de la catégorie ou null si non défini
      */
     public function getImageFile(): ?File
     {
@@ -126,7 +127,7 @@ class Category
     /**
      * Définit le nom de l'image de la catégorie.
      *
-     * @param string|null $imageName Le nom de l'image de la catégorie.
+     * @param string|null $imageName le nom de l'image de la catégorie
      */
     public function setImageName(?string $imageName): void
     {
@@ -136,7 +137,7 @@ class Category
     /**
      * Retourne le nom de l'image de la catégorie.
      *
-     * @return string|null Le nom de l'image de la catégorie ou null si non défini.
+     * @return string|null le nom de l'image de la catégorie ou null si non défini
      */
     public function getImageName(): ?string
     {
@@ -146,7 +147,7 @@ class Category
     /**
      * Définit la taille de l'image de la catégorie.
      *
-     * @param int|null $imageSize La taille de l'image de la catégorie.
+     * @param int|null $imageSize la taille de l'image de la catégorie
      */
     public function setImageSize(?int $imageSize): void
     {
@@ -156,7 +157,7 @@ class Category
     /**
      * Retourne la taille de l'image de la catégorie.
      *
-     * @return int|null La taille de l'image de la catégorie ou null si non défini.
+     * @return int|null la taille de l'image de la catégorie ou null si non défini
      */
     public function getImageSize(): ?int
     {
@@ -166,7 +167,7 @@ class Category
     /**
      * Retourne la date de création de la catégorie.
      *
-     * @return \DateTimeImmutable|null La date de création de la catégorie ou null si non défini.
+     * @return \DateTimeImmutable|null la date de création de la catégorie ou null si non défini
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -176,8 +177,9 @@ class Category
     /**
      * Définit la date de création de la catégorie.
      *
-     * @param \DateTimeImmutable $createdAt La date de création de la catégorie.
-     * @return static L'instance de la catégorie pour permettre le chaînage.
+     * @param \DateTimeImmutable $createdAt la date de création de la catégorie
+     *
+     * @return static L'instance de la catégorie pour permettre le chaînage
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -189,7 +191,7 @@ class Category
     /**
      * Retourne la date de mise à jour de la catégorie.
      *
-     * @return \DateTimeInterface|null La date de mise à jour de la catégorie ou null si non défini.
+     * @return \DateTimeInterface|null la date de mise à jour de la catégorie ou null si non défini
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -199,8 +201,9 @@ class Category
     /**
      * Définit la date de mise à jour de la catégorie.
      *
-     * @param \DateTimeInterface|null $updatedAt La date de mise à jour de la catégorie.
-     * @return self L'instance de la catégorie pour permettre le chaînage.
+     * @param \DateTimeInterface|null $updatedAt la date de mise à jour de la catégorie
+     *
+     * @return self L'instance de la catégorie pour permettre le chaînage
      */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
@@ -212,7 +215,7 @@ class Category
     /**
      * Retourne le slug de la catégorie.
      *
-     * @return string|null Le slug de la catégorie ou null si non défini.
+     * @return string|null le slug de la catégorie ou null si non défini
      */
     public function getSlug(): ?string
     {
@@ -222,14 +225,16 @@ class Category
     /**
      * Définit le slug de la catégorie.
      *
-     * @param string $slug Le slug de la catégorie.
-     * @return static L'instance de la catégorie pour permettre le chaînage.
+     * @param string $slug le slug de la catégorie
+     *
+     * @return static L'instance de la catégorie pour permettre le chaînage
      */
     public function setSlug(string $slug): static
     {
         $slugger = new AsciiSlugger();
         $this->slug = $slugger->slug($slug);
         unset($slugger);
+
         return $this;
     }
 
@@ -248,7 +253,7 @@ class Category
     /**
      * Retourne le nom de la catégorie sous forme de chaîne de caractères.
      *
-     * @return string Le nom de la catégorie.
+     * @return string le nom de la catégorie
      */
     public function __toString(): string
     {
@@ -258,7 +263,7 @@ class Category
     /**
      * Retourne une collection de produits associés à la catégorie.
      *
-     * @return Collection<int, Product> La collection de produits associés à la catégorie.
+     * @return Collection<int, Product> la collection de produits associés à la catégorie
      */
     public function getProducts(): Collection
     {
@@ -268,8 +273,9 @@ class Category
     /**
      * Ajoute un produit à la collection de produits associés à la catégorie.
      *
-     * @param Product $product Le produit à ajouter.
-     * @return static L'instance de la catégorie pour permettre le chaînage.
+     * @param Product $product le produit à ajouter
+     *
+     * @return static L'instance de la catégorie pour permettre le chaînage
      */
     public function addProduct(Product $product): static
     {
@@ -284,8 +290,9 @@ class Category
     /**
      * Supprime un produit de la collection de produits associés à la catégorie.
      *
-     * @param Product $product Le produit à supprimer.
-     * @return static L'instance de la catégorie pour permettre le chaînage.
+     * @param Product $product le produit à supprimer
+     *
+     * @return static L'instance de la catégorie pour permettre le chaînage
      */
     public function removeProduct(Product $product): static
     {

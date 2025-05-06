@@ -4,11 +4,10 @@ namespace App\Form;
 
 use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class AddressType extends AbstractType
 {
@@ -17,7 +16,7 @@ class AddressType extends AbstractType
         $builder
             ->add('number', TextType::class, [
                 'label' => 'Numéro',
-                'required' => false
+                'required' => false,
             ])
             ->add('street', TextType::class, [
                 'label' => 'Adresse',
@@ -28,7 +27,7 @@ class AddressType extends AbstractType
                     'maxlength' => '255',
                 ],
                 'constraints' => [
-                ]
+                ],
             ])
             ->add('postalCode', TextType::class, [
                 'label' => 'Code Postal',
@@ -37,15 +36,15 @@ class AddressType extends AbstractType
                     new Assert\Regex([
                         'pattern' => '/^[0-9]{5}$/',
                         'message' => 'Le code postal doit contenir exactement 5 chiffres.',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville:',
                 'required' => false,
                 'attr' => [
                     'data-action' => 'address-input',
-                ]
+                ],
             ])
         ;
     }

@@ -4,13 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Producer;
 use App\Form\Admin\ProducerEditAsAdminType;
-use App\Repository\ProductRepository;
 use App\Repository\ProducerRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProducerController extends AbstractController
 {
@@ -18,14 +18,16 @@ class ProducerController extends AbstractController
      * Affiche la liste des producteurs.
      *
      * @param ProducerRepository $producerRepository Le repository des producteurs
+     *
      * @return Response La réponse HTTP
      */
     #[Route('/producer', name: 'app_producer')]
     public function index(ProducerRepository $producerRepository): Response
     {
         $producers = $producerRepository->findAll();
+
         return $this->render('frontoffice/producteur/list.html.twig', [
-            'producers' => $producers
+            'producers' => $producers,
         ]);
     }
 
@@ -33,6 +35,7 @@ class ProducerController extends AbstractController
      * Affiche le tableau de bord d'un producteur.
      *
      * @param Producer $producer L'entité Producer à afficher
+     *
      * @return Response La réponse HTTP
      */
     #[Route('/producer/{id}', name: 'app_producer_show')]
@@ -47,25 +50,29 @@ class ProducerController extends AbstractController
     /**
      * Affiche les détails d'un producteur et ses produits associés.
      *
-     * @param Producer $producer L'entité Producer à afficher
+     * @param Producer          $producer          L'entité Producer à afficher
      * @param ProductRepository $productRepository Le repository des produits
+     *
      * @return Response La réponse HTTP
      */
     #[Route('/producer/{slug}/details', name: 'app_producer_details', methods: ['GET'])]
     public function detailsProducteur(Producer $producer, ProductRepository $productRepository): Response
     {
-        $products = $productRepository->findByProducer($producer->getId());
+        // $products = $productRepository->findByProducer($producer->getId());
+        $products = $productRepository->findBy(['producer' => $producer->getId()]);
+
         return $this->render('frontoffice/producteur/detailsProducteur.html.twig', [
             'producer' => $producer,
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
     /**
      * Affiche une liste de producteurs.
      *
-     * @param ProducerRepository $producerRepository Le repository pour accéder aux données des producteurs.
-     * @param Request $request L'objet de requête HTTP.
+     * @param ProducerRepository $producerRepository le repository pour accéder aux données des producteurs
+     * @param Request            $request            L'objet de requête HTTP
+     *
      * @return Response Une réponse HTTP qui rend le template backoffice/producteur/list.html.twig avec les producteurs triés.
      */
     #[Route('/admin/producer', name: 'app_admin_producer', methods: ['GET'])]
@@ -77,6 +84,7 @@ class ProducerController extends AbstractController
 
         // Récupérer les producteurs triés depuis le repository
         $producers = $producerRepository->findBy([], [$sort => $direction]);
+
         return $this->render('backoffice/producteur/adminProducer.html.twig', [
             'producers' => $producers,
             'sort' => $sort,
@@ -87,10 +95,11 @@ class ProducerController extends AbstractController
     /**
      * Édite un producteur existant.
      *
-     * @param Producer $producer L'entité producer à éditer.
-     * @param Request $request L'objet de requête HTTP.
-     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
-     * @return Response Une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification.
+     * @param Producer               $producer L'entité producer à éditer
+     * @param Request                $request  L'objet de requête HTTP
+     * @param EntityManagerInterface $manager  L'EntityManager pour gérer les opérations de base de données
+     *
+     * @return Response une réponse HTTP qui rend le formulaire d'édition de producteur ou redirige après la modification
      */
     #[Route('/admin/producer/edit/{id}', name: 'app_admin_producer_edit', methods: ['GET', 'POST'])]
     public function editProducteur(Producer $producer, Request $request, EntityManagerInterface $manager): Response
@@ -115,15 +124,16 @@ class ProducerController extends AbstractController
     /**
      * Supprime un producteur spécifique.
      *
-     * @param Producer $producer L'entité catégorie à supprimer.
-     * @param Request $request L'objet de requête HTTP.
-     * @param EntityManagerInterface $manager L'EntityManager pour gérer les opérations de base de données.
-     * @return Response Une réponse HTTP qui redirige vers la liste des catégories après suppression.
+     * @param Producer               $producer L'entité catégorie à supprimer
+     * @param Request                $request  L'objet de requête HTTP
+     * @param EntityManagerInterface $manager  L'EntityManager pour gérer les opérations de base de données
+     *
+     * @return Response une réponse HTTP qui redirige vers la liste des catégories après suppression
      */
     #[Route('/admin/producer/{id}', name: 'app_admin_producer_delete', methods: ['GET', 'POST'])]
-    public function deleteProducer(Producer $producer, Request $request, EntityManagerInterface $manager)
+    public function deleteProducer(Producer $producer, Request $request, EntityManagerInterface $manager) :Response
     {
-        if ($this->isCsrfTokenValid('delete' . $producer->getId(), $request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$producer->getId(), $request->get('_token'))) {
             $manager->remove($producer);
             $manager->flush();
 
@@ -131,5 +141,8 @@ class ProducerController extends AbstractController
 
             return $this->redirectToRoute('app_admin_producer');
         }
+    
+    $this->AddFlash('error', 'Le token CSRF est invalide.');
+    return $this->redirectToRoute('app_admin_producer');
     }
 }

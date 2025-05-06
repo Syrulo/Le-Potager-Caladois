@@ -2,16 +2,17 @@
 
 namespace App\Service\Mailer;
 
-use Symfony\Component\Mailer\MailerInterface;
 use App\Entity\Visitor;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 
 class UserMailer implements UserMailerInterface
 {
+    public function __construct(private readonly MailerInterface $mailer)
+    {
+    }
 
-    public function __construct(private readonly MailerInterface $mailer) {}
-
-    public function newPendingProducer(Visitor $visitor) : void
+    public function newPendingProducer(Visitor $visitor): void
     {
         $email = (new TemplatedEmail())
         ->to('tborestel@gmail.com')
@@ -22,7 +23,7 @@ class UserMailer implements UserMailerInterface
         $this->mailer->send($email);
     }
 
-    public function newProducerValidated(Visitor $visitor) : void
+    public function newProducerValidated(Visitor $visitor): void
     {
         $email = (new TemplatedEmail())
         ->to('tborestel@gmail.com')
@@ -32,5 +33,4 @@ class UserMailer implements UserMailerInterface
 
         $this->mailer->send($email);
     }
-
 }

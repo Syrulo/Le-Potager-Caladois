@@ -19,23 +19,24 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * Recherche des produits en fonction d'un mot-clé et d'un type de recherche.
      *
-     * @param string $keyword Le mot-clé de recherche
+     * @param string $keyword    Le mot-clé de recherche
      * @param string $searchType Le type de recherche (par exemple, "produit")
-     * @return array Un tableau de résultats de recherche
+     *
+     * @return Product[] Un tableau de produits
      */
     public function search($keyword, $searchType): array
     {
         $query = null;
 
-        if ($searchType == "produit") {
+        if ('produit' == $searchType) {
             $query = $this->createQueryBuilder('produit')
                 ->andWhere('produit.nom LIKE :keyword')
-                ->setParameter('keyword', "%" . $keyword . "%")
+                ->setParameter('keyword', '%'.$keyword.'%')
                 ->orderBy('produit.id', 'ASC')
                 ->getQuery()
                 ->getResult();
         }
-        if ($query === null) {
+        if (null === $query) {
             // Si aucun résultat n'est trouvé, retourner un tableau vide
             return [];
         }
@@ -43,13 +44,13 @@ class ProductRepository extends ServiceEntityRepository
         return $query;
     }
 
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Product
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Visitor;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -17,6 +17,7 @@ class SecurityController extends AbstractController
      * Affiche le formulaire de connexion et gère les erreurs de connexion.
      *
      * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir les erreurs et le dernier nom d'utilisateur
+     *
      * @return Response La réponse HTTP
      */
     #[Route(path: '/login', name: 'app_login')]
@@ -37,7 +38,7 @@ class SecurityController extends AbstractController
     /**
      * Gère la déconnexion de l'utilisateur.
      *
-     * @throws \LogicException Cette méthode peut être vide - elle sera interceptée par la clé de déconnexion dans votre firewall.
+     * @throws \LogicException cette méthode peut être vide - elle sera interceptée par la clé de déconnexion dans votre firewall
      */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
@@ -48,8 +49,9 @@ class SecurityController extends AbstractController
     /**
      * Gère la connexion des visitors.
      *
-     * @param AuthenticationUtils $authenticationUtils Utilitaire d'authentification pour obtenir le dernier nom d'visitor et les erreurs.
-     * @return Response Une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'visitor est déjà connecté.
+     * @param AuthenticationUtils $authenticationUtils utilitaire d'authentification pour obtenir le dernier nom d'visitor et les erreurs
+     *
+     * @return Response une réponse HTTP qui rend le template de connexion ou redirige vers la page d'accueil si l'visitor est déjà connecté
      */
     #[Route('/connexion', name: 'app_security_login', methods: ['GET', 'POST'])]
     public function connexion(AuthenticationUtils $authenticationUtils): Response
@@ -57,6 +59,7 @@ class SecurityController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home_page');
         }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
@@ -66,14 +69,14 @@ class SecurityController extends AbstractController
     /**
      * Gère l'inscription des nouveaux visitors.
      *
-     * @param Request $request La requête HTTP.
-     * @param EntityManagerInterface $manager Le gestionnaire d'entités pour gérer les opérations de base de données.
-     * @return Response Une réponse HTTP qui rend le template d'inscription ou redirige après l'inscription.
+     * @param Request                $request la requête HTTP
+     * @param EntityManagerInterface $manager le gestionnaire d'entités pour gérer les opérations de base de données
+     *
+     * @return Response une réponse HTTP qui rend le template d'inscription ou redirige après l'inscription
      */
     #[Route('/inscription', 'app_security_inscription', methods: ['GET', 'POST'])]
     public function inscription(Request $request, EntityManagerInterface $manager): Response
     {
-
         $visitor = new Visitor();
         $form = $this->createForm(InscriptionType::class, $visitor);
 
@@ -90,7 +93,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/inscription.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Service\Mailer;
 
 use App\Entity\Product;
 
-interface PromoMailerInterface 
+interface PromoMailerInterface
 {
     public function sendPriceAlert(Product $product, float $oldPrice, float $newPrice): void;
 }

@@ -3,12 +3,12 @@
 namespace App\Form\Admin;
 
 use App\Entity\Category;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AdminCategoryType extends AbstractType
 {
@@ -17,7 +17,7 @@ class AdminCategoryType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'label' => 'Nom de la catégorie',
-                'required' => true
+                'required' => true,
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
@@ -41,7 +41,7 @@ class AdminCategoryType extends AbstractType
     /**
      * Configure les options du formulaire.
      *
-     * @param OptionsResolver $resolver Le résolveur d'options.
+     * @param OptionsResolver $resolver le résolveur d'options
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

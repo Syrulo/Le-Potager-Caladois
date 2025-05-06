@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ProductQuantityType extends AbstractType
 {
@@ -15,8 +15,8 @@ class ProductQuantityType extends AbstractType
             ->add('quantity', IntegerType::class, [
                 'attr' => [
                     'min' => 1,
-                    'value' => 1
-                ]
+                    'value' => 1,
+                ],
             ])
         ;
     }
