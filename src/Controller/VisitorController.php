@@ -205,7 +205,8 @@ class VisitorController extends AbstractController
 
             return $this->redirectToRoute('app_admin_visitor', [], Response::HTTP_SEE_OTHER);
         }
-    $this->addFlash('error', 'Le token CSRF est invalide.');
-    return $this->redirectToRoute('app_admin_visitor');
+        $this->addFlash('error', 'Le token CSRF est invalide.');
+
+        return $this->redirectToRoute('app_admin_visitor');
     }
 }

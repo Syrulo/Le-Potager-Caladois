@@ -131,7 +131,7 @@ class ProducerController extends AbstractController
      * @return Response une réponse HTTP qui redirige vers la liste des catégories après suppression
      */
     #[Route('/admin/producer/{id}', name: 'app_admin_producer_delete', methods: ['GET', 'POST'])]
-    public function deleteProducer(Producer $producer, Request $request, EntityManagerInterface $manager) :Response
+    public function deleteProducer(Producer $producer, Request $request, EntityManagerInterface $manager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$producer->getId(), $request->get('_token'))) {
             $manager->remove($producer);
@@ -141,8 +141,9 @@ class ProducerController extends AbstractController
 
             return $this->redirectToRoute('app_admin_producer');
         }
-    
-    $this->AddFlash('error', 'Le token CSRF est invalide.');
-    return $this->redirectToRoute('app_admin_producer');
+
+        $this->AddFlash('error', 'Le token CSRF est invalide.');
+
+        return $this->redirectToRoute('app_admin_producer');
     }
 }

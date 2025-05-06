@@ -3,24 +3,24 @@
 namespace App\Controller;
 
 use App\Entity\Address;
+use App\Entity\Producer;
 use App\Entity\Product;
 use App\Entity\Visitor;
-use App\Entity\Producer;
-use App\Service\PriceChecker;
-use App\Form\Producer\ProducerType;
 use App\Form\Admin\AdminProductType;
+use App\Form\Admin\ProductEditAsAdminType;
+use App\Form\Producer\NewProductProducerType;
+use App\Form\Producer\ProducerType;
+use App\Form\Producer\ProductEditAsProducerType;
+use App\Repository\ProducerRepository;
 use App\Repository\ProductRepository;
 use App\Repository\VisitorRepository;
-use App\Repository\ProducerRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Form\Admin\ProductEditAsAdminType;
 use App\Service\Mailer\PromoMailerInterface;
-use App\Form\Producer\NewProductProducerType;
+use App\Service\PriceChecker;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Form\Producer\ProductEditAsProducerType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
@@ -61,7 +61,7 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $producer->setVisitor($user);
-        
+
             $em->persist($producer);
             $em->flush();
 
@@ -147,8 +147,8 @@ class ProductController extends AbstractController
         $product = new Product();
         $producer = $producerRepository->findBy(['visitor' => $visitorId]);
 
-        if(empty($producer)) {
-            throw new \Exception("Aucun producteur trouvé pour cet utilisateur.");
+        if (empty($producer)) {
+            throw new \Exception('Aucun producteur trouvé pour cet utilisateur.');
         }
 
         $product->setProducer($producer[0]);
@@ -195,8 +195,8 @@ class ProductController extends AbstractController
 
         $producer = $producerRepository->findBy(['visitor' => $visitorId]);
 
-        if(empty($producer)) {
-            throw new \Exception("Aucun producteur trouvé pour cet utilisateur.");
+        if (empty($producer)) {
+            throw new \Exception('Aucun producteur trouvé pour cet utilisateur.');
         }
         $product->setProducer($producer[0]);
 
@@ -249,9 +249,10 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('app_product');
         }
-        
-    $this->addFlash('error', 'le token CSRF est invalide.');
-    return $this->redirectToRoute('app_product');
+
+        $this->addFlash('error', 'le token CSRF est invalide.');
+
+        return $this->redirectToRoute('app_product');
     }
 
     /**

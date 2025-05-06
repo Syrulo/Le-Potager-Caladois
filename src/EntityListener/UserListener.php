@@ -28,8 +28,6 @@ class UserListener
      * Méthode appelée avant la persistance d'un User.
      *
      * @param User $User L'User à persister
-     * 
-     * @return void
      */
     public function prePersist(User $User): void
     {
@@ -40,8 +38,6 @@ class UserListener
      * Méthode appelée avant la mise à jour d'un User.
      *
      * @param User $User L'User à mettre à jour
-     * 
-     * @return void
      */
     public function preUpdate(User $User): void
     {
@@ -52,8 +48,6 @@ class UserListener
      * Encode le mot de passe basé sur le plainPassword.
      *
      * @param User $User L'User dont le mot de passe doit être encodé
-     *
-     * @return void
      */
     public function encodePassword(User $User): void
     {

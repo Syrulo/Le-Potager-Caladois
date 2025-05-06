@@ -155,8 +155,8 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_category');
         }
 
-    $this->addFlash('error', 'Le token CSRF est invalide.');
+        $this->addFlash('error', 'Le token CSRF est invalide.');
 
-    return $this->redirectToRoute('app_admin_category');
+        return $this->redirectToRoute('app_admin_category');
     }
 }
