@@ -5,13 +5,13 @@ Ce projet a été développé pour mettre en pratique mes compétences Symfony e
 
 ---
 
-## Description :
+## Description
 
 Le Potager Caladois est une application web développée avec Symfony visant à mettre en relation des producteurs locaux de fruits et légumes avec des particuliers, facilitant l’achat en circuit court. Il permet aux producteurs d’augmenter leur visibilité en ligne et soutient l’agriculture locale et l’achat responsable.
 
 ---
 
-## Fonctionnalités principales :
+## Fonctionnalités principales
 
 - [✔] **Authentification des utilisateurs**
 
@@ -21,7 +21,7 @@ Le Potager Caladois est une application web développée avec Symfony visant à 
 
 ---
 
-## Technologies et outils utilisés :
+## Technologies et outils utilisés
 
 - **PHP** avec le framework Symfony
 
@@ -35,7 +35,7 @@ Le Potager Caladois est une application web développée avec Symfony visant à 
 
 ---
 
-## Défis rencontrés et solutions :
+## Défis rencontrés et solutions
 
 ### 1. **Gestion des rôles utilisateurs** :
 Mise en place d’un système d’administration permettant de définir différents rôles (producteurs, administrateurs).
@@ -45,17 +45,17 @@ Utilisation de Doctrine pour gérer efficacement les produits et transactions.
 
 ---
 
-## Améliorations futures :
+## Améliorations futures
 
 - **Ajout d’un système de commentaires pour renforcer la confiance des utilisateurs**
 - **Implémentation d'une fonctionnalité d'achat en ligne**
 
 ---
 
-## Auteur :
+## Auteur
 
 **Thomas Borestel**
 
-## Contact :
+## Contact
 
 N'hésitez pas à me contacter via une issue ou une discussion sur GitHub pour toute suggestion ou signalement de bug.
