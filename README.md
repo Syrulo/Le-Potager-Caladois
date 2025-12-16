@@ -1,58 +1,54 @@
 # Le Potager Caladois
 
-🚧 **Projet en cours de développement** 🚧  
-Ce projet n'est pas encore achevé. Certaines fonctionnalités peuvent être incomplètes ou en cours d'amélioration.
+🚧 Projet académique réalisé dans le cadre de ma formation – perfectible et évolutif 🚧
+Ce projet a été développé pour mettre en pratique mes compétences Symfony et PHP, et constitue une première expérience complète de développement web. Certaines bonnes pratiques ne sont pas encore appliquées et certaines fonctionnalités peuvent être améliorées.
+
+---
 
 ## Description :
 
-Le Potager Caladois est une application web développée avec **Symfony** pour mettre en relation des producteurs locaux et des particuliers souhaitant acheter des produits agricoles. Il permet aux producteurs d'augmenter leur visibilité en ligne, ce qui est crucial pour ceux qui n'ont pas toujours les moyens de créer leur propre présence numérique. Ce projet soutient ainsi l'agriculture locale et l'achat responsable, tout en facilitant les échanges directs entre producteurs et consommateurs.
+Le Potager Caladois est une application web développée avec Symfony visant à mettre en relation des producteurs locaux de fruits et légumes avec des particuliers, facilitant l’achat en circuit court. Il permet aux producteurs d’augmenter leur visibilité en ligne et soutient l’agriculture locale et l’achat responsable.
 
 ---
 
 ## Fonctionnalités principales :
 
 - [✔] **Authentification des utilisateurs**
+
 - [✔] **Possibilité pour un utilisateur de s'inscrire en tant que producteur**
+
 - [✔] **Gestion des articles ou produits par le producteur lui-même**
 
 ---
 
-## Installation :
+## Technologies et outils utilisés :
 
-Si vous souhaitez explorer plus en détail, suivez ces étapes pour installer le projet localement :
+- **PHP** avec le framework Symfony
 
-1. Clonez le dépôt : `git clone https://github.com/Syrulo/Projet.git`
-2. Installez les dépendances avec Composer : `composer install`
-3. Configurez la base de données en ajustant le fichier `.env.local`.
-4. Lancez l'application localement : `symfony server:start`
+- **Twig** pour le rendu des templates HTML
 
----
+- **JavaScript** pour certaines fonctionnalités front-end
 
-## Technologies utilisées :
+- **MySQL** pour la base de données
 
-- **Symfony 7.2** (Framework PHP)
-- **Doctrine** (ORM pour la gestion de base de données)
-- **Twig** (moteur de templates)
-- **MySQL** (base de données)
-- **JavaScript** (Gestion des cookies, affichage sécurisé du mot de passe, etc.)
-- **Bootstrap** (Framework CSS pour le design responsive)
+- **CSS / Bootstrap** pour le style et le design responsive
 
 ---
 
 ## Défis rencontrés et solutions :
 
 ### 1. **Gestion des rôles utilisateurs** :
-La mise en place d’un système d’administration permettant de définir différents rôles (producteurs, administrateurs) a nécessité la compréhension approfondie de la gestion des rôles et des permissions sous Symfony.
+Mise en place d’un système d’administration permettant de définir différents rôles (producteurs, administrateurs).
 
 ### 2. **Optimisation de la base de données** :
-Pour gérer efficacement les produits et les transactions, j’ai optimisé les requêtes SQL avec **Doctrine** pour éviter des performances lentes à grande échelle.
+Utilisation de Doctrine pour gérer efficacement les produits et transactions.
 
 ---
 
 ## Améliorations futures :
 
-- **Ajout d’un système de commentaires** pour renforcer la confiance des utilisateurs
-- **Implémentation d'une fonctionnalité d'achat en ligne** pour permettre aux utilisateurs de passer commande directement via la plateforme.
+- **Ajout d’un système de commentaires pour renforcer la confiance des utilisateurs**
+- **Implémentation d'une fonctionnalité d'achat en ligne**
 
 ---
 
