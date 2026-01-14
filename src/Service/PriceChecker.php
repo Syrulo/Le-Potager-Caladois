@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Service;
 
@@ -6,7 +6,7 @@ class PriceChecker
 {
     public function calculatePriceVariation(float $oldPrice, float $newPrice, float $threshold = 30.0): bool
     {
-        if($oldPrice <= 0) {
+        if ($oldPrice <= 0) {
             return false;
         }
 
@@ -19,7 +19,7 @@ class PriceChecker
         return $variation >= $threshold;
     }
 
-    public function getVariationPercentage(float $oldPrice, float $newPrice) :int
+    public function getVariationPercentage(float $oldPrice, float $newPrice): float
     {
         $variation = (($oldPrice - $newPrice) / $oldPrice) * 100;
 

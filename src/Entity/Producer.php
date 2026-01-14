@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\ProducerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\PrePersist;
-use App\Repository\ProducerRepository;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\PreUpdate;
 use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -35,21 +35,20 @@ class Producer
     #[Vich\UploadableField(mapping: 'producteurs_image', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
-    #[ORM\Column(type: "datetime_immutable", nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
-    
-    #[ORM\Column(type: "datetime_immutable", nullable: true)]
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
-    
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
-
 
     /**
      * @var Collection<int, Product>
@@ -117,7 +116,7 @@ class Producer
     /**
      * Définit le fichier image du producteur.
      *
-     * @param File|null $imageFile Le fichier image du producteur.
+     * @param File|null $imageFile le fichier image du producteur
      */
     public function setImageFile(?File $imageFile = null): void
     {
@@ -131,7 +130,7 @@ class Producer
     /**
      * Retourne le fichier image du producteur.
      *
-     * @return File|null Le fichier image du producteur ou null si non défini.
+     * @return File|null le fichier image du producteur ou null si non défini
      */
     public function getImageFile(): ?File
     {
@@ -141,7 +140,7 @@ class Producer
     /**
      * Définit le nom de l'image du producteur.
      *
-     * @param string|null $imageName Le nom de l'image du producteur.
+     * @param string|null $imageName le nom de l'image du producteur
      */
     public function setImageName(?string $imageName): void
     {
@@ -151,7 +150,7 @@ class Producer
     /**
      * Retourne le nom de l'image du producteur.
      *
-     * @return string|null Le nom de l'image du producteur ou null si non défini.
+     * @return string|null le nom de l'image du producteur ou null si non défini
      */
     public function getImageName(): ?string
     {
@@ -161,7 +160,7 @@ class Producer
     /**
      * Définit la taille de l'image du producteur.
      *
-     * @param int|null $imageSize La taille de l'image du producteur.
+     * @param int|null $imageSize la taille de l'image du producteur
      */
     public function setImageSize(?int $imageSize): void
     {
@@ -171,7 +170,7 @@ class Producer
     /**
      * Retourne la taille de l'image du producteur.
      *
-     * @return int|null La taille de l'image du producteur ou null si non défini.
+     * @return int|null la taille de l'image du producteur ou null si non défini
      */
     public function getImageSize(): ?int
     {
@@ -183,7 +182,7 @@ class Producer
         return $this->createdAt;
     }
 
-    #[ORM\PrePersist]
+    #[PrePersist]
     public function setCreatedAt(): static
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -196,7 +195,7 @@ class Producer
         return $this->updatedAt;
     }
 
-    #[ORM\PreUpdate]
+    #[PreUpdate]
     public function setUpdatedAt(): static
     {
         $this->updatedAt = new \DateTimeImmutable('now');
@@ -219,7 +218,7 @@ class Producer
     /**
      * Retourne une collection de produits associés au producteur.
      *
-     * @return Collection<int, Product> La collection de produits associés au producteur.
+     * @return Collection<int, Product> la collection de produits associés au producteur
      */
     public function getProducts(): Collection
     {
@@ -229,8 +228,7 @@ class Producer
     /**
      * Ajoute un produit à la collection de produits associés au producteur.
      *
-     * @param Product $produit Le produit à ajouter.
-     * @return static L'instance du producteur pour permettre le chaînage.
+     * @return static L'instance du producteur pour permettre le chaînage
      */
     public function addProduct(Product $product): static
     {
@@ -245,8 +243,7 @@ class Producer
     /**
      * Supprime un produit de la collection de produits associés au producteur.
      *
-     * @param Product $produit Le produit à supprimer.
-     * @return static L'instance du producteur pour permettre le chaînage.
+     * @return static L'instance du producteur pour permettre le chaînage
      */
     public function removeProduct(Product $product): static
     {
@@ -270,6 +267,7 @@ class Producer
         $slugger = new AsciiSlugger();
         $this->slug = $slugger->slug($slug);
         unset($slugger);
+
         return $this;
     }
 

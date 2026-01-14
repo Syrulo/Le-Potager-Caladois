@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Visitor;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Doctrine\ORM\Mapping\InheritanceType;
-use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -43,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?string $password = "password";
+    private ?string $password = 'password';
 
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $phone = null;
@@ -67,8 +66,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    
 
     /**
      * A visual identifier that represents this user.
@@ -139,7 +136,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getPlainPassword()
+
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
@@ -147,8 +145,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Définit la valeur de plainPassword.
      *
-     * @param string $plainPassword Le mot de passe en clair de l'utilisateur.
-     * @return static L'instance de l'utilisateur pour permettre le chaînage.
+     * @param string $plainPassword le mot de passe en clair de l'utilisateur
+     *
+     * @return static L'instance de l'utilisateur pour permettre le chaînage
      */
     public function setPlainPassword($plainPassword)
     {

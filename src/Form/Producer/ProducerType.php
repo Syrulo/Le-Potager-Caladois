@@ -4,15 +4,15 @@ namespace App\Form\Producer;
 
 use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProducerType extends AbstractType
 {
@@ -21,7 +21,7 @@ class ProducerType extends AbstractType
         $builder
             ->add('brandName', TextType::class, [
                 'label' => 'Nom',
-                'required' => true
+                'required' => true,
             ])
             ->add('contactEmail', EmailType::class, [
                 'label' => 'Adresse email de contact',
@@ -34,7 +34,7 @@ class ProducerType extends AbstractType
                     new Assert\NotBlank(),
                     new Assert\Email(),
                     new Assert\Length(['min' => 2, 'max' => 180]),
-                ]
+                ],
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
@@ -43,12 +43,12 @@ class ProducerType extends AbstractType
                     new Assert\Regex([
                         'pattern' => '/^0[0-9]{9}$/',
                         'message' => 'Le numéro de téléphone doit commencer par un 0 et contenir 10 chiffres.',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description du producteur',
-                'required' => true
+                'required' => true,
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
@@ -71,8 +71,8 @@ class ProducerType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'btn btn-color'
-                ]
+                    'class' => 'btn btn-color',
+                ],
             ])
         ;
     }

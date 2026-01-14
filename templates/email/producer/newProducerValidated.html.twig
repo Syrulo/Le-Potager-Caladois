@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nouveau producteur en attente !</title>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+        <style>
+
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #e3ebd0;
+                font-family: Arial, sans-serif;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .footer {
+                background-color: #fbfbf1;
+                padding: 10px;
+                font-size: 12px;
+                color: #555;
+                text-align: center;
+            }
+
+            .image-container {
+                text-align: center;
+            }
+
+            .image {
+                width: 50%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" height="100%">
+            <tr>
+                <td align="center" valign="middle">
+                    <table width="700" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;">
+                        <tr>
+                            <td class="content">
+                                <div class="image-container">
+                                    {# <img class='image' src="/images/mails/felicitations.jpg" alt="Félicitations"> #}
+                                    <img class="image" src="{{ email.image('@images/felicitations.jpg') }}" alt="Félicitations">
+                                </div>
+                                <h2>Bienvenue au Potager Caladois !</h2>
+                                <h3>Bravo, {{ visitor.firstname }} {{ visitor.lastname }}</h3>
+                                <p>
+                                    Vous êtes officiellement référencé comme producteur au Potager Caladois ! <br/>
+                                    Vous avez dorénavant accès à votre espace personnel pour gérer vos produits ! <br/>
+                                    Pour y accéder, identifiez-vous sur le site puis dans l'onglet mon compte, cliquez sur gérer vos produits. <br/>
+                                    Pour tout soucis ou questions, n'hésitez pas à contacter notre équipe de choc ! <br/> <br/>
+                                    Bienvenue parmis nous !
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="footer">
+                                <bold> Ce mail vous est envoyé automatiquement lors d'une modification de votre statut</bold>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

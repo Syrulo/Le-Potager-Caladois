@@ -3,9 +3,9 @@
 namespace App\Form\Filters;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SearchType extends AbstractType
 {
@@ -20,7 +20,7 @@ class SearchType extends AbstractType
     /**
      * Configure les options du formulaire.
      *
-     * @param OptionsResolver $resolver Le résolveur d'options.
+     * @param OptionsResolver $resolver le résolveur d'options
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

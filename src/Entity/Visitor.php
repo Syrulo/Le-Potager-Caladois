@@ -2,16 +2,12 @@
 
 namespace App\Entity;
 
-use App\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\VisitorRepository;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VisitorRepository::class)]
 class Visitor extends User
 {
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
 
@@ -76,5 +72,4 @@ class Visitor extends User
 
         return $this;
     }
-
 }

@@ -3,27 +3,26 @@
 namespace App\Service\Mailer;
 
 use App\Entity\Product;
+use App\Service\PriceChecker;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use App\Service\PriceChecker;
 
-class ProductPriceDropMailer implements ProductPriceDropMailerInterface {
-
+class PromoMailer implements PromoMailerInterface
+{
     public function __construct(
-    private MailerInterface $mailer,
-    private PriceChecker $priceChecker
-    ) {}
+        private MailerInterface $mailer,
+        private PriceChecker $priceChecker,
+    ) {
+    }
 
     public function sendPriceAlert(Product $product,
-    float $oldPrice,
-    float $newPrice
-    ): void
-    {
+        float $oldPrice,
+        float $newPrice,
+    ): void {
         $percentage = $this->priceChecker->getVariationPercentage($oldPrice, $newPrice);
 
         $email = (new Email())
-        ->from('')
-        ->to('')
+        ->to('tboreste@gmail.com')
         ->subject('baisse de prix')
         ->text(sprintf(
             "Le produit '%s' a baissé de %.2f € (%.1f%%) :\nAncien prix : %.2f €\nNouveau prix : %.2f €",

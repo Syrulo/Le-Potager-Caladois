@@ -14,6 +14,10 @@ framework:
     #esi: true
     #fragments: true
 
+    mailer:
+        envelope:
+            sender: 'no-reply@lepotagercaladois.fr'
+
 when@test:
     framework:
         test: true

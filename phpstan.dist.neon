@@ -1,0 +1,8 @@
+parameters:
+    level: 6
+    paths:
+        - src/
+    ignoreErrors:
+        - '#Property App\\Entity\\.*::\$id \(int\|null\) is never assigned int#'
+        - '#Property App\\Entity\\.*::\$slug \(string\|null\) is never assigned string#'
+        - '#Property App\\Entity\\.*::\$password \(string\|null\) is never assigned null#'

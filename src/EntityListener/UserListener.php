@@ -12,13 +12,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserListener
 {
-
     private UserPasswordHasherInterface $hasher;
 
     /**
      * Constructeur de la classe UserListener.
      *
-     * @param UserPasswordHasherInterface $hasher Le service de hachage de mot de passe.
+     * @param UserPasswordHasherInterface $hasher le service de hachage de mot de passe
      */
     public function __construct(UserPasswordHasherInterface $hasher)
     {
@@ -28,9 +27,9 @@ class UserListener
     /**
      * Méthode appelée avant la persistance d'un User.
      *
-     * @param User $User L'User à persister.
+     * @param User $User L'User à persister
      */
-    public function prePersist(User $User)
+    public function prePersist(User $User): void
     {
         $this->encodePassword($User);
     }
@@ -38,9 +37,9 @@ class UserListener
     /**
      * Méthode appelée avant la mise à jour d'un User.
      *
-     * @param User $User L'User à mettre à jour.
+     * @param User $User L'User à mettre à jour
      */
-    public function preUpdate(User $User)
+    public function preUpdate(User $User): void
     {
         $this->encodePassword($User);
     }
@@ -48,12 +47,11 @@ class UserListener
     /**
      * Encode le mot de passe basé sur le plainPassword.
      *
-     * @param User $User L'User dont le mot de passe doit être encodé.
-     * @return void
+     * @param User $User L'User dont le mot de passe doit être encodé
      */
-    public function encodePassword(User $User)
+    public function encodePassword(User $User): void
     {
-        if ($User->getPlainPassword() === null) {
+        if (null === $User->getPlainPassword()) {
             return;
         }
 
@@ -65,6 +63,6 @@ class UserListener
             )
         );
         // Ne pas garder le mot de passe en clair
-        $User->setPlainPassword(null);
+        $User->setPlainPassword('');
     }
 }

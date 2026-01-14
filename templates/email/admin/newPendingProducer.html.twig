@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nouveau producteur en attente !</title>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+        <style>
+
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #e3ebd0;
+                font-family: Arial, sans-serif;
+            }
+
+            .content {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .footer {
+                background-color: #fbfbf1;
+                padding: 10px;
+                font-size: 12px;
+                color: #555;
+                text-align: center;
+            }
+
+            .image-container {
+                text-align: center;
+            }
+
+            .image {
+                width: 25%;
+            }
+
+            .utilisateur {
+                background:  #fbfbf1;
+            }
+
+        </style>
+    </head>
+    <body>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" height="100%">
+            <tr>
+                <td align="center" valign="middle">
+                    <table width="800" height="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;">
+                        <tr>
+                            <td class="content">
+                                <div class="image-container">
+                                    {# <img class='image' src="/images/mails/validation.png" alt="Validation"> #}
+                                    <img class="image" src="{{ email.image('@images/validation.png') }}" alt="Validation">
+                                </div>
+                                <h2>Un nouveau producteur demande à rejoindre le Potager Caladois</h2>
+                                <h3 class="utilisateur">L'utilisateur <span style="color: green">{{ visitor.firstname }} {{ visitor.lastname }}</span> demande à devenir producteur.</h3>
+                                <p>
+                                    Veuillez accepter ou refuser la demande dans votre panneau d'administration !
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="footer">
+                                <bold> Ce mail est envoyé automatiquement lorsqu'un utilisateur doit être géré par un administrateur </bold>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
