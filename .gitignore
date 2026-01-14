@@ -1,14 +1,13 @@
-
 ###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.prod
-/.env.*.local
+.env
+.env.*
+.env.local
+.env.local.php
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
-/npm_modules/
+/node_modules/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
