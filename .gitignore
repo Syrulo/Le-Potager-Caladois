@@ -10,6 +10,10 @@
 /node_modules/
 ###< symfony/framework-bundle ###
 
+###> Dumps SQL ###
+*.sql
+###< Dumps SQL ###
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
