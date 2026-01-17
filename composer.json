@@ -83,10 +83,10 @@
             "asset-map:compile": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "if [ \"$APP_ENV\" != \"prod\" ]; then @auto-scripts; fi"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "if [ \"$APP_ENV\" != \"prod\" ]; then @auto-scripts; fi"
         ]
     },
     "conflict": {
