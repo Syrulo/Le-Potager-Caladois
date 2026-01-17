@@ -80,11 +80,10 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd",
-            "asset-map:compile": "symfony-cmd",
-            "doctrine:database:create --if-not-exists": "symfony-cmd",
-            "doctrine:migrations:migrate": "symfony-cmd"
+            "asset-map:compile": "symfony-cmd"
         },
         "post-install-cmd": [
+            "if [ \"$APP_ENV\" != \"prod\" ]; then symfony-cmd doctrine:database:create --if-not-exists; symfony-cmd doctrine:migrations:migrate; fi",
             "@auto-scripts"
         ],
         "post-update-cmd": [
