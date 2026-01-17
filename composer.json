@@ -85,11 +85,10 @@
             "doctrine:migrations:migrate": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts",
-            "php bin/console cache:clear"
+            "if [ \"$APP_ENV\" != \"prod\" ]; then @auto-scripts; else symfony-cmd cache:clear && symfony-cmd assets:install %PUBLIC_DIR%; fi"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "if [ \"$APP_ENV\" != \"prod\" ]; then @auto-scripts; else symfony-cmd cache:clear && symfony-cmd assets:install %PUBLIC_DIR%; fi"
         ]
     },
     "conflict": {
