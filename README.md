@@ -1,13 +1,21 @@
 # Le Potager Caladois
 
-🚧 Projet académique réalisé dans le cadre de ma formation – perfectible et évolutif 🚧
-Ce projet a été développé pour mettre en pratique mes compétences Symfony et PHP, et constitue une première expérience complète de développement web. Certaines bonnes pratiques ne sont pas encore appliquées et certaines fonctionnalités peuvent être améliorées.
+🚧 Projet académique – Développement Symfony/PHP 🚧
+Ce projet illustre ma première expérience complète de développement web, de la conception à la mise en œuvre. Il met en pratique mes compétences en Symfony et PHP, avec gestion de base de données, authentification, gestion des rôles et interface utilisateur.
+
+---
+
+## Aperçu en ligne
+
+Le projet est consultable en ligne ici : [Le Potager Caladois](https://le-potager-caladois-473dbd9489eb.herokuapp.com/)
+
+⚠️ Note : le site est une démonstration académique. Certaines fonctionnalités sont limitées et certaines situations sont volontairement simplifiées pour illustrer le fonctionnement.
 
 ---
 
 ## Description
 
-Le Potager Caladois est une application web développée avec Symfony visant à mettre en relation des producteurs locaux de fruits et légumes avec des particuliers, facilitant l’achat en circuit court. Il permet aux producteurs d’augmenter leur visibilité en ligne et soutient l’agriculture locale et l’achat responsable.
+Le Potager Caladois est une application web développée avec Symfony visant à mettre en relation des producteurs locaux de fruits et légumes avec des particuliers, facilitant l’achat en circuit court et soutenant l’agriculture locale.
 
 ---
 
@@ -15,40 +23,35 @@ Le Potager Caladois est une application web développée avec Symfony visant à 
 
 - [✔] **Authentification des utilisateurs**
 
-- [✔] **Possibilité pour un utilisateur de s'inscrire en tant que producteur**
+- [✔] **Inscription et gestion des producteurs (validation admin)**
 
-- [✔] **Gestion des articles ou produits par le producteur lui-même**
+- [✔] **Consultation de la liste des produits et ajout au panier à titre illustratif**
+
+- [✔] **Tableau de bord producteur pour gestion des produits**
 
 ---
 
 ## Technologies et outils utilisés
 
-- **PHP** avec le framework Symfony
+- **PHP** avec Symfony
 
-- **Twig** pour le rendu des templates HTML
+- **Twig** pour le rendu HTML
 
 - **JavaScript** pour certaines fonctionnalités front-end
 
 - **MySQL** pour la base de données
 
-- **CSS / Bootstrap** pour le style et le design responsive
+- **CSS / Bootstrap** pour un design responsive
 
 ---
 
 ## Défis rencontrés et solutions
 
 ### 1. **Gestion des rôles utilisateurs** :
-Mise en place d’un système d’administration permettant de définir différents rôles (producteurs, administrateurs).
+mise en place d’un système d’administration pour différents rôles (producteurs, administrateurs).
 
 ### 2. **Optimisation de la base de données** :
-Utilisation de Doctrine pour gérer efficacement les produits et transactions.
-
----
-
-## Améliorations futures
-
-- **Ajout d’un système de commentaires pour renforcer la confiance des utilisateurs**
-- **Implémentation d'une fonctionnalité d'achat en ligne**
+utilisation de Doctrine pour gérer efficacement les produits et transactions.
 
 ---
 
@@ -58,4 +61,4 @@ Utilisation de Doctrine pour gérer efficacement les produits et transactions.
 
 ## Contact
 
-N'hésitez pas à me contacter via une issue ou une discussion sur GitHub pour toute suggestion ou signalement de bug.
+Pour toute question ou suggestion, vous pouvez me contacter via mon [portfolio](https://devthomas.fr), rubrique "contact".
